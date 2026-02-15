@@ -1,0 +1,52 @@
+/**
+ * Дорожная карта #Road — тень и анимация карточек
+ * (аналогично card-features-5 в hero block)
+ */
+
+@keyframes roadmap-card-float {
+  0% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Тень и анимация карточек дорожной карты */
+#Road .roadmap-horizontal .roadmap-list .item-log .info-log {
+  position: relative;
+  animation: roadmap-card-float 2s ease-in-out infinite alternate;
+  transition: box-shadow 0.3s ease, background-image 0.3s ease;
+}
+
+#Road .roadmap-horizontal .roadmap-list .item-log:nth-child(1) .info-log {
+  animation-delay: 0s;
+}
+#Road .roadmap-horizontal .roadmap-list .item-log:nth-child(2) .info-log {
+  animation-delay: 0.3s;
+}
+#Road .roadmap-horizontal .roadmap-list .item-log:nth-child(3) .info-log {
+  animation-delay: 0.6s;
+}
+#Road .roadmap-horizontal .roadmap-list .item-log:nth-child(4) .info-log {
+  animation-delay: 0.9s;
+}
+
+/* Тень при наведении (как card-features-5) */
+#Road .roadmap-horizontal .roadmap-list .item-log .info-log:hover {
+  background-image: url(../imgs/page/homepage2/bg-shadow.png);
+  background-repeat: no-repeat;
+  background-position: top left;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Анимация картинки в блоке КОМАНДА (как карточки дорожной карты) */
+.testimonial-img-animated {
+  display: inline-block;
+  animation: roadmap-card-float 2s ease-in-out infinite alternate;
+}
+.testimonial-img-animated img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UIcons - Все иконки (fi-rr-)</title>
+    <link rel="stylesheet" href="assets/css/vendors/uicons-regular-rounded.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+            padding: 30px;
+            min-height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #C5FF41;
+        }
+        .subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #888;
+        }
+        .search-box {
+            max-width: 400px;
+            margin: 0 auto 30px;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #333;
+            border-radius: 30px;
+            background: #252540;
+            color: #fff;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .search-box input:focus {
+            border-color: #C5FF41;
+        }
+        .icons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+        }
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 10px;
+            background: #252540;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+        .icon-item:hover {
+            background: #2d2d50;
+            border-color: #C5FF41;
+            transform: translateY(-3px);
+        }
+        .icon-item i {
+            font-size: 32px;
+            margin-bottom: 12px;
+            color: #C5FF41;
+        }
+        .icon-item .icon-name {
+            font-size: 11px;
+            color: #aaa;
+            text-align: center;
+            word-break: break-all;
+            line-height: 1.3;
+        }
+        .icon-item .icon-class {
+            font-size: 10px;
+            color: #666;
+            margin-top: 5px;
+            font-family: monospace;
+        }
+        .icon-item.copied {
+            background: #3B4725;
+            border-color: #C5FF41;
+        }
+        .icon-item.copied::after {
+            content: 'Скопировано!';
+            position: absolute;
+            font-size: 10px;
+            color: #C5FF41;
+        }
+        .count {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #666;
+        }
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #C5FF41;
+            color: #1a1a2e;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>UIcons Regular Rounded</h1>
+    <p class="subtitle">Нажмите на иконку, чтобы скопировать класс</p>
+    
+    <div class="search-box">
+        <input type="text" id="search" placeholder="Поиск иконок..." autocomplete="off">
+    </div>
+    
+    <p class="count">Всего иконок: <span id="total">498</span> | Показано: <span id="shown">498</span></p>
+    
+    <div class="icons-grid" id="icons-grid">
+    </div>
+    
+    <div class="toast" id="toast">Класс скопирован!</div>
+
+    <script>
+        const icons = [
+            'add', 'address-book', 'alarm-clock', 'align-center', 'align-justify', 'align-left', 'align-right',
+            'ambulance', 'angle-double-left', 'angle-double-right', 'angle-double-small-left', 'angle-double-small-right',
+            'angle-down', 'angle-left', 'angle-right', 'angle-small-down', 'angle-small-left', 'angle-small-right',
+            'angle-small-up', 'angle-up', 'apple', 'apps-add', 'apps-delete', 'apps-sort', 'apps', 'archive',
+            'arrow-down', 'arrow-from-bottom', 'arrow-left', 'arrow-right', 'arrow-small-down', 'arrow-small-left',
+            'arrow-small-right', 'arrow-small-up', 'arrow-up', 'asterik', 'at', 'backpack', 'badge', 'balloons',
+            'ban', 'band-aid', 'bank', 'barber-shop', 'baseball', 'basketball', 'bed', 'beer', 'bell-ring',
+            'bell-school', 'bell', 'bike', 'billiard', 'bold', 'book-alt', 'book', 'bookmark', 'bowling',
+            'box-alt', 'box', 'bread-slice', 'briefcase', 'broom', 'browser', 'brush', 'bug', 'building',
+            'bulb', 'butterfly', 'cake-birthday', 'cake-wedding', 'calculator', 'calendar', 'call-history',
+            'call-incoming', 'call-missed', 'call-outgoing', 'camera', 'camping', 'car', 'caret-down',
+            'caret-left', 'caret-right', 'caret-up', 'carrot', 'chart-connected', 'chart-histogram',
+            'chart-network', 'chart-pie-alt', 'chart-pie', 'chart-pyramid', 'chart-set-theory', 'chart-tree',
+            'chat-arrow-down', 'chat-arrow-grow', 'check', 'checkbox', 'cheese', 'chess-piece', 'child-head',
+            'circle-small', 'circle', 'clip', 'clock', 'cloud-check', 'cloud-disabled', 'cloud-download',
+            'cloud-share', 'cloud-upload', 'cloud', 'clouds', 'cocktail', 'coffee', 'comment-alt',
+            'comment-check', 'comment-heart', 'comment-info', 'comment-user', 'comment', 'comments',
+            'compress-alt', 'compress', 'computer', 'confetti', 'cookie', 'copy-alt', 'copy', 'copyright',
+            'cow', 'cream', 'credit-card', 'croissant', 'cross-circle', 'cross-small', 'cross', 'crown',
+            'cube', 'cupcake', 'cursor-finger', 'cursor-plus', 'cursor-text-alt', 'cursor-text', 'cursor',
+            'dart', 'dashboard', 'data-transfer', 'database', 'delete', 'diamond', 'dice', 'diploma',
+            'disco-ball', 'disk', 'doctor', 'document-signed', 'document', 'dollar', 'download', 'drink-alt',
+            'drumstick', 'duplicate', 'e-learning', 'earnings', 'edit-alt', 'edit', 'envelope-ban',
+            'envelope-download', 'envelope-marker', 'envelope-open', 'envelope-plus', 'envelope', 'euro',
+            'exclamation', 'expand', 'eye-crossed', 'eye-dropper', 'eye', 'feather', 'ferris-wheel',
+            'file-add', 'file-ai', 'file-check', 'file-delete', 'file-eps', 'file-gif', 'file-music',
+            'file-psd', 'file', 'fill', 'film', 'filter', 'fingerprint', 'fish', 'flag', 'flame',
+            'flip-horizontal', 'flower-bouquet', 'flower-tulip', 'flower', 'folder-add', 'folder',
+            'following', 'football', 'form', 'forward', 'fox', 'frown', 'ftp', 'gallery', 'gamepad',
+            'gas-pump', 'gem', 'gift', 'glass-cheers', 'glasses', 'globe-alt', 'globe', 'golf',
+            'graduation-cap', 'graphic-tablet', 'grid-alt', 'grid', 'guitar', 'gym', 'hamburger',
+            'hand-holding-heart', 'hastag', 'hat-birthday', 'head-side-thinking', 'headphones', 'headset',
+            'heart-arrow', 'heart', 'home-location-alt', 'home-location', 'home', 'hourglass-end',
+            'hourglass', 'ice-cream', 'ice-skate', 'id-badge', 'inbox', 'incognito', 'indent', 'infinity',
+            'info', 'interactive', 'interlining', 'interrogation', 'italic', 'jpg', 'key', 'keyboard',
+            'kite', 'label', 'laptop', 'lasso', 'laugh', 'layers', 'layout-fluid', 'leaf', 'letter-case',
+            'life-ring', 'line-width', 'link', 'lipstick', 'list-check', 'list', 'location-alt', 'lock-alt',
+            'lock', 'luggage-rolling', 'magic-wand', 'makeup-brush', 'man-head', 'map-marker-cross',
+            'map-marker-home', 'map-marker-minus', 'map-marker-plus', 'map-marker', 'map', 'marker-time',
+            'marker', 'mars-double', 'mars', 'mask-carnival', 'medicine', 'megaphone', 'meh', 'menu-burger',
+            'menu-dots-vertical', 'menu-dots', 'microphone-alt', 'microphone', 'minus-small', 'minus',
+            'mobile', 'mode-landscape', 'mode-portrait', 'money', 'moon', 'mountains', 'mouse', 'mug-alt',
+            'music-alt', 'music', 'navigation', 'network-cloud', 'network', 'notebook', 'opacity', 'package',
+            'paint-brush', 'palette', 'paper-plane', 'password', 'pause', 'paw', 'pencil', 'pharmacy',
+            'phone-call', 'phone-cross', 'phone-pause', 'phone-slash', 'physics', 'picture', 'ping-pong',
+            'pizza-slice', 'plane', 'play-alt', 'play', 'playing-cards', 'plus-small', 'plus', 'poker-chip',
+            'portrait', 'pound', 'power', 'presentation', 'print', 'protractor', 'pulse', 'pyramid',
+            'quote-right', 'rainbow', 'raindrops', 'rec', 'receipt', 'record-vinyl', 'rectabgle-vertical',
+            'rectangle-horizontal', 'rectangle-panoramic', 'recycle', 'redo-alt', 'redo', 'reflect',
+            'refresh', 'resize', 'resources', 'rewind', 'rhombus', 'rings-wedding', 'road', 'rocket',
+            'room-service', 'rotate-right', 'rugby', 'sad', 'salad', 'scale', 'school-bus', 'school',
+            'scissors', 'screen', 'search-alt', 'search-heart', 'search', 'settings-sliders', 'settings',
+            'share', 'shield-check', 'shield-exclamation', 'shield-interrogation', 'shield-plus', 'shield',
+            'ship-side', 'ship', 'shop', 'shopping-bag-add', 'shopping-bag', 'shopping-cart-add',
+            'shopping-cart-check', 'shopping-cart', 'shuffle', 'sign-in-alt', 'sign-in', 'sign-out-alt',
+            'sign-out', 'signal-alt-1', 'signal-alt-2', 'signal-alt', 'skateboard', 'smartphone',
+            'smile-wink', 'smile', 'snowflake', 'soap', 'soup', 'spa', 'speaker', 'sphere', 'spinner-alt',
+            'spinner', 'square-root', 'square', 'star-octogram', 'star', 'stats', 'stethoscope', 'sticker',
+            'stop', 'stopwatch', 'subtitles', 'sun', 'sunrise', 'surfing', 'sword', 'syringe', 'tablet',
+            'target', 'taxi', 'tennis', 'terrace', 'test-tube', 'test', 'text-check', 'text',
+            'thermometer-half', 'thumbs-down', 'thumbs-up', 'thumbtack', 'ticket', 'time-add', 'time-check',
+            'time-delete', 'time-fast', 'time-forward-sixty', 'time-forward-ten', 'time-forward',
+            'time-half-past', 'time-oclock', 'time-past', 'time-quarter-past', 'time-quarter-to',
+            'time-twenty-four', 'tool-crop', 'tool-marquee', 'tooth', 'tornado', 'train-side', 'train',
+            'transform', 'trash', 'treatment', 'tree-christmas', 'tree', 'triangle', 'trophy', 'truck-side',
+            'umbrella', 'underline', 'undo-alt', 'undo', 'unlock', 'upload', 'usb-pendrive', 'user-add',
+            'user-delete', 'user-remove', 'user-time', 'user', 'utensils', 'vector-alt', 'vector',
+            'venus-double', 'venus-mars', 'venus', 'video-camera', 'volleyball', 'volume', 'wheelchair',
+            'wifi-alt', 'wind', 'woman-head', 'world', 'yen', 'zoom-in', 'zoom-out'
+        ];
+
+        const grid = document.getElementById('icons-grid');
+        const searchInput = document.getElementById('search');
+        const shownCount = document.getElementById('shown');
+        const toast = document.getElementById('toast');
+
+        function renderIcons(filter = '') {
+            const filtered = icons.filter(icon => icon.includes(filter.toLowerCase()));
+            shownCount.textContent = filtered.length;
+            
+            grid.innerHTML = filtered.map(icon => `
+                <div class="icon-item" data-class="fi-rr-${icon}" onclick="copyClass(this)">
+                    <i class="fi-rr-${icon}"></i>
+                    <span class="icon-name">${icon}</span>
+                    <span class="icon-class">fi-rr-${icon}</span>
+                </div>
+            `).join('');
+        }
+
+        function copyClass(el) {
+            const className = el.dataset.class;
+            navigator.clipboard.writeText(className).then(() => {
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 1500);
+            });
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            renderIcons(e.target.value);
+        });
+
+        renderIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,855 @@
+/**
+ * Дополнительные стили проекта
+ */
+
+.text-semibold {
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+}
+
+.smaller {
+  font-size: smaller;
+}
+
+/* Логотип основного меню */
+.header .header-logo .logo-head {
+  height: 30px;
+  width: auto;
+  max-width: 110px;
+  object-fit: contain;
+}
+@media (min-width: 992px) {
+  .header .header-logo .logo-head {
+    height: 32px;
+    max-width: 120px;
+  }
+}
+
+/* Гамбургер: центрирование по высоте шапки */
+.header .header-right .burger-icon {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.sticky-bar.stick .header .header-right .burger-icon {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Кнопка «Ваш кабинет» / «Личный кабинет» / WHITE PAPER — не растягивать по ширине */
+.btn.btn-brand-4-medium {
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+}
+.header .header-right .btn.btn-brand-4-medium {
+  white-space: nowrap;
+}
+@media (max-width: 1199.98px) {
+  .header .header-right .btn.btn-brand-4-medium {
+    padding: 12px 18px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .header .header-right .btn.btn-brand-4-medium svg {
+    width: 18px;
+    height: 18px;
+    margin-left: 4px;
+  }
+}
+@media (max-width: 991.98px) {
+  .header .header-right .btn.btn-brand-4-medium {
+    padding: 10px 14px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .header .header-right .btn.btn-brand-4-medium svg {
+    width: 16px;
+    height: 16px;
+    margin-left: 3px;
+  }
+}
+
+/* Десктоп: скрыть иконку пользователя (показываем стрелку) */
+.header .header-right .btn.btn-cabinet .btn-cabinet-icon-mobile {
+  display: none;
+}
+
+/* Мобильные: кнопка входа — меньше, иконка пользователя в кружке */
+@media (max-width: 767.98px) {
+  .header .header-right .btn.btn-cabinet {
+    display: inline-flex !important;
+    padding: 6px;
+    min-width: 36px;
+    min-height: 36px;
+    margin-right: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #C5FF41;
+  }
+  .header .header-right .btn.btn-cabinet:hover {
+    background-color: #ECEEF2;
+  }
+  .header .header-right .btn.btn-cabinet .btn-cabinet-text {
+    display: none;
+  }
+  .header .header-right .btn.btn-cabinet .btn-cabinet-icon-desk {
+    display: none;
+  }
+  .header .header-right .btn.btn-cabinet .btn-cabinet-icon-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    color: #191919;
+    font-size: 16px;
+  }
+  .header .header-right .btn.btn-cabinet .btn-cabinet-icon-mobile i {
+    font-size: 16px;
+  }
+}
+
+/* Верхнее меню десктоп — одна строка, адаптация под ширину экрана */
+@media (min-width: 1200px) {
+  .header .nav-main-menu .main-menu {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  .header .main-menu li {
+    float: none;
+    flex: 0 0 auto;
+  }
+  .header .main-menu li a {
+    white-space: nowrap;
+  }
+}
+@media (max-width: 1399.98px) and (min-width: 1200px) {
+  .header .main-menu li {
+    padding: 0 12px;
+  }
+  .header .main-menu li a {
+    font-size: 17px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+@media (max-width: 1299.98px) and (min-width: 1200px) {
+  .header .main-menu li {
+    padding: 0 8px;
+  }
+  .header .main-menu li a {
+    font-size: 15px;
+    line-height: 18px;
+    padding: 37px 8px;
+  }
+}
+@media (max-width: 1249.98px) and (min-width: 1200px) {
+  .header .main-menu li {
+    padding: 0 5px;
+  }
+  .header .main-menu li a {
+    font-size: 13px;
+    line-height: 18px;
+    padding: 37px 5px;
+  }
+}
+
+/* Hero-5: первая карточка — col-12, картинка слева, текст справа */
+.hero-5-col-cards .card-features-5-first {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+}
+.hero-5-col-cards .card-features-5-first .card-image {
+    flex-shrink: 0;
+    width: 220px;
+    min-width: 220px;
+    margin-bottom: 0;
+}
+.hero-5-col-cards .card-features-5-first .card-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.hero-5-col-cards .card-features-5-first .card-info {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Hero-5: единообразный размер картинок во всех карточках */
+.hero-5-col-cards .card-features-5 .card-image {
+    display: flex;
+    align-items: center;
+}
+.hero-5-col-cards .card-features-5 .card-image img {
+    max-height: 120px;
+    max-width: 220px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+@media (max-width: 575.98px) {
+    .hero-5-col-cards .card-features-5-first {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    .hero-5-col-cards .card-features-5-first .card-image {
+        width: 180px;
+        min-width: 180px;
+    }
+}
+
+/* Hero-5: blur за карточками (blur-bg blur-move) */
+.hero-5-col-cards {
+  position: relative;
+  overflow: visible;
+  padding-top: 20px; /* Место для анимации карточек */
+}
+.hero-5-col-cards .hero-5-cards-blur {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url(../imgs/page/homepage1/blur.svg) no-repeat center;
+  background-size: auto 30%;
+  opacity: 0.6;
+  pointer-events: none;
+
+}
+.hero-5-col-cards .box-banner-right {
+  position: relative;
+  z-index: 1;
+}
+
+/* Анимация карточек hero-5 (shape-1 эффект) */
+.hero-5-col-cards .card-features-5 {
+  position: relative;
+  animation: hero-thumb-animation 2s ease-in-out infinite alternate;
+}
+
+/* Бейджи карточек hero-5 */
+.hero-5-col-cards .card-features-5 .card-badge {
+  position: absolute;
+  top: -10px;
+  right: 15px;
+  padding: 4px 10px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  color: #C5FF41;
+  background-color: #3B4725;
+  border: 1px solid #C5FF41;
+  border-radius: 20px;
+  white-space: nowrap;
+  z-index: 2;
+}
+.card-badge-2
+{
+    color: #5A5B5B !important;
+    background-color: #EEF0F4 !important;
+    border: 1px solid #5A5B5B !important;
+}
+
+/* Блок «3 шага» с бейджами */
+@media (min-width: 992px) {
+  .block-steps-badges {
+    align-items: stretch;
+  }
+  .block-steps-badges > [class*="col-"] {
+    display: flex;
+  }
+  .block-steps-badges .box-border-rounded {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    width: 100%;
+  }
+  .block-steps-badges .card-casestudy {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .block-steps-badges .card-casestudy .card-image {
+    margin-top: auto;
+    padding-top: 24px;
+    flex-shrink: 0;
+    min-height: 140px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .block-steps-badges .card-casestudy .card-image img {
+    max-height: 120px;
+  }
+}
+.block-steps-badges .box-border-rounded {
+  position: relative;
+  padding: 24px 28px 28px;
+  padding-top: 56px;
+  margin-bottom: 24px;
+}
+.block-steps-badges .card-casestudy .card-image {
+  background: none;
+  padding: 0;
+  text-align: center;
+}
+.block-steps-badges .card-casestudy .card-image img {
+  display: block;
+  margin: 0 auto;
+  max-height: 120px;
+  width: auto;
+}
+.block-steps-badges .step-badge {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 10px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  color: #C5FF41;
+  background-color: #3B4725;
+  border: 1px solid #C5FF41;
+  border-radius: 20px;
+  z-index: 2;
+}
+.block-steps-badges .card-casestudy .card-title {
+  margin-bottom: 12px;
+}
+.block-steps-badges .card-title h6 {
+  margin: 0;
+  line-height: 1.3;
+}
+.block-steps-badges .card-desc {
+  margin-top: 0;
+}
+.block-steps-badges .card-desc p {
+  margin-bottom: 0;
+}
+.block-steps-badges .card-desc p + p {
+  margin-top: 10px;
+}
+@media (max-width: 575.98px) {
+  .block-steps-badges .box-border-rounded {
+    padding: 20px 20px 24px;
+    padding-top: 52px;
+    margin-bottom: 20px;
+  }
+  .block-steps-badges .step-badge {
+    top: 14px;
+    left: 16px;
+  }
+}
+
+.hero-5-col-cards .box-banner-right > .row > [class*="col-"]:nth-child(2) .card-features-5 {
+  animation-delay: 0.3s;
+}
+.hero-5-col-cards .box-banner-right > .row > [class*="col-"]:nth-child(3) .card-features-5 {
+  animation-delay: 0.6s;
+}
+
+/* Hero-5: мобильная вёрстка (колонки в ряд, затем карточки) */
+@media (max-width: 991.98px) {
+  .hero-5 .hero-5-col-cards {
+    margin-top: 2rem;
+  }
+  .hero-5 .hero-5-col-cards .box-banner-right [class*="col-"] {
+    margin-bottom: 1rem;
+  }
+}
+@media (max-width: 575.98px) {
+  .hero-5 .banner-inner-top {
+    padding-top: 120px;
+    padding-bottom: 2rem;
+  }
+  .hero-5 .hero-5-col-cards .card-features-5 {
+    padding: 24px 20px;
+  }
+}
+
+/* Мобильное меню: во весь экран, dropdown по клику на название (вся строка) */
+.mobile-header-wrapper-style {
+  max-width: 100%;
+  width: 100%;
+}
+.mobile-header-wrapper-style .mobile-header-wrapper-inner .mobile-header-content-area .mobile-menu-wrap nav .mobile-menu li.has-children > a {
+  display: block;
+  width: 100%;
+  padding-right: 44px;
+  box-sizing: border-box;
+}
+.mobile-header-wrapper-style .mobile-header-wrapper-inner .mobile-header-content-area .mobile-menu-wrap nav .mobile-menu li.has-children .menu-expand {
+  pointer-events: none;
+}
+.up-info-block {
+    padding: 10px 20px;
+    background-color: #967DFF;
+    color: #ffffff;
+    font-size: 12px;
+    line-height: 24px;
+    font-weight: 400;
+    font-family: "Urbanist", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 900px;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+}
+.up-info-block span {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: bold;
+    border-radius: 35px;
+    background-color: #C5FF41;
+    color: #191919;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+@media (max-width: 767.98px) {
+    .up-info-block {
+        padding: 8px 14px;
+        font-size: 13px;
+        line-height: 20px;
+
+    }
+    .up-info-block span {
+        padding: 3px 8px;
+        font-size: 11px;
+        line-height: 11px;
+        margin-right: 8px;
+    }
+}
+@media (max-width: 575.98px) {
+    .up-info-block {
+        padding: 6px 12px;
+        font-size: 12px;
+        line-height: 18px;
+
+    }
+    .up-info-block span {
+        padding: 2px 6px;
+        font-size: 10px;
+        line-height: 10px;
+    }
+}
+.box-banner-feature-2 {
+    position: relative;
+    background-color: #191919;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    padding: 40px 20px;
+}
+
+/* Секция ЦЕЛЬ ЭКОСИСТЕМЫ: десктоп — sticky, колонка растягивается для работы stick */
+@media (min-width: 992px) {
+    .box-our-track.section-box {
+        overflow: visible !important;
+    }
+    .box-our-track .row.align-items-lg-start {
+        align-items: stretch !important;
+    }
+    .box-our-track .col-lg-4 {
+        display: flex;
+        align-items: flex-start;
+    }
+    .box-our-track .col-lg-4 .box-banner-feature-2 {
+        position: sticky;
+        top: 100px;
+        z-index: 5;
+        width: 100%;
+    }
+}
+.item-logo-text{
+    padding: 1px 2px;
+    border: 1px solid #C5FF41;
+    border-radius: 20px;
+    border: 1px solid #5A5B5B !important;
+}
+
+/* Блок «Для кого» — без кнопки и бейджа */
+#forWho .card-for-who {
+    margin-bottom: 1.5rem;
+}
+
+/* Карточка «А так же» — контент слева, картинка справа */
+#forWho .card-for-who-with-image {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+}
+#forWho .card-for-who-with-image .card-for-who-content {
+    flex: 1;
+    min-width: 0;
+}
+#forWho .card-for-who-with-image .card-for-who-image {
+    flex-shrink: 0;
+    max-width: 280px;
+}
+#forWho .card-for-who-with-image .card-for-who-image img {
+    max-width: 100%;
+    height: auto;
+}
+@media (max-width: 767px) {
+    #forWho .card-for-who-with-image {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    #forWho .card-for-who-with-image .card-for-who-image {
+        max-width: 100%;
+        text-align: center;
+    }
+}
+.section-box .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Горизонтальная дорожная карта #Road */
+#Road .roadmap-horizontal {
+    overflow-x: visible;
+    overflow-y: visible;
+    padding: 50px 0 40px;
+}
+.roadmap-horizontal .roadmap-list {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    min-width: auto;
+    position: relative;
+}
+/* Непрерывная линия за датами (десктоп) */
+.roadmap-horizontal .roadmap-list::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(236, 238, 242, 0.5);
+    z-index: 0;
+    pointer-events: none;
+}
+.roadmap-horizontal .roadmap-list .item-log {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 0;
+    min-width: 180px;
+    max-width: 280px;
+    padding-bottom: 0;
+    padding-right: 0;
+    position: relative;
+}
+.roadmap-horizontal .roadmap-list .item-log .date-log {
+    min-width: auto;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+}
+.roadmap-horizontal .roadmap-list .item-log .line-log {
+    position: relative;
+    width: 100%;
+    height: 1px;
+    left: auto;
+    margin: 0 0 24px;
+    border: none;
+    flex: 0 0 auto;
+    min-height: 1px;
+}
+.roadmap-horizontal .roadmap-list .item-log .info-log {
+    margin-left: 0;
+    width: 100%;
+    min-height: 220px;
+    border-color: rgba(236, 238, 242, 0.3);
+    padding: 32px 24px 24px;
+}
+.roadmap-horizontal .roadmap-list .item-log .info-log .list-check-black {
+    display: block;
+}
+.roadmap-horizontal .roadmap-list .item-log .info-log .list-check-black {
+    max-width: none;
+}
+.roadmap-horizontal .roadmap-list .item-log .info-log .list-check-black li {
+    display: block;
+    width: 100%;
+    padding: 4px 0 4px 36px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Десктоп: адаптация под ширину экрана */
+@media (min-width: 992px) {
+    #Road .roadmap-horizontal {
+        padding: 50px 0 40px;
+    }
+    .roadmap-horizontal .roadmap-list .item-log .line-log::before {
+        display: none;
+    }
+    .roadmap-horizontal .roadmap-list .item-log .info-log {
+        padding: 28px 20px 20px;
+    }
+}
+@media (min-width: 1200px) {
+    #Road .roadmap-horizontal {
+        padding: 60px 24px 50px;
+    }
+    .roadmap-horizontal .roadmap-list {
+        gap: 32px;
+    }
+    .roadmap-horizontal .roadmap-list .item-log {
+        max-width: 300px;
+    }
+    .roadmap-horizontal .roadmap-list .item-log .info-log {
+        padding: 36px 28px 28px;
+    }
+}
+@media (min-width: 1400px) {
+    #Road .roadmap-horizontal {
+        padding: 70px 40px 60px;
+    }
+    .roadmap-horizontal .roadmap-list {
+        gap: 40px;
+    }
+    .roadmap-horizontal .roadmap-list .item-log {
+        max-width: 320px;
+    }
+}
+
+/* Мобильная: вертикальная раскладка */
+@media (max-width: 991.98px) {
+    .roadmap-horizontal {
+        overflow-x: visible;
+        padding: 30px 0 20px;
+    }
+    .roadmap-horizontal .roadmap-list::before {
+        display: none;
+    }
+    .roadmap-horizontal .roadmap-list {
+        flex-direction: column;
+        min-width: auto;
+    }
+    .roadmap-horizontal .roadmap-list .item-log {
+        flex: none;
+        width: 100%;
+        max-width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding-bottom: 40px;
+        padding-left: 50px;
+        padding-right: 0;
+        min-width: auto;
+    }
+    .roadmap-horizontal .roadmap-list .item-log .date-log {
+        margin-bottom: 0;
+        width: 100%;
+    }
+    .roadmap-horizontal .roadmap-list .item-log .line-log {
+        position: absolute;
+        width: 1px;
+        height: calc(100% - 20px);
+        left: 15px;
+        margin: 0;
+        border-top: none;
+        border-left: 1px solid rgba(236, 238, 242, 0.5);
+        min-height: 60px;
+    }
+    .roadmap-horizontal .roadmap-list .item-log .line-log::before {
+        top: 7px;
+        left: -10px;
+        transform: none;
+    }
+    .roadmap-horizontal .roadmap-list .item-log .info-log {
+        margin-left: 0;
+        margin-top: 16px;
+        width: 100%;
+        max-width: 100%;
+        min-height: auto;
+        padding: 24px 20px 20px;
+        box-sizing: border-box;
+    }
+}
+
+/* Cookie banner */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    padding: 16px 20px;
+    background: rgba(25, 25, 25, 0.96);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.3);
+    transform: translateY(100%);
+    transition: transform 0.35s ease-out;
+}
+.cookie-banner.is-visible {
+    transform: translateY(0);
+}
+.cookie-banner[aria-hidden="false"] {
+    transform: translateY(0);
+}
+.cookie-banner__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+.cookie-banner__content {
+    flex: 1 1 100%;
+    min-width: 0;
+}
+@media (min-width: 768px) {
+    .cookie-banner__content {
+        flex: 1 1 auto;
+        max-width: calc(100% - 280px);
+    }
+}
+.cookie-banner__text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #ECEEF2;
+}
+.cookie-banner__link {
+    color: #C5FF41;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.cookie-banner__link:hover {
+    color: #d4ff6b;
+}
+.cookie-banner__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    flex-shrink: 0;
+}
+.cookie-banner__btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+.cookie-banner__btn--accept {
+    background: #C5FF41;
+    color: #191919;
+}
+.cookie-banner__btn--accept:hover {
+    background: #d4ff6b;
+}
+.cookie-banner__btn--reject,
+.cookie-banner__btn--secondary {
+    background: transparent;
+    color: #ECEEF2;
+    border: 1px solid rgba(236, 238, 242, 0.5);
+}
+.cookie-banner__btn--reject:hover,
+.cookie-banner__btn--secondary:hover {
+    background: rgba(236, 238, 242, 0.1);
+}
+
+/* Модальное окно обратной связи — тёмная тема */
+.contact-form-modal-content {
+    background: #191919;
+    border: 1px solid rgba(236, 238, 242, 0.15);
+    color: #ECEEF2;
+}
+.contact-form-modal-content .form-control {
+    background: #2B2C2D;
+    border-color: #2B2C2D;
+    color: #ECEEF2;
+}
+.contact-form-modal-content .form-control::placeholder {
+    color: #9B9C9F;
+}
+.contact-form-modal-content .form-control:focus {
+    background: #2B2C2D;
+    border-color: #C5FF41;
+    color: #ECEEF2;
+}
+.contact-form-modal-content .form-label {
+    color: #ECEEF2;
+}
+.contact-form-modal-content .btn-outline-secondary {
+    border-color: rgba(236, 238, 242, 0.5);
+    color: #ECEEF2;
+}
+.contact-form-modal-content .btn-outline-secondary:hover {
+    background: rgba(236, 238, 242, 0.1);
+    border-color: rgba(236, 238, 242, 0.5);
+    color: #ECEEF2;
+}
+.math-captcha__question {
+    color: #ECEEF2;
+    font-weight: 500;
+}
+
+/* SweetAlert2 — стиль публичной части (тёмная тема, бренд #C5FF41) */
+.swal2-popup.swal-public-theme {
+    background: #191919 !important;
+    font-family: "Manrope", "Urbanist", sans-serif !important;
+    border: 1px solid rgba(236, 238, 242, 0.15);
+}
+.swal-public-theme .swal2-title {
+    color: #ECEEF2;
+}
+.swal-public-theme .swal2-html-container {
+    color: #C9CBCC;
+}
+.swal-public-theme .swal2-styled.swal2-confirm {
+    background-color: #C5FF41 !important;
+    color: #191919 !important;
+    font-weight: 600;
+    border-radius: 8px;
+}
+.swal-public-theme .swal2-styled.swal2-confirm:hover {
+    background-color: #d4ff6b !important;
+}
+.swal-public-theme .swal2-timer-progress-bar {
+    background: #C5FF41;
+}
+
+/* Footer: Прогресс реализации */
+.footer-progress-row .border-secondary {
+    border-color: #434445 !important;
+}
+.footer-progress-bar {
+    height: 8px;
+    border-radius: 4px;
+    background-color: #434445 !important;
+}
+.footer-progress-bar .progress-bar {
+    background-color: #C5FF41 !important;
+    border-radius: 4px;
+}
