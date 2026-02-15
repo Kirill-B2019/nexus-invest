@@ -31,7 +31,18 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => [
+                'required',
+                'string',
+                'lowercase',
+                'email',
+                'max:255',
+                function (string $attribute, string $value, \Closure $fail): void {
+                    if (User::withTrashed()->where('email', $value)->exists()) {
+                        $fail(__('Этот адрес электронной почты уже зарегистрирован.'));
+                    }
+                },
+            ],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
