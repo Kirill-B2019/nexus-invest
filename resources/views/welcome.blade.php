@@ -332,7 +332,7 @@
         </div>
         {{-- Система смягчения инвестиционных и проектных рисков --}}
         <div class="row align-items-center">
-            <div class="col-12 col-lg-4 text-center mb-40">
+            <div class="col-12 col-lg-4 text-center mb-40 order-2 order-lg-1">
                 <div class="box-border-image">
                     <div class="box-image-line-1">
                         <div class="wow fadeInDown" data-wow-delay="0"><img src="{{ asset('assets/imgs/page/homepage1/sheld-ignd.png') }}" alt="{{ config('app.name') }}"></div>
@@ -340,12 +340,12 @@
                 </div>
             </div>
 
-            <div class="col-12 col-lg-8 mb-40">
+            <div class="col-12 col-lg-8 mb-40 order-1 order-lg-2">
                 <h2 class="heading-2 mb-20">{{ __('В случае реализации инвестиционных рисков') }}</h2>
                 <p class="text-lg neutral-700">{{__('Система смягчения инвестиционных и проектных рисков') }}</p>
                 <div class="row mt-50">
                      <div class="col-lg-12">
-                        <div class="card-feature-2">
+                        <div class="card-feature-2 card-feature-2-mobile-text-first">
                             <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/sheld-risk.svg') }}"></div>
                             <div class="card-info"><a href="#"><h3 class="text-22-bold">{{ __('Автоматизированная система смягчения рисков (смарт-контракт платформы, нативный внутренний токен iGND) для инвесторов и инициаторов проектов') }}</h3></a>
                                 <p class="text-md neutral-700">{{ __('Участникам системы смягчения рисков, в случае реализации инвестиционных рисков по отдельным проектам, начисляются дополнительные специализированные внутренние токены системы.')}}

@@ -853,3 +853,19 @@
     background-color: #C5FF41 !important;
     border-radius: 4px;
 }
+
+/* Блок «В случае реализации инвестиционных рисков»: на мобильной — сначала текст, потом картинка */
+@media (max-width: 991.98px) {
+    .card-feature-2-mobile-text-first {
+        flex-direction: column;
+    }
+    .card-feature-2-mobile-text-first .card-info {
+        order: 1;
+        margin-right: 0;
+        margin-bottom: 16px;
+    }
+    .card-feature-2-mobile-text-first .card-image {
+        order: 2;
+        margin-right: 0;
+    }
+}
