@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CaptchaController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ComplianceController;
 use App\Http\Controllers\FeaturesController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ProfileController;
@@ -17,6 +18,7 @@ Route::middleware('auth')->group(function () {
     })->name('welcome');
 
     Route::get('/features', FeaturesController::class)->name('features');
+    Route::get('/compliance', ComplianceController::class)->name('compliance');
 
     Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
 

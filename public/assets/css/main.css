@@ -869,3 +869,32 @@
         margin-right: 0;
     }
 }
+
+/* Страница Соответствие: карточки ГОСТ — текст не перекрывается */
+.card-title-gost .number {
+    flex-shrink: 0;
+}
+.card-title-gost h6 {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.card-title-gost .gost-label {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+/* Страница Соответствие: мобильная вёрстка */
+@media (max-width: 767.98px) {
+    .box-preparing-2 .card-casestudy {
+        margin-bottom: 24px;
+    }
+    .box-preparing-2 .card-casestudy .card-desc p {
+        font-size: 13px;
+        line-height: 20px;
+    }
+    .box-preparing-2 .mb-30 {
+        margin-bottom: 20px !important;
+    }
+}

@@ -38,6 +38,7 @@
                                 <a href="{{ route('welcome') }}" class="{{ request()->routeIs('welcome') ? 'active' : '' }}">{{ __('Нексус') }}</a>
                                 <ul class="sub-menu">
                                     <li><a href="{{ route('features') }}" class="{{ request()->routeIs('features') ? 'active' : '' }}">{{ __('Особенности') }}</a></li>
+                                    <li><a href="{{ route('compliance') }}" class="{{ request()->routeIs('compliance') ? 'active' : '' }}">{{ __('Соответствие') }}</a></li>
                                     <li><a href="#">{{ __('Маркетплейс') }}</a></li>
                                 </ul>
                             </li>

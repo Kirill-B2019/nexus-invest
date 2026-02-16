@@ -8,6 +8,7 @@
         <li class="has-children"><a class="active" href="#">{{ __('Нексус') }}</a>
             <ul class="sub-menu">
                 <li><a href="{{ route('features') }}">{{ __('Особенности') }}</a></li>
+                <li><a href="{{ route('compliance') }}">{{ __('Соответствие') }}</a></li>
                 <li><a href="{{ url('/services') }}">{{ __('Регулирование') }}</a></li>
 
             </ul>
