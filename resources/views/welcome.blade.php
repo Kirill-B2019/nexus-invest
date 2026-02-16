@@ -2,18 +2,8 @@
 
 @section('content')
 {{-- HERO-блок --}}
-@php
-    $heroVideoPath = public_path('video/hero1.mp4');
-    $hasHeroVideo = file_exists($heroVideoPath);
-@endphp
 <section class="section-box">
-   <div class="banner-hero hero-5 {{ $hasHeroVideo ? 'hero-5-with-video' : '' }}">
-        @if($hasHeroVideo)
-        <video class="hero-5-video-bg" autoplay muted playsinline aria-hidden="true">
-            <source src="{{ asset('video/hero1.mp4') }}" type="video/mp4">
-        </video>
-        <div class="hero-5-video-overlay" aria-hidden="true"></div>
-        @endif
+   <div class="banner-hero hero-5">
         <div class="banner-inner-top">
             <div class="container">
                 <div class="row align-items-start">
