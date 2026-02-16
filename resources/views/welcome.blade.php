@@ -454,44 +454,32 @@
                 <div class="box-faq-left">
                     <a class="btn btn-brand-4-sm" href="#">{{ __('Часто задаваемые вопросы') }}</a>
                     <h2 class="heading-2 mb-20 mt-20">{{ __('Остались вопросы?') }}</h2>
-                    <p class="text-lg neutral-700">{{ __('Ниже — ответы на частые вопросы. Если не нашли нужное — просто') }} <a class="text-18-bold brand-1-1" href="#" data-bs-toggle="modal" data-bs-target="#contactFormModal">{{ __('Связаться с нами') }}</a></p>
+                    <p class="text-lg neutral-700">{{ __('Ниже — ответы на частые вопросы. Если не нашли нужное — просто посмотрите в ') }} <a class="text-18-bold brand-1-1" href="#" >{{ __('"базе знаний"') }}</a></p>
                 </div>
             </div>
             <div class="col-lg-7">
-                <div class="accordion accordion-flush accordion-style-2" id="accordionFAQS">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingOne">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">{{ __('Какие аудитории можно выбирать при создании кампаний?') }}</button>
-                        </h2>
-                        <div class="accordion-collapse collapse show" id="flush-collapseOne" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFAQS">
-                            <div class="accordion-body"><p>{{ __('Узнайте, чем наша платформа выделяется на рынке и почему клиенты выбирают нас.') }}</p></div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">{{ __('Можете ли вы дать ориентиры по расходам на рекламу?') }}</button>
-                        </h2>
-                        <div class="accordion-collapse collapse" id="flush-collapseTwo" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFAQS">
-                            <div class="accordion-body">{{ __('Узнайте, чем наша платформа выделяется на рынке и почему клиенты выбирают нас.') }}</div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingThree">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">{{ __('Где будут показываться мои объявления?') }}</button>
-                        </h2>
-                        <div class="accordion-collapse collapse" id="flush-collapseThree" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFAQS">
-                            <div class="accordion-body">{{ __('Узнайте, чем наша платформа выделяется на рынке и почему клиенты выбирают нас.') }}</div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingFour">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">{{ __('Какие ключевые слова лучше использовать в кампаниях?') }}</button>
-                        </h2>
-                        <div class="accordion-collapse collapse" id="flush-collapseFour" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFAQS">
-                            <div class="accordion-body">{{ __('Узнайте, чем наша платформа выделяется на рынке и почему клиенты выбирают нас.') }}</div>
-                        </div>
-                    </div>
-                </div>
+                <x-faq-accordion :items="[
+                    [
+                        'question' => 'Какие типы сделок можно запускать через НЕКСУС?',
+                        'answer' => 'Запланирована поддержка классических облигаций и займов, структурных нот, токенизированных долей в проектах и портфелях, а также white‑label‑решений для банков и финорганизаций',
+                        'open' => true,
+                    ],
+                    [
+                        'question' => 'Есть ли мобильное приложение?',
+                        'answer' => 'Да, в дорожной карте предусмотрены приложения для iOS и Android, а также десктоп‑клиент под Windows x64, с пуш‑уведомлениями и доступом к ключевому функционалу платформы.',
+                    ],
+                    [
+                        'question' => 'На какой технологии работает ГАНИМЕД?',
+                        'answer' => 'В качестве базового уровня используется совместимая с Ethereum инфраструктура (Solidity, EVM), а транзакции проходят через high‑TPS слой с пропускной способностью до 1 000 TPS и низкими комиссиями.',
+                    ],
+                    [
+                        'question' => 'Как используется искусственный интеллект в НЕКСУС и какие задачи автоматизирует AI‑скоринг?',
+                        'answer' => [
+                            'AI‑модуль анализирует заявки от эмитентов, отчётность, бенчмарки по рынку и формирует кредитный и инвестиционный скоринг, сокращая срок due diligence с 3–6 месяцев до 2–4 недель.',
+                            'Модуль помогает отсеивать заведомо слабые сделки, ранжировать проекты по риску и доходности, формировать автоматические отчёты для инвесторов и подсказки для риск‑комитетов.',
+                        ],
+                    ],
+                ]" />
             </div>
         </div>
     </div>
