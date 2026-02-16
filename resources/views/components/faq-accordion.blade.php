@@ -14,10 +14,10 @@
                 <div class="accordion-body">
                     @if (is_array($item['answer']))
                         @foreach ($item['answer'] as $paragraph)
-                            {{ __($paragraph) }}
+                            <p class="mb-2">{{ __($paragraph) }}</p>
                         @endforeach
                     @else
-                        {{ __($item['answer']) }}
+                        <p class="mb-0">{{ __($item['answer']) }}</p>
                     @endif
                 </div>
             </div>

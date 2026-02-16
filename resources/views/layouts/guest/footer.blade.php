@@ -31,16 +31,16 @@
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="row">
-                    <div class="col-6 mb-30">
+                    <div class="col-12 col-sm-6 mb-30">
                         <h5 class="neutral-0 mb-10 text-18-semibold">{{ __('Документы') }}</h5>
                         <ul class="menu-footer text-sm">
-                            <li><a href="{{ asset('doc/NexusPrivacyPolicy-14022026.pdf') }}" target="_blank">{{ __('Политика конфиденциальности') }}</a></li>
-                            <li><a href="{{ asset('doc/NexusUserAgreement-15022026.pdf') }}" target="_blank">{{ __('Пользовательское соглашение') }}</a></li>
+                            <li><a href="{{ asset('doc/NexusPrivacyPolicy-14022026.pdf') }}" target="_blank" rel="noopener noreferrer">{{ __('Политика конфиденциальности') }}</a></li>
+                            <li><a href="{{ asset('doc/NexusUserAgreement-15022026.pdf') }}" target="_blank" rel="noopener noreferrer">{{ __('Пользовательское соглашение') }}</a></li>
                             <li><a href="{{ route('welcome') }}">{{ __('Вакансии') }}</a></li>
                         </ul>
                     </div>
 
-                    <div class="col-6 mb-30">
+                    <div class="col-12 col-sm-6 mb-30">
                         <h5 class="neutral-0 mb-10 text-18-semibold">{{ __('Поддержка') }}</h5>
                         <ul class="menu-footer">
                             <li><a href="#" data-bs-toggle="modal" data-bs-target="#contactFormModal">{{ __('Связаться с нами') }}</a></li>
@@ -72,7 +72,7 @@
                                     <div class="progress-bar" role="progressbar" style="width: 84%" aria-valuenow="84" aria-valuemin="0" aria-valuemax="100"></div>
 
                                 </div>
-                                <a href="https://github.com/Kirill-B2019/GND_v1/tree/main/docs" target="_blank">
+                                <a href="https://github.com/Kirill-B2019/GND_v1/tree/main/docs" target="_blank" rel="noopener noreferrer">
                                     <span class="small neutral-800 text-right">{{ __('GND_v1/tree/main/docs') }}</span>
                                 </a>
                             </div>
@@ -83,7 +83,7 @@
         </div>
 
         <div class="footer-bottom mt-0">
-
+            <div class="row">
                 <div class="col-12 text-lg-end text-center">
                     <div class="row align-items-end">
                         <div class="col-md-6 mb-20">
@@ -99,7 +99,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-12 text-lg-end text-center mb-20">
+                        <div class="col-12 text-lg-end text-center mb-20">
                             <p class="text-sm neutral-600">{{ __('©') }} {{ date('Y') }} {{ config('app.name') }}. {{ __('Все права защищены.') }}</p>
                         </div>
                     </div>

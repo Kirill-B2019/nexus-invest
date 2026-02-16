@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 class ComplianceController extends Controller
 {
     /**
-     * Страница «Соответствие» — юридическое и нормативное соответствие платформы.
+     * Display the compliance page.
      */
     public function __invoke()
     {

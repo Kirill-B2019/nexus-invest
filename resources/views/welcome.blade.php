@@ -2,18 +2,28 @@
 
 @section('content')
 {{-- HERO-блок --}}
+@php
+    $heroVideoPath = public_path('video/hero1.mp4');
+    $hasHeroVideo = file_exists($heroVideoPath);
+@endphp
 <section class="section-box">
-   <div class="banner-hero hero-5">
+   <div class="banner-hero hero-5 {{ $hasHeroVideo ? 'hero-5-with-video' : '' }}">
+        @if($hasHeroVideo)
+        <video class="hero-5-video-bg" autoplay muted loop playsinline aria-hidden="true">
+            <source src="{{ asset('video/hero1.mp4') }}" type="video/mp4">
+        </video>
+        <div class="hero-5-video-overlay" aria-hidden="true"></div>
+        @endif
         <div class="banner-inner-top">
             <div class="container">
                 <div class="row align-items-start">
                     <div class="col-12 col-lg-6 order-1 order-lg-1">
                         <div class="box-banner-left">
-                                <p class="btn btn-brand-5-new" href="#"><span>{{ __('Работает на:') }}</span> {{__('блокчейне ГАНИМЕД') }}</p>
-                                <p class="neutral-700 small pt-3">{{ __('НАЦИОНАЛЬНАЯ ЭКОСИСТЕМА КОЛЛЕКТИВНОГО СОФИНАНСИРОВАНИЯ УЧАСТНИКОВ СТАРТАП-СЕКТОРА') }}</p>
+                                <span class="btn btn-brand-5-new"><span>{{ __('Работает на:') }}</span> {{ __('блокчейне ГАНИМЕД') }}</span>
+                                <p class="neutral-300 small pt-3">{{ __('НАЦИОНАЛЬНАЯ ЭКОСИСТЕМА КОЛЛЕКТИВНОГО СОФИНАНСИРОВАНИЯ УЧАСТНИКОВ СТАРТАП-СЕКТОРА') }}</p>
                                 <h6 class="display-6 neutral-0 text-semibold pt-3">{{ __('ПРОЕКТНОЕ ФИНАСИРОВАНИЕ') }}</h6>
                                 <h1 class="display-1 neutral-0 text-semibold pt-3">{{ __('НЕКСУС') }}</h1>
-                                <p class="text-lg neutral-500 mb-55 display-4 pt-3 uppercase">
+                                <p class="text-lg neutral-0 mb-55 display-4 pt-3 uppercase">
                                     {{ __('Полнофункциональная платформа быстрого запуска и финансирования проектов через цифровые активы и токенизацию') }}<br />
                                     {{ __('Постпроектное сопровождение, реализация результатов (маркетплейс)') }}</p>
                                 <a class="btn btn-brand-4-medium hover-up mb-4" href="{{ route('login') }}">
@@ -22,8 +32,8 @@
                                         <path d="M22 4.00032L18.4791 0.479492V3.3074H0V4.69333H18.4791V7.52129L22 4.00032Z" fill=""></path>
                                     </svg>
                                 </a>
-                                <p class="neutral-700 small pt-3">{{ __('полное соответствие законодательству РФ: 259-ФЗ о ЦФА, 289-ФЗ о платформенной экономике, 39-ФЗ об инвестиционной деятельности, 187‑ФЗ о безопасности, 115-ФЗ о ПОД/ФТ, 152-ФЗ о персональных данных, ГОСТы 34.10, 34.11, 34.12') }}</p>                     <div class="d-flex mb-60">
-                                    <div class="neutral-700 mt-40 sidebar-border-left border-secondary d-none d-md-block">
+                                <p class="neutral-300 small pt-3">{{ __('полное соответствие законодательству РФ: 259-ФЗ о ЦФА, 289-ФЗ о платформенной экономике, 39-ФЗ об инвестиционной деятельности, 187‑ФЗ о безопасности, 115-ФЗ о ПОД/ФТ, 152-ФЗ о персональных данных, ГОСТы 34.10, 34.11, 34.12') }}</p>                     <div class="d-flex mb-60">
+                                    <div class="neutral-300 mt-40 sidebar-border-left border-secondary d-none d-md-block">
 
                                         <p class="smaller"><i class="fi-rr-quote-right"></i>
                                             <span class="text-semibold">{{ __(' ТОКЕН') }}</span>{{ __(' - единица учёта, не являющаяся криптовалютой, предназначенная для представления цифрового баланса в некотором активе, иными словами, выполняющая функцию «заменителя ценных бумаг» в цифровом мире. Токены представляют собой запись в регистре, распределённую вблокчейн-цепочке.') }}
@@ -189,13 +199,13 @@
                                 <div class="card-title mb-3"><h6>{{ __('Инициаторов проектов  (кто привлекает капитал)') }}</h6></div>
                                 <div class="card-lists">
                                     <ul class="lists-our-features">
-                                        <li class="pb-2"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none"><g clip-path="url(#clip0_51_57)"><path d="M13 26C20.1799 26 26 20.1799 26 13C26 5.8201 20.1799 0 13 0C5.8201 0 0 5.8201 0 13C0 20.1799 5.8201 26 13 26Z" fill="#C5FF55"></path><path d="M7.11719 13.8396L10.479 17.2014L18.8835 8.79688" stroke="#191919" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g><defs><clipPath id="clip0_51_57"><rect width="26" height="26" fill="white"></rect></clipPath></defs></svg>
+                                        <li class="pb-2"><x-icons.svg-check-circle />
                                             {{ __('Микро, малый и средний бизнес (МСБ) в РФ, которым нужны инвестиции от 1–500 млн ₽ на развитие или запуск') }}</li>
-                                        <li class="pb-2"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none"><g clip-path="url(#clip0_51_57)"><path d="M13 26C20.1799 26 26 20.1799 26 13C26 5.8201 20.1799 0 13 0C5.8201 0 0 5.8201 0 13C0 20.1799 5.8201 26 13 26Z" fill="#C5FF55"></path><path d="M7.11719 13.8396L10.479 17.2014L18.8835 8.79688" stroke="#191919" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g><defs><clipPath id="clip0_51_57"><rect width="26" height="26" fill="white"></rect></clipPath></defs></svg>
+                                        <li class="pb-2"><x-icons.svg-check-circle />
                                             {{ __('Бизнесы с понятным денежным потоком: торговля, услуги, производство, девелопмент, франчайзинг и т.п. (по секторам при регистрации)') }}</li>
-                                        <li class="pb-2"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none"><g clip-path="url(#clip0_51_57)"><path d="M13 26C20.1799 26 26 20.1799 26 13C26 5.8201 20.1799 0 13 0C5.8201 0 0 5.8201 0 13C0 20.1799 5.8201 26 13 26Z" fill="#C5FF55"></path><path d="M7.11719 13.8396L10.479 17.2014L18.8835 8.79688" stroke="#191919" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g><defs><clipPath id="clip0_51_57"><rect width="26" height="26" fill="white"></rect></clipPath></defs></svg>
+                                        <li class="pb-2"><x-icons.svg-check-circle />
                                             {{ __('Финансовые и околофинансовые сервисы, которым нужен white‑label модуль выпуска и размещения обязательств (банки, факторинг, МФО, финтех‑стартапы)') }}</li>
-                                        <li class="pb-2"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none"><g clip-path="url(#clip0_51_57)"><path d="M13 26C20.1799 26 26 20.1799 26 13C26 5.8201 20.1799 0 13 0C5.8201 0 0 5.8201 0 13C0 20.1799 5.8201 26 13 26Z" fill="#C5FF55"></path><path d="M7.11719 13.8396L10.479 17.2014L18.8835 8.79688" stroke="#191919" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g><defs><clipPath id="clip0_51_57"><rect width="26" height="26" fill="white"></rect></clipPath></defs></svg>
+                                        <li class="pb-2"><x-icons.svg-check-circle />
                                             {{ __('Компании и команды, которые планируют разместить продукты своей проектной деятельности на платформе и сохранить постпроектное сопровождение после запуска' )}}</li>
 
 
@@ -209,13 +219,13 @@
                                 <div class="card-title mb-3"><h6>{{ __('Инвесторов') }}</h6></div>
                                 <div class="card-lists">
                                     <ul class="lists-our-features">
-                                        <li class="pb-2"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none"><g clip-path="url(#clip0_51_57)"><path d="M13 26C20.1799 26 26 20.1799 26 13C26 5.8201 20.1799 0 13 0C5.8201 0 0 5.8201 0 13C0 20.1799 5.8201 26 13 26Z" fill="#C5FF55"></path><path d="M7.11719 13.8396L10.479 17.2014L18.8835 8.79688" stroke="#191919" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g><defs><clipPath id="clip0_51_57"><rect width="26" height="26" fill="white"></rect></clipPath></defs></svg>
+                                        <li class="pb-2"><x-icons.svg-check-circle />
                                             {{ __('Частные инвесторы с чеком от 5–100 тыс. ₽, ищущие доходность 14–25% годовых и выше по структурированным долговым инструментам') }}</li>
-                                        <li class="pb-2"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none"><g clip-path="url(#clip0_51_57)"><path d="M13 26C20.1799 26 26 20.1799 26 13C26 5.8201 20.1799 0 13 0C5.8201 0 0 5.8201 0 13C0 20.1799 5.8201 26 13 26Z" fill="#C5FF55"></path><path d="M7.11719 13.8396L10.479 17.2014L18.8835 8.79688" stroke="#191919" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g><defs><clipPath id="clip0_51_57"><rect width="26" height="26" fill="white"></rect></clipPath></defs></svg>
+                                        <li class="pb-2"><x-icons.svg-check-circle />
                                             {{ __('Квалифицированные и профессиональные инвесторы, фамильные офисы, небольшие фонды, заинтересованные в пулах МСБ‑займов с ИИ‑скорингом)') }}</li>
-                                        <li class="pb-2"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none"><g clip-path="url(#clip0_51_57)"><path d="M13 26C20.1799 26 26 20.1799 26 13C26 5.8201 20.1799 0 13 0C5.8201 0 0 5.8201 0 13C0 20.1799 5.8201 26 13 26Z" fill="#C5FF55"></path><path d="M7.11719 13.8396L10.479 17.2014L18.8835 8.79688" stroke="#191919" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g><defs><clipPath id="clip0_51_57"><rect width="26" height="26" fill="white"></rect></clipPath></defs></svg>
+                                        <li class="pb-2"><x-icons.svg-check-circle />
                                             {{ __('Профучастники рынка ценных бумаг, банки и брокеры, интегрирующиеся по API') }}</li>
-                                        <li class="pb-2"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none"><g clip-path="url(#clip0_51_57)"><path d="M13 26C20.1799 26 26 20.1799 26 13C26 5.8201 20.1799 0 13 0C5.8201 0 0 5.8201 0 13C0 20.1799 5.8201 26 13 26Z" fill="#C5FF55"></path><path d="M7.11719 13.8396L10.479 17.2014L18.8835 8.79688" stroke="#191919" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g><defs><clipPath id="clip0_51_57"><rect width="26" height="26" fill="white"></rect></clipPath></defs></svg>
+                                        <li class="pb-2"><x-icons.svg-check-circle />
                                             {{ __('B2B‑клиенты SaaS‑части: платформы, которым нужен модуль токенизации/обращения инструментов') }}</li>
                                     </ul>
                                 </div>
@@ -227,15 +237,15 @@
                                     <h5 class="mb-3">{{__('А так же...')}}</h5>
                                     <div class="card-lists">
                                         <ul class="lists-our-features">
-                                            <li class="pb-2"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none"><g clip-path="url(#clip0_51_57)"><path d="M13 26C20.1799 26 26 20.1799 26 13C26 5.8201 20.1799 0 13 0C5.8201 0 0 5.8201 0 13C0 20.1799 5.8201 26 13 26Z" fill="#C5FF55"></path><path d="M7.11719 13.8396L10.479 17.2014L18.8835 8.79688" stroke="#191919" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g><defs><clipPath id="clip0_51_57"><rect width="26" height="26" fill="white"></rect></clipPath></defs></svg>
+                                            <li class="pb-2"><x-icons.svg-check-circle />
                                                 {{ __('Экспертов') }}</li>
-                                            <li class="pb-2"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none"><g clip-path="url(#clip0_51_57)"><path d="M13 26C20.1799 26 26 20.1799 26 13C26 5.8201 20.1799 0 13 0C5.8201 0 0 5.8201 0 13C0 20.1799 5.8201 26 13 26Z" fill="#C5FF55"></path><path d="M7.11719 13.8396L10.479 17.2014L18.8835 8.79688" stroke="#191919" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g><defs><clipPath id="clip0_51_57"><rect width="26" height="26" fill="white"></rect></clipPath></defs></svg>
+                                            <li class="pb-2"><x-icons.svg-check-circle />
                                                 {{ __('Аудиторов') }}</li>
-                                            <li class="pb-2"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none"><g clip-path="url(#clip0_51_57)"><path d="M13 26C20.1799 26 26 20.1799 26 13C26 5.8201 20.1799 0 13 0C5.8201 0 0 5.8201 0 13C0 20.1799 5.8201 26 13 26Z" fill="#C5FF55"></path><path d="M7.11719 13.8396L10.479 17.2014L18.8835 8.79688" stroke="#191919" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g><defs><clipPath id="clip0_51_57"><rect width="26" height="26" fill="white"></rect></clipPath></defs></svg>
+                                            <li class="pb-2"><x-icons.svg-check-circle />
                                                 {{ __('Финансовых аналитиков') }}</li>
-                                            <li class="pb-2"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none"><g clip-path="url(#clip0_51_57)"><path d="M13 26C20.1799 26 26 20.1799 26 13C26 5.8201 20.1799 0 13 0C5.8201 0 0 5.8201 0 13C0 20.1799 5.8201 26 13 26Z" fill="#C5FF55"></path><path d="M7.11719 13.8396L10.479 17.2014L18.8835 8.79688" stroke="#191919" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g><defs><clipPath id="clip0_51_57"><rect width="26" height="26" fill="white"></rect></clipPath></defs></svg>
+                                            <li class="pb-2"><x-icons.svg-check-circle />
                                                 {{ __('Инвестконсультантов') }}</li>
-                                            <li class="pb-2"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none"><g clip-path="url(#clip0_51_57)"><path d="M13 26C20.1799 26 26 20.1799 26 13C26 5.8201 20.1799 0 13 0C5.8201 0 0 5.8201 0 13C0 20.1799 5.8201 26 13 26Z" fill="#C5FF55"></path><path d="M7.11719 13.8396L10.479 17.2014L18.8835 8.79688" stroke="#191919" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g><defs><clipPath id="clip0_51_57"><rect width="26" height="26" fill="white"></rect></clipPath></defs></svg>
+                                            <li class="pb-2"><x-icons.svg-check-circle />
                                                 {{ __('Due diligence специалистов') }}</li>
                                         </ul>
                                     </div>
@@ -310,7 +320,7 @@
                 <div class="row mt-50">
                     <div class="col-12">
                         <div class="card-feature-2">
-                            <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/ai-brain.svg') }}"></div>
+                            <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/ai-brain.svg') }}" alt="{{ __('Интеграция ИИ') }}"></div>
                             <div class="card-info"><a href="#"><h3 class="text-22-bold">{{ __('Глубокая интеграция ИИ расширяет базовые возможности') }}</h3></a>
                                 <p class="text-md neutral-800">{{ __('- Автоматизация проектного скоринга с вынесением индекса инвестиционной привлекательности и решения об алгоритме токенизации, прогнозы по капитализации после завершения проекта.') }}</p>
                                 <p class="text-md neutral-800">{{ __('- ИИ анализирует потоки заявок, конверсии и выплаты, подсвечивая сильные и слабые сегменты портфеля.') }}</p>
@@ -346,10 +356,10 @@
                 <div class="row mt-50">
                      <div class="col-lg-12">
                         <div class="card-feature-2 card-feature-2-mobile-text-first">
-                            <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/sheld-risk.svg') }}"></div>
+                            <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/sheld-risk.svg') }}" alt="{{ __('Система смягчения рисков') }}"></div>
                             <div class="card-info"><a href="#"><h3 class="text-22-bold">{{ __('Автоматизированная система смягчения рисков (смарт-контракт платформы, нативный внутренний токен iGND) для инвесторов и инициаторов проектов') }}</h3></a>
-                                <p class="text-md neutral-700">{{ __('Участникам системы смягчения рисков, в случае реализации инвестиционных рисков по отдельным проектам, начисляются дополнительные специализированные внутренние токены системы.')}}
-                                <p class="text-md neutral-700">{{ __('- Начисление и обращение токенов iGND реализуется через смарт‑контракты блокчейна экосистемы и ')}} <span class="neutral-1000">{{ __('не является гарантией сохранения капитала или доходности.') }}</span></p>
+                                <p class="text-md neutral-700">{{ __('Участникам системы смягчения рисков, в случае реализации инвестиционных рисков по отдельным проектам, начисляются дополнительные специализированные внутренние токены системы.') }}</p>
+                                <p class="text-md neutral-700">{{ __('- Начисление и обращение токенов iGND реализуется через смарт‑контракты блокчейна экосистемы и ') }} <span class="neutral-1000">{{ __('не является гарантией сохранения капитала или доходности.') }}</span></p>
                                 <p class="text-md neutral-700">{{__('- Полученные токены предоставляют право на участие в отобранных инвестиционных возможностях на специальных условиях в пределах, установленных документацией платформы.')}}</p>
                                 <p class="text-md neutral-700 mt-3">{{__('Функционал системы направлен на частичное сглаживание последствий неблагоприятного исхода отдельных проектов за счёт участия в последующих раундах и иных проектах, но ')}}<span class="neutral-1000">{{ __('не исключает риск потери инвестированных средств.') }}</span></p>
                             </div>
@@ -582,4 +592,18 @@
         </div>
     </div>
 </section>--}}
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var heroVideo = document.querySelector('.hero-5-video-bg');
+    if (heroVideo) {
+        heroVideo.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+        });
+    }
+});
+</script>
+@endpush
 @endsection
