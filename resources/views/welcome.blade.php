@@ -9,7 +9,7 @@
 <section class="section-box">
    <div class="banner-hero hero-5 {{ $hasHeroVideo ? 'hero-5-with-video' : '' }}">
         @if($hasHeroVideo)
-        <video class="hero-5-video-bg" autoplay muted loop playsinline aria-hidden="true">
+        <video class="hero-5-video-bg" autoplay muted playsinline aria-hidden="true">
             <source src="{{ asset('video/hero1.mp4') }}" type="video/mp4">
         </video>
         <div class="hero-5-video-overlay" aria-hidden="true"></div>
@@ -20,7 +20,7 @@
                     <div class="col-12 col-lg-6 order-1 order-lg-1">
                         <div class="box-banner-left">
                                 <span class="btn btn-brand-5-new"><span>{{ __('Работает на:') }}</span> {{ __('блокчейне ГАНИМЕД') }}</span>
-                                <p class="neutral-300 small pt-3">{{ __('НАЦИОНАЛЬНАЯ ЭКОСИСТЕМА КОЛЛЕКТИВНОГО СОФИНАНСИРОВАНИЯ УЧАСТНИКОВ СТАРТАП-СЕКТОРА') }}</p>
+                                <p class="neutral-0 small pt-3">{{ __('НАЦИОНАЛЬНАЯ ЭКОСИСТЕМА КОЛЛЕКТИВНОГО СОФИНАНСИРОВАНИЯ УЧАСТНИКОВ СТАРТАП-СЕКТОРА') }}</p>
                                 <h6 class="display-6 neutral-0 text-semibold pt-3">{{ __('ПРОЕКТНОЕ ФИНАСИРОВАНИЕ') }}</h6>
                                 <h1 class="display-1 neutral-0 text-semibold pt-3">{{ __('НЕКСУС') }}</h1>
                                 <p class="text-lg neutral-0 mb-55 display-4 pt-3 uppercase">
@@ -33,7 +33,7 @@
                                     </svg>
                                 </a>
                                 <p class="neutral-300 small pt-3">{{ __('полное соответствие законодательству РФ: 259-ФЗ о ЦФА, 289-ФЗ о платформенной экономике, 39-ФЗ об инвестиционной деятельности, 187‑ФЗ о безопасности, 115-ФЗ о ПОД/ФТ, 152-ФЗ о персональных данных, ГОСТы 34.10, 34.11, 34.12') }}</p>                     <div class="d-flex mb-60">
-                                    <div class="neutral-300 mt-40 sidebar-border-left border-secondary d-none d-md-block">
+                                    <div class="neutral-0 mt-40 sidebar-border-left border-secondary d-none d-md-block">
 
                                         <p class="smaller"><i class="fi-rr-quote-right"></i>
                                             <span class="text-semibold">{{ __(' ТОКЕН') }}</span>{{ __(' - единица учёта, не являющаяся криптовалютой, предназначенная для представления цифрового баланса в некотором активе, иными словами, выполняющая функцию «заменителя ценных бумаг» в цифровом мире. Токены представляют собой запись в регистре, распределённую вблокчейн-цепочке.') }}
@@ -592,18 +592,4 @@
         </div>
     </div>
 </section>--}}
-
-@push('scripts')
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var heroVideo = document.querySelector('.hero-5-video-bg');
-    if (heroVideo) {
-        heroVideo.addEventListener('ended', function() {
-            this.currentTime = 0;
-            this.play();
-        });
-    }
-});
-</script>
-@endpush
 @endsection
