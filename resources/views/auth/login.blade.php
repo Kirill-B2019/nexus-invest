@@ -1,4 +1,26 @@
 <x-guest-layout>
+    <x-slot name="channels">
+        <div class="row align-items-start mb-20">
+
+            <div class="col-12 col-md-6 mb-20 mb-md-0 text-center text-md-start">
+                <h5 class="neutral-0 mb-10 text-18-semibold">{{ __('Канал Дзен') }}</h5>
+                <p class="text-sm neutral-600 mb-15">{{ __('Новости и материалы о цифровых финансах и финтехе') }}</p>
+                <a href="https://dzen.ru/digital_fintech" target="_blank" rel="noopener noreferrer" class="btn btn-brand-5 hover-up  neutral-100">
+                    {{ __('Перейти в канал') }}
+
+                </a>
+            </div>
+            <div class="col-12 col-md-6 text-center text-md-start">
+                <h5 class="neutral-0 mb-10 text-18-semibold">{{ __('Канал Telegram') }}</h5>
+                <p class="text-sm neutral-600 mb-15">{{ __('Официальный канал NEXUS — анонсы и обновления') }}</p>
+                <a href="https://t.me/dipp_NEXUS" target="_blank" rel="noopener noreferrer" class="btn btn-brand-5 hover-up neutral-100">
+                    {{ __('Перейти в канал') }}
+
+                </a>
+            </div>
+        </div>
+    </x-slot>
+
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 

@@ -78,6 +78,11 @@
                 border-color: var(--color-primary) !important;
             }
             .auth-page .text-red-600 { color: #f87171 !important; }
+            .auth-channels-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+            .auth-channel-btn:hover { opacity: 0.95; background: #d4ff6b !important; color: #0E0E0E !important; }
+            @media (max-width: 767px) {
+                .auth-channels-grid { grid-template-columns: 1fr; }
+            }
         </style>
     </head>
     <body class="font-sans antialiased">
@@ -92,6 +97,11 @@
             <div class="auth-card">
                 {{ $slot }}
             </div>
+            @isset($channels)
+            <div class="auth-channels-outer" style="margin-top: 1.5rem; width: 100%; max-width: 28rem;">
+                {{ $channels }}
+            </div>
+            @endisset
         </div>
     </body>
 </html>
