@@ -100,7 +100,7 @@
                             </div>
                         </div>
                         <div class="col-12 text-lg-end text-center mb-20">
-                            <p class="text-sm neutral-600">{{ __('©') }} {{ date('Y') }} {{ config('app.name') }}. {{ __('Все права защищены.') }}</p>
+                            <p class="text-sm neutral-600">{{ __('©') }} {{ date('Y') }} {{ config('app.name') }}. {{ __('Все права защищены.') }} | KB @CerbeRus</p>
                         </div>
                     </div>
                 </div>

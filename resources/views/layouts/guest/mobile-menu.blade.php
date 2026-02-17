@@ -101,7 +101,7 @@
                     <a class="icon-socials icon-be" href="#"><img alt="{{ config('app.name') }}" src="{{ asset('assets/imgs/template/icons/be.svg') }}"></a>
                 </div>
                 <div class="site-copyright">
-                    {{ __('©') }}  {{ date('Y') }} {{ config('app.name') }}.
+                    {{ __('©') }} {{ date('Y') }} {{ config('app.name') }}. | KB @CerbeRus - Nexus Invest Team
                 </div>
             </div>
         </div>

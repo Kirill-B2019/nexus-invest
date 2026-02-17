@@ -2,6 +2,35 @@
  * Дополнительные стили проекта
  */
 
+:root {
+  /* Основной акцент */
+  --color-primary: #C5FF41;
+  --color-primary-hover: #d4ff6b;
+  /* Тёмные фоны и текст */
+  --color-dark: #191919;
+  --color-surface-dark: #1E1E1E;
+  --color-surface-dark-2: #2B2C2D;
+  /* Светлые фоны и текст на тёмном */
+  --color-surface-light: #ECEEF2;
+  /* Бейджи */
+  --color-badge-bg: #3B4725;
+  /* Доп. акценты */
+  --color-accent-teal: #52B8AA;
+  --color-accent-purple: #967DFF;
+  --color-accent-purple-2: #9761DC;
+  --color-accent-purple-3: #D280E5;
+  /* Нейтральные */
+  --color-white: #ffffff;
+  --color-text-muted: #727373;
+  --color-text-muted-2: #898A8A;
+  --color-text-muted-3: #9B9C9F;
+  --color-text-muted-4: #B1B2B8;
+  --color-text-muted-5: #D1D3D4;
+  --color-text-muted-6: #C9CBCC;
+  --color-text-muted-7: #5A5B5B;
+  --color-text-muted-8: #434445;
+}
+
 .text-semibold {
   font-weight: 600 !important;
   letter-spacing: 0.1em !important;
@@ -85,10 +114,10 @@
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    background-color: #C5FF41;
+    background-color: var(--color-primary);
   }
   .header .header-right .btn.btn-cabinet:hover {
-    background-color: #ECEEF2;
+    background-color: var(--color-surface-light);
   }
   .header .header-right .btn.btn-cabinet .btn-cabinet-text {
     display: none;
@@ -102,7 +131,7 @@
     justify-content: center;
     width: 20px;
     height: 20px;
-    color: #191919;
+    color: var(--color-dark);
     font-size: 16px;
   }
   .header .header-right .btn.btn-cabinet .btn-cabinet-icon-mobile i {
@@ -240,18 +269,18 @@
   font-size: 10px;
   font-weight: 600;
   line-height: 1;
-  color: #C5FF41;
-  background-color: #3B4725;
-  border: 1px solid #C5FF41;
+  color: var(--color-primary);
+  background-color: var(--color-badge-bg);
+  border: 1px solid var(--color-primary);
   border-radius: 20px;
   white-space: nowrap;
   z-index: 2;
 }
 .card-badge-2
 {
-    color: #5A5B5B !important;
+    color: var(--color-text-muted-7) !important;
     background-color: #EEF0F4 !important;
-    border: 1px solid #5A5B5B !important;
+    border: 1px solid var(--color-text-muted-7) !important;
 }
 
 /* Блок «3 шага» с бейджами */
@@ -318,9 +347,9 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 1;
-  color: #C5FF41;
-  background-color: #3B4725;
-  border: 1px solid #C5FF41;
+  color: var(--color-primary);
+  background-color: var(--color-badge-bg);
+  border: 1px solid var(--color-primary);
   border-radius: 20px;
   z-index: 2;
 }
@@ -394,8 +423,8 @@
 }
 .up-info-block {
     padding: 10px 20px;
-    background-color: #967DFF;
-    color: #ffffff;
+    background-color: var(--color-accent-purple);
+    color: var(--color-white);
     font-size: 12px;
     line-height: 24px;
     font-weight: 400;
@@ -416,8 +445,8 @@
     line-height: 12px;
     font-weight: bold;
     border-radius: 35px;
-    background-color: #C5FF41;
-    color: #191919;
+    background-color: var(--color-primary);
+    color: var(--color-dark);
     margin-right: 10px;
     flex-shrink: 0;
 }
@@ -450,7 +479,7 @@
 }
 .box-banner-feature-2 {
     position: relative;
-    background-color: #191919;
+    background-color: var(--color-dark);
     border-radius: 16px;
     margin-bottom: 30px;
     padding: 40px 20px;
@@ -480,9 +509,9 @@
 }
 .item-logo-text{
     padding: 1px 2px;
-    border: 1px solid #C5FF41;
+    border: 1px solid var(--color-primary);
     border-radius: 20px;
-    border: 1px solid #5A5B5B !important;
+    border: 1px solid var(--color-text-muted-7) !important;
 }
 
 /* Блок «Для кого» — без кнопки и бейджа */
@@ -735,15 +764,15 @@
     margin: 0;
     font-size: 14px;
     line-height: 1.5;
-    color: #ECEEF2;
+    color: var(--color-surface-light);
 }
 .cookie-banner__link {
-    color: #C5FF41;
+    color: var(--color-primary);
     text-decoration: underline;
     text-underline-offset: 2px;
 }
 .cookie-banner__link:hover {
-    color: #d4ff6b;
+    color: var(--color-primary-hover);
 }
 .cookie-banner__actions {
     display: flex;
@@ -765,16 +794,16 @@
     text-align: center;
 }
 .cookie-banner__btn--accept {
-    background: #C5FF41;
-    color: #191919;
+    background: var(--color-primary);
+    color: var(--color-dark);
 }
 .cookie-banner__btn--accept:hover {
-    background: #d4ff6b;
+    background: var(--color-primary-hover);
 }
 .cookie-banner__btn--reject,
 .cookie-banner__btn--secondary {
     background: transparent;
-    color: #ECEEF2;
+    color: var(--color-surface-light);
     border: 1px solid rgba(236, 238, 242, 0.5);
 }
 .cookie-banner__btn--reject:hover,
@@ -784,76 +813,76 @@
 
 /* Модальное окно обратной связи — тёмная тема */
 .contact-form-modal-content {
-    background: #191919;
+    background: var(--color-dark);
     border: 1px solid rgba(236, 238, 242, 0.15);
-    color: #ECEEF2;
+    color: var(--color-surface-light);
 }
 .contact-form-modal-content .form-control {
-    background: #2B2C2D;
-    border-color: #2B2C2D;
-    color: #ECEEF2;
+    background: var(--color-surface-dark-2);
+    border-color: var(--color-surface-dark-2);
+    color: var(--color-surface-light);
 }
 .contact-form-modal-content .form-control::placeholder {
-    color: #9B9C9F;
+    color: var(--color-text-muted-3);
 }
 .contact-form-modal-content .form-control:focus {
-    background: #2B2C2D;
-    border-color: #C5FF41;
-    color: #ECEEF2;
+    background: var(--color-surface-dark-2);
+    border-color: var(--color-primary);
+    color: var(--color-surface-light);
 }
 .contact-form-modal-content .form-label {
-    color: #ECEEF2;
+    color: var(--color-surface-light);
 }
 .contact-form-modal-content .btn-outline-secondary {
     border-color: rgba(236, 238, 242, 0.5);
-    color: #ECEEF2;
+    color: var(--color-surface-light);
 }
 .contact-form-modal-content .btn-outline-secondary:hover {
     background: rgba(236, 238, 242, 0.1);
     border-color: rgba(236, 238, 242, 0.5);
-    color: #ECEEF2;
+    color: var(--color-surface-light);
 }
 .math-captcha__question {
-    color: #ECEEF2;
+    color: var(--color-surface-light);
     font-weight: 500;
 }
 
-/* SweetAlert2 — стиль публичной части (тёмная тема, бренд #C5FF41) */
+/* SweetAlert2 — стиль публичной части (тёмная тема, бренд var(--color-primary)) */
 .swal2-popup.swal-public-theme {
-    background: #191919 !important;
+    background: var(--color-dark) !important;
     font-family: "Manrope", "Urbanist", sans-serif !important;
     border: 1px solid rgba(236, 238, 242, 0.15);
 }
 .swal-public-theme .swal2-title {
-    color: #ECEEF2;
+    color: var(--color-surface-light);
 }
 .swal-public-theme .swal2-html-container {
-    color: #C9CBCC;
+    color: var(--color-text-muted-6);
 }
 .swal-public-theme .swal2-styled.swal2-confirm {
-    background-color: #C5FF41 !important;
-    color: #191919 !important;
+    background-color: var(--color-primary) !important;
+    color: var(--color-dark) !important;
     font-weight: 600;
     border-radius: 8px;
 }
 .swal-public-theme .swal2-styled.swal2-confirm:hover {
-    background-color: #d4ff6b !important;
+    background-color: var(--color-primary-hover) !important;
 }
 .swal-public-theme .swal2-timer-progress-bar {
-    background: #C5FF41;
+    background: var(--color-primary);
 }
 
 /* Footer: Прогресс реализации */
 .footer-progress-row .border-secondary {
-    border-color: #434445 !important;
+    border-color: var(--color-text-muted-8) !important;
 }
 .footer-progress-bar {
     height: 8px;
     border-radius: 4px;
-    background-color: #434445 !important;
+    background-color: var(--color-text-muted-8) !important;
 }
 .footer-progress-bar .progress-bar {
-    background-color: #C5FF41 !important;
+    background-color: var(--color-primary) !important;
     border-radius: 4px;
 }
 

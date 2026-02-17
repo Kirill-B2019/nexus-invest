@@ -26,7 +26,7 @@
                 justify-content: center;
                 align-items: center;
                 padding: 2rem 1rem;
-                background-color: #191919;
+                background-color: var(--color-dark);
                 font-family: "Manrope", sans-serif;
             }
             .auth-page .auth-logo {
@@ -39,43 +39,43 @@
                 max-width: 28rem;
                 margin-top: 2rem;
                 padding: 2rem;
-                background-color: #2B2C2D;
+                background-color: var(--color-surface-dark-2);
                 border: 1px solid rgba(197, 255, 65, 0.3);
                 border-radius: 16px;
                 overflow: hidden;
             }
-            .auth-page label { color: #ECEEF2 !important; }
+            .auth-page label { color: var(--color-surface-light) !important; }
             .auth-page input[type="text"],
             .auth-page input[type="email"],
             .auth-page input[type="password"] {
-                background-color: #434445 !important;
-                border: 1px solid #5A5B5B !important;
-                color: #ffffff !important;
+                background-color: var(--color-text-muted-8) !important;
+                border: 1px solid var(--color-text-muted-7) !important;
+                color: var(--color-white) !important;
                 border-radius: 10px !important;
             }
             .auth-page input:focus {
-                border-color: #C5FF41 !important;
+                border-color: var(--color-primary) !important;
                 outline: none !important;
                 box-shadow: 0 0 0 2px rgba(197, 255, 65, 0.3) !important;
             }
-            .auth-page input::placeholder { color: #9B9C9F; }
-            .auth-page .text-gray-600 { color: #B1B2B8 !important; }
+            .auth-page input::placeholder { color: var(--color-text-muted-3); }
+            .auth-page .text-gray-600 { color: var(--color-text-muted-4) !important; }
             .auth-page button[type="submit"] {
-                background-color: #C5FF41 !important;
-                color: #191919 !important;
+                background-color: var(--color-primary) !important;
+                color: var(--color-dark) !important;
                 border: none !important;
                 padding: 14px 25px !important;
                 border-radius: 32px !important;
                 font-weight: 600 !important;
             }
             .auth-page button[type="submit"]:hover {
-                background-color: #ECEEF2 !important;
+                background-color: var(--color-surface-light) !important;
             }
-            .auth-page a { color: #C5FF41 !important; }
-            .auth-page a:hover { color: #ECEEF2 !important; }
+            .auth-page a { color: var(--color-primary) !important; }
+            .auth-page a:hover { color: var(--color-surface-light) !important; }
             .auth-page input[type="checkbox"]:checked {
-                background-color: #C5FF41 !important;
-                border-color: #C5FF41 !important;
+                background-color: var(--color-primary) !important;
+                border-color: var(--color-primary) !important;
             }
             .auth-page .text-red-600 { color: #f87171 !important; }
         </style>

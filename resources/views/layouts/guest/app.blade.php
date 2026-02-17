@@ -8,7 +8,7 @@
     <meta name="template-color" content="#0E0E0E">
     <meta name="description" content="{{ $metaDescription ?? config('app.name') . ' - ' . __('Публичная страница') }}">
     <meta name="keywords" content="{{ $metaKeywords ?? __('главная, страница') }}">
-    <meta name="author" content="KB NEXUS Team">
+    <meta name="author" content="KB @CerbeRus">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @php
     $faviconPath = file_exists(public_path('favicon.ico'))
