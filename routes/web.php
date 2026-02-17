@@ -26,9 +26,15 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('throttle:10,1')->post('/api/captcha/new', [CaptchaController::class, 'new'])->name('api.captcha.new');
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->middleware('verified')->name('dashboard');
+    Route::get('/lk', function () {
+        return view('app.pages.lk');
+    })->middleware('verified')->name('lk');
+
+    Route::redirect('/dashboard', '/lk', 301);
+
+    Route::get('/app/blank', function () {
+        return view('app.pages.blank', ['title' => __('Страница')]);
+    })->name('app.blank');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

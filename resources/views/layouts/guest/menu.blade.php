@@ -37,7 +37,7 @@
                                     <h6>{{ __('Аккаунт') }}</h6>
                                     <ul>
                                         @auth
-                                            <li><a href="{{ url('/dashboard') }}">{{ __('Разместить проект') }}</a></li>
+                                            <li><a href="{{ route('lk') }}">{{ __('Разместить проект') }}</a></li>
                                             <li><a href="{{ route('profile.edit') }}">{{ __('Профиль') }}</a></li>
                                             <li>
                                                 <form method="POST" action="{{ route('logout') }}" class="d-inline">

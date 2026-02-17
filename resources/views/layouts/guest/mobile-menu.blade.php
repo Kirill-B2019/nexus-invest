@@ -35,7 +35,7 @@
                             </li>
                             @endif
                             <li class="has-children">
-                                <a href="{{ route('welcome') }}" class="{{ request()->routeIs('welcome') ? 'active' : '' }}">{{ __('Нексус') }}</a>
+                                <a href="#" class="{{ request()->routeIs('welcome') ? 'active' : '' }}">{{ __('Нексус') }}</a>
                                 <ul class="sub-menu">
                                     <li><a href="{{ route('features') }}" class="{{ request()->routeIs('features') ? 'active' : '' }}">{{ __('Особенности') }}</a></li>
                                     <li><a href="{{ route('compliance') }}" class="{{ request()->routeIs('compliance') ? 'active' : '' }}">{{ __('Комплаенс') }}</a></li>
@@ -60,7 +60,7 @@
                                 <a href="#">{{ __('Аккаунт') }}</a>
                                 <ul class="sub-menu">
                                     @auth
-                                        <li><a href="{{ url('/dashboard') }}">{{ __('Личный кабинет') }}</a></li>
+                                        <li><a href="{{ route('lk') }}">{{ __('Личный кабинет') }}</a></li>
                                         <li><a href="{{ route('profile.edit') }}">{{ __('Профиль') }}</a></li>
                                         <li>
                                             <form method="POST" action="{{ route('logout') }}" class="d-inline">
@@ -83,7 +83,7 @@
                         <h6 class="mb-10">{{ __('Ваш аккаунт') }}</h6>
                         <ul class="mobile-menu font-heading">
                             <li><a href="{{ route('profile.edit') }}">{{ __('Профиль') }}</a></li>
-                            <li><a href="{{ url('/dashboard') }}">{{ __('Личный кабинет') }}</a></li>
+                            <li><a href="{{ route('lk') }}">{{ __('Личный кабинет') }}</a></li>
                             <li>
                                 <form method="POST" action="{{ route('logout') }}" class="d-inline">
                                     @csrf

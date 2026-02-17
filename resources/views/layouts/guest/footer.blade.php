@@ -44,7 +44,7 @@
                         <h5 class="neutral-0 mb-10 text-18-semibold">{{ __('Поддержка') }}</h5>
                         <ul class="menu-footer">
                             <li><a href="#" data-bs-toggle="modal" data-bs-target="#contactFormModal">{{ __('Связаться с нами') }}</a></li>
-                            <li><a href="{{ url('/dashboard') }}">{{ __('Ваш кабинет') }}&nbsp;<i class="fi-rr-sign-in-alt"></i></a></li>
+                            <li><a href="{{ route('lk') }}">{{ __('Ваш кабинет') }}&nbsp;<i class="fi-rr-sign-in-alt"></i></a></li>
 
                         </ul>
                     </div>
@@ -82,27 +82,55 @@
             </div>
         </div>
 
-        <div class="footer-bottom mt-0">
-            <div class="row">
-                <div class="col-12 text-lg-end text-center">
-                    <div class="row align-items-end">
-                        <div class="col-md-6 mb-20">
-                            <div class="text-center text-md-start">
-                                <div class="text-start d-inline-block">
-                                    <p class="text-lg title-follow neutral-0 mb-0">
-                                        {{ __('Нативные токены платформы (UTILITY)') }}
-                                    </p>
-                                    <p class="small neutral-100 text-right">{{ __('Стандарт GNDst-1 (расширенный ERC | TRC)') }}</p>
-                                    <p class="small neutral-700 text-right">{{ __('GND (Utility токен ГАНИМЕД) ') }}</p>
-                                    <p class="small neutral-700 text-right">{{ __('GANI (Governance токен - управление) ') }}</p>
-                                    <p class="small neutral-700 text-right">{{ __('iGND (Токен программы смягчения инвестиционных рисков)') }}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 text-lg-end text-center mb-20">
-                            <p class="text-sm neutral-600">{{ __('©') }} {{ date('Y') }} {{ config('app.name') }}. {{ __('Все права защищены.') }} | KB @CerbeRus</p>
-                        </div>
+        <div class="footer-bottom mt-0 border-top pt-4" style="border-color: rgba(255,255,255,0.08) !important;">
+            <div class="row align-items-start mb-20">
+                <div class="col-12 col-md-4 mb-20 mb-md-0 text-center text-md-start">
+                    <div class="text-start d-inline-block">
+                        <p class="text-lg title-follow neutral-0 mb-0">
+                            {{ __('Нативные токены платформы (UTILITY)') }}
+                        </p>
+                        <p class="small neutral-100 text-left">{{ __('Стандарт GNDst-1 (расширенный ERC | TRC)') }}</p>
+                        <p class="small neutral-700 text-left">{{ __('GND (Utility токен ГАНИМЕД) ') }}</p>
+                        <p class="small neutral-700 text-left">{{ __('GANI (Governance токен - управление) ') }}</p>
+                        <p class="small neutral-700 text-left">{{ __('iGND (Токен программы смягчения инвестиционных рисков)') }}</p>
                     </div>
+                </div>
+                <div class="col-12 col-md-4 mb-20 mb-md-0 text-center text-md-start">
+                    <h5 class="neutral-0 mb-10 text-18-semibold">{{ __('Канал Дзен') }}</h5>
+                    <p class="text-sm neutral-600 mb-15">{{ __('Новости и материалы о цифровых финансах и финтехе') }}</p>
+                    <a href="https://dzen.ru/digital_fintech" target="_blank" rel="noopener noreferrer" class="btn btn-brand-4-medium hover-up">
+                        {{ __('Перейти в канал') }}
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-1" style="vertical-align: -0.2em;">
+                            <path d="M14 5l7 7-7 7M3 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="col-12 col-md-4 text-center text-md-start">
+                    <h5 class="neutral-0 mb-10 text-18-semibold">{{ __('Канал Telegram') }}</h5>
+                    <p class="text-sm neutral-600 mb-15">{{ __('Официальный канал NEXUS — анонсы и обновления') }}</p>
+                    <a href="https://t.me/dipp_NEXUS" target="_blank" rel="noopener noreferrer" class="btn btn-brand-4-medium hover-up">
+                        {{ __('Перейти в канал') }}
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-1" style="vertical-align: -0.2em;">
+                            <path d="M14 5l7 7-7 7M3 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="row align-items-center mb-20 pb-3" style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                <div class="col-12 col-md-2 col-lg-1 text-center text-md-start mb-15 mb-md-0">
+                    <img alt="{{ config('app.name') }}" src="{{ asset('assets/imgs/template/logo-only.svg') }}" class="footer-logo-small" style="max-width: 56px; height: auto;">
+                </div>
+                <div class="col-12 col-md-10 col-lg-11">
+                    <p class="small text-sm neutral-500 mb-0" style="line-height: 1.5;">
+                        {{ __('Осьминог ассоциируется с интеллектом, гибкостью и многозадачностью, каждая «рука» может работать отдельно, но вся система действует слаженно, как модули НЕКСУС, ГАНИМЕД, СФОРДЕКС, депозитарий, маркетплейс.
+                            Щупальца напоминают ветвящуюся сеть или блокчейн‑граф - множество точек взаимодействия с проектами, инвесторами, регуляторами и сервисами.
+                            Надпись «НЕКСУС» закрепляет идею: осьминог — это не просто животное, а образ «узла» и «связей», цифрового хаба, который объединяет участников рынка.') }}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="text-sm neutral-600 mb-0">{{ __('©') }} {{ date('Y') }} {{ config('app.name') }}. {{ __('Все права защищены.') }} | KB @CerbeRus - Nexus Invest Team  </p>
                 </div>
             </div>
         </div>

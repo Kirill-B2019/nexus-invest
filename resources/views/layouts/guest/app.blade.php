@@ -2,13 +2,13 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="msapplication-TileColor" content="#0E0E0E">
     <meta name="template-color" content="#0E0E0E">
     <meta name="description" content="{{ $metaDescription ?? config('app.name') . ' - ' . __('Публичная страница') }}">
     <meta name="keywords" content="{{ $metaKeywords ?? __('главная, страница') }}">
-    <meta name="author" content="KB @CerbeRus">
+    <meta name="author" content="KB @CerbeRus - Nexus Invest Team">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @php
     $faviconPath = file_exists(public_path('favicon.ico'))
@@ -24,6 +24,8 @@
     <link href="{{ asset('assets/css/roadmap.css') }}?v=1.0.0" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
     <style>
+        body { overflow-x: hidden; max-width: 100vw; }
+        .main { max-width: 100%; overflow-x: hidden; }
         html[lang="ru"] body,
         html[lang="ru"] .main-menu,
         html[lang="ru"] .font-heading,

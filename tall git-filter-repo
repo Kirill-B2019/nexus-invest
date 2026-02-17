@@ -1,0 +1,29 @@
+[33mcommit db118bfd80f76dcb5dbd2f6e1492ea2b5434240c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: Kirill-B2019 <57626806+Kirill-B2019@users.noreply.github.com>
+Date:   Mon Feb 16 16:45:00 2026 +0300
+
+    Ignore hero1.mp4
+
+ .gitignore | Bin [31m406[m -> [32m454[m bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+[33mcommit aa9011c90562d008b4875f4752920c9ba362c273[m
+Author: Kirill-B2019 <57626806+Kirill-B2019@users.noreply.github.com>
+Date:   Mon Feb 16 16:39:24 2026 +0300
+
+    Ignore hero1.mp4
+
+ .gitignore | Bin [31m295[m -> [32m406[m bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+[33mcommit 2cd385400f77ed0d6b93803dbf0107af63df9983[m
+Author: Kirill-B2019 <57626806+Kirill-B2019@users.noreply.github.com>
+Date:   Mon Feb 16 16:32:57 2026 +0300
+
+    commit 16022026
+
+ public/assets/css/main.css        |  27 [31m---------------------------[m
+ public/assets/video/hero1.mp4     | Bin [31m44579053[m -> [32m0[m bytes
+ public/video/.gitkeep             |   0
+ resources/views/welcome.blade.php |  12 [32m+[m[31m-----------[m
+ 4 files changed, 1 insertion(+), 38 deletions(-)
