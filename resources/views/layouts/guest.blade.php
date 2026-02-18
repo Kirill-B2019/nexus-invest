@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
+        <meta name="zen-verification" content="K0H1Zjtz1fcqho7Y4wnB9NRcmHMocHkVIoMVPeC9m3QozrwKF7vzm4xrqgVJHPwy" />
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
