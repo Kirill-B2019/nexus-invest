@@ -1,4 +1,4 @@
-@extends('layouts.guest.app')
+@extends('layouts.guest.guest')
 
 @section('content')
 {{-- HERO-блок --}}
@@ -458,7 +458,7 @@
                 </div>
             </div>
             <div class="col-lg-7">
-                <x-faq-accordion :items="[
+                <x-guest.faq-accordion :items="[
                     [
                         'question' => 'Какие типы сделок можно запускать через НЕКСУС?',
                         'answer' => 'Запланирована поддержка классических облигаций и займов, структурных нот, токенизированных долей в проектах и портфелях, а также white‑label‑решений для банков и финорганизаций',

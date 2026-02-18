@@ -12,7 +12,7 @@ class ComplianceController extends Controller
      */
     public function __invoke()
     {
-        return view('compliance', [
+        return view('public-sections.compliance', [
             'title' => __('Соответствие'),
         ]);
     }

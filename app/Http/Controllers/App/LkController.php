@@ -12,6 +12,6 @@ class LkController extends Controller
 {
     public function __invoke(): View
     {
-        return view('app.pages.lk');
+        return view('app-sections.lk');
     }
 }

@@ -12,6 +12,6 @@ class BlankPageController extends Controller
 {
     public function __invoke(): View
     {
-        return view('app.pages.blank', ['title' => __('Страница')]);
+        return view('app-sections.blank', ['title' => __('Страница')]);
     }
 }

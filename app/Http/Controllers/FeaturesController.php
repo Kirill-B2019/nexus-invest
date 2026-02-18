@@ -12,7 +12,7 @@ class FeaturesController extends Controller
      */
     public function __invoke()
     {
-        return view('features', [
+        return view('public-sections.features', [
             'title' => __('Особенности'),
         ]);
     }
