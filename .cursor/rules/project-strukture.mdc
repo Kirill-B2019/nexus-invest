@@ -1,0 +1,40 @@
+
+#Структура view проекта
+- раскладывать страницы согласно структуре папок и шаблонов публичной и закрытой части
+- если не указано какой шаблон использовать, уточнить публичная часть или закрытая (пользовательская)
+
+resources/views/
+├── welcome.blade.php          # Главная публичная (/)
+├── public-sections/			# Для страниц публичных (section)
+│   ├── ...
+├── app-sections/
+│   ├── lk.blade.php 				#страницы закрытой части
+├── layouts/
+│   ├── guest/
+│   │   |── guest.blade.php       # Layout для гостей публичная (публичный шаблон)
+│   │   ├── header.blade.php
+│   │   ├── footer.blade.php
+│   │   └── menu.blade.php
+│   │   └── mobile-menu.blade.php #мобильное меню
+│   ├── auth/                     # Логин, регистрация, сброс пароля (гости)
+│   │   ├── login.blade.php
+│   │   ├── register.blade.php
+│   │   ├── forgot-password.blade.php
+│   │   ├── reset-password.blade.php
+│   │   ├── verify-email.blade.php
+│   │   └── confirm-password.blade.php
+│   ├── app/
+│   │   ├── app.blade.php 			# Layout закрытый - внутренний (непубличный шаблон)
+│   │   ├── header.blade.php
+│   │   ├── footer.blade.php
+│   │   ├── topbar.blade.php   # Шапка ЛК
+│   │   ├── sidebar.blade.php  # Боковое меню
+│   │   └── mobile-menu.blade.php #мобильное меню
+└── components/               # Общие компоненты для обоих шаблонов(модалки, формы, кнопки и т.д.)
+│   ├── app/	 			# Компоненты закрытого шаблона
+│   ├── guest/ 			# Компоненты публичного шаблона
+│   │   ├── faq-accordion.blade.php
+│   │   ├── cookie-banner.blade.php
+│   │   ├── contact-form-modal.blade.php
+#компоненты для 2-х шаблонов
+│   └── ...
