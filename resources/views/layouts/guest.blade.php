@@ -104,5 +104,6 @@
             </div>
             @endisset
         </div>
+        <x-yandex-metrika />
     </body>
 </html>

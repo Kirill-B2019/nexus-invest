@@ -101,6 +101,7 @@
         window.laravelFlash = @json($laravelFlash);
     </script>
     <script src="{{ asset('assets/js/sweetalert-flash.js') }}?v=1.0.0"></script>
+    <x-yandex-metrika />
     @stack('scripts')
 </body>
 </html>
