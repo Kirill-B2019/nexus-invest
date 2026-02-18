@@ -10,6 +10,7 @@
     <meta name="keywords" content="{{ $metaKeywords ?? __('главная, страница') }}">
     <meta name="author" content="KB @CerbeRus - Nexus Invest Team">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="zen-verification" content="K0H1Zjtz1fcqho7Y4wnB9NRcmHMocHkVIoMVPeC9m3QozrwKF7vzm4xrqgVJHPwy" />
     @php
     $faviconPath = file_exists(public_path('favicon.ico'))
         ? 'favicon.ico'
