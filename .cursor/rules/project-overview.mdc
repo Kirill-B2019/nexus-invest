@@ -1,0 +1,22 @@
+---
+description: Контекст проекта Nexus Invest — Laravel, ЛК, маршруты
+alwaysApply: true
+---
+
+# Nexus Invest — обзор проекта
+
+- **Стек:** Laravel 12, Laravel Breeze, Spatie Permission, Blade, Tailwind CSS, Alpine.js, Vite.
+- **Язык кода и комментариев:** русский (сообщения, подсказки, docblock при необходимости).
+- **Доступ:** основной сайт только для авторизованных; гостевые маршруты (логин, регистрация, восстановление пароля) в `routes/auth.php`.
+
+## Структура приложения
+
+- **Публичная часть:** welcome, features, compliance; точка входа `/`.
+- **Личный кабинет (ЛК):** точка входа `/lk` (имя маршрута `lk`). Layout — `resources/views/app/layouts/lk.blade.php`. После входа редирект на `route('lk')`. `/dashboard` — 301 редирект на `/lk`.
+- **Ресурсы ЛК:** стили и скрипты в `public/app/`; в layout подключаются через `asset('app/...')`.
+
+## Важно при изменениях
+
+- Не ломать маршруты и имена `lk`, `app.blank`, `profile.*`.
+- Новые страницы ЛК — в `resources/views/app/pages/`, с использованием layout ЛК (`<x-app-layout>` / `app.layouts.lk`).
+- Проверять middleware: для `/lk` используется `verified`.

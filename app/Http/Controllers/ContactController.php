@@ -8,6 +8,9 @@ use App\Services\CaptchaService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
+/**
+ * |KB 2025-02-18 Приём сообщений обратной связи. Валидация и капча через сервис.
+ */
 class ContactController extends Controller
 {
     public function store(Request $request, CaptchaService $captchaService): RedirectResponse

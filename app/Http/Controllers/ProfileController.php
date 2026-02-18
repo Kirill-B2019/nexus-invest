@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
+/**
+ * |KB 2025-02-18 Редактирование и удаление профиля пользователя (Breeze).
+ */
 class ProfileController extends Controller
 {
     /**

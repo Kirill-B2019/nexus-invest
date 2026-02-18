@@ -1,0 +1,26 @@
+---
+description: Blade и структура представлений (ЛК и публичная часть)
+globs: resources/views/**/*.blade.php
+alwaysApply: false
+---
+
+# Blade и представления
+
+- **ЛК:** все страницы ЛК в `resources/views/app/`. Layout — `app.layouts.lk`; страницы в `app.pages.*`. Использовать компонент `<x-app-layout>` для полного layout ЛК.
+- **Публичная часть:** welcome, features, compliance и auth-шаблоны — свои layout’ы по существующей структуре.
+- Текст интерфейса — на русском; для переводимых строк — `@lang()` / `__()`.
+- Подключение стилей/скриптов ЛК: `asset('app/...')`; для Vite — `@vite` в соответствующих layout’ах.
+- Избегать дублирования разметки: выносить повторяющиеся блоки в `partials` или Blade-компоненты.
+- Имена view: точечная нотация, например `app.pages.lk`, `app.layouts.lk`.
+
+## Пример
+
+```blade
+{{-- Страница ЛК --}}
+<x-app-layout>
+    <x-slot:title>{{ $title ?? 'Личный кабинет' }}</x-slot>
+    <div class="...">
+        {{ __('Приветствие') }}
+    </div>
+</x-app-layout>
+```

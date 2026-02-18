@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+/**
+ * |KB 2025-02-18 Страница «Особенности» (публичная часть).
+ */
 class FeaturesController extends Controller
 {
     /**

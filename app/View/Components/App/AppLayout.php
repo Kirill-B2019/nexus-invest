@@ -1,15 +1,15 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\App;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
+/**
+ * Layout личного кабинета (app.layouts.lk). Использовать как <x-app-layout>.
+ */
 class AppLayout extends Component
 {
-    /**
-     * Get the view / contents that represents the component.
-     */
     public function render(): View
     {
         return view('app.layouts.lk');

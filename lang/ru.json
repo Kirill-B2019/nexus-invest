@@ -160,5 +160,22 @@
     "На главную": "На главную",
     "Прогресс реализации": "Прогресс реализации",
     "MVP НЕКСУСМ": "MVP НЕКСУСМ",
-    "MVP мастер-нода ГАНИМЕД": "MVP мастер-нода ГАНИМЕД"
+    "MVP мастер-нода ГАНИМЕД": "MVP мастер-нода ГАНИМЕД",
+    "Profile Information": "Данные профиля",
+    "Update your account's profile information and email address.": "Обновите имя и адрес электронной почты.",
+    "Name": "Имя",
+    "Your email address is unverified.": "Адрес электронной почты не подтверждён.",
+    "Click here to re-send the verification email.": "Нажмите, чтобы отправить письмо с подтверждением повторно.",
+    "A new verification link has been sent to your email address.": "Новая ссылка для подтверждения отправлена на вашу почту.",
+    "Save": "Сохранить",
+    "Saved.": "Сохранено.",
+    "Update Password": "Изменить пароль",
+    "Ensure your account is using a long, random password to stay secure.": "Используйте надёжный длинный пароль для безопасности.",
+    "Current Password": "Текущий пароль",
+    "New Password": "Новый пароль",
+    "Confirm Password": "Подтверждение пароля",
+    "Delete Account": "Удалить аккаунт",
+    "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.": "После удаления аккаунта все данные будут удалены безвозвратно. Сохраните нужные данные заранее.",
+    "Are you sure you want to delete your account?": "Вы уверены, что хотите удалить аккаунт?",
+    "Password": "Пароль"
 }

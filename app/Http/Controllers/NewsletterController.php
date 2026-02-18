@@ -7,6 +7,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * |KB 2025-02-18 Подписка на рассылку новостей платформы. Восстановление отписанных.
+ */
 class NewsletterController extends Controller
 {
     /**
