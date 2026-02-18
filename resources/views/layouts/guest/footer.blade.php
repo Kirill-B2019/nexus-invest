@@ -36,7 +36,7 @@
                         <ul class="menu-footer text-sm">
                             <li><a href="{{ asset('doc/NexusPrivacyPolicy-14022026.pdf') }}" target="_blank" rel="noopener noreferrer">{{ __('Политика конфиденциальности') }}</a></li>
                             <li><a href="{{ asset('doc/NexusUserAgreement-15022026.pdf') }}" target="_blank" rel="noopener noreferrer">{{ __('Пользовательское соглашение') }}</a></li>
-                            <li><a href="{{ asset('doc/NEXUS-KYCAMLPolicy-17022026 .pdf' }}">{{ __('KYC/AML‑политика НЕКСУС') }}</a></li>
+                            <li><a href="{{ asset('doc/NEXUS-KYCAMLPolicy-17022026 .pdf') }}">{{ __('KYC/AML‑политика НЕКСУС') }}</a></li>
                         </ul>
                     </div>
 
