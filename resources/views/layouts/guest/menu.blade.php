@@ -9,16 +9,15 @@
             <ul class="sub-menu">
                 <li><a href="{{ route('features') }}">{{ __('Особенности') }}</a></li>
                 <li><a href="{{ route('compliance') }}">{{ __('Комплаенс') }}</a></li>
+
             </ul>
 
         </li>
         <li>
             <a href="{{ url('/services') }}">{{ __('Ганимед') }}</a>
         </li>
-        <li>
-            <a href="{{ url('/services') }}">{{ __('База знаний') }}</a>
-        </li>
-        <li class="mega-li has-children">
+            <li><a href="{{ route('documentation') }}">{{ __('Документация') }}</a></li>
+        {{--<li class="mega-li has-children">
             <a href="#">{{ __('Документы') }}</a>
             <div class="mega-menu">
                 <div class="mega-menu-inner">
@@ -28,6 +27,7 @@
                                 <div class="col-lg-6">
                                     <h6>{{ __('Документы') }}</h6>
                                     <ul>
+                                        <li><a href="{{ route('documentation') }}">{{ __('Документация') }}</a></li>
                                         <li><a href="{{ url('/about') }}">{{ __('Документы платформы') }}</a></li>
                                         <li><a href="{{ url('/services') }}">{{ __('Регулирование') }}</a></li>
                                         <li><a href="#" data-bs-toggle="modal" data-bs-target="#contactFormModal">{{ __('Связаться с нами') }}</a></li>
@@ -56,7 +56,7 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="box-desc-menu">
-                                <h6 class="text-16-semibold">{{__('Ваш проект в системе')}}</h6>
+                                <h6 class="text-16-semibold">{{ __('Ваш проект в системе') }}</h6>
                                 <p class="text-xs mt-10 mb-25">{{ __('Ваш проект уже будет в проектном каталоге MVP запуска.') }}</p>
                                 <a class="btn btn-black-md btn-rounded" href="{{ route('login') }}">
                                     {{ __('Разместить проект') }}
@@ -69,6 +69,6 @@
                     </div>
                 </div>
             </div>
-        </li>
+        </li>--}}
     </ul>
 </nav>

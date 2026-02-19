@@ -44,4 +44,50 @@ body.show-spinner::after {
   }
 }
 
+/* ЛК: логотип по середине верхнего меню (переопределяет тему Dore) */
+#app-container .navbar {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: nowrap !important;
+  width: 100% !important;
+}
+#app-container .navbar .navbar-left {
+  flex: 1 !important;
+  min-width: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  z-index: 1 !important;
+}
+#app-container .navbar .navbar-right {
+  flex: 1 !important;
+  min-width: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  z-index: 1 !important;
+}
+#app-container .navbar .navbar-logo {
+  position: absolute !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 2 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
 
+/* ЛК: контент сверху, футер прижат к низу */
+#app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+#app-container main {
+  flex: 1 0 auto;
+}
+#app-container .page-footer {
+  flex-shrink: 0;
+}

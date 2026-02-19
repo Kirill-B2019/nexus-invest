@@ -16,7 +16,9 @@ alwaysApply: true
 - **Ресурсы ЛК:** стили и скрипты в `public/app/`; в layout подключаются через `asset('app/...')`.
 
 ## Важно при изменениях
-
+- всегда проверять мобильную верстку
+- в карточках и row мобильной верстки сверху текст ниже картинка (если есть и не предусмотрено заданием иное)
 - Не ломать маршруты и имена `lk`, `app.blank`, `profile.*`.
-- Новые страницы ЛК — в `resources/views/app/pages/`, с использованием layout ЛК (`<x-app-layout>` / `app.layouts.lk`).
+- Новые страницы ЛК — в `resources/views/app-section/pages/`, с использованием layout ЛК (`<x-app-layout>` / `app.layouts.lk`).
+- Новые страницы публичные в `resources/views/public-section/pages/`.
 - Проверять middleware: для `/lk` используется `verified`.

@@ -5,6 +5,7 @@ use App\Http\Controllers\App\BlankPageController;
 use App\Http\Controllers\App\LkController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ComplianceController;
+use App\Http\Controllers\DocumentationController;
 use App\Http\Controllers\FeaturesController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ProfileController;
@@ -20,6 +21,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/features', FeaturesController::class)->name('features');
     Route::get('/compliance', ComplianceController::class)->name('compliance');
+    Route::get('/documentation', DocumentationController::class)->name('documentation');
 
     Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
 

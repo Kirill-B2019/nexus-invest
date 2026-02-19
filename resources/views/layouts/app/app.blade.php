@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ isset($title) ? $title . ' - ' . config('app.name') : config('app.name') }}</title>
+    <title>@hasSection('title') @yield('title') - {{ config('app.name') }} @else {{ isset($title) ? $title . ' - ' . config('app.name') : config('app.name') }} @endif</title>
 
     <link rel="stylesheet" href="{{ asset('app/font/iconsmind-s/css/iconsminds.css') }}">
     <link rel="stylesheet" href="{{ asset('app/font/simple-line-icons/css/simple-line-icons.css') }}">
@@ -44,7 +44,7 @@
     </style>
     @stack('styles')
 </head>
-<body id="app-container" class="menu-default">
+<body id="app-container" class="menu-default show-spinner">
     @include('layouts.app.topbar')
     @include('layouts.app.sidebar')
 
@@ -52,8 +52,10 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+                    @yield('header')
                     @include('layouts.app.header')
-                    {{ $slot }}
+                    {{ $slot ?? '' }}
+                    @yield('content')
                 </div>
             </div>
         </div>
@@ -61,33 +63,6 @@
 
     @include('layouts.app.footer')
 
-    <script src="{{ asset('app/js/vendor/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ asset('app/js/vendor/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('app/js/vendor/Chart.bundle.min.js') }}"></script>
-    <script src="{{ asset('app/js/vendor/chartjs-plugin-datalabels.js') }}"></script>
-    <script src="{{ asset('app/js/vendor/moment.min.js') }}"></script>
-    <script src="{{ asset('app/js/vendor/fullcalendar.min.js') }}"></script>
-    <script src="{{ asset('app/js/vendor/datatables.min.js') }}"></script>
-    <script src="{{ asset('app/js/vendor/perfect-scrollbar.min.js') }}"></script>
-    <script src="{{ asset('app/js/vendor/progressbar.min.js') }}"></script>
-    <script src="{{ asset('app/js/vendor/jquery.barrating.min.js') }}"></script>
-    <script src="{{ asset('app/js/vendor/select2.full.js') }}"></script>
-    <script src="{{ asset('app/js/vendor/nouislider.min.js') }}"></script>
-    <script src="{{ asset('app/js/vendor/bootstrap-datepicker.js') }}"></script>
-    <script src="{{ asset('app/js/vendor/Sortable.js') }}"></script>
-    <script src="{{ asset('app/js/vendor/mousetrap.min.js') }}"></script>
-    <script src="{{ asset('app/js/vendor/glide.min.js') }}"></script>
-    <script src="{{ asset('app/js/dore.script.js') }}"></script>
-    <script>window.DORE_BASE = "{{ asset('app') }}";</script>
-    <script src="{{ asset('app/js/scripts.js') }}"></script>
-    <script>
-        document.body.classList.remove('show-spinner');
-        (function() {
-            var theme = typeof localStorage !== 'undefined' && localStorage.getItem('dore-theme-color');
-            if (theme && theme.indexOf('dark') > -1) document.getElementById('app-container').classList.add('body-theme-dark');
-            else document.getElementById('app-container').classList.remove('body-theme-dark');
-        })();
-    </script>
-    @stack('scripts')
+    @include('layouts.app.scripts')
 </body>
 </html>

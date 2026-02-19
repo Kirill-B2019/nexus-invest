@@ -29,16 +29,16 @@
     </div>
 
     <a class="navbar-logo" href="{{ route('lk') }}">
-        <span class="logo logo-light d-none d-xs-block">
+        <span class="logo logo-light d-none d-md-block">
             <img src="{{ asset('assets/imgs/template/logo-black.svg') }}" alt="{{ config('app.name') }}" class="navbar-logo-img">
         </span>
-        <span class="logo logo-dark d-none d-xs-block">
+        <span class="logo logo-dark d-none d-md-block">
             <img src="{{ asset('assets/imgs/template/white-full.svg') }}" alt="{{ config('app.name') }}" class="navbar-logo-img">
         </span>
-        <span class="logo-mobile logo-light d-block d-xs-none">
+        <span class="logo-mobile logo-light d-block d-md-none">
             <img src="{{ asset('assets/imgs/template/logo-black.svg') }}" alt="{{ config('app.name') }}" class="navbar-logo-img">
         </span>
-        <span class="logo-mobile logo-dark d-block d-xs-none">
+        <span class="logo-mobile logo-dark d-block d-md-none">
             <img src="{{ asset('assets/imgs/template/white-full.svg') }}" alt="{{ config('app.name') }}" class="navbar-logo-img">
         </span>
     </a>
