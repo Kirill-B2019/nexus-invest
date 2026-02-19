@@ -1,8 +1,12 @@
 <?php
 
 use App\Http\Controllers\Api\CaptchaController;
+use App\Http\Controllers\Api\NmessContactsController;
+use App\Http\Controllers\Api\NmessTokenController;
 use App\Http\Controllers\App\BlankPageController;
 use App\Http\Controllers\App\LkController;
+use App\Http\Controllers\App\NmessAdminController;
+use App\Http\Controllers\App\NmessPageController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ComplianceController;
 use App\Http\Controllers\DocumentationController;
@@ -30,6 +34,10 @@ Route::middleware('auth')->group(function () {
     Route::middleware('throttle:10,1')->post('/api/captcha/new', [CaptchaController::class, 'new'])->name('api.captcha.new');
 
     Route::get('/lk', LkController::class)->middleware('verified')->name('lk');
+    Route::get('/lk/messenger', NmessPageController::class)->middleware('verified')->name('lk.messenger');
+    Route::get('/lk/admin/messenger', NmessAdminController::class)->middleware('verified', 'role:messenger-admin')->name('lk.admin.messenger');
+    Route::get('/api/nmess/token', NmessTokenController::class)->name('api.nmess.token');
+    Route::get('/api/nmess/contacts', NmessContactsController::class)->name('api.nmess.contacts');
 
     Route::redirect('/dashboard', '/lk', 301);
 

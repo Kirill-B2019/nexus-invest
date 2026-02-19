@@ -39,6 +39,18 @@
                         <i class="simple-icon-rocket"></i> <span class="d-inline-block">{{ __('По умолчанию') }}</span>
                     </a>
                 </li>
+                <li class="{{ request()->routeIs('lk.messenger') ? 'active' : '' }}">
+                    <a href="{{ route('lk.messenger') }}">
+                        <i class="simple-icon-bubble"></i> <span class="d-inline-block">{{ __('Мессенджер') }}</span>
+                    </a>
+                </li>
+                @role('messenger-admin')
+                <li class="{{ request()->routeIs('lk.admin.messenger') ? 'active' : '' }}">
+                    <a href="{{ route('lk.admin.messenger') }}">
+                        <i class="simple-icon-settings"></i> <span class="d-inline-block">{{ __('Управление мессенджером') }}</span>
+                    </a>
+                </li>
+                @endrole
                 <li class="{{ request()->routeIs('app.blank') ? 'active' : '' }}">
                     <a href="{{ route('app.blank') }}">
                         <i class="iconsminds-bucket"></i> <span class="d-inline-block">{{ __('Пустая страница') }}</span>
