@@ -22,7 +22,7 @@
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
 
-    @if(!$trueconf_configured)
+    @if(!($trueconf_configured ?? false))
         <div class="alert alert-warning">
             {{ __('TrueConf не настроен. Укажите TRUECONF_CLIENT_ID и TRUECONF_CLIENT_SECRET в .env. Назначение доступа создаст учётные записи после настройки.') }}
         </div>
@@ -31,7 +31,7 @@
     <div class="card">
         <div class="card-body">
             <p class="text-muted mb-3">{{ __('Отметьте пользователей, которым разрешён доступ к мессенджеру (чат и звонки). При первом включении для них создаётся учётная запись в TrueConf.') }}</p>
-            @if($trueconf_configured)
+            @if($trueconf_configured ?? false)
                 <form method="post" action="{{ route('lk.admin.messenger.sync') }}" class="mb-3 d-inline-block">
                     @csrf
                     <button type="submit" class="btn btn-outline-secondary btn-sm">{{ __('Синхронизировать пользователей с сервером TrueConf') }}</button>
@@ -50,7 +50,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($users as $user)
+                            @foreach($users ?? [] as $user)
                                 <tr>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>

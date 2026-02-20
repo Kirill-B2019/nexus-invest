@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\View\View;
 
 /**
@@ -13,6 +14,13 @@ class NmessAdminController extends Controller
 {
     public function __invoke(): View
     {
-        return view('app.pages.messenger-admin');
+        $users = User::query()
+            ->orderBy('name')
+            ->get(['id', 'name', 'email', 'messenger_access', 'trueconf_login', 'created_at']);
+
+        return view('app.pages.messenger-admin', [
+            'users' => $users,
+            'trueconf_configured' => (bool) config('trueconf.client_id'),
+        ]);
     }
 }
