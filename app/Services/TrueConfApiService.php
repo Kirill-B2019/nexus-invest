@@ -162,12 +162,16 @@ class TrueConfApiService
 
     /**
      * Создать или обновить пользователя в TrueConf. Возвращает true при успехе.
-     * При неудаче в lastError записывается сообщение для пользователя.
+     * API ожидает login_name, email, при необходимости display_name и password.
      */
-    public function createOrUpdateUser(string $login, string $displayName, string $password): bool
+    public function createOrUpdateUser(string $login, string $email, string $displayName, string $password): bool
     {
         $this->lastError = null;
         $login = self::normalizeLogin($login);
+        $email = trim($email);
+        if ($email === '') {
+            $email = $login.'@nexus.local';
+        }
         $displayName = trim($displayName);
         if ($displayName === '') {
             $displayName = $login;
@@ -179,11 +183,13 @@ class TrueConfApiService
         }
 
         $url = $this->baseUrl.'/api/'.$this->apiVersion.'/users';
-        $response = $this->httpClient()->withToken($token)->post($url, [
-            'login' => $login,
+        $body = [
+            'login_name' => $login,
+            'email' => $email,
             'display_name' => $displayName,
             'password' => $password,
-        ]);
+        ];
+        $response = $this->httpClient()->withToken($token)->post($url, $body);
 
         if ($response->successful()) {
             return true;
@@ -192,6 +198,7 @@ class TrueConfApiService
         if ($response->status() === 409 || str_contains($response->body(), 'already exists')) {
             $updateUrl = $this->baseUrl.'/api/'.$this->apiVersion.'/users/'.urlencode($login);
             $update = $this->httpClient()->withToken($token)->put($updateUrl, [
+                'email' => $email,
                 'display_name' => $displayName,
                 'password' => $password,
             ]);

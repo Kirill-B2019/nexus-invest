@@ -58,7 +58,8 @@ class MessengerAdminController extends Controller
                 if ($service) {
                     $password = Str::random(24);
                     $displayName = trim($user->name ?: $user->email ?: '') ?: $login;
-                    $ok = $service->createOrUpdateUser($login, $displayName, $password);
+                    $email = trim($user->email ?? '') ?: $login.'@nexus.local';
+                    $ok = $service->createOrUpdateUser($login, $email, $displayName, $password);
                     if ($ok) {
                         $user->trueconf_password_encrypted = $password;
                     }
@@ -107,7 +108,8 @@ class MessengerAdminController extends Controller
             $user->trueconf_login = $login;
             $password = $user->trueconf_password_encrypted ?? Str::random(24);
             $displayName = trim($user->name ?: $user->email ?: '') ?: $login;
-            $ok = $service->createOrUpdateUser($login, $displayName, $password);
+            $email = trim($user->email ?? '') ?: $login.'@nexus.local';
+            $ok = $service->createOrUpdateUser($login, $email, $displayName, $password);
             if ($ok) {
                 $user->trueconf_password_encrypted = $password;
                 $user->save();
