@@ -3,15 +3,25 @@
 namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 /**
- * |KB Страница мессенджера в ЛК. SPA загружается из /nmess/ (сборка Nmess/client).
+ * Страница мессенджера в ЛК. При настроенном TrueConf — веб-клиент TrueConf, иначе iframe Nmess.
  */
 class NmessPageController extends Controller
 {
-    public function __invoke(): View
+    public function __invoke(Request $request): View
     {
-        return view('app.pages.messenger');
+        $user = $request->user();
+        if (! $user->can('use-messenger') || ! $user->messenger_access) {
+            return view('app.pages.messenger-no-access', [
+                'is_admin' => $user->hasRole('messenger-admin'),
+            ]);
+        }
+
+        $useTrueConf = (bool) config('trueconf.client_id');
+
+        return view('app.pages.messenger', ['use_trueconf' => $useTrueConf]);
     }
 }

@@ -6,10 +6,16 @@ Table of Contents
 02. Theme Selector And Initializer
 */
 
-/* 01. Css Loading Util */
+/* 01. Css Loading Util — не добавляем второй link, если тема уже есть в документе */
 function loadStyle(href, callback) {
+  var themeFile = href ? href.split("/").pop() : "";
+  var normalizedHref = (href || "").replace(/\/$/, "");
   for (var i = 0; i < document.styleSheets.length; i++) {
-    if (document.styleSheets[i].href == href) {
+    var sheetHref = document.styleSheets[i].href;
+    if (!sheetHref) continue;
+    var norm = sheetHref.replace(/\/$/, "");
+    if (norm === normalizedHref || (themeFile && sheetHref.lastIndexOf(themeFile) === sheetHref.length - themeFile.length)) {
+      if (callback) callback();
       return;
     }
   }
@@ -53,7 +59,7 @@ function loadStyle(href, callback) {
       <a href="#" data-theme="dore.light.orangecarrot.min.css" class="theme-color theme-color-orangecarrot"></a>
       <a href="#" data-theme="dore.light.redruby.min.css" class="theme-color theme-color-redruby"></a>
       <a href="#" data-theme="dore.light.yellowgranola.min.css" class="theme-color theme-color-yellowgranola"></a>
-      <a href="#" data-theme="dore.light.greysteel.min.css" class="theme-color theme-color-greysteel"></a>
+      <a href="#" data-theme="dore.light.greenlime.min.css" class="theme-color theme-color-greenlime"></a>
     </div>
     <p class="text-muted mb-2">Dark Theme</p>
     <div class="d-flex flex-row justify-content-between mb-3">
@@ -68,7 +74,7 @@ function loadStyle(href, callback) {
     <a href="#" data-theme="dore.dark.orangecarrot.min.css" class="theme-color theme-color-orangecarrot"></a>
     <a href="#" data-theme="dore.dark.redruby.min.css" class="theme-color theme-color-redruby"></a>
     <a href="#" data-theme="dore.dark.yellowgranola.min.css" class="theme-color theme-color-yellowgranola"></a>
-    <a href="#" data-theme="dore.dark.greysteel.min.css" class="theme-color theme-color-greysteel"></a>
+    <a href="#" data-theme="dore.dark.greenlime.min.css" class="theme-color theme-color-greenlime"></a>
   </div>
   </div>
   <div class="p-4">
@@ -100,8 +106,8 @@ function loadStyle(href, callback) {
   $("body").append(themeColorsDom);
 
 
-  /* Default Theme Color, Border Radius and  Direction */
-  var theme = "dore.light.bluenavy.min.css";
+  /* Default Theme Color, Border Radius and  Direction (по умолчанию у всех: dore.dark.greenlime) */
+  var theme = "dore.dark.greenlime.min.css";
   var direction = "ltr";
   var radius = "rounded";
 
@@ -129,8 +135,11 @@ function loadStyle(href, callback) {
   $("#switchDark").attr("checked", theme.indexOf("dark") > 0 ? true : false);
 
   var cssBase = (typeof window.DORE_BASE !== "undefined" && window.DORE_BASE) ? (window.DORE_BASE + "/") : "";
+  var doreInitDone = false;
   loadStyle(cssBase + "css/" + theme, onStyleComplete);
   function onStyleComplete() {
+    if (doreInitDone) return;
+    doreInitDone = true;
     setTimeout(onStyleCompleteDelayed, 300);
   }
 

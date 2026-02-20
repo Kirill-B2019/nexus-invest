@@ -22,6 +22,7 @@
     document.body.classList.remove('show-spinner');
     (function() {
         var theme = typeof localStorage !== 'undefined' && localStorage.getItem('dore-theme-color');
+        if (!theme) theme = 'dore.dark.greenlime.min.css';
         if (theme && theme.indexOf('dark') > -1) document.getElementById('app-container').classList.add('body-theme-dark');
         else document.getElementById('app-container').classList.remove('body-theme-dark');
     })();

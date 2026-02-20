@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="{{ asset('app/css/vendor/nouislider.min.css') }}">
     <link rel="stylesheet" href="{{ asset('app/css/vendor/bootstrap-datepicker3.min.css') }}">
     <link rel="stylesheet" href="{{ asset('app/css/vendor/component-custom-switch.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('app/css/dore.light.bluenavy.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('app/css/dore.dark.greenlime.min.css') }}">
     <link rel="stylesheet" href="{{ asset('app/css/main.css') }}">
     <style>
         #app-container .theme-colors,

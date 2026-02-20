@@ -44,9 +44,15 @@ body.show-spinner::after {
   }
 }
 
-/* ЛК: логотип по середине верхнего меню (переопределяет тему Dore) */
+/* ЛК: верхнее меню закреплено, не прокручивается с экраном */
+#app-container .navbar.fixed-top {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1030 !important;
+}
 #app-container .navbar {
-  position: relative !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
@@ -79,7 +85,37 @@ body.show-spinner::after {
   justify-content: center !important;
 }
 
-/* ЛК: контент сверху, футер прижат к низу */
+/* Мобильная: бургер, затем word-only логотип слева; справа — уведомление и пользователь */
+@media (max-width: 767.98px) {
+  #app-container .navbar .navbar-left {
+    flex: 1 !important;
+    min-width: 0 !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+  }
+  #app-container .navbar .navbar-logo.d-none {
+    display: none !important;
+  }
+  #app-container .navbar .navbar-logo-mobile {
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+  #app-container .navbar .navbar-logo-mobile-img {
+    height: 24px;
+    width: auto;
+    max-width: 120px;
+    object-fit: contain;
+    display: block;
+    vertical-align: middle;
+  }
+  #app-container .navbar .navbar-right {
+    flex: 0 0 auto !important;
+    min-width: 0 !important;
+    justify-content: flex-end !important;
+  }
+}
+
+/* ЛК: контент сверху, футер прижат к низу; отступ под фиксированный navbar */
 #app-container {
   display: flex;
   flex-direction: column;
@@ -87,6 +123,7 @@ body.show-spinner::after {
 }
 #app-container main {
   flex: 1 0 auto;
+  padding-top: 55px; /* высота верхнего меню, чтобы контент не уходил под navbar */
 }
 #app-container .page-footer {
   flex-shrink: 0;

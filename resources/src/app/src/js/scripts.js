@@ -53,7 +53,7 @@ function loadStyle(href, callback) {
       <a href="#" data-theme="dore.light.orangecarrot.min.css" class="theme-color theme-color-orangecarrot"></a>
       <a href="#" data-theme="dore.light.redruby.min.css" class="theme-color theme-color-redruby"></a>
       <a href="#" data-theme="dore.light.yellowgranola.min.css" class="theme-color theme-color-yellowgranola"></a>
-      <a href="#" data-theme="dore.light.greysteel.min.css" class="theme-color theme-color-greysteel"></a>
+      <a href="#" data-theme="dore.light.greenlime.min.css" class="theme-color theme-color-greenlime"></a>
     </div>
     <p class="text-muted mb-2">Dark Theme</p>
     <div class="d-flex flex-row justify-content-between mb-3">
@@ -68,7 +68,7 @@ function loadStyle(href, callback) {
     <a href="#" data-theme="dore.dark.orangecarrot.min.css" class="theme-color theme-color-orangecarrot"></a>
     <a href="#" data-theme="dore.dark.redruby.min.css" class="theme-color theme-color-redruby"></a>
     <a href="#" data-theme="dore.dark.yellowgranola.min.css" class="theme-color theme-color-yellowgranola"></a>
-    <a href="#" data-theme="dore.dark.greysteel.min.css" class="theme-color theme-color-greysteel"></a>
+    <a href="#" data-theme="dore.dark.greenlime.min.css" class="theme-color theme-color-greenlime"></a>
   </div>
   </div>
   <div class="p-4">
@@ -100,8 +100,8 @@ function loadStyle(href, callback) {
   $("body").append(themeColorsDom);
 
 
-  /* Default Theme Color, Border Radius and  Direction */
-  var theme = "dore.light.bluenavy.min.css";
+  /* Default Theme Color (по умолчанию: dark.greenlime) */
+  var theme = "dore.dark.greenlime.min.css";
   var direction = "ltr";
   var radius = "rounded";
 

@@ -23,6 +23,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'profile_photo_path',
+        'messenger_access',
+        'trueconf_login',
+        'trueconf_user_id',
     ];
 
     /**
@@ -33,6 +37,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'trueconf_password_encrypted',
     ];
 
     /**
@@ -45,6 +50,20 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'messenger_access' => 'boolean',
+            'trueconf_password_encrypted' => 'encrypted',
         ];
+    }
+
+    /**
+     * URL фото профиля или null, если не задано. В шаблонах при null выводить logo-only.svg.
+     */
+    public function getProfilePhotoUrlAttribute(): ?string
+    {
+        if (empty($this->profile_photo_path)) {
+            return null;
+        }
+
+        return \Illuminate\Support\Facades\Storage::url($this->profile_photo_path);
     }
 }

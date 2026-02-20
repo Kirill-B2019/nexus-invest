@@ -3,9 +3,10 @@
 use App\Http\Controllers\Api\CaptchaController;
 use App\Http\Controllers\Api\NmessContactsController;
 use App\Http\Controllers\Api\NmessTokenController;
+use App\Http\Controllers\Api\TrueConfTokenController;
 use App\Http\Controllers\App\BlankPageController;
 use App\Http\Controllers\App\LkController;
-use App\Http\Controllers\App\NmessAdminController;
+use App\Http\Controllers\App\MessengerAdminController;
 use App\Http\Controllers\App\NmessPageController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ComplianceController;
@@ -35,9 +36,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/lk', LkController::class)->middleware('verified')->name('lk');
     Route::get('/lk/messenger', NmessPageController::class)->middleware('verified')->name('lk.messenger');
-    Route::get('/lk/admin/messenger', NmessAdminController::class)->middleware('verified', 'role:messenger-admin')->name('lk.admin.messenger');
+    Route::get('/lk/admin/messenger', [MessengerAdminController::class, 'index'])->middleware('verified', 'role:messenger-admin')->name('lk.admin.messenger');
+    Route::post('/lk/admin/messenger', [MessengerAdminController::class, 'updateAccess'])->middleware('verified', 'role:messenger-admin')->name('lk.admin.messenger.update');
+    Route::post('/lk/admin/messenger/sync', [MessengerAdminController::class, 'syncWithServer'])->middleware('verified', 'role:messenger-admin')->name('lk.admin.messenger.sync');
     Route::get('/api/nmess/token', NmessTokenController::class)->name('api.nmess.token');
     Route::get('/api/nmess/contacts', NmessContactsController::class)->name('api.nmess.contacts');
+    Route::get('/api/messenger/trueconf-token', TrueConfTokenController::class)->name('api.messenger.trueconf-token');
 
     Route::redirect('/dashboard', '/lk', 301);
 

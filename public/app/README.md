@@ -26,7 +26,7 @@
 - css/vendor/bootstrap-datepicker3.min.css
 - css/vendor/component-custom-switch.min.css
 - css/main.css
-- css/dore.light.greysteel.min.css (тема)
+- css/dore.dark.greenlime.min.css (тема по умолчанию для внутренней части)
 - css/app.css (доп. стили приложения)
 
 ### JS (порядок как в Dashboard.Default)

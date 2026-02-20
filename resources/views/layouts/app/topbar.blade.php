@@ -20,7 +20,11 @@
                 <rect x="0.5" y="15.5" width="25" height="1" />
             </svg>
         </a>
-        <div class="search" data-search-path="{{ url('/') }}/app/search?q=">
+        {{-- Мобильная: слово «НЕКСУС» (word-only) сразу после бургера --}}
+        <a class="navbar-logo-mobile d-flex d-md-none align-items-center ml-2 mr-2" href="{{ route('lk') }}" aria-label="{{ config('app.name') }}">
+            <img src="{{ asset('assets/imgs/template/word-only.png') }}" alt="{{ config('app.name') }}" class="navbar-logo-mobile-img">
+        </a>
+        <div class="search d-none d-md-block" data-search-path="{{ url('/') }}/app/search?q=">
             <input placeholder="{{ __('Поиск…') }}">
             <span class="search-icon">
                 <i class="simple-icon-magnifier"></i>
@@ -28,7 +32,7 @@
         </div>
     </div>
 
-    <a class="navbar-logo" href="{{ route('lk') }}">
+    <a class="navbar-logo d-none d-md-flex" href="{{ route('lk') }}">
         <span class="logo logo-light d-none d-md-block">
             <img src="{{ asset('assets/imgs/template/logo-black.svg') }}" alt="{{ config('app.name') }}" class="navbar-logo-img">
         </span>
@@ -95,11 +99,21 @@
             </button>
         </div>
 
+        @php
+            $userAvatarUrl = Auth::user()->profile_photo_url ?? asset('assets/imgs/template/logo-only.svg');
+        @endphp
         <div class="user d-inline-block">
-            <button class="btn btn-empty p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
+            <button class="btn btn-empty p-0 d-flex align-items-center" type="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
-                <span class="name">{{ Auth::user()->name }}</span>
-                <span>
+                {{-- Десктоп: сначала фото, справа имя по центру относительно фото --}}
+                <span class="user-desktop d-none d-md-flex align-items-center">
+                    <span class="header-avatar-wrapper d-flex align-items-center justify-content-center rounded-circle overflow-hidden flex-shrink-0">
+                        <img src="{{ $userAvatarUrl }}" alt="" class="header-avatar" width="32" height="32">
+                    </span>
+                    <span class="name ml-2">{{ Auth::user()->name }}</span>
+                </span>
+                {{-- Мобильная: только значок пользователя --}}
+                <span class="user-mobile d-md-none">
                     <i class="simple-icon-user"></i>
                 </span>
             </button>
