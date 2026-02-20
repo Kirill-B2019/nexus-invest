@@ -27,6 +27,14 @@
     <link rel="stylesheet" href="{{ asset('app/css/dore.dark.greenlime.min.css') }}">
     <link rel="stylesheet" href="{{ asset('app/css/main.css') }}">
     <style>
+        /* Верхнее меню ЛК всегда закреплено (на prod без зависимости от загрузки main.css) */
+        #app-container .navbar.fixed-top {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 1030 !important;
+        }
         #app-container .theme-colors,
         #app-container .theme-button { display: none !important; }
         #app-container .navbar-logo .logo,

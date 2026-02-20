@@ -107,8 +107,10 @@ class TrueConfApiService
     {
         $status = $response->status();
         $body = (string) $response->body();
+        $hint = self::parseApiErrorBody($body);
         if ($status === 400 || $status === 422) {
-            return __('TrueConf отклонил данные пользователя :login (HTTP :status). Проверьте логи.', ['login' => $login, 'status' => $status]);
+            $base = __('TrueConf отклонил данные пользователя :login (HTTP :status).', ['login' => $login, 'status' => $status]);
+            return $hint ? $base.' '.$hint : $base.' '.__('Подробности в логах (storage/logs).');
         }
         if ($status === 403 || $status === 401) {
             return __('Нет прав на создание пользователей в TrueConf (HTTP :status).', ['status' => $status]);
@@ -120,12 +122,57 @@ class TrueConfApiService
     }
 
     /**
+     * Извлечь из тела ответа API текст ошибки (JSON или строка).
+     */
+    private static function parseApiErrorBody(string $body): ?string
+    {
+        $body = trim($body);
+        if ($body === '') {
+            return null;
+        }
+        $data = json_decode($body, true);
+        if (is_array($data)) {
+            if (! empty($data['message'])) {
+                return $data['message'];
+            }
+            if (! empty($data['error'])) {
+                return is_string($data['error']) ? $data['error'] : json_encode($data['error']);
+            }
+            if (! empty($data['errors']) && is_array($data['errors'])) {
+                return implode(' ', array_map(fn ($v) => is_array($v) ? implode(' ', $v) : (string) $v, $data['errors']));
+            }
+        }
+        return strlen($body) <= 200 ? $body : substr($body, 0, 197).'...';
+    }
+
+    /**
+     * Нормализовать логин для TrueConf: нижний регистр, только буквы, цифры, подчёркивание, точка, дефис.
+     * Публичный, чтобы сохранять в БД тот же логин, что уходит в API.
+     */
+    public static function normalizeLogin(string $login): string
+    {
+        $login = trim($login);
+        if ($login === '') {
+            return $login;
+        }
+        $normalized = preg_replace('/[^a-zA-Z0-9_.-]/', '_', $login);
+        $normalized = $normalized !== '' ? $normalized : $login;
+        return mb_strtolower($normalized, 'UTF-8');
+    }
+
+    /**
      * Создать или обновить пользователя в TrueConf. Возвращает true при успехе.
      * При неудаче в lastError записывается сообщение для пользователя.
      */
     public function createOrUpdateUser(string $login, string $displayName, string $password): bool
     {
         $this->lastError = null;
+        $login = self::normalizeLogin($login);
+        $displayName = trim($displayName);
+        if ($displayName === '') {
+            $displayName = $login;
+        }
+
         $token = $this->getClientToken();
         if (! $token) {
             return false;

@@ -14,9 +14,16 @@ class NmessPageController extends Controller
     public function __invoke(Request $request): View
     {
         $user = $request->user();
-        if (! $user->can('use-messenger') || ! $user->messenger_access) {
+        $isAdmin = $user->hasRole('messenger-admin');
+        $hasPermission = $user->can('use-messenger');
+        $hasAccess = (bool) ($user->messenger_access ?? false);
+
+        // Админ мессенджера всегда может открыть мессенджер (чтобы выдать доступ себе и другим)
+        if ($isAdmin) {
+            // разрешаем доступ
+        } elseif (! $hasPermission || ! $hasAccess) {
             return view('app.pages.messenger-no-access', [
-                'is_admin' => $user->hasRole('messenger-admin'),
+                'is_admin' => $isAdmin,
             ]);
         }
 

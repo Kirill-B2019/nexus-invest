@@ -53,11 +53,12 @@ class MessengerAdminController extends Controller
             if ($shouldHave && ! $user->messenger_access) {
                 $user->givePermissionTo($permission);
                 $user->messenger_access = true;
-                $login = $user->trueconf_login ?? 'nexus_'.$user->id;
+                $login = TrueConfApiService::normalizeLogin($user->trueconf_login ?? 'nexus_'.$user->id);
                 $user->trueconf_login = $login;
                 if ($service) {
                     $password = Str::random(24);
-                    $ok = $service->createOrUpdateUser($login, $user->name ?: $user->email, $password);
+                    $displayName = trim($user->name ?: $user->email ?: '') ?: $login;
+                    $ok = $service->createOrUpdateUser($login, $displayName, $password);
                     if ($ok) {
                         $user->trueconf_password_encrypted = $password;
                     }
@@ -102,10 +103,11 @@ class MessengerAdminController extends Controller
         }
 
         foreach ($users as $user) {
-            $login = $user->trueconf_login ?? 'nexus_'.$user->id;
+            $login = TrueConfApiService::normalizeLogin($user->trueconf_login ?? 'nexus_'.$user->id);
             $user->trueconf_login = $login;
             $password = $user->trueconf_password_encrypted ?? Str::random(24);
-            $ok = $service->createOrUpdateUser($login, $user->name ?: $user->email, $password);
+            $displayName = trim($user->name ?: $user->email ?: '') ?: $login;
+            $ok = $service->createOrUpdateUser($login, $displayName, $password);
             if ($ok) {
                 $user->trueconf_password_encrypted = $password;
                 $user->save();
