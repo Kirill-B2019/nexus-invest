@@ -17,6 +17,15 @@
 <script src="{{ asset('app/js/vendor/glide.min.js') }}"></script>
 <script src="{{ asset('app/js/dore.script.js') }}"></script>
 <script>window.DORE_BASE = "{{ asset('app') }}";</script>
+<script>
+(function() {
+    var container = document.getElementById('app-container');
+    var backdrop = document.getElementById('menu-backdrop');
+    if (container && backdrop) {
+        backdrop.addEventListener('click', function() { container.classList.remove('main-show-temporary'); });
+    }
+})();
+</script>
 <script src="{{ asset('app/js/scripts.js') }}"></script>
 <script>
     document.body.classList.remove('show-spinner');

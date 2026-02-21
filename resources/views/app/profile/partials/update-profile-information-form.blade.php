@@ -68,7 +68,9 @@
             @endif
         </div>
 
-        <button type="submit" class="btn btn-primary">{{ __('Сохранить') }}</button>
+        <div class="lk-form-actions">
+            <button type="submit" class="btn btn-primary">{{ __('Сохранить') }}</button>
+        </div>
     </form>
 </section>
 

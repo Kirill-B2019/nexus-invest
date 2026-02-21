@@ -19,13 +19,13 @@
     @endphp
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset($faviconPath) }}?v={{ $faviconVer }}">
     <link rel="stylesheet" href="https://fonts.bunny.net/css?family=manrope:400,500,600,700&display=swap">
-    <link href="{{ asset('assets/css/style.css') }}?v=1.0.0" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.css') }}?v=1.0.1" rel="stylesheet">
     <link href="{{ asset('assets/css/main.css') }}?v=1.0.0" rel="stylesheet">
     <link href="{{ asset('assets/css/roadmap.css') }}?v=1.0.0" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
     <style>
-        body { overflow-x: hidden; max-width: 100vw; }
-        .main { max-width: 100%; overflow-x: hidden; }
+        body { overflow-x: clip; max-width: 100vw; }
+        .main { max-width: 100%; overflow-x: clip; }
         html[lang="ru"] body,
         html[lang="ru"] .main-menu,
         html[lang="ru"] .font-heading,
@@ -92,6 +92,7 @@
             'success' => session('newsletter_success') ?? session('alert_success'),
             'error' => session('alert_error'),
             'warning' => session('alert_warning'),
+            'info' => session('info'),
             'errors' => $errors->any() ? $errors->getMessageBag()->getMessages() : [],
         ];
     @endphp

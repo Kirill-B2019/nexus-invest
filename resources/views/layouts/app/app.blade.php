@@ -55,6 +55,7 @@
 <body id="app-container" class="menu-default show-spinner">
     @include('layouts.app.topbar')
     @include('layouts.app.sidebar')
+    <div class="menu-backdrop d-md-none" id="menu-backdrop" aria-hidden="true" title="{{ __('Закрыть меню') }}"></div>
 
     <main>
         <div class="container-fluid">

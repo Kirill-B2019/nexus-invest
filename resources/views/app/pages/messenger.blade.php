@@ -18,7 +18,9 @@
     @if(!empty($use_trueconf))
     <div class="card mb-3">
         <div class="card-body py-2">
-            <a href="#" id="messenger-open-new" class="btn btn-sm btn-outline-primary" target="_blank" rel="noopener">{{ __('Открыть мессенджер в новом окне') }}</a>
+            <div class="lk-form-actions">
+                <a href="#" id="messenger-open-new" class="btn btn-sm btn-outline-primary" target="_blank" rel="noopener">{{ __('Открыть мессенджер в новом окне') }}</a>
+            </div>
         </div>
     </div>
     <div class="nmess-embed-wrapper">

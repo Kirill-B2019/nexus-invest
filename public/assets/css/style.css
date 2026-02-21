@@ -5856,6 +5856,14 @@ a.icon-socials:hover {
   border-radius: 16px;
   display: block;
 }
+/* Лента новостей: белый фон под картинками (прозрачные на белом) */
+#news-feed-section .card-news .card-image {
+  background: #fff;
+  border-radius: 16px;
+}
+#news-feed-section .card-news .card-image img {
+  background: #fff;
+}
 .card-news .card-info * {
   color: var(--color-dark);
 }
@@ -8683,6 +8691,25 @@ a.icon-socials:hover {
   padding: 1px 20px 1px 36px;
   margin-bottom: 16px;
   width: 50%;
+  color: #5A5B5B;
+}
+
+/* То же, что list-check-black, но пункты в один столбец (без второго столбца) */
+.list-check-black-column {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
+.list-check-black-column li {
+  display: block;
+  background: url(../imgs/page/term/check.png) no-repeat left center;
+  padding: 1px 20px 1px 36px;
+  margin-bottom: 16px;
+  width: 100%;
   color: #5A5B5B;
 }
 

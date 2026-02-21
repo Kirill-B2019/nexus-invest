@@ -112,6 +112,309 @@
   #app-container main { margin-left: 0; }
 }
 
+/* ========== Мобильная адаптация закрытой части (ЛК), формат как Ui.Components.Tables ========== */
+@media (max-width: 767.98px) {
+  #app-container main .container-fluid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+  #app-container main .col-12,
+  #app-container main .row > [class*="col-"] {
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  #app-container main .row {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+    max-width: 100%;
+  }
+  #app-container main .card {
+    max-width: 100%;
+    min-width: 0;
+  }
+  #app-container main .row.mb-4 { margin-bottom: 1.5rem !important; }
+  #app-container main .row > [class*="col-"] {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  #app-container main .row > [class*="col-"]:last-child { margin-bottom: 0; }
+  #app-container main .col-12 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  /* Блоки-карточки: как в примере — отступы и плотность */
+  #app-container .card {
+    margin-bottom: 0;
+  }
+  #app-container main .row > [class*="col-"] > .card,
+  #app-container main .col-12 > .card {
+    margin-bottom: 0;
+  }
+  #app-container .card .card-body {
+    padding: 1rem;
+    min-width: 0;
+  }
+  /* Длинные ссылки и текст в карточке не выходят за край */
+  #app-container main .card-body p,
+  #app-container main .card-body a {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  #app-container main .card-body p {
+    max-width: 100%;
+  }
+  #app-container .card .card-title {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  /* Таблицы: горизонтальный скролл в обёртке; с table-mobile-stack — не выходить за экран */
+  #app-container .table-responsive {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 0.25rem;
+    max-width: 100%;
+  }
+  #app-container .table-responsive .table {
+    margin-bottom: 0;
+  }
+  #app-container .table-responsive .table-mobile-stack {
+    max-width: 100%;
+  }
+  #app-container .table:not(.table-mobile-stack) {
+    min-width: 480px;
+  }
+  #app-container .page-footer .container-fluid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  #app-container .page-footer .footer-content {
+    padding: 0.75rem 0;
+  }
+  #app-container .navbar .dropdown-menu {
+    max-height: min(70vh, 400px);
+    overflow-y: auto;
+    left: auto;
+    right: 0;
+  }
+  #app-container .breadcrumb-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  #app-container .separator {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+  }
+  #app-container h1,
+  #app-container .app-page-title {
+    font-size: 1.25rem;
+    word-break: break-word;
+  }
+  #app-container .btn-group .btn {
+    font-size: 0.875rem;
+  }
+}
+
+/* Таблица на мобильных как блоки-карточки (как в примере формата: каждая строка — блок) */
+@media (max-width: 767.98px) {
+  #app-container .table-mobile-stack {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    box-sizing: border-box;
+  }
+  #app-container .table-mobile-stack thead {
+    display: none;
+  }
+  #app-container .table-mobile-stack tbody tr {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 0.25rem;
+    margin-bottom: 0.75rem;
+    padding: 0.75rem;
+    background: var(--app-color-surface, #f8f9fa);
+  }
+  #app-container .table-mobile-stack tbody tr:last-child {
+    margin-bottom: 0;
+  }
+  #app-container.body-theme-dark .table-mobile-stack tbody tr {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  #app-container .table-mobile-stack tbody td {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    border: none;
+    padding: 0.35rem 0;
+    padding-left: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  #app-container .table-mobile-stack tbody td.text-nowrap {
+    white-space: normal;
+  }
+  #app-container .table-mobile-stack tbody td a {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
+  }
+  #app-container .table-mobile-stack tbody td:first-child {
+    padding-top: 0;
+  }
+  #app-container .table-mobile-stack tbody td:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  #app-container .table-mobile-stack tbody td[data-label]::before {
+    content: attr(data-label);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--app-color-dark, #333);
+    opacity: 0.8;
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+  #app-container .table-mobile-stack tbody td.actions-cell {
+    padding-top: 0.5rem;
+    margin-top: 0.25rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  #app-container .table-mobile-stack tbody td.actions-cell::before {
+    display: none;
+  }
+  #app-container .table-mobile-stack tbody td[colspan]::before {
+    display: none;
+  }
+  /* Кнопка «Действия» (⋯) и dropdown в таблицах — компактно, не выходить за экран */
+  #app-container .table-actions-mobile .lk-actions-trigger {
+    min-width: 2rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+  #app-container .table-actions-mobile .dropdown-menu {
+    min-width: 10rem;
+    max-width: calc(100vw - 2rem);
+    left: auto;
+    right: 0;
+  }
+  #app-container .table-mobile-stack tbody td.actions-cell {
+    width: 100%;
+    max-width: 100%;
+  }
+  /* Блок с текстом и кнопкой в шапке карточки (Создать роль, Создать разрешение) */
+  #app-container main .card-body .lk-card-header-actions {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    gap: 0.75rem;
+  }
+  #app-container main .card-body .lk-card-header-actions .btn {
+    margin: 0;
+  }
+  /* Кнопки в блоках и под таблицами — по центру, отступ от контента */
+  #app-container main .lk-form-actions {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  #app-container main .lk-form-actions .btn {
+    margin: 0;
+  }
+  /* Форма с одной кнопкой в начале карточки (Обновить ленту) */
+  #app-container main .card-body > form.lk-form-actions-inline .lk-form-actions {
+    margin-top: 0;
+  }
+  #app-container main .card-body > form.mb-3 {
+    margin-bottom: 1rem !important;
+  }
+  /* Кнопка после таблицы внутри формы (Сохранить) — отступ и по центру */
+  #app-container main .card-body form .table-responsive + .btn,
+  #app-container main .card-body form .table-responsive + .lk-form-actions,
+  #app-container main .card-body form > .btn.btn-primary {
+    margin-top: 1.25rem;
+  }
+  #app-container main .card-body form > .btn:only-of-type,
+  #app-container main .card-body form > .lk-form-actions:only-of-type {
+    display: block;
+    text-align: center;
+  }
+  #app-container main .card-body form > .btn.btn-primary {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  /* Несколько кнопок подряд в форме (Сохранить, Отмена) */
+  #app-container main .card-body form > .btn + .btn {
+    margin-left: 0.5rem;
+  }
+  #app-container main .card-body form > .lk-form-actions .btn {
+    margin: 0;
+  }
+  /* Ограничение ширины контента и overflow — всё помещается на экран */
+  #app-container main {
+    min-height: 0;
+    overflow-x: hidden;
+  }
+  #app-container main .card-body {
+    min-width: 0;
+  }
+  #app-container main .alert {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+/* Оверлей при открытом боковом меню на мобильной */
+.menu-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1015;
+  transition: opacity 0.2s ease;
+}
+@media (max-width: 767.98px) {
+  .menu-backdrop {
+    display: block;
+    opacity: 0;
+    pointer-events: none;
+  }
+  #app-container.main-show-temporary .menu-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+@media (min-width: 768px) {
+  .menu-backdrop {
+    display: none !important;
+  }
+}
+
 /* Main content */
 .app-main {
   min-height: calc(100vh - var(--app-navbar-height));

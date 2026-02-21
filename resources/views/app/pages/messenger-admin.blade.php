@@ -32,15 +32,17 @@
         <div class="card-body">
             <p class="text-muted mb-3">{{ __('Отметьте пользователей, которым разрешён доступ к мессенджеру (чат и звонки). При первом включении для них создаётся учётная запись в TrueConf.') }}</p>
             @if($trueconf_configured ?? false)
-                <form method="post" action="{{ route('lk.admin.messenger.sync') }}" class="mb-3 d-inline-block">
-                    @csrf
-                    <button type="submit" class="btn btn-outline-secondary btn-sm">{{ __('Синхронизировать пользователей с сервером TrueConf') }}</button>
-                </form>
+                <div class="lk-form-actions mb-3">
+                    <form method="post" action="{{ route('lk.admin.messenger.sync') }}" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-secondary btn-sm">{{ __('Синхронизировать пользователей с сервером TrueConf') }}</button>
+                    </form>
+                </div>
             @endif
             <form method="post" action="{{ route('lk.admin.messenger.update') }}">
                 @csrf
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-hover table-mobile-stack">
                         <thead>
                             <tr>
                                 <th>{{ __('Имя') }}</th>
@@ -52,21 +54,23 @@
                         <tbody>
                             @foreach($users ?? [] as $user)
                                 <tr>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>
+                                    <td data-label="{{ __('Имя') }}">{{ $user->name }}</td>
+                                    <td data-label="{{ __('Email') }}">{{ $user->email }}</td>
+                                    <td data-label="{{ __('Доступ к мессенджеру') }}">
                                         <div class="custom-switch custom-switch-primary-inverse custom-switch-small">
                                             <input class="custom-switch-input" id="messenger-user-{{ $user->id }}" type="checkbox" name="users[]" value="{{ $user->id }}" {{ $user->messenger_access ? 'checked' : '' }}>
                                             <label class="custom-switch-btn" for="messenger-user-{{ $user->id }}"></label>
                                         </div>
                                     </td>
-                                    <td class="text-muted small">{{ $user->trueconf_login ?? '—' }}</td>
+                                    <td class="text-muted small" data-label="{{ __('Логин TrueConf') }}">{{ $user->trueconf_login ?? '—' }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-                <button type="submit" class="btn btn-primary">{{ __('Сохранить') }}</button>
+                <div class="lk-form-actions">
+                    <button type="submit" class="btn btn-primary">{{ __('Сохранить') }}</button>
+                </div>
             </form>
         </div>
     </div>

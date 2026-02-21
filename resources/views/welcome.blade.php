@@ -532,54 +532,82 @@
     </div>
 </section>
 
-{{-- Latest news --}}
-{{--<section class="section-box box-latest-news box-latest-news-2">
+{{-- Новости с канала Дзен (https://dzen.ru/digital_fintech), обновляются в админке по кнопке --}}
+@if(isset($newsFeedItems) && $newsFeedItems->isNotEmpty())
+@php
+    $newsPlaceholder = asset('assets/imgs/page/homepage1/img-news.png');
+@endphp
+<section class="section-box box-latest-news box-latest-news-2" id="news-feed-section">
+    <style>#news-feed-section .card-news .card-image,#news-feed-section .card-news .card-image img{background:#fff;border-radius:16px;}</style>
     <div class="container">
         <div class="row align-items-end">
             <div class="col-lg-8 mb-30">
+                <div class="strate-icon"><span></span> {{ __('Актуальные материалы и обновления платформы из нашего канала ДЗЕН.') }}</div>
                 <h2 class="heading-2 mb-10">{{ __('Новости и истории') }}</h2>
-                <p class="text-lg neutral-700">{{ __('Актуальные материалы и обновления платформы.') }}</p>
             </div>
             <div class="col-lg-4 mb-30">
                 <div class="box-button-slider box-button-slider-team justify-content-end">
-                    <div class="swiper-button-prev swiper-button-prev-testimonials swiper-button-prev-3"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.66667 3.33398L2 8.00065M2 8.00065L6.66667 12.6673M2 8.00065H14" stroke="" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
-                    <div class="swiper-button-next swiper-button-next-testimonials swiper-button-next-3"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.33333 3.33398L14 8.00065M14 8.00065L9.33333 12.6673M14 8.00065H2" stroke="" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+                    <button type="button" class="swiper-button-prev swiper-button-prev-testimonials swiper-button-prev-3" id="news-carousel-prev" aria-label="{{ __('Назад') }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.66667 3.33398L2 8.00065M2 8.00065L6.66667 12.6673M2 8.00065H14" stroke="" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+                    <button type="button" class="swiper-button-next swiper-button-next-testimonials swiper-button-next-3" id="news-carousel-next" aria-label="{{ __('Вперёд') }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.33333 3.33398L14 8.00065M14 8.00065L9.33333 12.6673M14 8.00065H2" stroke="" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
                 </div>
             </div>
         </div>
         <div class="box-swiper mt-30">
-            <div class="swiper-container swiper-group-3">
+            <div class="swiper-container swiper-group-3" id="news-feed-carousel">
                 <div class="swiper-wrapper">
+                    @foreach($newsFeedItems as $item)
                     <div class="swiper-slide">
                         <div class="card-news">
-                            <div class="card-image"><a href="{{ url('/blog') }}"><img src="{{ asset('assets/imgs/page/homepage1/img-news.png') }}" alt="{{ config('app.name') }}"></a></div>
-                            <div class="card-info"><a class="heading-4" href="{{ url('/blog') }}">{{ __('Сейчас важна последовательность и единый подход.') }}</a>
-                                <p class="text-md neutral-700 mt-15 mb-35">{{ __('Краткое описание новости или материала для блога.') }}</p>
-                                <a class="btn btn-learmore-2" href="{{ url('/blog') }}"><span><svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_24_999)"><path d="M10.6557 3.81393L1.71996 12.7497L0.251953 11.2817L9.18664 2.34592H1.31195V0.269531H12.7321V11.6897H10.6557V3.81393Z" fill="#191919"></path></g><defs><clippath id="clip0_24_999"><rect width="13" height="13" fill="white"></rect></clippath></defs></svg></span>{{ __('Подробнее') }}</a>
+                            <div class="card-image">
+                                <a href="{{ $item->url }}" target="_blank" rel="noopener noreferrer">
+                                    <img src="{{ $item->image_url ?? $newsPlaceholder }}" alt="{{ e($item->title) }}" loading="lazy" onerror="this.onerror=null; this.src='{{ $newsPlaceholder }}';">
+                                </a>
+                            </div>
+                            <div class="card-info">
+                                @php $itemDate = $item->published_at ?? $item->created_at; @endphp
+                                @if($itemDate)
+                                <p class="text-muted small mb-1">{{ $itemDate->translatedFormat('d F Y') }}</p>
+                                @endif
+                                <a class="heading-4" href="{{ $item->url }}" target="_blank" rel="noopener noreferrer">{{ e($item->title) }}</a>
+                                @if($item->description)
+                                <p class="text-md neutral-700 mt-15 mb-35">{{ e(str()->limit($item->description, 160)) }}</p>
+                                @endif
+                                <a class="btn btn-learmore-2" href="{{ $item->url }}" target="_blank" rel="noopener noreferrer"><span><svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_24_999)"><path d="M10.6557 3.81393L1.71996 12.7497L0.251953 11.2817L9.18664 2.34592H1.31195V0.269531H12.7321V11.6897H10.6557V3.81393Z" fill="#191919"></path></g><defs><clippath id="clip0_24_999"><rect width="13" height="13" fill="white"></rect></clippath></defs></svg></span>{{ __('Подробнее') }}</a>
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="card-news">
-                            <div class="card-image"><a href="{{ url('/blog') }}"><img src="{{ asset('assets/imgs/page/homepage1/img-news2.png') }}" alt="{{ config('app.name') }}"></a></div>
-                            <div class="card-info"><a class="heading-4" href="{{ url('/blog') }}">{{ __('Важно согласованное поведение и единый подход.') }}</a>
-                                <p class="text-md neutral-700 mt-15 mb-35">{{ __('Краткое описание новости или материала для блога.') }}</p>
-                                <a class="btn btn-learmore-2" href="{{ url('/blog') }}"><span><svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_24_999)"><path d="M10.6557 3.81393L1.71996 12.7497L0.251953 11.2817L9.18664 2.34592H1.31195V0.269531H12.7321V11.6897H10.6557V3.81393Z" fill="#191919"></path></g><defs><clippath id="clip0_24_999"><rect width="13" height="13" fill="white"></rect></clippath></defs></svg></span>{{ __('Подробнее') }}</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card-news">
-                            <div class="card-image"><a href="{{ url('/blog') }}"><img src="{{ asset('assets/imgs/page/homepage1/img-news3.png') }}" alt="{{ config('app.name') }}"></a></div>
-                            <div class="card-info"><a class="heading-4" href="{{ url('/blog') }}">{{ __('Как стартапам повысить шансы на получение финансирования') }}</a>
-                                <p class="text-md neutral-700 mt-15 mb-35">{{ __('Краткое описание новости или материала для блога.') }}</p>
-                                <a class="btn btn-learmore-2" href="{{ url('/blog') }}"><span><svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_24_999)"><path d="M10.6557 3.81393L1.71996 12.7497L0.251953 11.2817L9.18664 2.34592H1.31195V0.269531H12.7321V11.6897H10.6557V3.81393Z" fill="#191919"></path></g><defs><clippath id="clip0_24_999"><rect width="13" height="13" fill="white"></rect></clippath></defs></svg></span>{{ __('Подробнее') }}</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
-</section>--}}
+</section>
+@push('scripts')
+<script>
+(function() {
+    var el = document.getElementById('news-feed-carousel');
+    if (!el || typeof Swiper === 'undefined') return;
+    new Swiper('#news-feed-carousel', {
+        spaceBetween: 30,
+        slidesPerView: 3,
+        slidesPerGroup: 1,
+        loop: true,
+        loopAdditionalSlides: 3,
+        loopedSlides: 12,
+        autoplay: { delay: 5000, disableOnInteraction: false },
+        navigation: {
+            nextEl: '#news-carousel-next',
+            prevEl: '#news-carousel-prev'
+        },
+        breakpoints: {
+            1199: { slidesPerView: 3 },
+            800: { slidesPerView: 2 },
+            400: { slidesPerView: 1 },
+            250: { slidesPerView: 1 }
+        }
+    });
+})();
+</script>
+@endpush
+@endif
 @endsection

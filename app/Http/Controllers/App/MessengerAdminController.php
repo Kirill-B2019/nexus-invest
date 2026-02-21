@@ -10,7 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
-use Spatie\Permission\Models\Permission;
+use App\Models\Permission;
 
 /**
  * Управление доступом к мессенджеру (TrueConf): список пользователей, назначение доступа.

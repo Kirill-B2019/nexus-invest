@@ -1,0 +1,53 @@
+---
+description: Использование своей числовой (математической) капчи в формах
+alwaysApply: true
+---
+
+# Собственная числовая капча
+
+В проекте реализована **своя математическая капча** (числовая). При добавлении или доработке форм, где нужна защита от ботов, **использовать только её** — не подключать сторонние капчи (reCAPTCHA, hCaptcha и т.п.).
+
+## Как вставить капчу в форму
+
+1. В Blade-шаблоне формы добавить компонент:
+   ```blade
+   <x-math-captcha />
+   ```
+2. Вывести ошибку валидации по полю ответа:
+   ```blade
+   @error('captcha_answer')
+       <div class="invalid-feedback d-block">{{ $message }}</div>
+   @enderror
+   ```
+
+## Валидация на бэкенде
+
+В контроллере при валидации запроса обязательно проверять оба поля:
+
+- `captcha_token` — `required`, `string`
+- `captcha_answer` — `required`, `string`, правило `new \App\Rules\MathCaptcha($captchaService)`
+
+Инжектировать `App\Services\CaptchaService` в метод и передать в правило. Пример:
+
+```php
+use App\Rules\MathCaptcha;
+use App\Services\CaptchaService;
+
+public function store(Request $request, CaptchaService $captchaService): RedirectResponse
+{
+    $request->validate([
+        // ... остальные поля
+        'captcha_token' => ['required', 'string'],
+        'captcha_answer' => ['required', 'string', new MathCaptcha($captchaService)],
+    ]);
+    // ...
+}
+```
+
+## Где уже используется
+
+- Форма обратной связи (модальное окно): компонент `<x-math-captcha />`, валидация в `ContactController`.
+
+## API и компонент
+
+- Новая задача капчи: `POST /api/captcha/new` (throttle 10/мин), в ответе — `question` (текст задачи) и `token`. Компонент сам запрашивает задачу и подставляет `token` в скрытое поле `captcha_token`; пользователь вводит ответ в поле `captcha_answer`.

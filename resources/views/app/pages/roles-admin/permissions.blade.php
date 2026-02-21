@@ -1,0 +1,77 @@
+@extends('layouts.app.app')
+
+@section('title', __('Разрешения'))
+
+@section('header')
+    <h1>{{ __('Разрешения') }}</h1>
+@endsection
+
+@section('content')
+    <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
+        <ol class="breadcrumb pt-0">
+            <li class="breadcrumb-item"><a href="{{ route('lk') }}">{{ __('Личный кабинет') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('lk.admin.roles.users') }}">{{ __('Управление ролями') }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ __('Разрешения') }}</li>
+        </ol>
+    </nav>
+    <div class="separator mb-4"></div>
+
+    @if(session('status'))
+        <div class="alert alert-success">{{ session('status') }}</div>
+    @endif
+
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3 lk-card-header-actions">
+                <p class="text-muted mb-0">{{ __('Разрешения назначаются ролям в разделе «Роли».') }}</p>
+                <a href="{{ route('lk.admin.roles.permission.create') }}" class="btn btn-primary btn-sm">{{ __('Создать разрешение') }}</a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-mobile-stack">
+                    <thead>
+                        <tr>
+                            <th>{{ __('Название') }}</th>
+                            <th>{{ __('Описание (slug)') }}</th>
+                            <th>{{ __('Guard') }}</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($permissions as $perm)
+                            <tr>
+                                <td data-label="{{ __('Название') }}">{{ $perm->name }}</td>
+                                <td class="text-muted small" data-label="{{ __('Описание (slug)') }}">{{ $perm->slug ?? '—' }}</td>
+                                <td data-label="{{ __('Guard') }}">{{ $perm->guard_name }}</td>
+                                <td class="actions-cell">
+                                    <div class="table-actions-desktop d-none d-md-block">
+                                        <a href="{{ route('lk.admin.roles.permission.edit', $perm) }}" class="btn btn-outline-primary btn-sm mr-1">{{ __('Изменить') }}</a>
+                                        <form method="post" action="{{ route('lk.admin.roles.permission.destroy', $perm) }}" class="d-inline" onsubmit="return confirm('{{ __('Удалить разрешение?') }}');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-outline-danger btn-sm">{{ __('Удалить') }}</button>
+                                        </form>
+                                    </div>
+                                    <div class="table-actions-mobile d-md-none dropdown">
+                                        <button type="button" class="btn btn-outline-secondary btn-sm lk-actions-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="{{ __('Действия') }}" title="{{ __('Действия') }}">⋯</button>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="{{ route('lk.admin.roles.permission.edit', $perm) }}">{{ __('Изменить') }}</a>
+                                            <form method="post" action="{{ route('lk.admin.roles.permission.destroy', $perm) }}" class="dropdown-item p-0" onsubmit="return confirm('{{ __('Удалить разрешение?') }}');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="dropdown-item text-danger">{{ __('Удалить') }}</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-muted">{{ __('Нет разрешений.') }}</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+@endsection

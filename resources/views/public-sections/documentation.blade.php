@@ -118,66 +118,71 @@
                         <h6 id="step-1"><span class="number">1</span>{{ __('Правила платформы') }}</h6>
                     </div>
                     <div class="card-desc">
-                        <p>{{ __('Design comps, layouts, wireframes—will your clients accept that you go about things the facile way? Authorities in our business will tell in no uncertain terms that Lorem Ipsum is that huge, huge no no to forswear forever.') }}</p>
-                        <p>{{ __('Not so fast, I\'d say, there are some redeeming factors in favor of greeking text, as its use is merely the symptom of a worse problem to take into consideration.') }}</p>
-                        <p>{{ __('The toppings you may chose for that TV dinner pizza slice when you forgot to shop for foods, the paint you may slap on your face to impress the new boss is your business. But what about your daily bread?') }}</p>
+                        <p>{{ __('Правила платформы НЕКСУС определяют порядок использования сервиса, права и обязанности участников (инициаторов проектов и инвесторов), а также требования к размещаемым проектам и сделкам.') }}</p>
+                        <p>{{ __('Платформа оставляет за собой право ограничивать или прекращать доступ при нарушении правил или при выявлении рисков для других участников и экосистемы.') }}</p>
                     </div>
-                </div>
-                <ul class="list-check-black">
-                    <li>{{ __('Лимит слов в месяц') }}</li>
-                    <li>50+ {{ __('Языков') }}</li>
-                    <li>{{ __('Продвинутый редактор') }}</li>
-                    <li>50 {{ __('Аккаунтов') }}</li>
-                </ul>
-                <hr>
-                <div class="card-casestudy">
-                    <div class="card-title">
-                        <h6 id="step-2"><span class="number">2</span>{{ __('Политика конфиденциальности') }}</h6>
-                    </div>
-                    <div class="card-desc">
-                        <p>{{ __('Design comps, layouts, wireframes—will your clients accept that you go about things the facile way? Authorities in our business will tell in no uncertain terms that Lorem Ipsum is that huge, huge no no to forswear forever.') }}</p>
-                        <p>{{ __('Not so fast, I\'d say, there are some redeeming factors in favor of greeking text, as its use is merely the symptom of a worse problem to take into consideration.') }}</p>
-                    </div>
+                    <ul class="list-check-black-column pt-3">
+                        <li><a href="{{ asset('doc/NexusPrivacyPolicy-14022026.pdf') }}" target="_blank" rel="noopener noreferrer">{{ __('Политика конфиденциальности') }}</a></li>
+                        <li><a href="{{ asset('doc/NexusUserAgreement-15022026.pdf') }}" target="_blank" rel="noopener noreferrer">{{ __('Пользовательское соглашение') }}</a></li>
+                        <li><a href="{{ asset('doc/NEXUS-KYCAMLPolicy-17022026 .pdf') }}">{{ __('KYC/AML‑политика НЕКСУС') }}</a></li>
+                    </ul>
                 </div>
                 <hr>
                 <div class="card-casestudy">
                     <div class="card-title">
-                        <h6 id="step-3"><span class="number">3</span>{{ __('Политика пользователя') }}</h6>
+                        <h6 id="step-2"><span class="number">2</span>{{ __('Договора пользования (образцы)') }}</h6>
                     </div>
                     <div class="card-desc">
-                        <p>{{ __('Design comps, layouts, wireframes—will your clients accept that you go about things the facile way? Authorities in our business will tell in no uncertain terms that Lorem Ipsum is that huge, huge no no to forswear forever.') }}</p>
+                        <p>{{ __('Пользователь может ознакомиться с образцами договоров оказания услуг, договоров на выпуск и обращение цифровых прав, соглашений с Эмитентами и Инвесторами, а также с шаблонами иных юридически значимых документов, применяемых при работе в информационной системе. Образцы предназначены для предварительного ознакомления и не являются публичной офертой; актуальная редакция конкретного договора предоставляется Пользователю при присоединении к нему в личном кабинете.') }}</p>
                     </div>
+                    <ul class="list-check-black-column pt-3">
+                        <li><a href="{{ asset('doc/NexusInvestorAgreement.pdf') }}" target="_blank" rel="noopener noreferrer">{{ __('НЕКСУС - Договор инвестора (образец)') }}</a></li>
+                        <li><a href="{{ asset('doc/NexusInitiatorAgreement.pdf') }}" target="_blank" rel="noopener noreferrer">{{ __('НЕКСУС - Договор инициатора проекта (образец)') }}</a></li>
+                    </ul>
                 </div>
                 <hr>
                 <div class="card-casestudy">
                     <div class="card-title">
-                        <h6 id="step-4"><span class="number">4</span>{{ __('Авторские права') }}</h6>
+                        <h6 id="step-3"><span class="number">3</span>{{ __('Техническая документация') }}</h6>
                     </div>
                     <div class="card-desc">
-                        <p>{{ __('Design comps, layouts, wireframes—will your clients accept that you go about things the facile way? Authorities in our business will tell in no uncertain terms that Lorem Ipsum is that huge, huge no no to forswear forever.') }}</p>
+                        <p>{{ __('В этом разделе размещены материалы для разработчиков и интеграторов платформы. Документация описывает структуру и форматы запросов, используемые протоколы безопасности, порядок аутентификации и авторизации, а также примеры интеграции внешних сервисов и информационных систем с НЕКСУС и блокчейном ГАНИМЕД.') }}</p>
                     </div>
+                    <ul class="list-check-black-column pt-3">
+                        <li><a href="" target="_blank" rel="noopener noreferrer">{{ __('НЕКСУС API v1.0') }}</a></li>
+                        <li><a href="" target="_blank" rel="noopener noreferrer">{{ __('ГАНИМЕД API v1.0 (REST API, WebSocket API, RPC API) ') }}</a></li>
+                    </ul>
                 </div>
                 <hr>
                 <div class="card-casestudy">
                     <div class="card-title">
-                        <h6 id="step-5"><span class="number">5</span>{{ __('Файлы cookie') }}</h6>
+                        <h6 id="step-4"><span class="number">4</span>{{ __('Прочее') }}</h6>
                     </div>
                     <div class="card-desc">
-                        <p>{{ __('Design comps, layouts, wireframes—will your clients accept that you go about things the facile way? Authorities in our business will tell in no uncertain terms that Lorem Ipsum is that huge, huge no no to forswear forever.') }}</p>
+                        <p>{{ __('Дополнительные материалы о платформе НЕКСУС – ГАНИМЕД. В этом разделе собраны обзоры отличий платформы от существующих решений, пояснения по выбору архитектуры и методологии разработки, описание продуктовой линейки для разных типов пользователей, а также документы об авторских правах и интеллектуальной собственности и другие материалы.') }}</p>
                     </div>
+                    <ul class="list-check-black-column pt-3">
+                        <li><a href="{{ asset('doc/NexusDifferencesPlatform.pdf') }}" target="_blank" rel="noopener noreferrer">{{ __('Отличия платформы НЕКСУС – ГАНИМЕД от существующих конкурентов') }}</a></li>
+                        <li><a href="{{ asset('doc/WhyCantJustBuy.pdf') }}" target="_blank" rel="noopener noreferrer">{{ __('Почему нельзя просто купить готовое решение') }}</a></li>
+                        <li><a href="{{ asset('doc/PlatformProductsByUserTypes.pdf') }}" target="_blank" rel="noopener noreferrer">{{ __('Продукты платформы по типам пользователей') }}</a></li>
+                        <li><a href="{{ asset('doc/SCRUMvs.pdf') }}" target="_blank" rel="noopener noreferrer">{{ __('AGILE (SCRUM) против стандартного ТЗ') }}</a></li>
+                        <li><a href="{{ asset('') }}" target="_blank" rel="noopener noreferrer">{{ __('НЕКСУС - расширенное юридическое заключение по соответствию законодательству РФ') }}</a></li>
+                        <li><a href="{{ asset('doc/NexusGeneralDifferencesCrowdfunding.pdf') }}" target="_blank" rel="noopener noreferrer">{{ __('НЕКСУС - общее и отличия от краундфайдинга') }}</a></li>
+                        <li><a href="{{ asset('doc/NexusCopyright.pdf') }}" target="_blank" rel="noopener noreferrer">{{ __('НЕКСУС- авторские права и интеллектуальная собственность') }}</a></li>
+                    </ul>
                 </div>
                 <hr>
                 <div class="card-casestudy">
                     <div class="card-title">
-                        <h6 id="step-6"><span class="number">6</span>{{ __('Аккаунт и оплата') }}</h6>
+                        <h6>{{ __('Файлы cookie') }}</h6>
                     </div>
                     <div class="card-desc">
-                        <p>{{ __('Design comps, layouts, wireframes—will your clients accept that you go about things the facile way? Authorities in our business will tell in no uncertain terms that Lorem Ipsum is that huge, huge no no to forswear forever.') }}</p>
+                        <p>{{ __('Мы используем cookie строго в рамках действующего законодательства, в том числе для обеспечения корректной работы сайта, аналитики и улучшения пользовательского опыта. Некоторые cookie являются обязательными для функционирования сервиса, часть может использоваться для статистики и маркетинга. Пользователь в любой момент может ограничить или отключить использование файлов cookie в настройках браузера, однако это может повлиять на корректность отображения отдельных разделов и функций сайта.') }}</p>
                     </div>
                 </div>
                 <hr>
-                <h6>{{ config('app.name') }}</h6>
-                <p class="text-sm neutral-700">{{ __('Последнее обновление:') }} {{ now()->translatedFormat('d F Y') }}</p>
+                <h6 class="text-sm text-end">{{ config('app.name') }}</h6>
+                <p class="small neutral-700 pb-3 text-end">{{ __('Последнее обновление:') }} {{ now()->translatedFormat('d F Y') }}</p>
             </div>
             <div class="col-12 col-md-4 col-lg-3 order-1 order-lg-2 doc-sidebar-col">
                 <div id="doc-sidebar-nav" class="sidebar-border-left doc-sidebar-inner">
@@ -187,6 +192,7 @@
                         <li><a href="#step-3">{{ __('Техническая документация') }}</a></li>
                         <li><a href="#step-4">{{ __('Прочее') }}</a></li>
                     </ul>
+                <img src="{{ asset('assets/imgs/page/homepage1/doc-image.png') }}" alt="{{ __('Документация и договоры') }}" class="doc-sidebar-image mt-4 w-60" loading="lazy">
                 </div>
             </div>
         </div>

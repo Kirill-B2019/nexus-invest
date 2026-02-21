@@ -1,0 +1,27 @@
+---
+description: Сообщения пользовательской части — SweetAlert2
+globs: resources/views/**/*.blade.php, public/assets/js/**/*.js
+alwaysApply: false
+---
+
+# Сообщения пользовательской части (публичный сайт)
+
+В публичной части сайта (гостевой layout, welcome, features, compliance, documentation) **все пользовательские сообщения** (успех, ошибка, предупреждение, информация) реализуются через **уже подключённый SweetAlert2**.
+
+- Подключение: в `resources/views/layouts/guest/guest.blade.php` — CDN SweetAlert2 и скрипт `public/assets/js/sweetalert-flash.js`.
+- Flash-данные передаются в JS через `window.laravelFlash` (в layout задаётся массив с ключами `success`, `error`, `warning`, `info`, `errors`).
+- Не выводить сообщения в виде обычных `<div class="alert">` в разметке публичных страниц — вместо этого класть текст в соответствующую session-переменную и передавать в `laravelFlash`, чтобы показать модальное окно SweetAlert2.
+
+## Ключи session для flash
+
+- `session('success')` / `session('newsletter_success')` / `session('alert_success')` → успех (зелёная иконка).
+- `session('error')` / `session('alert_error')` → ошибка.
+- `session('warning')` / `session('alert_warning')` → предупреждение.
+- `session('info')` → информационное сообщение (в т.ч. «Личные кабинеты будут доступны в ближайшем релизе» при редиректе из ЛК).
+
+В контроллерах и middleware при редиректе на публичные страницы использовать, например:  
+`->with('info', __('Текст сообщения'))` или `->with('success', ...)` и т.д.
+
+## Добавление нового типа сообщения
+
+При необходимости нового типа — добавить ключ в `$laravelFlash` в гостевом layout, обработку в `sweetalert-flash.js` (и при необходимости метод в `window.swalPublic`).

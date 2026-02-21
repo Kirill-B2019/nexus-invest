@@ -6,7 +6,7 @@
     "use strict";
 
     var flash = window.laravelFlash || {};
-    var hasMessage = flash.success || flash.error || flash.warning || (flash.errors && Object.keys(flash.errors).length > 0);
+    var hasMessage = flash.success || flash.error || flash.warning || flash.info || (flash.errors && Object.keys(flash.errors).length > 0);
 
     if (!hasMessage || typeof Swal === "undefined") return;
 
@@ -54,6 +54,16 @@
         });
     }
 
+    function showInfo(text) {
+        Swal.fire({
+            ...swalConfig,
+            icon: "info",
+            title: "Информация",
+            text: text,
+            iconColor: "#3498db",
+        });
+    }
+
     function showValidationErrors(errors) {
         var messages = [];
         for (var field in errors) {
@@ -71,6 +81,8 @@
         showError(flash.error);
     } else if (flash.warning) {
         showWarning(flash.warning);
+    } else if (flash.info) {
+        showInfo(flash.info);
     } else if (flash.errors && Object.keys(flash.errors).length > 0) {
         showValidationErrors(flash.errors);
     }
@@ -79,5 +91,6 @@
         success: showSuccess,
         error: showError,
         warning: showWarning,
+        info: showInfo,
     };
 })();
