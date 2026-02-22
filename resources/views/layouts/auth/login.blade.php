@@ -1,14 +1,8 @@
 <x-guest-layout>
+
     <x-slot name="channels">
 
-        <div class="row align-items-start mb-20">
-            <div class="col-12  mb-md-0 text-center text-md-start">
-                <h5 class="neutral-0 mb-10 text-18-semibold">{{ __('Нет логина?') }}</h5>
-               <a href="{{route('welcome')}}"  class="btn btn-brand-5 hover-up  neutral-100">
-                    {{ __('На главную') }}
-                </a>
-            </div>
-        </div>
+
         <div class="row align-items-start mb-20">
 
             <div class="col-12 col-md-6 mb-20 mb-md-0 text-center text-md-start">
@@ -65,7 +59,14 @@
                 <span class="ms-2 text-sm text-gray-600">{{ __('Запомнить меня') }}</span>
             </label>
         </div>
-
+        <div class="row align-items-start mb-20">
+            <div class="col-12  mb-md-0 text-center text-md-start">
+                <h5 class="neutral-0 mb-10 text-18-semibold">{{ __('Нет логина?') }}</h5>
+                <a href="{{route('welcome')}}"  class="btn btn-brand-5 hover-up  neutral-100">
+                    {{ __('На главную') }}
+                </a>
+            </div>
+        </div>
         <div class="flex items-center justify-end mt-4">
             {{--@if (Route::has('password.request'))
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
