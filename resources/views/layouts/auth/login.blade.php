@@ -21,8 +21,11 @@
         </div>
     </x-slot>
 
-    <!-- Session Status -->
+    <!-- Session Status / сообщение при редиректе с защищённой страницы -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
+    @if (session('error'))
+        <div class="mb-4 font-medium text-sm text-amber-600">{{ session('error') }}</div>
+    @endif
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
