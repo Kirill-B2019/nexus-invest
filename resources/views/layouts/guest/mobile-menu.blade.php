@@ -8,7 +8,7 @@
         <div class="mobile-header-top">
             @auth
                 <div class="user-account">
-                    <img src="{{ asset('assets/imgs/page/homepage6/author.png') }}" alt="{{ config('app.name') }}">
+                    <img src="{{ asset('assets/imgs/template/favicon.svg') }}" alt="{{ config('app.name') }}">
                     <div class="content">
                         <h6 class="user-name">{{ auth()->user()->name }}</h6>
                         <p class="font-xs text-muted">{{ __('Ваш кабинет') }}</p>
