@@ -39,41 +39,13 @@
                                 <ul class="sub-menu">
                                     <li><a href="{{ route('features') }}" class="{{ request()->routeIs('features') ? 'active' : '' }}">{{ __('Особенности') }}</a></li>
                                     <li><a href="{{ route('compliance') }}" class="{{ request()->routeIs('compliance') ? 'active' : '' }}">{{ __('Комплаенс') }}</a></li>
-                                    <li><a href="#">{{ __('Маркетплейс') }}</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="{{ route('ganimed') }}" class="{{ request()->routeIs('ganimed') ? 'active' : '' }}">{{ __('Ганимед') }}</a>
                             </li>
                             <li>
-                                <a href="{{ url('/services') }}">{{ __('База знаний') }}</a>
-                            </li>
-                            <li class="has-children">
-                                <a href="#">{{ __('Документы') }}</a>
-                                <ul class="sub-menu">
-                                    <li><a href="{{ url('/about') }}">{{ __('Документы платформы') }}</a></li>
-                                    <li><a href="{{ url('/services') }}">{{ __('Регулирование') }}</a></li>
-                                    <li><a href="#" data-bs-toggle="modal" data-bs-target="#contactFormModal">{{ __('Связаться с нами') }}</a></li>
-                                </ul>
-                            </li>
-                            <li class="has-children">
-                                <a href="#">{{ __('Аккаунт') }}</a>
-                                <ul class="sub-menu">
-                                    @auth
-                                        <li><a href="{{ route('lk') }}">{{ __('Личный кабинет') }}</a></li>
-                                        <li><a href="{{ route('profile.edit') }}">{{ __('Профиль') }}</a></li>
-                                        <li>
-                                            <form method="POST" action="{{ route('logout') }}" class="d-inline">
-                                                @csrf
-                                                <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">{{ __('Выйти') }}</a>
-                                            </form>
-                                        </li>
-                                    @else
-                                        <li><a href="{{ route('login') }}">{{ __('Регистрация') }}</a></li>
-                                        <li><a href="{{ route('login') }}">{{ __('Войти') }}</a></li>
-                                        <li><a href="{{ route('password.request') }}">{{ __('Забыли пароль?') }}</a></li>
-                                    @endauth
-                                </ul>
+                                <a href="{{ route('documentation') }}" class="{{ request()->routeIs('documentation') ? 'active' : '' }}">{{ __('Документация') }}</a>
                             </li>
                         </ul>
                     </nav>
