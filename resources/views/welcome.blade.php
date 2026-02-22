@@ -10,22 +10,22 @@
                     <div class="col-12 col-lg-6 order-1 order-lg-1">
                         <div class="box-banner-left">
                                 <span class="btn btn-brand-5-new"><span>{{ __('Работает на:') }}</span> {{ __('блокчейне ГАНИМЕД') }}</span>
-                                <p class="neutral-0 small pt-3">{{ __('НАЦИОНАЛЬНАЯ ЭКОСИСТЕМА КОЛЛЕКТИВНОГО СОФИНАНСИРОВАНИЯ УЧАСТНИКОВ СТАРТАП-СЕКТОРА') }}</p>
-                                <h6 class="display-6 neutral-0 text-semibold pt-3">{{ __('ПРОЕКТНОЕ ФИНАСИРОВАНИЕ') }}</h6>
+                                <p class="neutral-300 small pt-3 uppercase">{{ __('Новационная Единая Комплексная Система Управления Сделками') }}</p>
+                                <h6 class="display-6 neutral-200 text-semibold pt-3">{{ __('ПРОЕКТНОЕ ФИНАСИРОВАНИЕ') }}</h6>
                                 <h1 class="display-1 neutral-0 text-semibold pt-3">{{ __('НЕКСУС') }}</h1>
-                                <p class="text-lg neutral-0 mb-55 display-4 pt-3 uppercase">
+                                <p class="text-lg neutral-200 mb-55 display-4 pt-3 uppercase">
                                     {{ __('Полнофункциональная платформа быстрого запуска и финансирования проектов через цифровые активы и токенизацию') }}<br />
                                     {{ __('Постпроектное сопровождение, реализация результатов (маркетплейс)') }}</p>
-                                <a class="btn btn-brand-4-medium hover-up mb-4" href="{{ route('login') }}">
+                                <a class="btn btn-brand-4-medium hover-up mb-4" href="{{asset('doc/NexusWhitePaper.pdf') }}" target="_blank" rel="noopener noreferrer">
                                     {{ __('WHITE PAPER НЕКСУС') }}
                                     <svg width="22" height="8" viewBox="0 0 22 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M22 4.00032L18.4791 0.479492V3.3074H0V4.69333H18.4791V7.52129L22 4.00032Z" fill=""></path>
                                     </svg>
                                 </a>
                                 <p class="neutral-300 small pt-3">{{ __('полное соответствие законодательству РФ: 259-ФЗ о ЦФА, 289-ФЗ о платформенной экономике, 39-ФЗ об инвестиционной деятельности, 187‑ФЗ о безопасности, 115-ФЗ о ПОД/ФТ, 152-ФЗ о персональных данных, ГОСТы 34.10, 34.11, 34.12') }}</p>                     <div class="d-flex mb-60">
-                                    <div class="neutral-0 mt-40 sidebar-border-left border-secondary d-none d-md-block">
-
-                                        <p class="smaller"><i class="fi-rr-quote-right"></i>
+                                    <div class="neutral-400 mt-40 sidebar-border-left border-secondary d-none d-md-block">
+                                        <i class="fi-rr-quote-right"></i>
+                                        <p class="smaller">
                                             <span class="text-semibold">{{ __(' ТОКЕН') }}</span>{{ __(' - единица учёта, не являющаяся криптовалютой, предназначенная для представления цифрового баланса в некотором активе, иными словами, выполняющая функцию «заменителя ценных бумаг» в цифровом мире. Токены представляют собой запись в регистре, распределённую вблокчейн-цепочке.') }}
                                         </p>
                                         <p class="smaller">

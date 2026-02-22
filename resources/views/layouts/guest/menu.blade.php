@@ -14,7 +14,7 @@
 
         </li>
         <li>
-            <a href="{{ url('/services') }}">{{ __('Ганимед') }}</a>
+            <a href="{{ route('ganimed') }}" class="{{ request()->routeIs('ganimed') ? 'active' : '' }}">{{ __('Ганимед') }}</a>
         </li>
             <li><a href="{{ route('documentation') }}">{{ __('Документация') }}</a></li>
         {{--<li class="mega-li has-children">

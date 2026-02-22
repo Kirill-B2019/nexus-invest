@@ -43,7 +43,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="{{ url('/about') }}">{{ __('Ганимед') }}</a>
+                                <a href="{{ route('ganimed') }}" class="{{ request()->routeIs('ganimed') ? 'active' : '' }}">{{ __('Ганимед') }}</a>
                             </li>
                             <li>
                                 <a href="{{ url('/services') }}">{{ __('База знаний') }}</a>
