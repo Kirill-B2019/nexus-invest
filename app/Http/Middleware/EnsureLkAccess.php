@@ -16,7 +16,7 @@ class EnsureLkAccess
         if (! $request->user()?->can('access-lk')) {
             return redirect()
                 ->route('welcome')
-                ->with('info', __('У вас нет доступа в личный кабинет. Обратитесь к администратору для получения доступа.'));
+                ->with('info', __('Личные кабинеты будут доступны в ближайшем релизе.'));
         }
 
         return $next($request);
