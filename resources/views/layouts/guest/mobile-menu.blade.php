@@ -65,13 +65,13 @@
                         </ul>
                     </div>
                 @endif
-                <div class="mobile-social-icon mb-50">
+             {{--   <div class="mobile-social-icon mb-50">
                     <h6 class="mb-25">{{ __('Мы в соцсетях') }}</h6>
                     <a class="icon-socials icon-facebook" href="#"><img alt="{{ config('app.name') }}" src="{{ asset('assets/imgs/template/icons/fb.svg') }}"></a>
                     <a class="icon-socials icon-instagram" href="#"><img alt="{{ config('app.name') }}" src="{{ asset('assets/imgs/template/icons/in.svg') }}"></a>
                     <a class="icon-socials icon-twitter" href="#"><img alt="{{ config('app.name') }}" src="{{ asset('assets/imgs/template/icons/tw.svg') }}"></a>
                     <a class="icon-socials icon-be" href="#"><img alt="{{ config('app.name') }}" src="{{ asset('assets/imgs/template/icons/be.svg') }}"></a>
-                </div>
+                </div>--}}
                 <div class="site-copyright">
                     {{ __('©') }} {{ date('Y') }} {{ config('app.name') }}. | KB @CerbeRus - Nexus Invest Team
                 </div>
