@@ -34,6 +34,7 @@ class LoginRequest extends FormRequest
 
     /**
      * Attempt to authenticate the request's credentials.
+     * Войти могут только зарегистрированные пользователи (email + пароль есть в БД).
      *
      * @throws \Illuminate\Validation\ValidationException
      */
