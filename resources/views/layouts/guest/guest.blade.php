@@ -18,11 +18,17 @@
     $faviconVer = file_exists(public_path($faviconPath)) ? (filemtime(public_path($faviconPath)) ?: '1') : '1';
     @endphp
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset($faviconPath) }}?v={{ $faviconVer }}">
-    <link rel="stylesheet" href="https://fonts.bunny.net/css?family=manrope:400,500,600,700&display=swap">
-    <link href="{{ asset('assets/css/style.css') }}?v=1.0.1" rel="stylesheet">
-    <link href="{{ asset('assets/css/main.css') }}?v=1.0.0" rel="stylesheet">
-    <link href="{{ asset('assets/css/roadmap.css') }}?v=1.0.0" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.bunny.net/css?family=manrope:400,500,600,700&display=swap" media="all">
+    @php
+        $styleVer = config('app.asset_version', '1.0.' . (config('app.env') === 'production' ? '0' : time()));
+    @endphp
+    <link rel="preload" href="{{ asset('assets/css/style.css') }}?v={{ $styleVer }}" as="style" onload="this.onload=null;this.rel='stylesheet'" media="all">
+    <noscript><link href="{{ asset('assets/css/style.css') }}?v={{ $styleVer }}" rel="stylesheet" media="all"></noscript>
+    <link rel="preload" href="{{ asset('assets/css/main.css') }}?v={{ $styleVer }}" as="style" onload="this.onload=null;this.rel='stylesheet'" media="all">
+    <noscript><link href="{{ asset('assets/css/main.css') }}?v={{ $styleVer }}" rel="stylesheet" media="all"></noscript>
+    <link rel="preload" href="{{ asset('assets/css/roadmap.css') }}?v={{ $styleVer }}" as="style" onload="this.onload=null;this.rel='stylesheet'" media="all">
+    <noscript><link href="{{ asset('assets/css/roadmap.css') }}?v={{ $styleVer }}" rel="stylesheet" media="all"></noscript>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" media="all">
     <style>
         body { overflow-x: clip; max-width: 100vw; }
         .main { max-width: 100%; overflow-x: clip; }
