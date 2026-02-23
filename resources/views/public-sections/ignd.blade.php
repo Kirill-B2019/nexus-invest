@@ -155,6 +155,20 @@
         </div>
     </div>
 </section>
+{{-- Пошаговая схема работы iGND — критичные стили инлайном для мобильного Chrome --}}
+<style id="ignd-steps-critical-css">
+#ignd-steps{background-color:#0E0E0E;padding:142px 0 112px;background-image:url('{{ asset('assets/imgs/page/homepage2/bg-imazing.png') }}');background-repeat:no-repeat;background-position:top right;background-size:auto}
+.ignd-steps-list{display:block;padding:20px 0 0}
+.ignd-steps-list .ignd-step-item{position:relative;display:-webkit-box;display:-webkit-flex;display:flex;-webkit-flex-direction:row;flex-direction:row;-webkit-align-items:flex-start;align-items:flex-start;flex:none;width:100%;max-width:100%;padding-bottom:16px;padding-left:50px}
+.ignd-steps-list .ignd-step-item:last-child{padding-bottom:0}
+.ignd-steps-list .ignd-step-item .ignd-step-line{position:absolute;width:1px;height:calc(100% + 8px);left:15px;margin:0;border:none;border-left:1px solid rgba(236,238,242,0.5);min-height:40px}
+.ignd-steps-list .ignd-step-item:last-child .ignd-step-line{height:0;min-height:0}
+.ignd-steps-list .ignd-step-item .ignd-step-line::before{content:"";position:absolute;height:10px;width:10px;border-radius:50%;background:#C5FF41;top:7px;left:-5px}
+.ignd-steps-list .ignd-step-item .ignd-step-card{position:relative;margin-left:0;margin-top:0;width:100%;max-width:100%;min-height:auto;padding:28px 20px 20px;padding-top:32px;box-sizing:border-box;border-radius:16px;border:1px solid rgba(236,238,242,0.25);background-color:transparent}
+.ignd-steps-list .ignd-step-item .ignd-step-badge{position:absolute;top:-12px;left:20px;z-index:2;display:-webkit-inline-flex;display:inline-flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 10px;font-size:1rem;font-weight:700;line-height:1;color:#0E0E0E;background:#C5FF41;border:2px solid rgba(236,238,242,0.3);border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
+.ignd-steps-list .ignd-step-title{font-size:1.125rem;font-weight:600;color:#fff;margin:0 0 0.5rem 0}
+.ignd-steps-list .ignd-step-body{font-size:0.875rem;line-height:1.5;color:#737373}
+</style>
 {{-- Пошаговая схема работы iGND --}}
 <section class="section-box wow fadeIn" id="ignd-steps">
     <div class="container">
