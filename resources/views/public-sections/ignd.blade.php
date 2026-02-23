@@ -78,7 +78,7 @@
                     <div class="card-feature-2">
                         <div class="card-image card-image-no-bg"><img src="{{asset('assets/imgs/page/homepage1/ignd-list/4.png')}}"></div>
                         <div class="card-info"><a href="#">
-                                <h3 class="text-22-bold neutral-0">{{__('Алгоритмический AI‑скоринг проектов')}}p</h3></a>
+                                <h3 class="text-22-bold neutral-0">{{__('Алгоритмический AI‑скоринг проектов')}}</h3></a>
                             <p class="text-md neutral-200">{{__('анализирует множество факторов по каждому проекту, присваивает риск‑оценку и помогает системе ограничивать избыточные риски и формировать более взвешенные рекомендации для инвесторов.')}}</p>
                         </div>
                     </div>
