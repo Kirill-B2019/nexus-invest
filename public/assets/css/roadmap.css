@@ -40,6 +40,29 @@
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
 }
 
+/* Анимация карточек пошаговой схемы iGND (как в дорожной карте) */
+#ignd-steps .ignd-steps-list .ignd-step-item .ignd-step-card {
+  position: relative;
+  animation: roadmap-card-float 2s ease-in-out infinite alternate;
+  transition: box-shadow 0.3s ease, background-image 0.3s ease;
+}
+#ignd-steps .ignd-steps-list .ignd-step-item:nth-child(1) .ignd-step-card { animation-delay: 0s; }
+#ignd-steps .ignd-steps-list .ignd-step-item:nth-child(2) .ignd-step-card { animation-delay: 0.2s; }
+#ignd-steps .ignd-steps-list .ignd-step-item:nth-child(3) .ignd-step-card { animation-delay: 0.4s; }
+#ignd-steps .ignd-steps-list .ignd-step-item:nth-child(4) .ignd-step-card { animation-delay: 0.6s; }
+#ignd-steps .ignd-steps-list .ignd-step-item:nth-child(5) .ignd-step-card { animation-delay: 0.8s; }
+#ignd-steps .ignd-steps-list .ignd-step-item:nth-child(6) .ignd-step-card { animation-delay: 1s; }
+#ignd-steps .ignd-steps-list .ignd-step-item:nth-child(7) .ignd-step-card { animation-delay: 1.2s; }
+#ignd-steps .ignd-steps-list .ignd-step-item:nth-child(8) .ignd-step-card { animation-delay: 1.4s; }
+#ignd-steps .ignd-steps-list .ignd-step-item:nth-child(9) .ignd-step-card { animation-delay: 1.6s; }
+#ignd-steps .ignd-steps-list .ignd-step-item:nth-child(10) .ignd-step-card { animation-delay: 1.8s; }
+#ignd-steps .ignd-steps-list .ignd-step-item .ignd-step-card:hover {
+  background-image: url(../imgs/page/homepage2/bg-shadow.png);
+  background-repeat: no-repeat;
+  background-position: top left;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
 /* Анимация картинки в блоке КОМАНДА (как карточки дорожной карты) */
 .testimonial-img-animated {
   display: inline-block;

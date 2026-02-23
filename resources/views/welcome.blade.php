@@ -355,7 +355,7 @@
                             </div>
                         </div>
                          <div class="box-buttons-feature-4">
-                             <a class="btn btn-learmore-2" href="{{ url('/about') }}"><span>
+                             <a class="btn btn-learmore-2" href="{{ route('ignd') }}"><span>
                             <x-icons.svg-arrow />
                         </span>{{ __('Подробнее') }}</a>
                          </div>

@@ -6826,6 +6826,13 @@ a.icon-socials:hover {
   display: inline-block;
   vertical-align: middle;
 }
+.card-feature-2 .card-image-no-bg {
+    background-color: transparent !important;
+}
+.card-feature-2 .card-image img {
+    display: inline-block;
+    vertical-align: middle;
+}
 .card-feature-2 .card-info {
   min-width: 60%;
 }

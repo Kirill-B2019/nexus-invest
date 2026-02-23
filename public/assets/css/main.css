@@ -729,6 +729,104 @@
     }
 }
 
+/* Секция «Пошаговая схема iGND» — как дорожная карта: отступы и фон */
+#ignd-steps {
+    background-color: var(--color-dark, #0E0E0E);
+    padding: 142px 0 112px 0;
+    background-image: url(../imgs/page/homepage2/bg-imazing.png);
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: auto;
+}
+
+/* Пошаговая схема iGND — вертикальный таймлайн, непрерывная линия */
+.ignd-steps-list {
+    display: block;
+    padding: 20px 0 0;
+}
+.ignd-steps-list .ignd-step-item {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex: none;
+    width: 100%;
+    max-width: 100%;
+    padding-bottom: 16px;
+    padding-left: 50px;
+}
+.ignd-steps-list .ignd-step-item:last-child {
+    padding-bottom: 0;
+}
+.ignd-steps-list .ignd-step-item .ignd-step-line {
+    position: absolute;
+    width: 1px;
+    height: calc(100% + 8px);
+    left: 15px;
+    margin: 0;
+    border: none;
+    border-left: 1px solid rgba(236, 238, 242, 0.5);
+    min-height: 40px;
+}
+.ignd-steps-list .ignd-step-item:last-child .ignd-step-line {
+    height: 0;
+    min-height: 0;
+}
+.ignd-steps-list .ignd-step-item .ignd-step-line::before {
+    content: "";
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: var(--color-brand-4, #C5FF41);
+    top: 7px;
+    left: -5px;
+}
+.ignd-steps-list .ignd-step-item .ignd-step-card {
+    position: relative;
+    margin-left: 0;
+    margin-top: 0;
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+    padding: 28px 20px 20px 20px;
+    padding-top: 32px;
+    box-sizing: border-box;
+    border-radius: 16px;
+    border: 1px solid var(--color-surface-light, rgba(236, 238, 242, 0.25));
+}
+.ignd-steps-list .ignd-step-item .ignd-step-badge {
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #0E0E0E;
+    background: var(--color-brand-4, #C5FF41);
+    border: 2px solid rgba(236, 238, 242, 0.3);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+.ignd-steps-list .ignd-step-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-neutral-0, #fff);
+    margin: 0 0 0.5rem 0;
+}
+.ignd-steps-list .ignd-step-body {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-neutral-500, #737373);
+}
+
 /* Cookie banner */
 .cookie-banner {
     position: fixed;

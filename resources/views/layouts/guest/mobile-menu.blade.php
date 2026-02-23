@@ -45,6 +45,9 @@
                                 <a href="{{ route('ganimed') }}" class="{{ request()->routeIs('ganimed') ? 'active' : '' }}">{{ __('Ганимед') }}</a>
                             </li>
                             <li>
+                                <a href="{{ route('ignd') }}" class="{{ request()->routeIs('ignd') ? 'active' : '' }}">{{ __('Система iGND') }}</a>
+                            </li>
+                            <li>
                                 <a href="{{ route('documentation') }}" class="{{ request()->routeIs('documentation') ? 'active' : '' }}">{{ __('Документация') }}</a>
                             </li>
                         </ul>
