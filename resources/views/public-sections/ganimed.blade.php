@@ -4,232 +4,237 @@
 @php
     $pageTitle = __('ГАНИМЕД');
 @endphp
-{{-- Page header --}}
-<section class="section-box">
-    <div class="banner-hero hero-4">
-        <div class="banner-inner">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('welcome') }}">{{ __('Главная') }}</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">{{ $pageTitle }}</li>
-                            </ol>
-                        </nav>
-                        <h1 class="heading-banner neutral-0">{{ $pageTitle }}</h1>
-                        <p class="banner-description text-lg neutral-200">{{ __('Высокопроизводительная распределённая платформа на Go с гибридным консенсусом PoSA, мульти-VM (EVM, WASM, MoveVM) и двухтокеновой моделью GND + GANI. Токенизация RWA, выпуск ЦФА по 259-ФЗ, интеграция с НЕКСУС и СФОРДЕКС.') }}</p>
-                        <nav class="mt-4 d-flex flex-wrap gap-2 justify-content-center" aria-label="{{ __('Навигация по разделам') }}">
-                            <a href="#ecosystem" class="btn btn-sm btn-outline-light btn-rounded">{{ __('Экосистема НЕКСУС') }}</a>
-                            <a href="#nexus-depo" class="btn btn-sm btn-outline-light btn-rounded">{{ __('НЕКСУС-ДЕПО') }}</a>
-                            <a href="#marketplace" class="btn btn-sm btn-outline-light btn-rounded">{{ __('Маркетплейс') }}</a>
-                            <a href="#ignd" class="btn btn-sm btn-outline-light btn-rounded">{{ __('iGND') }}</a>
-                            <a href="#gnd-v1" class="btn btn-sm btn-outline-light btn-rounded">{{ __('GND_v1') }}</a>
-                        </nav>
+{{-- ГАНИМЕД --}}
+<section class="section-box wow animate__animated animate__fadeIn ganimed-hero animated pt-80" style="visibility: visible;" id="ganimed-hero">
+    <div class="container">
+        <div class="text-center"><a class="btn btn-brand-5" href="#">{{__('Гибридный блокчейн')}}</a>
+            <h1 class="display-1 neutral-0 text-semibold pt-3">{{__('ГАНИМЕД')}}</h1>
+            <h2 class="mb-25 mt-15 neutral-0">{{__(' в экосистеме')}} <br class="d-none d-lg-block">{{__('НЕКСУС')}}</h2>
+            <p class="text-md neutral-300 mb-55">{{__(' умный блокчейн с ГОСТ‑криптографией, встроенным комплаенсом и AI‑управлением, ')}}<br class="d-none d-lg-block">{{__('созданный для токенизации реальных активов в российской юрисдикции.')}}</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-sm-6">
+                <div class="card-features-5">
+                    <div class="card-image"> <i class="fi-rr-layout-fluid color-green"></i></div>
+                    <div class="card-info">
+                        <h6>{{__('Смарт‑блокчейн для российской токенизации')}}</h6>
+                        <p class="text-sm neutral-500">{{__('ГАНИМЕД изначально спроектирован под российский контур цифровых финансовых активов и ГОСТ‑криптографию, совмещая закрытый/открытый блокчейн и требования локального регулятора.')}}</p>
                     </div>
                 </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="card-features-5">
+                    <div class="card-image"> <i class="fi-rr-chart-network color-green"></i></div>
+                    <div class="card-info">
+                        <h6>{{__('Стандарт токенов GNDst‑1 с KYC «из коробки»')}}</h6>
+                        <p class="text-sm neutral-500">{{__('В стандарте токена сразу зашиты параметры проверки клиентов, белые и чёрные списки и фиксация прав, поэтому выпуск токенов под реальные активы не превращается в отдельный комплаенс‑проект.')}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="card-features-5">
+                    <div class="card-image"> <i class="fi-rr-flip-horizontal color-green"></i></div>
+                    <div class="card-info">
+                        <h6>{{__('PoSA: гибридный консенсус для цифровых активов')}}</h6>
+                        <p class="text-sm neutral-500">{{__('Уникальная схема гибридного консенсуса (доля участия + полномочия проверенных узлов) связывает экономическую ответственность валидаторов и роль надёжных операторов, что важно для инфраструктурных и регулируемых активов.')}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="card-features-5">
+                    <div class="card-image"> <i class="fi-rr-head-side-thinking color-green"></i></div>
+                    <div class="card-info">
+                        <h6>{{__('Искусственный интеллект как «мозг» сети')}}</h6>
+                        <p class="text-sm neutral-500">{{__('Сеть изначально задумана с интеллект‑слоем на основе графовых нейросетей: он анализирует поведение узлов и транзакций и помогает управлять рисками, нагрузкой и параметрами консенсуса в реальном времени.')}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="card-features-5">
+                    <div class="card-image"> <i class="fi-rr-shield-check color-green"></i></div>
+                    <div class="card-info">
+                        <h6>{{__('Встроенные предохранители для DeFi‑экосистемы')}}</h6>
+                        <p class="text-sm neutral-500">{{__('В протокол включены механизмы аварийного торможения и штрафов для узлов, которые работают как элементы защиты на уровне всей сети, а не только отдельного смарт‑контракта.')}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="card-features-5">
+                    <div class="card-image"> <i class="fi-rr-resources color-green"></i></div>
+                    <div class="card-info">
+                        <h6>{{__('Три виртуальные машины в одном блокчейне')}}</h6>
+                        <p class="text-sm neutral-500">{{__('Поддержка трёх сред исполнения смарт‑контрактов (аналог Ethereum‑VM, среда на основе WebAssembly и виртуальная машина языка Move) позволяет запускать разные типы приложений в одной сети без смены инфраструктуры.')}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-80">
+            <p class="text-xl neutral-0">{{__('Блокчейн для ')}}<span class="color-green">{{__('реальных активов и реального права')}}</span></p>
+        </div>
+    </div>
+</section>
+{{-- Особенности --}}
+<section class="section-box box-all-in-one animated box-pricing-2" id="ganimed-features">
+    <div class="container">
+        <div class="row align-items-start">
+            <div class="col-12 col-lg-4 mb-30">
+                <h2 class="header-2 neutral-1000 uppercase">{{ __('Особенности') }}</h2>
+            </div>
+            <div class="col-12 col-lg-8 mb-30">
+                <p class="text-lg neutral-700">{{ __('ГАНИМЕД (GANIMED) — высокопроизводительная распределённая вычислительная платформа, разработанная на языке Go, с гибридным консенсусом PoSA (Proof-of-Stake / Proof-of-Authority), EVM-совместимой виртуальной машиной, поддержкой WASM и MoveVM и двухтокеновой экономической моделью (GND + GANI).') }}</p>
+            </div>
+        </div>
+        <div class="row mt-40">
+            <div class="col-12 col-lg-5">
+                <div class="card-design">
+                    <div class="card-image"><img alt="{{__('Блокчейн для реальных активов')}}" src="{{ asset('assets/imgs/page/homepage6/ready.png') }}"></div>
+                    <div class="card-info">
+                        <p class=" text-xl mb-30">{{__('Блокчейн для реальных активов')}}</p>
+                        <p class="text-lg card-desc">{{__('ГАНИМЕД создан как основа для токенизации «понятных» вещей — недвижимости, бизнеса, инфраструктурных проектов и других реальных активов, а не ради спекуляций «ради токена»')}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-7">
+                <div class="card-design card-design-style2">
+                    <div class="card-image"><img alt="{{__('Интеллектуальный слой')}}" src="{{__(asset('assets/imgs/page/homepage6/integration.png'))}}"></div>
+                    <div class="card-info">
+                        <p class=" text-xl mb-30">{{__('Интеллектуальный слой на основе ИИ анализирует своё состояние с помощью моделей искусственного интеллекта, чтобы лучше управлять нагрузкой, рисками и параметрами работы блокчейна по мере роста экосистемы.')}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-4">
+                <div class="card-design card-design-style4">
+                    <div class="card-image"><img alt="{{__('Экосистема - не одиночная сеть')}}" src="{{ asset('assets/imgs/page/homepage6/design.png') }}"></div>
+                    <div class="card-info">
+                        <p class=" text-xl mb-30">{{__('Экосистема - не одиночная сеть')}}</p>
+                        <p class="text-lg card-desc">{{__('ГАНИМЕД реализован как технологическое ядро для целой экосистемы: инвестиционная платформа, вторичный рынок, депозитарий, маркетплейс — всё работает на одной технологической базе.')}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="card-design card-design-style3">
+                    <div class="card-image"><img alt="{{__('Прозрачные правила')}}" src="{{__('assets/imgs/page/homepage6/fast.png')}}"></div>
+                    <div class="card-info">
+                        <p class=" text-xl mb-30">{{__('Прозрачные правила')}}</p>
+                        <p class="text-lg card-desc">{{__('Условия выпуска токенов, ограничения, права и роли участников, данные системы смягчения заранее зашиваются в протокол и смарт‑контракты, поэтому участники видят правила и могут им доверять, а не полагаться на чьи‑то обещания.')}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="card-design card-design-style5">
+                    <div class="card-image"><img alt="{{__('Токены')}}" src="{{ asset('assets/imgs/page/homepage6/power.png') }}"></div>
+                    <div class="card-info">
+                        <p class=" text-xl mb-30">{{__('Токены в сети могут отражать долю в проекте, право на доход или актив, который стоит за сделкой, убирая часть бумажной волокиты и делая учёт прозрачным в онлайне.')}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p class="text-sm neutral-700">{{ __('Платформа предназначена для: создания и функционирования децентрализованных приложений (dApps); токенизации реальных активов (RWA) — недвижимости, долговых и долевых инструментов; выпуска и обращения цифровых финансовых активов (ЦФА) по 259-ФЗ; обеспечения работы DeFi-протоколов; интеграции с IoT для автоматизированных расчётов; предоставления инфраструктуры для корпоративных и государственных заказчиков.') }}</p>
+                <p class="text-sm neutral-700">{{ __('ГАНИМЕД входит в единую инфраструктуру платформы НЕКСУС вместе с каталогом проектов, вторичным рынком СФОРДЕКС, цифровым депозитарием НЕКСУС-ДЕПО и маркетплейсом НЕКСУС.') }}</p>
+                <p class="text-sm neutral-700">{{ __('Проект функционирует в двойной юрисдикции: РФ (259-ФЗ, ЦБ РФ) и международные площадки.') }}</p>
             </div>
         </div>
     </div>
 </section>
 
-{{-- Описание --}}
-<section class="section-box wow fadeIn box-preparing-2" id="description">
-    <div class="container">
-        <h2 class="text-center mb-30">{{ __('Описание') }}</h2>
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="box-border-rounded">
-                    <div class="card-casestudy">
-                        <div class="card-desc">
-                            <p class="text-lg neutral-700">{{ __('ГАНИМЕД (GANIMED) — высокопроизводительная распределённая вычислительная платформа, разработанная на языке Go, с гибридным консенсусом PoSA (Proof-of-Stake / Proof-of-Authority), EVM-совместимой виртуальной машиной, поддержкой WASM и MoveVM и двухтокеновой экономической моделью (GND + GANI).') }}</p>
-                            <p class="text-lg neutral-700">{{ __('Платформа предназначена для: создания и функционирования децентрализованных приложений (dApps); токенизации реальных активов (RWA) — недвижимости, долговых и долевых инструментов; выпуска и обращения цифровых финансовых активов (ЦФА) по 259-ФЗ; обеспечения работы DeFi-протоколов; интеграции с IoT для автоматизированных расчётов; предоставления инфраструктуры для корпоративных и государственных заказчиков.') }}</p>
-                            <p class="text-lg neutral-700">{{ __('Миссия: создать комплаенс-ориентированную блокчейн-инфраструктуру для токенизации реальных активов, выпуска и обращения ЦФА с полным соответствием российскому и международному законодательству. Демократизировать инвестиции в реальные проекты через безопасную платформу с минимальным порогом входа.') }}</p>
-                            <p class="text-lg neutral-700">{{ __('ГАНИМЕД входит в единую инфраструктуру платформы НЕКСУС вместе с каталогом проектов, вторичным рынком СФОРДЕКС и цифровым депозитарием. Проект функционирует в двойной юрисдикции: РФ (259-ФЗ, ЦБ РФ) и международные площадки.') }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-{{-- ГАНИМЕД в экосистеме НЕКСУС: схема связки --}}
-<section class="section-box wow fadeIn box-preparing-2" id="ecosystem">
-    <div class="container">
-        <h2 class="text-center mb-20">{{ __('ГАНИМЕД в экосистеме НЕКСУС') }}</h2>
-        <p class="text-center text-lg neutral-700 mb-50">{{ __('Блокчейн ГАНИМЕД — технологическое ядро экосистемы: на нём фиксируются выпуски ЦФА, смарт‑контракты выплат и система смягчения рисков (iGND). Платформа НЕКСУС, вторичный рынок СФОРДЕКС, цифровой депозитарий НЕКСУС-ДЕПО и маркетплейс используют единый реестр и API ГАНИМЕД.') }}</p>
-        <div class="row justify-content-center ganimed-ecosystem-scheme">
-            <div class="col-6 col-md-4 col-lg-2 text-center mb-30">
-                <a href="{{ route('features') }}" class="card-preparing-2 d-block text-decoration-none">
-                    <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage3/marketing.svg') }}" width="40" height="40" alt=""></div>
-                    <div class="card-info"><h6 class="text-16-semibold neutral-0">{{ __('Платформа НЕКСУС') }}</h6></div>
-                </a>
-            </div>
-            <div class="col-6 col-md-4 col-lg-2 text-center mb-30">
-                <div class="card-preparing-2 border-brand">
-                    <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage3/digital.svg') }}" width="40" height="40" alt=""></div>
-                    <div class="card-info"><h6 class="text-16-semibold neutral-0">{{ __('ГАНИМЕД') }}</h6><p class="text-xs neutral-500 mb-0">{{ __('блокчейн') }}</p></div>
-                </div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-2 text-center mb-30">
-                <a href="{{ route('features') }}" class="card-preparing-2 d-block text-decoration-none">
-                    <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage3/product.svg') }}" width="40" height="40" alt=""></div>
-                    <div class="card-info"><h6 class="text-16-semibold neutral-0">{{ __('СФОРДЕКС') }}</h6></div>
-                </a>
-            </div>
-            <div class="col-6 col-md-4 col-lg-2 text-center mb-30">
-                <div class="card-preparing-2">
-                    <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage3/social.svg') }}" width="40" height="40" alt=""></div>
-                    <div class="card-info"><h6 class="text-16-semibold neutral-0">{{ __('НЕКСУС-ДЕПО') }}</h6></div>
-                </div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-2 text-center mb-30">
-                <a href="{{ route('features') }}" class="card-preparing-2 d-block text-decoration-none">
-                    <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage3/discover.svg') }}" width="40" height="40" alt=""></div>
-                    <div class="card-info"><h6 class="text-16-semibold neutral-0">{{ __('Маркетплейс') }}</h6></div>
-                </a>
-            </div>
-        </div>
-        <div class="row mt-20">
-            <div class="col-12 text-center">
-                <p class="text-sm neutral-500">{{ __('Связка данных: каталог проектов и выпуски ЦФА (НЕКСУС) → реестр и смарт‑контракты (ГАНИМЕД) → учёт прав (НЕКСУС-ДЕПО), торги (СФОРДЕКС), реализация товаров и услуг (маркетплейс), начисление iGND при рисках.') }}</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-{{-- Цифровой депозитарий НЕКСУС-ДЕПО --}}
-<section class="section-box wow fadeIn box-preparing-2" id="nexus-depo">
-    <div class="container">
-        <h2 class="text-center mb-30">{{ __('Цифровой депозитарий НЕКСУС-ДЕПО') }}</h2>
-        <div class="row align-items-center">
-            <div class="col-12 col-lg-4 text-center mb-4 mb-lg-0">
-                <img src="{{ asset('assets/imgs/page/homepage3/social.svg') }}" width="80" height="80" alt="" class="img-fluid">
-            </div>
-            <div class="col-12 col-lg-8">
-                <div class="box-border-rounded">
-                    <div class="card-casestudy">
-                        <div class="card-desc">
-                            <p class="text-lg neutral-700">{{ __('Цифровой депозитарий НЕКСУС-ДЕПО обеспечивает учёт и хранение цифровых прав на активы, ведение реестра владельцев ЦФА в соответствии с законодательством РФ (39-ФЗ, 259-ФЗ). Юридическое лицо депозитария входит в периметр экосистемы НЕКСУС и интегрировано с блокчейном ГАНИМЕД.') }}</p>
-                            <p class="text-lg neutral-700">{{ __('Функционал: открытие счетов депо, учёт прав на ЦФА, корпоративные действия, отчётность и API. ИБ-аудит и стресс-тесты подтверждают отказоустойчивость и соответствие требованиям по защите информации. Данные о владельцах и объёмах ЦФА синхронизируются с реестром ГАНИМЕД.') }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-{{-- Маркетплейс --}}
-<section class="section-box wow fadeIn box-preparing-2" id="marketplace">
-    <div class="container">
-        <h2 class="text-center mb-30">{{ __('Маркетплейс продукции и услуг проектов') }}</h2>
-        <div class="row align-items-center">
-            <div class="col-12 col-lg-8 order-2 order-lg-1">
-                <div class="box-border-rounded">
-                    <div class="card-casestudy">
-                        <div class="card-desc">
-                            <p class="text-lg neutral-700">{{ __('Маркетплейс экосистемы НЕКСУС предоставляет возможность реализации товаров и услуг проектов, привлёкших инвестиции через платформу. Витринный каталог с онлайн-оплатой и базовой логистикой; данные по проектам, статусам и лимитам подтягиваются из НЕКСУС и ГАНИМЕД автоматически.') }}</p>
-                            <p class="text-lg neutral-700">{{ __('Покупки на маркетплейсе связаны с инвестиционными метриками проектов (выручка, LTV, выполнение KPI). Инвестор получает в личном кабинете аналитику продаж портфельных компаний. Таким образом, маркетплейс дополняет блокчейн-инфраструктуру ГАНИМЕД и платформу НЕКСУС, обеспечивая постпроектное сопровождение и витрину роста.') }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-4 text-center order-1 order-lg-2 mb-4 mb-lg-0">
-                <img src="{{ asset('assets/imgs/page/homepage3/discover.svg') }}" alt="{{ __('Маркетплейс НЕКСУС') }}" class="img-fluid" width="120" loading="lazy">
-            </div>
-        </div>
-    </div>
-</section>
-
-{{-- Система смягчения инвестиционных рисков (iGND) --}}
-<section class="section-box wow fadeIn box-preparing-2" id="ignd">
-    <div class="container">
-        <h2 class="text-center mb-30">{{ __('Система смягчения инвестиционных рисков (iGND)') }}</h2>
-        <div class="row align-items-center">
-            <div class="col-12 col-lg-4 text-center mb-40 order-2 order-lg-1">
-                <img src="{{ asset('assets/imgs/page/homepage1/sheld-risk.svg') }}" alt="{{ __('Система смягчения рисков') }}" class="img-fluid" width="200" loading="lazy">
-                @if(file_exists(public_path('assets/imgs/page/homepage1/sheld-ignd.png')))
-                <img src="{{ asset('assets/imgs/page/homepage1/sheld-ignd.png') }}" alt="iGND" class="img-fluid mt-3" width="160" loading="lazy">
-                @endif
-            </div>
-            <div class="col-12 col-lg-8 mb-40 order-1 order-lg-2">
-                <div class="box-border-rounded">
-                    <div class="card-casestudy">
-                        <div class="card-desc">
-                            <p class="text-lg neutral-700">{{ __('Автоматизированная система смягчения инвестиционных и проектных рисков реализована на смарт‑контрактах блокчейна ГАНИМЕД и использует нативный внутренний токен iGND. Участникам системы (инвесторам и инициаторам проектов) при реализации инвестиционных рисков по отдельным проектам начисляются дополнительные специализированные внутренние токены.') }}</p>
-                            <p class="text-lg neutral-700">{{ __('Полученные токены iGND предоставляют право на участие в отобранных инвестиционных возможностях на специальных условиях в пределах, установленных документацией платформы. Функционал направлен на частичное сглаживание последствий неблагоприятного исхода отдельных проектов за счёт участия в последующих раундах и иных проектах.') }}</p>
-                            <p class="text-md neutral-700 mt-3"><strong>{{ __('Важно:') }}</strong> {{ __('Начисление и обращение токенов iGND реализуется через смарт‑контракты блокчейна экосистемы и не является гарантией сохранения капитала или доходности. Система не исключает риск потери инвестированных средств.') }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 {{-- Характеристики --}}
-<section class="section-box wow fadeIn box-preparing-2" id="characteristics">
+<section class="section-box wow animate__animated animate__fadeIn box-preparing-3 animated" style="visibility: visible;">
     <div class="container">
-        <h2 class="text-center mb-30">{{ __('Характеристики') }}</h2>
-        <div class="row">
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="box-border-rounded">
-                    <div class="card-casestudy">
-                        <div class="card-title"><h6><span class="number"><i class="fi-rr-time-fast small"></i></span>{{ __('Производительность') }}</h6></div>
-                        <div class="card-desc">
-                            <p>{{ __('Целевые показатели: 1 000–5 000 TPS, время блока 3 секунды, финализация ≤ 10 секунд. Uptime ≥ 99,9%, до 1 000 000 активных адресов без деградации. API до 10 000 RPS при задержке &lt; 500 ms.') }}</p>
-                        </div>
+        <div class="text-center">
+            <h2 class="neutral-0 mb-20 uppercase">{{__('Характеристики')}}</h2>
+            <p class="text-lg neutral-700">{{__('Техническая основа блокчейна: скорость и надёжность, используемая криптография, поддержка разных сред для смарт‑контрактов, механизм консенсуса и многослойная архитектура, на которой строятся приложения и сервисы')}}</p>
+        </div>
+        <div class="row mt-90">
+            <div class="col-12 col-md-4">
+                <div class="card-preparing-3">
+                    <div class="card-image card-image-center ">
+                        <i class="fi-rr-time-fast text-green h2 h"></i>
+                    </div>
+                    <div class="card-info">
+                            <h5 class="text-22-bold">{{__('Производительность')}}</h5>
+                        <p class="text-start neutral-200">{{ __('Целевые показатели: ') }}</p>
+                   <p class="text-start">{{ __('- 1 000–5 000 TPS') }}</p>
+                   <p class="text-start">{{ __('- время блока 3 секунды') }}</p>
+                   <p class="text-start">{{ __('- финализация ≤ 10 секунд') }}</p>
+                   <p class="text-start">{{ __('- uptime ≥ 99,9%') }}</p>
+                   <p class="text-start">{{ __('- до 1 000 000 активных адресов без деградации') }}</p>
+                   <p class="text-start">{{ __('- API до 10 000 RPS при задержке 500 ms') }}</p>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="box-border-rounded">
-                    <div class="card-casestudy">
-                        <div class="card-title"><h6><span class="number"><i class="fi-rr-shield small"></i></span>{{ __('Криптография по ГОСТ') }}</h6></div>
-                        <div class="card-desc">
-                            <p>{{ __('ГОСТ 34.10-2018 (подпись ECGOST), 34.11-2018 (хэш Стрибог), 34.12-2018 (Кузнечик/Магма). Интеграция через КриптоПро CSP; сертификация ФСБ (СКЗИ). Соответствие 259-ФЗ, 289-ФЗ, 115-ФЗ, 152-ФЗ, 187-ФЗ.') }}</p>
-                        </div>
+            <div class="col-12 col-md-4">
+                <div class="card-preparing-3">
+                    <div class="card-image card-image-center ">
+                        <i class="fi-rr-shield text-green h2 h"></i>
+                    </div>
+                    <div class="card-info">
+                        <h5 class="text-22-bold">{{__('Криптография по ГОСТ')}}</h5>
+                        <p class="text-start">{{ __('- ГОСТ 34.10-2018 (подпись ECGOST') }}</p>
+                        <p class="text-start">{{ __('- 34.11-2018 (хэш Стрибог)') }}</p>
+                        <p class="text-start">{{ __('- 34.12-2018 (Кузнечик/Магма)') }}</p>
+                        <p class="text-start">{{ __('- интеграция через КриптоПро CSP') }}</p>
+                        <p class="text-start">{{ __('- сертификация ФСБ (СКЗИ)') }}</p>
+                        <p class="text-start">{{ __('- Соответствие 259-ФЗ, 289-ФЗ, 115-ФЗ, 152-ФЗ, 187-ФЗ') }}</p>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="box-border-rounded">
-                    <div class="card-casestudy">
-                        <div class="card-title"><h6><span class="number"><i class="fi-rr-file-code small"></i></span>{{ __('Мульти-VM и смарт‑контракты') }}</h6></div>
-                        <div class="card-desc">
-                            <p>{{ __('EVM (Solidity), WASM (Rust, C++, AssemblyScript), MoveVM (Move). Совместимость с Ethereum, миграция dApps. Смарт‑контракты для выпуска ЦФА, эскроу, купона и погашения. Песочница исполнения и аудит кода.') }}</p>
-                        </div>
+            <div class="col-12 col-md-4">
+                <div class="card-preparing-3">
+                    <div class="card-image card-image-center ">
+                        <i class="fi-rr-compress-alt text-green h2 h"></i>
+                    </div>
+                    <div class="card-info">
+                        <h5 class="text-22-bold">{{__('Мульти-VM и смарт‑контракты')}}</h5>
+                        <p class="text-start">{{ __('- EVM (Solidity)') }}</p>
+                        <p class="text-start">{{ __('- WASM (Rust, C++, AssemblyScript)') }}</p>
+                        <p class="text-start">{{ __('- Совместимость с Ethereum (ETH/Tron)') }}</p>
+                        <p class="text-start">{{ __('- миграция dApps') }}</p>
+                        <p class="text-start">{{ __('- cмарт‑контракты для выпуска токенов, iGND, ЦФА, УЦП, эскроу, купона и погашения') }}</p>
+                        <p class="text-start">{{ __('- песочница исполнения и аудит кода') }}</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row mt-30">
+        <div class="row">
             <div class="col-12 col-md-6">
-                <div class="box-border-rounded">
-                    <div class="card-casestudy">
-                        <div class="card-title"><h6><span class="number"><i class="fi-rr-shuffle small"></i></span>{{ __('Консенсус PoSA') }}</h6></div>
-                        <div class="card-desc">
-                            <p>{{ __('Гибридный консенсус Proof-of-Stake / Proof-of-Authority: динамическое переключение PoS ↔ PoA по решению DAO. Epoch 6 часов, ≥ 100 валидаторов в PoS, slashing 1,5% при сбое. Финализация за 3–5 секунд с криптографической необратимостью.') }}</p>
-                        </div>
+                <div class="card-preparing-3">
+                    <div class="card-image card-image-center ">
+                        <i class="fi-rr-shuffle h2"></i>
+                    </div>
+                    <div class="card-info">
+                        <h5 class="text-22-bold">{{__('Консенсус PoSA')}}</h5>
+                        <p class="text-start">{{ __('- гибридный консенсус Proof-of-Stake / Proof-of-Authority') }}</p>
+                        <p class="text-start">{{ __('- динамическое переключение PoS ↔ PoA по встроенному алгоритму') }}</p>
+                        <p class="text-start">{{ __('- epoch 6 часов') }}</p>
+                        <p class="text-start">{{ __('- ≥ 100 валидаторов в PoS') }}</p>
+                        <p class="text-start">{{ __('- slashing 1,5% при сбое') }}</p>
+                        <p class="text-start">{{ __('- aинализация с криптографической необратимостью') }}</p>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <div class="box-border-rounded">
-                    <div class="card-casestudy">
-                        <div class="card-title"><h6><span class="number"><i class="fi-rr-layers small"></i></span>{{ __('Пятислойная архитектура') }}</h6></div>
-                        <div class="card-desc">
-                            <p>{{ __('Слой 0 — физическая инфраструктура и сеть (libp2p, ГОСТ-шифрование). Слой 1 — данные (блоки, DAG-подграфы, снапшоты). Слой 2 — консенсус (PoSA). Слой 3 — исполнение (EVM, WASM, MoveVM). Слой 4 — приложения (REST, RPC, WebSocket API, блок-обозреватель, кошельки).') }}</p>
-                        </div>
+                <div class="card-preparing-3">
+                    <div class="card-image card-image-center ">
+                        <i class="fi-rr-layers h2"></i>
+                    </div>
+                    <div class="card-info">
+                        <h5 class="text-22-bold">{{__('Пятислойная архитектура')}}</h5>
+                        <p class="text-start">{{ __('- СЛОЙ 0 — физическая инфраструктура и сеть (libp2p, ГОСТ-шифрование)') }}</p>
+                        <p class="text-start">{{ __('- СЛОЙ 1 — данные (блоки, DAG-подграфы, снапшоты)') }}</p>
+                        <p class="text-start">{{ __('- СЛОЙ 2 — консенсус (PoSA)') }}</p>
+                        <p class="text-start">{{ __('- СЛОЙ 3 — исполнение (EVM, WASM, MoveVM)') }}</p>
+                        <p class="text-start">{{ __('- СЛОЙ 4 — приложения (REST, RPC, WebSocket API, блок-обозреватель, кошельки)') }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 {{-- Ключевые особенности --}}
 <section class="section-box wow fadeIn box-preparing-2" id="features">
     <div class="container">
@@ -366,20 +371,7 @@
                 </div>
             </div>
         </div>
-        <div class="text-center mt-4">
-            <a href="https://github.com/Kirill-B2019/GND_v1/tree/main/docs" class="btn btn-outline-dark btn-rounded" target="_blank" rel="noopener noreferrer">{{ __('Документация GND_v1 на GitHub') }}</a>
-        </div>
-    </div>
+       </div>
 </section>
 
-{{-- Ссылки на документацию и концепцию --}}
-<section class="section-box wow fadeIn">
-    <div class="container">
-        <div class="text-center">
-            <p class="text-lg neutral-700 mb-20">{{ __('Подробные спецификации API и протоколов — в разделе «Техническая документация» на странице Документации. Полная концепция блокчейн-платформы ГАНИМЕД (техническая, экономическая и регуляторная) доступна в PDF.') }}</p>
-            <a href="{{ route('documentation') }}#step-3" class="btn btn-black-md btn-rounded mr-2 mb-2">{{ __('Перейти к документации') }}</a>
-            <a href="{{ asset('doc/Kontseptsiya_Blockchain_GANIMED_RF_v3.3.pdf') }}" class="btn btn-outline-dark btn-rounded mb-2" target="_blank" rel="noopener noreferrer">{{ __('Концепция ГАНИМЕД (PDF)') }}</a>
-        </div>
-    </div>
-</section>
 @endsection

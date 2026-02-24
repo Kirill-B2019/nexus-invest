@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Иконки — публичная часть проекта</title>
+  <link rel="stylesheet" href="../public/assets/css/vendors/uicons-regular-rounded.css">
+  <style>
+    :root { --bg: #0e0e0e; --text: #e6e6e6; --muted: #737373; --accent: #c5ff41; --border: rgba(255,255,255,0.08); }
+    * { box-sizing: border-box; }
+    body { font-family: 'Manrope', 'Urbanist', sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; margin: 0; padding: 2rem; }
+    h1 { font-size: 1.75rem; margin: 0 0 0.5rem; }
+    .subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 2rem; }
+    h2 { font-size: 1.25rem; margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    p, pre { margin: 0 0 1rem; }
+    pre, code { background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 6px; padding: 0.2em 0.4em; font-size: 0.9em; }
+    pre { padding: 1rem; overflow-x: auto; }
+    .icon-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; margin: 1rem 0; }
+    .icon-card { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+    .icon-card i { font-size: 1.75rem; color: var(--accent); line-height: 1; }
+    .icon-card .icon-name { font-size: 0.75rem; color: var(--muted); word-break: break-all; text-align: center; }
+    .icon-card code { font-size: 0.7rem; padding: 0.35rem 0.5rem; width: 100%; overflow-x: auto; white-space: nowrap; }
+    .icon-card code { cursor: pointer; }
+    .icon-card code:hover { background: rgba(255,255,255,0.08); }
+    .code-cell code { cursor: pointer; }
+    .code-cell code:hover { background: rgba(255,255,255,0.08); }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+    th, td { text-align: left; padding: 0.5rem 0.75rem; border: 1px solid var(--border); vertical-align: middle; }
+    th { background: rgba(255,255,255,0.05); color: var(--accent); }
+    td.svg-preview { display: flex; align-items: center; justify-content: center; }
+    td.svg-preview img { max-height: 32px; max-width: 48px; object-fit: contain; }
+    .code-cell { font-size: 0.8rem; }
+    .code-cell code { display: block; padding: 0.4rem; white-space: pre-wrap; word-break: break-all; }
+    .note { background: rgba(197,255,65,0.08); border: 1px solid rgba(197,255,65,0.2); border-radius: 8px; padding: 1rem; margin: 1rem 0; font-size: 0.9rem; }
+    footer { margin-top: 2rem; color: var(--muted); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <h1>Иконки, доступные для вставки в публичной части проекта</h1>
+  <p class="subtitle">Справочник для layout guest, страниц welcome, ganimed, compliance и др.</p>
+
+  <h2>1. Шрифт Uicons Regular Rounded (классы fi-rr-*)</h2>
+  <p><strong>Подключение:</strong> <code>public/assets/css/style.css</code> → <code>uicons-regular-rounded.css</code><br>
+  <strong>Шрифт:</strong> <code>public/assets/fonts/uicons/uicons-regular-rounded.woff2</code></p>
+  <p><strong>Вставка в разметку:</strong></p>
+  <pre>&lt;i class="fi-rr-ИМЯ_ИКОНКИ" aria-hidden="true"&gt;&lt;/i&gt;</pre>
+  <p>Например: <code>&lt;i class="fi-rr-user"&gt;&lt;/i&gt;</code>, <code>&lt;i class="fi-rr-quote-right"&gt;&lt;/i&gt;</code></p>
+  <p><strong>Полный список: вид иконки + код для вставки (498 иконок).</strong> Клик по коду — копирование в буфер.</p>
+  <div class="icon-list" id="uicons-list"></div>
+
+  <h2>2. SVG-иконки (public/assets/imgs)</h2>
+  <p><strong>Вид иконки + код для вставки в Blade.</strong> Клик по коду — копирование.</p>
+  <table>
+    <thead><tr><th>Вид</th><th>Путь (assets/imgs)</th><th>Назначение</th><th>Код для вставки</th></tr></thead>
+    <tbody id="svg-tbody">
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/template/icons/arrow-up.svg" alt="" height="32"></td><td><code>template/icons/arrow-up.svg</code></td><td>Стрелка вверх</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/template/icons/arrow-up.svg') &#125;&#125;</code></td></tr>
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/template/icons/arrow-up-black.svg" alt="" height="32"></td><td><code>template/icons/arrow-up-black.svg</code></td><td>Стрелка вверх (чёрная)</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/template/icons/arrow-up-black.svg') &#125;&#125;</code></td></tr>
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/template/icons/arrow-up-grey.svg" alt="" height="32"></td><td><code>template/icons/arrow-up-grey.svg</code></td><td>Стрелка вверх (серая)</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/template/icons/arrow-up-grey.svg') &#125;&#125;</code></td></tr>
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/template/icons/arrow-up-hover.svg" alt="" height="32"></td><td><code>template/icons/arrow-up-hover.svg</code></td><td>Стрелка вверх (hover)</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/template/icons/arrow-up-hover.svg') &#125;&#125;</code></td></tr>
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/template/icons/arrow-up-hover2.svg" alt="" height="32"></td><td><code>template/icons/arrow-up-hover2.svg</code></td><td>Стрелка вверх (hover 2)</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/template/icons/arrow-up-hover2.svg') &#125;&#125;</code></td></tr>
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/template/icons/arrow-right.svg" alt="" height="32"></td><td><code>template/icons/arrow-right.svg</code></td><td>Стрелка вправо</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/template/icons/arrow-right.svg') &#125;&#125;</code></td></tr>
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/template/icons/be.svg" alt="" height="32"></td><td><code>template/icons/be.svg</code></td><td>Behance</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/template/icons/be.svg') &#125;&#125;</code></td></tr>
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/template/icons/email.svg" alt="" height="32"></td><td><code>template/icons/email.svg</code></td><td>Email</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/template/icons/email.svg') &#125;&#125;</code></td></tr>
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/template/icons/fb.svg" alt="" height="32"></td><td><code>template/icons/fb.svg</code></td><td>Facebook</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/template/icons/fb.svg') &#125;&#125;</code></td></tr>
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/template/icons/in.svg" alt="" height="32"></td><td><code>template/icons/in.svg</code></td><td>Instagram</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/template/icons/in.svg') &#125;&#125;</code></td></tr>
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/template/icons/phone.svg" alt="" height="32"></td><td><code>template/icons/phone.svg</code></td><td>Телефон</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/template/icons/phone.svg') &#125;&#125;</code></td></tr>
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/template/icons/play.svg" alt="" height="32"></td><td><code>template/icons/play.svg</code></td><td>Воспроизведение</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/template/icons/play.svg') &#125;&#125;</code></td></tr>
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/template/icons/search.svg" alt="" height="32"></td><td><code>template/icons/search.svg</code></td><td>Поиск</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/template/icons/search.svg') &#125;&#125;</code></td></tr>
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/template/icons/star.svg" alt="" height="32"></td><td><code>template/icons/star.svg</code></td><td>Звезда</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/template/icons/star.svg') &#125;&#125;</code></td></tr>
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/template/icons/tw.svg" alt="" height="32"></td><td><code>template/icons/tw.svg</code></td><td>Twitter</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/template/icons/tw.svg') &#125;&#125;</code></td></tr>
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/page/homepage1/ai-brain.svg" alt="" height="32"></td><td><code>page/homepage1/ai-brain.svg</code></td><td>ИИ / мозг</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/page/homepage1/ai-brain.svg') &#125;&#125;</code></td></tr>
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/page/homepage1/sheld-risk.svg" alt="" height="32"></td><td><code>page/homepage1/sheld-risk.svg</code></td><td>Щит / риски</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/page/homepage1/sheld-risk.svg') &#125;&#125;</code></td></tr>
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/page/homepage2/engine.svg" alt="" height="32"></td><td><code>page/homepage2/engine.svg</code></td><td>Движок / VM</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/page/homepage2/engine.svg') &#125;&#125;</code></td></tr>
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/page/homepage2/security.svg" alt="" height="32"></td><td><code>page/homepage2/security.svg</code></td><td>Безопасность</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/page/homepage2/security.svg') &#125;&#125;</code></td></tr>
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/page/homepage3/check.svg" alt="" height="32"></td><td><code>page/homepage3/check.svg</code></td><td>Галочка / проверка</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/page/homepage3/check.svg') &#125;&#125;</code></td></tr>
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/page/homepage3/digital.svg" alt="" height="32"></td><td><code>page/homepage3/digital.svg</code></td><td>Цифровое</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/page/homepage3/digital.svg') &#125;&#125;</code></td></tr>
+      <tr><td class="svg-preview"><img src="../public/assets/imgs/page/homepage3/internet.svg" alt="" height="32"></td><td><code>page/homepage3/internet.svg</code></td><td>Интернет / сеть</td><td class="code-cell"><code title="Клик — копировать">&#123;&#123; asset('assets/imgs/page/homepage3/internet.svg') &#125;&#125;</code></td></tr>
+    </tbody>
+  </table>
+  <p class="subtitle">Остальные SVG: <code>template/favicon.svg</code>, <code>template/logo*.svg</code>, <code>page/homepage1/blur.svg</code>, <code>page/homepage1/star.svg</code>, <code>page/homepage1/strate.svg</code>, <code>page/homepage2/3d.svg</code>, <code>content.svg</code>, <code>daily.svg</code>, <code>firewall.svg</code>, <code>market.svg</code>, <code>social.svg</code>, <code>social2.svg</code>, <code>web.svg</code>, <code>page/homepage3/discover.svg</code>, <code>find.svg</code>, <code>keep.svg</code>, <code>marketing.svg</code>, <code>product.svg</code>, <code>right-up.svg</code>, <code>social.svg</code>, <code>page/homepage4/banner.svg</code>, <code>page/homepage5/*.svg</code>, <code>page/homepage6/*.svg</code>, <code>page/about/london.svg</code>, <code>page/blog/icon1-3.svg</code>, <code>page/register/*.svg</code>. Код: <code>&lt;img src="{{ "{{ asset('assets/imgs/ПУТЬ') }}" }}" alt=""&gt;</code></p>
+
+  <div class="note">
+    <strong>Примечание:</strong> Откройте эту страницу из корня проекта (например, <code>http://localhost/.../docs/PUBLIC-ICONS-REFERENCE.html</code> или через приложение), чтобы шрифт Uicons и SVG-изображения загружались корректно. В шаблоне ГАНИМЕД используется класс <code>fi-rr-file-code</code> — в шрифте Uicons Regular Rounded такого имени нет; при необходимости замените на <code>fi-rr-file</code>, <code>fi-rr-file-ai</code> или другую иконку из списка выше.
+  </div>
+
+  <footer>
+    Документ сгенерирован для проекта nexus-invest. Источники: <code>uicons-regular-rounded.css</code>, каталог <code>public/assets/imgs</code>.
+  </footer>
+
+  <script>
+    var names = ["fi-rr-add","fi-rr-address-book","fi-rr-alarm-clock","fi-rr-align-center","fi-rr-align-justify","fi-rr-align-left","fi-rr-align-right","fi-rr-ambulance","fi-rr-angle-double-left","fi-rr-angle-double-right","fi-rr-angle-double-small-left","fi-rr-angle-double-small-right","fi-rr-angle-down","fi-rr-angle-left","fi-rr-angle-right","fi-rr-angle-small-down","fi-rr-angle-small-left","fi-rr-angle-small-right","fi-rr-angle-small-up","fi-rr-angle-up","fi-rr-apple","fi-rr-apps-add","fi-rr-apps-delete","fi-rr-apps-sort","fi-rr-apps","fi-rr-archive","fi-rr-arrow-down","fi-rr-arrow-from-bottom","fi-rr-arrow-left","fi-rr-arrow-right","fi-rr-arrow-small-down","fi-rr-arrow-small-left","fi-rr-arrow-small-right","fi-rr-arrow-small-up","fi-rr-arrow-up","fi-rr-asterik","fi-rr-at","fi-rr-backpack","fi-rr-badge","fi-rr-balloons","fi-rr-ban","fi-rr-band-aid","fi-rr-bank","fi-rr-barber-shop","fi-rr-baseball","fi-rr-basketball","fi-rr-bed","fi-rr-beer","fi-rr-bell-ring","fi-rr-bell-school","fi-rr-bell","fi-rr-bike","fi-rr-billiard","fi-rr-bold","fi-rr-book-alt","fi-rr-book","fi-rr-bookmark","fi-rr-bowling","fi-rr-box-alt","fi-rr-box","fi-rr-bread-slice","fi-rr-briefcase","fi-rr-broom","fi-rr-browser","fi-rr-brush","fi-rr-bug","fi-rr-building","fi-rr-bulb","fi-rr-butterfly","fi-rr-cake-birthday","fi-rr-cake-wedding","fi-rr-calculator","fi-rr-calendar","fi-rr-call-history","fi-rr-call-incoming","fi-rr-call-missed","fi-rr-call-outgoing","fi-rr-camera","fi-rr-camping","fi-rr-car","fi-rr-caret-down","fi-rr-caret-left","fi-rr-caret-right","fi-rr-caret-up","fi-rr-carrot","fi-rr-chart-connected","fi-rr-chart-histogram","fi-rr-chart-network","fi-rr-chart-pie-alt","fi-rr-chart-pie","fi-rr-chart-pyramid","fi-rr-chart-set-theory","fi-rr-chart-tree","fi-rr-chat-arrow-down","fi-rr-chat-arrow-grow","fi-rr-check","fi-rr-checkbox","fi-rr-cheese","fi-rr-chess-piece","fi-rr-child-head","fi-rr-circle-small","fi-rr-circle","fi-rr-clip","fi-rr-clock","fi-rr-cloud-check","fi-rr-cloud-disabled","fi-rr-cloud-download","fi-rr-cloud-share","fi-rr-cloud-upload","fi-rr-cloud","fi-rr-clouds","fi-rr-cocktail","fi-rr-coffee","fi-rr-comment-alt","fi-rr-comment-check","fi-rr-comment-heart","fi-rr-comment-info","fi-rr-comment-user","fi-rr-comment","fi-rr-comments","fi-rr-compress-alt","fi-rr-compress","fi-rr-computer","fi-rr-confetti","fi-rr-cookie","fi-rr-copy-alt","fi-rr-copy","fi-rr-copyright","fi-rr-cow","fi-rr-cream","fi-rr-credit-card","fi-rr-croissant","fi-rr-cross-circle","fi-rr-cross-small","fi-rr-cross","fi-rr-crown","fi-rr-cube","fi-rr-cupcake","fi-rr-cursor-finger","fi-rr-cursor-plus","fi-rr-cursor-text-alt","fi-rr-cursor-text","fi-rr-cursor","fi-rr-dart","fi-rr-dashboard","fi-rr-data-transfer","fi-rr-database","fi-rr-delete","fi-rr-diamond","fi-rr-dice","fi-rr-diploma","fi-rr-disco-ball","fi-rr-disk","fi-rr-doctor","fi-rr-document-signed","fi-rr-document","fi-rr-dollar","fi-rr-download","fi-rr-drink-alt","fi-rr-drumstick","fi-rr-duplicate","fi-rr-e-learning","fi-rr-earnings","fi-rr-edit-alt","fi-rr-edit","fi-rr-envelope-ban","fi-rr-envelope-download","fi-rr-envelope-marker","fi-rr-envelope-open","fi-rr-envelope-plus","fi-rr-envelope","fi-rr-euro","fi-rr-exclamation","fi-rr-expand","fi-rr-eye-crossed","fi-rr-eye-dropper","fi-rr-eye","fi-rr-feather","fi-rr-ferris-wheel","fi-rr-file-add","fi-rr-file-ai","fi-rr-file-check","fi-rr-file-delete","fi-rr-file-eps","fi-rr-file-gif","fi-rr-file-music","fi-rr-file-psd","fi-rr-file","fi-rr-fill","fi-rr-film","fi-rr-filter","fi-rr-fingerprint","fi-rr-fish","fi-rr-flag","fi-rr-flame","fi-rr-flip-horizontal","fi-rr-flower-bouquet","fi-rr-flower-tulip","fi-rr-flower","fi-rr-folder-add","fi-rr-folder","fi-rr-following","fi-rr-football","fi-rr-form","fi-rr-forward","fi-rr-fox","fi-rr-frown","fi-rr-ftp","fi-rr-gallery","fi-rr-gamepad","fi-rr-gas-pump","fi-rr-gem","fi-rr-gift","fi-rr-glass-cheers","fi-rr-glasses","fi-rr-globe-alt","fi-rr-globe","fi-rr-golf","fi-rr-graduation-cap","fi-rr-graphic-tablet","fi-rr-grid-alt","fi-rr-grid","fi-rr-guitar","fi-rr-gym","fi-rr-hamburger","fi-rr-hand-holding-heart","fi-rr-hastag","fi-rr-hat-birthday","fi-rr-head-side-thinking","fi-rr-headphones","fi-rr-headset","fi-rr-heart-arrow","fi-rr-heart","fi-rr-home-location-alt","fi-rr-home-location","fi-rr-home","fi-rr-hourglass-end","fi-rr-hourglass","fi-rr-ice-cream","fi-rr-ice-skate","fi-rr-id-badge","fi-rr-inbox","fi-rr-incognito","fi-rr-indent","fi-rr-infinity","fi-rr-info","fi-rr-interactive","fi-rr-interlining","fi-rr-interrogation","fi-rr-italic","fi-rr-jpg","fi-rr-key","fi-rr-keyboard","fi-rr-kite","fi-rr-label","fi-rr-laptop","fi-rr-lasso","fi-rr-laugh","fi-rr-layers","fi-rr-layout-fluid","fi-rr-leaf","fi-rr-letter-case","fi-rr-life-ring","fi-rr-line-width","fi-rr-link","fi-rr-lipstick","fi-rr-list-check","fi-rr-list","fi-rr-location-alt","fi-rr-lock-alt","fi-rr-lock","fi-rr-luggage-rolling","fi-rr-magic-wand","fi-rr-makeup-brush","fi-rr-man-head","fi-rr-map-marker-cross","fi-rr-map-marker-home","fi-rr-map-marker-minus","fi-rr-map-marker-plus","fi-rr-map-marker","fi-rr-map","fi-rr-marker-time","fi-rr-marker","fi-rr-mars-double","fi-rr-mars","fi-rr-mask-carnival","fi-rr-medicine","fi-rr-megaphone","fi-rr-meh","fi-rr-menu-burger","fi-rr-menu-dots-vertical","fi-rr-menu-dots","fi-rr-microphone-alt","fi-rr-microphone","fi-rr-minus-small","fi-rr-minus","fi-rr-mobile","fi-rr-mode-landscape","fi-rr-mode-portrait","fi-rr-money","fi-rr-moon","fi-rr-mountains","fi-rr-mouse","fi-rr-mug-alt","fi-rr-music-alt","fi-rr-music","fi-rr-navigation","fi-rr-network-cloud","fi-rr-network","fi-rr-notebook","fi-rr-opacity","fi-rr-package","fi-rr-paint-brush","fi-rr-palette","fi-rr-paper-plane","fi-rr-password","fi-rr-pause","fi-rr-paw","fi-rr-pencil","fi-rr-pharmacy","fi-rr-phone-call","fi-rr-phone-cross","fi-rr-phone-pause","fi-rr-phone-slash","fi-rr-physics","fi-rr-picture","fi-rr-ping-pong","fi-rr-pizza-slice","fi-rr-plane","fi-rr-play-alt","fi-rr-play","fi-rr-playing-cards","fi-rr-plus-small","fi-rr-plus","fi-rr-poker-chip","fi-rr-portrait","fi-rr-pound","fi-rr-power","fi-rr-presentation","fi-rr-print","fi-rr-protractor","fi-rr-pulse","fi-rr-pyramid","fi-rr-quote-right","fi-rr-rainbow","fi-rr-raindrops","fi-rr-rec","fi-rr-receipt","fi-rr-record-vinyl","fi-rr-rectabgle-vertical","fi-rr-rectangle-horizontal","fi-rr-rectangle-panoramic","fi-rr-recycle","fi-rr-redo-alt","fi-rr-redo","fi-rr-reflect","fi-rr-refresh","fi-rr-resize","fi-rr-resources","fi-rr-rewind","fi-rr-rhombus","fi-rr-rings-wedding","fi-rr-road","fi-rr-rocket","fi-rr-room-service","fi-rr-rotate-right","fi-rr-rugby","fi-rr-sad","fi-rr-salad","fi-rr-scale","fi-rr-school-bus","fi-rr-school","fi-rr-scissors","fi-rr-screen","fi-rr-search-alt","fi-rr-search-heart","fi-rr-search","fi-rr-settings-sliders","fi-rr-settings","fi-rr-share","fi-rr-shield-check","fi-rr-shield-exclamation","fi-rr-shield-interrogation","fi-rr-shield-plus","fi-rr-shield","fi-rr-ship-side","fi-rr-ship","fi-rr-shop","fi-rr-shopping-bag-add","fi-rr-shopping-bag","fi-rr-shopping-cart-add","fi-rr-shopping-cart-check","fi-rr-shopping-cart","fi-rr-shuffle","fi-rr-sign-in-alt","fi-rr-sign-in","fi-rr-sign-out-alt","fi-rr-sign-out","fi-rr-signal-alt-1","fi-rr-signal-alt-2","fi-rr-signal-alt","fi-rr-skateboard","fi-rr-smartphone","fi-rr-smile-wink","fi-rr-smile","fi-rr-snowflake","fi-rr-soap","fi-rr-soup","fi-rr-spa","fi-rr-speaker","fi-rr-sphere","fi-rr-spinner-alt","fi-rr-spinner","fi-rr-square-root","fi-rr-square","fi-rr-star-octogram","fi-rr-star","fi-rr-stats","fi-rr-stethoscope","fi-rr-sticker","fi-rr-stop","fi-rr-stopwatch","fi-rr-subtitles","fi-rr-sun","fi-rr-sunrise","fi-rr-surfing","fi-rr-sword","fi-rr-syringe","fi-rr-tablet","fi-rr-target","fi-rr-taxi","fi-rr-tennis","fi-rr-terrace","fi-rr-test-tube","fi-rr-test","fi-rr-text-check","fi-rr-text","fi-rr-thermometer-half","fi-rr-thumbs-down","fi-rr-thumbs-up","fi-rr-thumbtack","fi-rr-ticket","fi-rr-time-add","fi-rr-time-check","fi-rr-time-delete","fi-rr-time-fast","fi-rr-time-forward-sixty","fi-rr-time-forward-ten","fi-rr-time-forward","fi-rr-time-half-past","fi-rr-time-oclock","fi-rr-time-past","fi-rr-time-quarter-past","fi-rr-time-quarter-to","fi-rr-time-twenty-four","fi-rr-tool-crop","fi-rr-tool-marquee","fi-rr-tooth","fi-rr-tornado","fi-rr-train-side","fi-rr-train","fi-rr-transform","fi-rr-trash","fi-rr-treatment","fi-rr-tree-christmas","fi-rr-tree","fi-rr-triangle","fi-rr-trophy","fi-rr-truck-side","fi-rr-umbrella","fi-rr-underline","fi-rr-undo-alt","fi-rr-undo","fi-rr-unlock","fi-rr-upload","fi-rr-usb-pendrive","fi-rr-user-add","fi-rr-user-delete","fi-rr-user-remove","fi-rr-user-time","fi-rr-user","fi-rr-utensils","fi-rr-vector-alt","fi-rr-vector","fi-rr-venus-double","fi-rr-venus-mars","fi-rr-venus","fi-rr-video-camera","fi-rr-volleyball","fi-rr-volume","fi-rr-wheelchair","fi-rr-wifi-alt","fi-rr-wind","fi-rr-woman-head","fi-rr-world","fi-rr-yen","fi-rr-zoom-in","fi-rr-zoom-out"];
+    var el = document.getElementById('uicons-list');
+    names.forEach(function(n) {
+      var card = document.createElement('div');
+      card.className = 'icon-card';
+      var icon = document.createElement('i');
+      icon.className = n;
+      icon.setAttribute('aria-hidden', 'true');
+      var label = document.createElement('span');
+      label.className = 'icon-name';
+      label.textContent = n;
+      var code = document.createElement('code');
+      code.title = 'Клик — копировать';
+      code.textContent = '<i class="' + n + '"></i>';
+      card.appendChild(icon);
+      card.appendChild(label);
+      card.appendChild(code);
+      el.appendChild(card);
+    });
+    document.addEventListener('click', function(e) {
+      var codeEl = e.target.closest('code');
+      if (!codeEl || !codeEl.title) return;
+      e.preventDefault();
+      var text = codeEl.textContent;
+      if (!navigator.clipboard || !navigator.clipboard.writeText) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (err) {}
+        document.body.removeChild(ta);
+      } else {
+        navigator.clipboard.writeText(text).catch(function() {});
+      }
+      var orig = codeEl.textContent;
+      codeEl.textContent = 'Скопировано';
+      setTimeout(function() { codeEl.textContent = orig; }, 1200);
+    });
+  </script>
+</body>
+</html>

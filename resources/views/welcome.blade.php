@@ -505,7 +505,7 @@
                 <div class="mb-50"><a class="btn btn-brand-4-sm" href="#">{{ __('Руководители команды и проекта') }}</a>
                     <h3 class="mt-20 neutral-0">{{ __('Команда, которая строит новый стандарт проектного запуска') }}</h3>
                 </div>
-                <div class="testimonials-stack mt-30">
+                <div class="testimonials-stack mt-30" id="onwer">
                     <div class="card-testimonial-3 mb-30 ">
                         <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/img-review.png') }}" alt="{{ config('app.name') }}"></div>
                         <div class="card-info">
