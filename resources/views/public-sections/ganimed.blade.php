@@ -5,7 +5,7 @@
     $pageTitle = __('ГАНИМЕД');
 @endphp
 {{-- ГАНИМЕД --}}
-<section class="section-box wow animate__animated animate__fadeIn ganimed-hero animated pt-80" style="visibility: visible;" id="ganimed-hero">
+<section class="section-box wow animate__animated animate__fadeIn ganimed-hero animated pt-130" style="visibility: visible;" id="ganimed-hero">
     <div class="container">
         <div class="text-center"><a class="btn btn-brand-5" href="#">{{__('Гибридный блокчейн')}}</a>
             <h1 class="display-1 neutral-0 text-semibold pt-3">{{__('ГАНИМЕД')}}</h1>
