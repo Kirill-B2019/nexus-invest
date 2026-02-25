@@ -27,7 +27,99 @@
 </section>
 
 {{-- ОПЕРАЦИОННАЯ МОДЕЛЬ И ОСОБЕННОСТИ --}}
-<section class="section-box wow fadeIn box-preparing-2">
+<section class="section-box wow animate__animated animate__fadeIn box-how-it-work animated box-pricing-2" style="visibility: visible;">
+    <div class="container"><a class="btn btn-brand-4-sm" href="#">{{__('Особенности')}}</a>
+        <h2 class="mt-15 mb-20">{{__('Как устроена витрина проектов')}}</h2>
+        <p class="text-lg neutral-500 mb-55">Bole nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo conididunt ut labore et dolore<br class="d-none d-lg-block">magna aliqua ut enim ad minim veniam</p>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="box-border-rounded">
+                    <div class="card-casestudy">
+                        <div class="card-title">
+                            <h6><span class="number">1</span>{{__('Интерактивная проектная карта России')}}</h6>
+                        </div>
+                        <div class="card-desc">
+                            <p>{{__('На экране пользователь видит интерактивную карту РФ с метками всех проектов. ')}}</p>
+                            <p>{{__('Каждый маркер отражает проект в регионе, масштаб и сектор экономики.')}}</p>
+                            <p>{{__('Один клик по точке — и открывается карточка с ключевыми цифрами и токенами проекта.')}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="box-border-rounded">
+                    <div class="card-casestudy">
+                        <div class="card-title">
+                            <h6><span class="number">2</span>{{__('Каталоги по секторам и категориям')}}</h6>
+                        </div>
+                        <div class="card-desc">
+                            <p>{{__('Все проекты разложены по секторам: ИТ и финтех, девелопмент, промышленность, агро, логистика, энергетика и др.')}}</p>
+                            <p>{{__('Дополнительно доступны категории по стадии (Seed, Series A–C, действующий бизнес), размеру привлечения, региону и уровню риска.')}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="box-border-rounded">
+                    <div class="card-casestudy">
+                        <div class="card-title">
+                            <h6><span class="number">3</span>{{__('Виды привлечения капитала')}}</h6>
+                        </div>
+                        <div class="card-desc">
+                            <p>{{__('Платформа разделяет инструменты по механике привлечения: долевые токены, долговые инструменты, деривативы на корзину проектов, информация системы смягчения инвестиционных рисков. ')}}</p>
+                            <p>{{__('В карточке проекта сразу видно, какой тип инструмента используется.')}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="box-border-rounded">
+                    <div class="card-casestudy">
+                        <div class="card-title">
+                            <h6><span class="number">4</span>{{__('Витрина по видам дохода инвестора')}}</h6>
+                        </div>
+                        <div class="card-desc">
+                            <p>{{__('Отдельные фильтры помогают подбирать проекты по типу дохода: фиксированный процент, участие в прибыли, рост стоимости токена, комбинированные схемы.')}}</p>
+                            <p>{{__('Можно сразу отсечь всё, что не подходит под личную стратегию — от консервативного «купонного» портфеля до агрессивного роста капитала.')}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="box-border-rounded">
+                    <div class="card-casestudy">
+                        <div class="card-title">
+                            <h6><span class="number">5</span>{{__('Инвестиционный профиль и рекомендации')}}</h6>
+                        </div>
+                        <div class="card-desc">
+                            <p>{{__('Платформа совместно с ИИ-модулем учитывает профиль инвестора: горизонт инвестиций, желаемую доходность, отношение к риску.')}}</p>
+                            <p>{{__('На основе данного учета витрина предлагает подборки проектов и готовые корзины токенов.')}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="box-border-rounded">
+                    <div class="card-casestudy">
+                        <div class="card-title">
+                            <h6><span class="number">6</span>{{__('Связка с экосистемой и токенами НЕКСУС')}}</h6>
+                        </div>
+                        <div class="card-desc">
+                            <p>{{__('Каждый проект на витрине связан с токенами экосистемы НЕКСУС: базовыми, управляющими и страховыми.')}}</p>
+                            <p>{{__('Пользователь видит, как распределяются риски и доходы между токенами, и может строить сложные стратегии — от простых вложений в один проект до участия во всей экосистеме.')}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<section class="section-box wow fadeIn box-preparing-2 box-pricing-2">
     <div class="container">
         <div class="text-center">
             <h2 class="mb-15">{{ __('ОПЕРАЦИОННАЯ МОДЕЛЬ И ОСОБЕННОСТИ') }}</h2>
@@ -78,32 +170,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <div class="box-border-rounded">
-                            <div class="card-casestudy">
-                                <div class="card-title"><h6><span class="number"><i class="fi-rr-shuffle small"></i></span>{{__('Денежные потоки и выплаты')}}</h6></div>
-                                <div class="card-desc"><p>{{ __('Эскроу‑счета и смарт‑контракты для автоматических выплат купона и погашения. Прозрачный учёт поступлений от проектов, распределение средств инвесторам в режиме реального времени.') }}</p></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="box-border-rounded">
-                            <div class="card-casestudy">
-                                <div class="card-title"><h6><span class="number"><i class="fi-rr-shield small"></i></span>{{__('Контур соответствия (комплаенс) и безопасности')}}</h6></div>
-                                <div class="card-desc"><p>{{ __('KYC через Госуслуги, мониторинг ПОД/ФТ, соответствие 259-ФЗ, 289-ФЗ, 115-ФЗ, 152-ФЗ. ИБ‑аудит, защита данных по ГОСТ, интеграция с реестрами ЦБ.') }}</p></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="box-border-rounded">
-                            <div class="card-casestudy">
-                                <div class="card-title"><h6><span class="number"><i class="fi-rr-diamond small"></i></span>{{__('Роль AI')}}</h6></div>
-                                <div class="card-desc"><p>{{ __('AI‑скоринг проектов (50+ параметров, решение за 24–48 ч), аналитика портфеля, риск‑оценка, автоматические отчёты, стратегические дашборды и прогнозы доходности.') }}</p></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <div class="col-12 col-md-4">
                 <div class="box-border-rounded">
