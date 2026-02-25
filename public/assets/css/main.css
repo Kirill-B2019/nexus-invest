@@ -196,6 +196,13 @@
   }
 }
 
+/* Welcome hero-5: фон box-banner-left */
+.hero-5 .box-banner-left {
+    background-image: url('../imgs/page/homepage1/welcome-hero.png');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 /* Hero-5: первая карточка — col-12, картинка слева, текст справа */
 .hero-5-col-cards .card-features-5-first {
     display: flex;
