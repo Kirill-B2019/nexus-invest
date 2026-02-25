@@ -140,8 +140,6 @@
         </div>
     </div>
 </section>
-
-
 {{-- Характеристики --}}
 <section class="section-box wow animate__animated animate__fadeIn box-preparing-3 animated" style="visibility: visible;">
     <div class="container">
@@ -261,34 +259,74 @@
         </div>
     </div>
 </section>
-
 {{-- Процесс реализации --}}
-<section class="section-box wow fadeIn box-preparing-2" id="implementation">
+<section class="section-box wow fadeIn" id="ignd-steps">
     <div class="container">
-        <h2 class="text-center mb-30">{{ __('Процесс реализации и дорожная карта') }}</h2>
-        <div class="row">
-            <div class="col-12 col-lg-10 mx-auto">
-                <div class="box-border-rounded">
-                    <div class="card-casestudy">
-                        <div class="card-desc">
-                            <p class="text-lg neutral-700 mb-3">{{ __('Внедрение ГАНИМЕД в рамках экосистемы НЕКСУС и соответствие регуляторике:') }}</p>
-                            <ul class="list-checked text-sm neutral-600">
-                                <li>{{ __('Регистрация как оператор информационной системы в реестре ЦБ РФ (259-ФЗ), минимальный размер собственных средств 50 млн руб., правила ИС, утверждённые ЦБ.') }}</li>
-                                <li>{{ __('Сертификация ФСБ (СКЗИ): криптоядро, архитектура, хранение ключей; испытания и выдача сертификата соответствия.') }}</li>
-                                <li>{{ __('Соответствие 115-ФЗ (ПОД/ФТ), 152-ФЗ (персональные данные), 187-ФЗ (КИИ), 289-ФЗ (цифровые платформы).') }}</li>
-                                <li>{{ __('Критический этап (0–6 мес): завершение Core, Tokens, VM; нагрузочные тесты 1000 TPS; ГОСТ-интеграция; beta launch.') }}</li>
-                                <li>{{ __('Средний этап (6–12 мес): zk-EVM, DAG-оптимизация, UI (Explorer, Wallet, DevPanel), полная документация API.') }}</li>
-                                <li>{{ __('Долгосрочный этап (12–24 мес): шардинг, мосты (IBC, LayerZero, Wormhole), 5000+ TPS, 100+ валидаторов.') }}</li>
-                                <li>{{ __('Стратегический этап (24–36 мес): полная децентрализация DAO, экспансия СНГ/БРИКС.') }}</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="text-center mb-60">
+            <h2 class="heading-2 neutral-0 mb-20">{{ __('Процесс реализации') }}</h2>
+            <p class="text-lg neutral-600">{{ __('Внедрение ГАНИМЕД в рамках экосистемы НЕКСУС и соответствие регуляторике') }}</p>
+        </div>
+        <div class="ignd-steps-list">
+            <x-guest.ignd-step
+                :number="1"
+                :title="__('')"
+                :paragraphs="[
+                    __('Регистрация как оператор информационной системы в реестре ЦБ РФ (259-ФЗ), минимальный размер собственных средств 50 млн руб., правила ИС, утверждённые ЦБ.'),
+                ]"
+            />
+            <x-guest.ignd-step
+                :number="2"
+                :title="__('Сертификация ФСБ (СКЗИ)')"
+                :paragraphs="[
+                    __('криптоядро, архитектура, хранение ключей; испытания и выдача сертификата соответствия.'),
+                ]"
+            />
+            <x-guest.ignd-step
+                :number="3"
+                :title="__('Соответствие')"
+                :paragraphs="[
+                    __('115-ФЗ (ПОД/ФТ).'),
+                    __('152-ФЗ (персональные данные).'),
+                    __('187-ФЗ (КИИ).'),
+                    __('289-ФЗ (цифровые платформы).'),
+                ]"
+            />
+            <x-guest.ignd-step
+                :number="4"
+                :title="__('Критический этап (0–6 мес):')"
+                :paragraphs="[
+                    __('завершение Core, Tokens, VM.'),
+                    __('нагрузочные тесты 1000 TPS; ГОСТ-интеграция.'),
+                    __('бата запуск - тестовая сеть запущена.'),
+                ]"
+            />
+            <x-guest.ignd-step
+                :number="5"
+                :title="__('Средний этап (6–12 мес):')"
+                :paragraphs="[
+                    __('zk-EVM, DAG-оптимизация.'),
+                    __('UI (Explorer, Wallet, DevPanel).'),
+                    __('полная документация API.'),
+                ]"
+            />
+            <x-guest.ignd-step
+                :number="6"
+                :title="__('Долгосрочный этап (12–24 мес):')"
+                :paragraphs="[
+                    __('шардинг, мосты (IBC, LayerZero, Wormhole), 5000+ TPS, 100+ валидаторов.'),
+                ]"
+            />
+            <x-guest.ignd-step
+                :number="7"
+                :title="__('Стратегический этап (24–36 мес):')"
+                :paragraphs="[
+                    __('полная децентрализация DAO.'),
+                    __('подготовка и начало экспансии СНГ/БРИКС'),
+                ]"
+            />
         </div>
     </div>
 </section>
-
 {{-- Структура монет --}}
 <section class="section-box wow fadeIn box-preparing-2" id="coin-structure">
     <div class="container">
@@ -329,7 +367,6 @@
         </div>
     </div>
 </section>
-
 {{-- Описание стандарта --}}
 <section class="section-box wow fadeIn box-preparing-2" id="standard">
     <div class="container">
@@ -349,7 +386,6 @@
         </div>
     </div>
 </section>
-
 {{-- Дополнительная информация: репозиторий GND_v1 --}}
 <section class="section-box wow fadeIn box-preparing-2" id="gnd-v1">
     <div class="container">
