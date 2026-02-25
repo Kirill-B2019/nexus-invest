@@ -27,7 +27,7 @@
     </div>
 </section>
 {{-- Прогнозируемые риски  для инвесторов--}}
-<section class="section-box box-companion ">
+<section class="section-box box-companion fadeIn ">
     <div class="container">
         <div class="row align-items-end">
             <div class="col-12 col-lg-8 mb-30">

@@ -233,32 +233,85 @@
         </div>
     </div>
 </section>
-{{-- Ключевые особенности --}}
-<section class="section-box wow fadeIn box-preparing-2" id="features">
+
+{{-- Монеты --}}
+<section class="section-box wow fadeIn box-our-track box-pricing-2">
     <div class="container">
-        <h2 class="text-center mb-30">{{ __('Ключевые особенности') }}</h2>
-        <div class="row">
-            <div class="col-12 col-lg-10 mx-auto">
-                <div class="box-border-rounded">
-                    <div class="card-casestudy">
-                        <div class="card-desc">
-                            <ul class="list-checked text-sm neutral-600">
-                                <li>{{ __('Гибридный консенсус PoSA: динамическое переключение PoS ↔ PoA для публичных и корпоративных сегментов.') }}</li>
-                                <li>{{ __('Стандарт GNDst-1: расширенный ERC-20 с нативной поддержкой KYC/AML, Travel Rule, кросс-чейн.') }}</li>
-                                <li>{{ __('AI-защита (GNN): обнаружение аномалий и мошенничества, предиктивное масштабирование.') }}</li>
-                                <li>{{ __('Двухтокеновая модель: GND (утилитарный, 1 млрд) — gas, стейкинг, DeFi; GANI (управление, 100 млн) — голосование в DAO.') }}</li>
-                                <li>{{ __('ГОСТ-криптография (34.10/34.11/34.12) через КриптоПро CSP; двойная юрисдикция РФ и международные площадки.') }}</li>
-                                <li>{{ __('Вторичный рынок СФОРДЕКС: торговля ЦФА 24/7, AMM, маркет-мейкинг; комиссии &lt; $0,01 за транзакцию.') }}</li>
-                                <li>{{ __('REST API, JSON-RPC (Ethereum-совместимый), WebSocket API для событий в реальном времени.') }}</li>
-                                <li>{{ __('Неизменяемый реестр, выпуск и учёт ЦФА по 259-ФЗ, интеграция с реестрами ЦБ РФ.') }}</li>
-                            </ul>
+        <div class="row align-items-lg-start align-items-center">
+            <div class="col-12 mb-40 order-1 order-lg-2">
+                <div class="box-padding-left-50">
+                    <div class="btn btn-brand-4-sm mb-20">{{ __('Нативные монеты ГАНИМЕД') }}</div>
+                    <h2 class="heading-2 mb-20 uppercase">{{ __('Токены и стандарт GNDst-1') }}</h2>
+                    <p class="text-lg neutral-700">
+                        {{__('Создать единую цифровую инфраструктуру для привлечения капитала в реальные проекты (бизнес,девелопмент, инфраструктура, ГЧП).') }}
+                        <br>{{__('Обеспечить законный, технологичный и ликвидный рынок цифровых активов, доступный как для частных, так и для институциональных инвесторов.') }}
+                        <br>{{__('Предоставить возможность реализации продукции и услуг, запущенных через экосистему, проектов, возможность постпроектного сопровождения.') }}
+                    </p>
+
+                    {{-- Как это работает --}}
+                    <p class="text-lg neutral-500 mb-55">{{ __('Простой старт и достижение ваших целей.') }}</p>
+                    <div class="row block-steps-badges">
+                        <div class="col-12 col-lg-4">
+                            <div class="box-border-rounded">
+                                <div class="card-casestudy">
+                                    <div class="card-title"><h6>{{ __('Двухтокеновая модель GND + GANI') }}</h6></div>
+                                    <div class="card-desc">
+                                        <div class="card-title"><h6><span class="number">1</span>{{ __('Токен GND (утилитарный)') }}</h6></div>
+                                        <div class="card-desc">
+                                            <p class="text-md neutral-800 mb-0">{{ __('Нативный утилитарный токен сети.') }}</p>
+                                            <p class="mb-0">{{ __('Общая эмиссия 1 млрд. ') }}</p>
+                                            <p class="text-md  neutral-800">{{ __('Функции:') }}</p>
+                                            <p class="mb-0">{{ __('- oплата комиссий (gas). ') }}</p>
+                                            <p class="mb-0">{{ __('- стейкинг валидаторов') }}</p>
+                                            <p class="mb-0">{{ __('- обеспечение DeFi') }}</p>
+                                            <p class="mb-0">{{ __('- обеспечение мостов (оракулов)') }}</p>
+                                            <p class="mb-0">{{ __('Деривативный токен на проектные токены и активы в СФОРДЕКС') }}</p>
+                                            <p class="mb-2">{{ __('Инфляционная модель +2–5% в год для вознаграждения валидаторов, 50% комиссий сжигается, создавая дефляционное давление.') }}</p>
+                                            </div>
+                                        <div class="card-title"><h6><span class="number">2</span>{{ __('Токен GANI (управление)') }}</h6></div>
+                                        <div class="card-desc">
+                                            <p class="text-md neutral-800">{{ __('Токен управления сетью, используемый для голосования и управления экосистемой.') }}</p>
+                                            <p>{{ __('Фиксированная эмиссия 100 млн. ') }}</p>
+                                            <p>{{ __('Право голоса в DAO по параметрам протокола, казначейству, стратегическим партнёрствам. ') }}</p>
+                                            <p>{{ __('Механика vote-escrow: блокировка до 4 лет даёт множитель до 2× к силе голоса. ') }}</p>
+                                            <p>{{ __('Кворум ≥ 10% GANI при подтверждении эскроу.') }}</p>
+                                            <p>{{ __('Критические решения принимаются при ≥ 66%.') }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="box-border-rounded">
+                                <div class="card-casestudy">
+                                    <div class="card-title"><h6>{{ __('Стандарт токенов GNDst-1') }}</h6></div>
+                                    <div class="card-desc">
+                                        <p class="text-md neutral-700">{{ __('GNDst-1 (GANIMED Standard Token v1) — расширенный стандарт токенов, совместимый с ERC-20 и дополненный функциями для токенизации RWA и соблюдения регуляторных требований. ') }}</p>
+                                        <p class="text-md neutral-700">{{ __('Модули:') }}</p>
+                                        <p>{{ __('KYC/AML (whitelist/blacklist') }}</p>
+                                        <p>{{ __('Интеграция Sumsub/Blockpass через оракулы') }}</p>
+                                        <p>{{ __('Travel Rule (данные отправителя/получателя для переводов свыше порога) ') }}</p>
+                                        <p>{{ __('Кросс-чейн (мосты GANIMED-cross (собственный), IBC, LayerZero, Wormhole V2).') }}</p>
+                                        <p>{{ __('Снапшоты состояний для начисления дивидендов/дохода.') }}</p>
+                                        <p>{{ __('Модель управления доступом RBAC (Owner, Compliance Officer, Minter, Pauser).') }}</p>
+                                        <p class="text-md neutral-700">{{ __('Стандарт обеспечивает совместимость с экосистемой НЕКСУС, вторичным рынком СФОРДЕКС и цифровым депозитарием. ') }}</p>
+                                        <p class="text-md neutral-700">{{ __('Техническая документация (API v1.0) доступна в разделе ')}} <a href="{{route('documentation')}}"> {{__('«Документация».') }}</a> {{__('.') }}</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <img class="wow fadeInUp w-80" src="{{ asset('assets/imgs/page/homepage1/gndgani.png') }}" alt="{{ config('app.name') }}">
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 {{-- Процесс реализации --}}
 <section class="section-box wow fadeIn" id="ignd-steps">
     <div class="container">
@@ -327,87 +380,4 @@
         </div>
     </div>
 </section>
-{{-- Структура монет --}}
-<section class="section-box wow fadeIn box-preparing-2" id="coin-structure">
-    <div class="container">
-        <h2 class="text-center mb-30">{{ __('Двухтокеновая модель GND + GANI') }}</h2>
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <div class="box-border-rounded">
-                    <div class="card-casestudy">
-                        <div class="card-title"><h6><span class="number">1</span>{{ __('Токен GND (утилитарный)') }}</h6></div>
-                        <div class="card-desc">
-                            <p>{{ __('Нативный утилитарный токен сети: общая эмиссия 1 млрд. Функции: оплата комиссий (gas), стейкинг валидаторов, обеспечение DeFi, мосты. Инфляционная модель +2–5% в год для вознаграждения валидаторов. 50% комиссий сжигается (burn), создавая дефляционное давление. Минимальный стейк валидатора определяется через governance.') }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="box-border-rounded">
-                    <div class="card-casestudy">
-                        <div class="card-title"><h6><span class="number">2</span>{{ __('Токен GANI (управление)') }}</h6></div>
-                        <div class="card-desc">
-                            <p>{{ __('Токен управления: фиксированный cap 100 млн. Право голоса в DAO по параметрам протокола, казначейству, стратегическим партнёрствам. Механика vote-escrow: блокировка до 4 лет даёт множитель до 2× к силе голоса. Кворум ≥ 10% GANI в vote-escrow; критические решения принимаются при ≥ 66%.') }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-30">
-            <div class="col-12">
-                <div class="box-border-rounded">
-                    <div class="card-casestudy">
-                        <div class="card-desc">
-                            <p class="text-lg neutral-700">{{ __('Правовая квалификация: GND и GANI не являются ценными бумагами — не предоставляют прав на дивиденды или управление юридическими лицами. GND даёт утилитарные права (gas, стейкинг), GANI — право голоса в DAO. Окончательная квалификация — за регуляторами (ЦБ РФ и др.).') }}</p>
-                            <p class="text-lg neutral-700">{{ __('Выпуск и учёт цифровых финансовых активов (ЦФА) по 259-ФЗ осуществляются поверх платформы: токены представляют права на проектные активы (долг, долевое участие, доходные права) и учитываются в реестре и депозитарии.') }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-{{-- Описание стандарта --}}
-<section class="section-box wow fadeIn box-preparing-2" id="standard">
-    <div class="container">
-        <h2 class="text-center mb-30">{{ __('Стандарт токенов GNDst-1') }}</h2>
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="box-border-rounded">
-                    <div class="card-casestudy">
-                        <div class="card-desc">
-                            <p class="text-lg neutral-700">{{ __('GNDst-1 (GANIMED Standard Token v1) — расширенный стандарт токенов, совместимый с ERC-20 и дополненный функциями для токенизации RWA и соблюдения регуляторных требований. Модули: KYC/AML (whitelist/blacklist, интеграция Sumsub/Blockpass через оракулы); Travel Rule (данные отправителя/получателя для переводов свыше порога); кросс-чейн (мосты IBC, LayerZero, Wormhole V2); снапшоты состояний для начисления дивидендов/дохода; RBAC (Owner, Compliance Officer, Minter, Pauser).') }}</p>
-                            <p class="text-lg neutral-700">{{ __('Типовая схема токенизации недвижимости на ГАНИМЕД: правовое структурирование (SPV); выпуск токенов GNDst-1 с kycRequired и whitelist инвесторов; модуль распределения дохода (арендные платежи через смарт-контракт); снимки для фиксации распределения; регистрация ЦФА в ЦБ РФ или в юрисдикции площадки; обращение на СФОРДЕКС или DEX.') }}</p>
-                            <p class="text-lg neutral-700">{{ __('Стандарт обеспечивает совместимость с экосистемой НЕКСУС, вторичным рынком СФОРДЕКС и цифровым депозитарием. Техническая документация (API v1.0) доступна в разделе «Документация».') }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-{{-- Дополнительная информация: репозиторий GND_v1 --}}
-<section class="section-box wow fadeIn box-preparing-2" id="gnd-v1">
-    <div class="container">
-        <h2 class="text-center mb-30">{{ __('Дополнительная информация: репозиторий GND_v1') }}</h2>
-        <p class="text-center text-lg neutral-700 mb-4">{{ __('Репозиторий GND_v1 — открытый источник с эталонной реализацией и технической документацией блокчейна ГАНИМЕД. В нём описаны архитектура, API, консенсус, токены и интеграции.') }}</p>
-        <div class="row justify-content-center">
-            <div class="col-12 col-lg-9">
-                <div class="box-border-rounded">
-                    <div class="card-casestudy">
-                        <div class="card-desc">
-                            <ul class="list-checked text-sm neutral-600 mb-0">
-                                <li>{{ __('Архитектура: ядро (блоки, транзакции, состояние, мемпул, комиссии GND, кошельки), консенсус PoS/PoA с динамическим переключением, EVM-подобная VM и смарт-контракты (Solidity), универсальный интерфейс токенов (ERC-20, TRC-20, кастомные), интеграция (оракулы, мосты, IPFS), мониторинг и аудит.') }}</li>
-                                <li>{{ __('API: REST (блоки, транзакции, балансы, деплой и вызов контрактов), JSON-RPC 2.0 (blockchain_*, state_*, contract_*, token_*), WebSocket для событий в реальном времени; аутентификация X-API-Key, лимитирование по IP.') }}</li>
-                                <li>{{ __('Адреса: форматы GND1… (аккаунты) и GNDct1… (контракты); комиссии и gas оплачиваются в GND; GND используется для стейкинга в PoS и оплаты операций в PoA.') }}</li>
-                                <li>{{ __('Документация в репозитории: architecture.md, api.md, consensus.md, contracts.md, tokens.md, integration.md, описание структуры и кошельков.') }}</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-       </div>
-</section>
-
 @endsection
