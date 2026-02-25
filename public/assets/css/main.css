@@ -10,6 +10,14 @@
     background-position: left top;
 }
 
+/* Features: секция «ОПЕРАЦИОННАЯ МОДЕЛЬ И ОСОБЕННОСТИ» — фон map-rf по центру */
+#features-operational-model {
+    background-image: url(../imgs/page/homepage1/map-rf.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 :root {
   /* Основной акцент */
   --color-primary: #C5FF41;
@@ -1378,6 +1386,44 @@ html, body {
     color: #898A8A;
 }
 .card-preparing-3:hover .card-image {
+    color: var(--color-primary);
+}
 
+/* box-futures-component — дубликат .box-faqs-list */
+.box-futures-component {
+    border: 1px solid #434445;
+    background-color: var(--color-surface-dark);
+    border-radius: 32px;
+    padding: 17px 35px 17px 35px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+}
+.box-futures-component .item-faqs {
+    width: 33.33%;
+    padding: 0px 20px;
+}
+@media (max-width: 1199.98px) {
+    .box-futures-component .item-faqs {
+        width: 50%;
+    }
+}
+@media (max-width: 991.98px) {
+    .box-futures-component {
+        padding: 17px 15px 17px 15px;
+    }
+    .box-futures-component .item-faqs {
+        padding: 0px 10px;
+    }
+}
+@media (max-width: 575.98px) {
+    .box-futures-component .item-faqs {
+        width: 100%;
+    }
+    .box-futures-component {
+        padding: 50px 0px 17px 0px;
+    }
+}
+.box-futures-component:hover .card-info h5 {
     color: var(--color-primary);
 }
