@@ -1,5 +1,13 @@
 @extends('layouts.guest.guest')
 
+@section('metaDescription')
+{{ config('app.name') }} — {{ __('Полнофункциональная платформа быстрого запуска и финансирования проектов через цифровые активы и токенизацию. Постпроектное сопровождение, реализация результатов.') }}
+@endsection
+
+@section('metaKeywords')
+{{ __('главная, НЕКСУС, токенизация, ЦФА, блокчейн, ГАНИМЕД, проектное финансирование, RWA') }}
+@endsection
+
 @section('content')
 {{-- HERO-блок --}}
 <section class="section-box">

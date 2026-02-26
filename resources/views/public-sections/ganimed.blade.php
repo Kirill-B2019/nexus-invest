@@ -1,5 +1,13 @@
 @extends('layouts.guest.guest')
 
+@section('metaDescription')
+{{ config('app.name') }} — {{ __('ГАНИМЕД — умный блокчейн с ГОСТ‑криптографией, встроенным комплаенсом и AI‑управлением в экосистеме НЕКСУС для токенизации реальных активов.') }}
+@endsection
+
+@section('metaKeywords')
+{{ __('ГАНИМЕД, блокчейн, НЕКСУС, ГОСТ, токенизация, ЦФА, комплаенс') }}
+@endsection
+
 @section('content')
 @php
     $pageTitle = __('ГАНИМЕД');

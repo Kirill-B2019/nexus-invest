@@ -1,5 +1,13 @@
 @extends('layouts.guest.guest')
 
+@section('metaDescription')
+{{ config('app.name') }} — {{ __('Документация: условия использования платформы, политики и соглашения.') }}
+@endsection
+
+@section('metaKeywords')
+{{ __('документация, НЕКСУС, правила, политики, условия использования') }}
+@endsection
+
 @push('styles')
 <style>
 @media (min-width: 992px) {

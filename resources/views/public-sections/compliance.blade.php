@@ -1,5 +1,13 @@
 @extends('layouts.guest.guest')
 
+@section('metaDescription')
+{{ config('app.name') }} — {{ __('Юридическое и нормативное соответствие экосистемы НЕКСУС законодательству Российской Федерации.') }}
+@endsection
+
+@section('metaKeywords')
+{{ __('соответствие, НЕКСУС, законодательство, 259-ФЗ, ЦФА, нормативы') }}
+@endsection
+
 @section('content')
 @php
     $pageTitle = __('Соответствие');

@@ -1,5 +1,13 @@
 @extends('layouts.guest.guest')
 
+@section('metaDescription')
+{{ config('app.name') }} — {{ __('Система смягчения инвестиционных рисков НЕКСУС (токен iGND).') }}
+@endsection
+
+@section('metaKeywords')
+{{ __('iGND, риски, НЕКСУС, инвестиции, смягчение рисков') }}
+@endsection
+
 @section('content')
 @php
     $pageTitle = __('Система смягчения инвестиционных рисков НЕКСУС (токен iGND)');

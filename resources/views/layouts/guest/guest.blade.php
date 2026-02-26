@@ -6,8 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="msapplication-TileColor" content="#0E0E0E">
     <meta name="template-color" content="#0E0E0E">
-    <meta name="description" content="{{ $metaDescription ?? config('app.name') . ' - ' . __('Публичная страница') }}">
-    <meta name="keywords" content="{{ $metaKeywords ?? __('главная, страница') }}">
+    @php
+        $defaultMetaDescription = config('app.name') . ' - ' . __('Публичная страница');
+        $defaultMetaKeywords = __('главная, страница');
+    @endphp
+    <meta name="description" content="@yield('metaDescription', $defaultMetaDescription)">
+    <meta name="keywords" content="@yield('metaKeywords', $defaultMetaKeywords)">
     <meta name="author" content="KB @CerbeRus - Nexus Invest Team">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="zen-verification" content="K0H1Zjtz1fcqho7Y4wnB9NRcmHMocHkVIoMVPeC9m3QozrwKF7vzm4xrqgVJHPwy" />

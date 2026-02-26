@@ -1,5 +1,13 @@
 @extends('layouts.guest.guest')
 
+@section('metaDescription')
+{{ config('app.name') }} — {{ __('Операционная модель и ключевые особенности экосистемы НЕКСУС.') }}
+@endsection
+
+@section('metaKeywords')
+{{ __('особенности, НЕКСУС, экосистема, операционная модель') }}
+@endsection
+
 @section('content')
 @php
     $pageTitle = __('Особенности');
@@ -210,9 +218,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-md-4">
-
-            </div>
+            <div class="col-12 col-md-4"></div>
             <div class="col-12 col-md-4">
                 <div class="card-preparing-3 box-futures-component">
                     <div class="card-info">
@@ -221,6 +227,7 @@
                     </div>
                 </div>
             </div>
+            <div class="col-12 col-md-4"></div>
         </div>
     </div>
 </section>
