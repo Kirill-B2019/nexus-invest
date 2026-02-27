@@ -18,7 +18,7 @@
         loadingEl.classList.add("d-none");
         resultEl.classList.remove("d-none");
         checkboxEl.className = "ganimed-status-checkbox " + (ok ? "ganimed-status-ok" : "ganimed-status-fail");
-        textEl.textContent = ok ? "ОК, ответ - 200" : "False";
+        textEl.textContent = ok ? "Активен" : "Ошибка";
     }
 
     function setLoading() {
