@@ -17,7 +17,7 @@
                 <div class="row align-items-start">
                     <div class="col-12 col-lg-6 order-1 order-lg-1">
                         <div class="box-banner-left">
-                                <a class="btn btn-brand-5-new" href="{{ url('https://github.com/Kirill-B2019/GND_v1/tree/main/docs') }}"><span>{{ __('Работает на:') }}</span> {{ __('блокчейне ГАНИМЕД') }}</a>
+                                <a class="btn btn-brand-5-new" href="{{ url('https://main-node.gnd-net.com') }}"><span>{{ __('Работает на:') }}</span> {{ __('блокчейне ГАНИМЕД') }}</a>
                                 <p class="neutral-300 small pt-3 uppercase">{{ __('Новационная Единая Комплексная Система Управления Сделками') }}</p>
                                 <h6 class="display-6 neutral-200 text-semibold pt-3">{{ __('ПРОЕКТНОЕ ФИНАСИРОВАНИЕ') }}</h6>
                                 <h1 class="display-1 neutral-0 text-semibold pt-3">{{ __('НЕКСУС') }}</h1>

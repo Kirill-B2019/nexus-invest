@@ -1458,3 +1458,30 @@ html, body {
 .ganimed-status-btn {
     min-width: auto;
 }
+
+/* Мобильная верстка блока статуса ГАНИМЕД в футере */
+@media (max-width: 575.98px) {
+    .footer-ganimed-status-row .col-12 {
+        justify-content: flex-end;
+    }
+    #ganimed-node-status {
+        width: 100%;
+        max-width: 100%;
+    }
+    #ganimed-node-status > div:first-child {
+        width: 100%;
+        min-width: 0;
+    }
+    #ganimed-node-status .fw-semibold.neutral-0 {
+        max-width: 100%;
+        min-width: 0;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+    #ganimed-status-refresh {
+        min-height: 44px;
+        min-width: 44px;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
