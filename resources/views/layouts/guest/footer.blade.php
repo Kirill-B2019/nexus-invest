@@ -88,7 +88,7 @@
                     <div class="col-12 d-flex justify-content-end">
                         <div id="ganimed-node-status" class="d-flex flex-column align-items-end gap-1 text-sm" data-status-url="{{ route('api.ganimed.health') }}">
                             <div class="d-flex align-items-center gap-2 flex-wrap justify-content-end">
-                                <span class="neutral-0 fw-semibold">{{ __('Статус кросс-узла нод блокчейна ГАНИМЕД') }}</span>
+                                <span class="neutral-300 uppercase">{{ __('Статус кросс-узла нод блокчейна ГАНИМЕД') }}</span>
                                 <span id="ganimed-status-loading" class="text-sm neutral-500">{{ __('Загрузка…') }}</span>
                                 <span id="ganimed-status-result" class="d-none d-flex align-items-center gap-1">
                                     <span id="ganimed-status-checkbox" class="ganimed-status-checkbox" role="img" aria-hidden="true"></span>
