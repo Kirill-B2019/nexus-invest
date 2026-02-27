@@ -67,16 +67,35 @@
                             <div class="footer-progress-item">
                                 <div class="d-flex justify-content-between align-items-center mb-8">
                                     <span class="text-sm neutral-500">{{ __('MVP мастер-нода ГАНИМЕД') }}</span>
-                                    <span class="text-sm neutral-0 fw-semibold">84%</span>
+                                    <span class="text-sm neutral-0 fw-semibold">{{__('MVP запущен - ')}}100%</span>
                                 </div>
                                 <div class="progress footer-progress-bar">
-                                    <div class="progress-bar" role="progressbar" style="width: 84%" aria-valuenow="84" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 
-                                </div>
+                                </div><a href="https://main-node.gnd-net.com" target="_blank" rel="noopener noreferrer">
+                                    <span class="small neutral-500 text-right">{{ __('main-node.gnd-net.com') }}</span>
+                                    <span class="small neutral-0">|</span>
+                                </a>
                                 <a href="https://github.com/Kirill-B2019/GND_v1/tree/main/docs" target="_blank" rel="noopener noreferrer">
-                                    <span class="small neutral-800 text-right">{{ __('GND_v1/tree/main/docs') }}</span>
+                                    <span class="small neutral-500 text-right">{{ __('GND_v1/tree/main/docs') }}</span>
                                 </a>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- Статус кросс-узла нод блокчейна ГАНИМЕД: строка статуса + кнопка снизу, блок прижат вправо --}}
+                <div class="row footer-ganimed-status-row py-3">
+                    <div class="col-12 d-flex justify-content-end">
+                        <div id="ganimed-node-status" class="d-flex flex-column align-items-end gap-1 text-sm" data-status-url="{{ route('api.ganimed.health') }}">
+                            <div class="d-flex align-items-center gap-2 flex-wrap justify-content-end">
+                                <span class="neutral-0 fw-semibold">{{ __('Статус кросс-узла нод блокчейна ГАНИМЕД') }}</span>
+                                <span id="ganimed-status-loading" class="text-sm neutral-500">{{ __('Загрузка…') }}</span>
+                                <span id="ganimed-status-result" class="d-none d-flex align-items-center gap-1">
+                                    <span id="ganimed-status-checkbox" class="ganimed-status-checkbox" role="img" aria-hidden="true"></span>
+                                    <span id="ganimed-status-text" class="text-sm neutral-0"></span>
+                                </span>
+                            </div>
+                            <button type="button" id="ganimed-status-refresh" class="cookie-banner__btn cookie-banner__btn--reject">{{ __('Проверить') }}</button>
                         </div>
                     </div>
                 </div>

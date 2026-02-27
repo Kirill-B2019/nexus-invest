@@ -1427,3 +1427,34 @@ html, body {
 .box-futures-component:hover .card-info h5 {
     color: var(--color-primary);
 }
+
+/* Статус кросс-узла нод блокчейна ГАНИМЕД (футер публичной части) */
+.ganimed-status-checkbox {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.125rem;
+    height: 1.125rem;
+    border: 2px solid;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+.ganimed-status-checkbox.ganimed-status-ok {
+    background-color:  var(--color-badge-bg);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+.ganimed-status-checkbox.ganimed-status-fail {
+    background-color: #6b7280;
+    border-color: #6b7280;
+    color: transparent;
+}
+.ganimed-status-checkbox.ganimed-status-ok::after {
+    content: "✓";
+    font-size: 0.75rem;
+    font-weight: bold;
+    line-height: 1;
+}
+.ganimed-status-btn {
+    min-width: auto;
+}

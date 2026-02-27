@@ -1,0 +1,23 @@
+---
+description: CSS и JS публичной части — где хранить и как подключать
+globs: resources/views/**/*.blade.php, public/assets/css/**/*.css, public/assets/js/**/*.js
+alwaysApply: false
+---
+
+# CSS и JavaScript публичной части
+
+## Размещение файлов
+
+- **Стили публичной части:** `public/assets/css/`. Основной файл дополнений проекта — `public/assets/css/main.css`. Новые стили, относящиеся к публичным страницам (гостевой layout, welcome, features, footer и т.д.), добавлять в `main.css` или в отдельный файл в этой папке с последующим подключением в `resources/views/layouts/guest/guest.blade.php`.
+- **Скрипты публичной части:** `public/assets/js/`. Каждый отдельный функциональный модуль (виджет, форма, блок) — в отдельном файле, например `ganimed-status.js`, `cookie-banner.js`, `sweetalert-flash.js`. Подключение — в гостевом layout после необходимых зависимостей (jQuery, Bootstrap и т.д.).
+
+## Правила для IDE и разработки
+
+1. **Не дублировать стили и скрипты в Blade.** Избегать inline `<style>` и `<script>` с логикой или стилями в шаблонах. Выносить CSS в `public/assets/css/main.css` (или новый файл в `public/assets/css/`), JS — в отдельный файл в `public/assets/js/` и подключать через `<link>` / `<script src="{{ asset('assets/...') }}">` в соответствующем layout.
+2. **Один модуль — один файл.** Для нового поведения (виджет, кнопка, проверка) создавать отдельный .js-файл с понятным именем и подключать его в layout (гостевой — в `guest.blade.php`, ЛК — в layout ЛК).
+3. **Порядок подключения.** В гостевом layout: сначала vendor (jQuery, Bootstrap, плагины), затем `main.js`, затем тематические скрипты (`cookie-banner.js`, `sweetalert-flash.js`, `ganimed-status.js` и т.д.).
+4. **Версионирование.** Подключать с query-параметром версии, например `?v=1.0.0`, чтобы при обновлении стилей/скриптов браузер подхватывал новую версию (при необходимости менять версию в layout).
+
+## ЛК (закрытая часть)
+
+- Стили и скрипты ЛК — в `public/app/` (см. правило project-overview и blade-views). Не смешивать с публичными `public/assets/`.
