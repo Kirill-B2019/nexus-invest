@@ -27,6 +27,48 @@
                         </div>
                     </div>
                 </div>
+                {{-- Статус блокчейна ГАНИМЕД по block/latest: статус + данные блока, блок прижат вправо --}}
+                <div class="row footer-ganimed-status-row py-3">
+                    <div class="col-12">
+                        <div id="ganimed-node-status"
+                             class="d-flex flex-column align-items-start gap-2 text-sm w-100"
+                             data-status-url="{{ route('api.ganimed.block') }}">
+
+                            <!-- строка статуса -->
+                            <h5 class="neutral-0 mb-15 text-18-semibold">{{ __('Статус блокчейна ГАНИМЕД') }}</h5>
+                            <div class="d-flex flex-wrap align-items-center gap-2 justify-content-start w-100">
+
+                                <p></p><span id="ganimed-status-loading" class="text-sm neutral-500">{{ __('Загрузка…') }}</span>
+                                <span id="ganimed-status-result" class="d-none d-flex align-items-center gap-1">
+                                    <span id="ganimed-status-checkbox" class="ganimed-status-checkbox" role="img" aria-hidden="true"></span>
+                                    <span id="ganimed-status-text" class="text-sm neutral-200"></span>
+                                </span>
+                            </div>
+
+                            <!-- детали блока, тоже на всю ширину -->
+                            <div id="ganimed-block-details"
+                                 class="d-none text-start small neutral-500 w-100">
+                                <div><span class="neutral-600">{{ __('Высота блока:') }}</span> <span id="ganimed-block-height" class="text-sm neutral-200"></span></div>
+                                <div><span class="neutral-600">{{ __('Hash:') }}</span> <span id="ganimed-block-hash" class="text-sm neutral-200"></span></div>
+                                <div><span class="neutral-600">{{ __('Маркле:') }}</span> <span id="ganimed-block-merkle" class="text-sm neutral-200"></span></div>
+                                <div><span class="neutral-600">{{ __('Валидатор:') }}</span> <span id="ganimed-block-miner" class="text-sm neutral-200"></span></div>
+                                <div><span class="neutral-600">{{ __('Время окончания генерации:') }}</span> <span id="ganimed-block-updated" class="text-sm neutral-200"></span></div>
+                                <div class="d-flex align-items-center gap-1 justify-content-start">
+                                    <span class="neutral-600">{{ __('Финализирован:') }}</span>
+                                    <span id="ganimed-block-finalized" class="ganimed-status-checkbox ganimed-status-fail" role="img" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
+                            <!-- кнопка -->
+                            <button type="button"
+                                    id="ganimed-status-refresh"
+                                    class="cookie-banner__btn cookie-banner__btn--reject">
+                                {{ __('Проверить') }}
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
 
             </div>
             <div class="col-md-6 col-sm-12">
@@ -40,7 +82,6 @@
                             <li><a href="{{ asset('doc/NEXUS-KYCAMLPolicy-17022026 .pdf') }}">{{ __('KYC/AML‑политика НЕКСУС') }}</a></li>
                         </ul>
                     </div>
-
                     <div class="col-12 col-sm-6 mb-30">
                         <h5 class="neutral-0 mb-10 text-18-semibold">{{ __('Поддержка') }}</h5>
                         <ul class="menu-footer">
@@ -83,22 +124,8 @@
                         </div>
                     </div>
                 </div>
-                {{-- Статус кросс-узла нод блокчейна ГАНИМЕД: строка статуса + кнопка снизу, блок прижат вправо --}}
-                <div class="row footer-ganimed-status-row py-3">
-                    <div class="col-12 d-flex justify-content-end">
-                        <div id="ganimed-node-status" class="d-flex flex-column align-items-end gap-1 text-sm" data-status-url="{{ route('api.ganimed.health') }}">
-                            <div class="d-flex align-items-center gap-2 flex-wrap justify-content-end">
-                                <span class="text-sm neutral-500 ">{{ __('Статус блокчейна ГАНИМЕД') }}</span>
-                                <span id="ganimed-status-loading" class="text-sm neutral-500">{{ __('Загрузка…') }}</span>
-                                <span id="ganimed-status-result" class="d-none d-flex align-items-center gap-1">
-                                    <span id="ganimed-status-checkbox" class="ganimed-status-checkbox" role="img" aria-hidden="true"></span>
-                                    <span id="ganimed-status-text" class="text-sm neutral-0"></span>
-                                </span>
-                            </div>
-                            <button type="button" id="ganimed-status-refresh" class="cookie-banner__btn cookie-banner__btn--reject">{{ __('Проверить') }}</button>
-                        </div>
-                    </div>
-                </div>
+
+
             </div>
         </div>
 

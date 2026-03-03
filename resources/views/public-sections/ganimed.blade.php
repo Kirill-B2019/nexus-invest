@@ -15,7 +15,7 @@
 {{-- ГАНИМЕД --}}
 <section class="section-box wow animate__animated animate__fadeIn ganimed-hero animated pt-130" style="visibility: visible;" id="ganimed-hero">
     <div class="container">
-        <div class="text-center"><a class="btn btn-brand-5" href="#">{{__('Гибридный блокчейн')}}</a>
+        <div class="text-center"><a class="btn btn-brand-5" href="{{ url('https://main-node.gnd-net.com') }}" target="_blank" rel="noopener noreferrer">{{__('Гибридный блокчейн')}}</a>
             <h1 class="display-1 neutral-0 text-semibold pt-3">{{__('ГАНИМЕД')}}</h1>
             <h2 class="mb-25 mt-15 neutral-0">{{__(' в экосистеме')}} <br class="d-none d-lg-block">{{__('НЕКСУС')}}</h2>
             <p class="text-md neutral-300 mb-55">{{__(' умный блокчейн с ГОСТ‑криптографией, встроенным комплаенсом и AI‑управлением, ')}}<br class="d-none d-lg-block">{{__('созданный для токенизации реальных активов в российской юрисдикции.')}}</p>
@@ -262,7 +262,10 @@
                         <div class="col-12 col-lg-4">
                             <div class="box-border-rounded">
                                 <div class="card-casestudy">
-                                    <div class="card-title"><h6>{{ __('Двухтокеновая модель GND + GANI') }}</h6></div>
+                                    <div class="card-title d-flex align-items-center justify-content-between flex-wrap gap-2">
+                                            <h6 class="mb-0">{{ __('Двухтокеновая модель GND + GANI') }}</h6>
+                                            <a href="{{ route('ganimed.tokens') }}" class="btn btn-sm btn-brand-4-medium">{{ __('Подробнее') }}</a>
+                                        </div>
                                     <div class="card-desc">
                                         <div class="card-title"><h6><span class="number">1</span>{{ __('Токен GND (утилитарный)') }}</h6></div>
                                         <div class="card-desc">
