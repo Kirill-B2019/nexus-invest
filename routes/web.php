@@ -34,7 +34,7 @@ Route::get('/ganimed', GanimedController::class)->name('ganimed');
 Route::get('/ganimed/tokens', [GanimedController::class, 'tokens'])->name('ganimed.tokens');
 Route::get('/ignd', IgndController::class)->name('ignd');
 Route::get('/api/ganimed/health', GanimedHealthController::class)->name('api.ganimed.health');
-Route::get('/api/ganimed/block', GanimedBlockController::class)->name('api.ganimed.block');
+Route::get('/api/ganimed/block', [GanimedBlockController::class, '__invoke'])->name('api.ganimed.block');
 Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::middleware('throttle:10,1')->post('/api/captcha/new', [CaptchaController::class, 'new'])->name('api.captcha.new');

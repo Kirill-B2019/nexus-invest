@@ -42,6 +42,7 @@
                                 <span id="ganimed-status-result" class="d-none d-flex align-items-center gap-1">
                                     <span id="ganimed-status-checkbox" class="ganimed-status-checkbox" role="img" aria-hidden="true"></span>
                                     <span id="ganimed-status-text" class="text-sm neutral-200"></span>
+                                    https://scan.gnd-net.com
                                 </span>
                             </div>
 
@@ -57,6 +58,7 @@
                                     <span class="neutral-600">{{ __('Финализирован:') }}</span>
                                     <span id="ganimed-block-finalized" class="ganimed-status-checkbox ganimed-status-fail" role="img" aria-hidden="true"></span>
                                 </div>
+
                             </div>
 
                             <!-- кнопка -->
@@ -65,7 +67,7 @@
                                     class="cookie-banner__btn cookie-banner__btn--reject">
                                 {{ __('Проверить') }}
                             </button>
-
+                            <a class="btn btn-sm btn-brand-5-new small uppercase" href="{{ url('https://scan.gnd-net.com') }}" target="_blank" rel="noopener noreferrer">{{ __('Сканер ГАНИМЕД - scan.gnd-net.com') }}</a>
                         </div>
                     </div>
                 </div>

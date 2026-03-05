@@ -78,6 +78,7 @@
         </div>
         <div class="text-center mt-80">
             <p class="text-xl neutral-0">{{__('Блокчейн для ')}}<span class="color-green">{{__('реальных активов и реального права')}}</span></p>
+            <a class="btn btn-brand-5 mt-2 uppercase" href="{{ url('https://scan.gnd-net.com') }}" target="_blank" rel="noopener noreferrer">{{__('Сканер ГАНИМЕД - scan.gnd-net.com')}}</a>
         </div>
     </div>
 </section>
