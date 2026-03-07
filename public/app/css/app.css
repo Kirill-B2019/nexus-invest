@@ -594,8 +594,46 @@
   vertical-align: middle;
 }
 
+/* Подсветка строки при наведении: контрастный фон, надписи ярко и читаемо */
 #app-container .table tbody tr:hover {
-  background: var(--app-color-surface);
+  background: rgba(197, 255, 65, 0.28);
+}
+#app-container .table tbody tr:hover td {
+  color: #0a0a0a !important;
+  font-weight: 600;
+  text-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+#app-container .table tbody tr:hover td a {
+  color: #0a0a0a !important;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+#app-container .table tbody tr:hover td.text-muted,
+#app-container .table tbody tr:hover td.small {
+  color: #1a1a1a !important;
+  opacity: 1;
+  font-weight: 500;
+}
+#app-container .table tbody tr:hover .badge {
+  filter: brightness(0.92);
+}
+#app-container.body-theme-dark .table tbody tr:hover {
+  background: rgba(197, 255, 65, 0.22);
+}
+#app-container.body-theme-dark .table tbody tr:hover td {
+  color: #ffffff !important;
+  font-weight: 600;
+  text-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+#app-container.body-theme-dark .table tbody tr:hover td a {
+  color: var(--app-color-primary) !important;
+  font-weight: 700;
+}
+#app-container.body-theme-dark .table tbody tr:hover td.text-muted,
+#app-container.body-theme-dark .table tbody tr:hover td.small {
+  color: rgba(255, 255, 255, 0.9) !important;
+  opacity: 1;
 }
 
 #app-container .form-control {

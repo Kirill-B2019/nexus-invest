@@ -22,6 +22,15 @@ alwaysApply: false
 В контроллерах и middleware при редиректе на публичные страницы использовать, например:  
 `->with('info', __('Текст сообщения'))` или `->with('success', ...)` и т.д.
 
+## Показ из своего JS (кнопки, коллбэки)
+
+При вызове SweetAlert2 из скриптов (например по клику «Применить» в фильтрах карты регионов) **использовать тему публичной части**, как при ошибке подписки в footer (образец — `sweetalert-flash.js`):
+
+- Предпочтительно вызывать **`window.swalPublic.info(text)`** / `swalPublic.success(text)` / `swalPublic.error(text)` / `swalPublic.warning(text)` — тогда автоматически применяются цвета темы (фон `#191919`, акцент `#C5FF41`, классы `swal-public-theme`, `swal-btn-confirm`).
+- Если вызываете `Swal.fire()` напрямую — передавать те же параметры, что в `sweetalert-flash.js`: `customClass: { popup: 'swal-public-theme', confirmButton: 'swal-btn-confirm' }`, `background: '#191919'`, `color: '#ECEEF2'`, `confirmButtonColor: '#C5FF41'`, `backdrop: 'rgba(0,0,0,0.75)'`, для info — `iconColor: '#3498db'`.
+
+Не показывать информационные/ошибки окна в дефолтных цветах SweetAlert2 — только в цветах темы.
+
 ## Добавление нового типа сообщения
 
 При необходимости нового типа — добавить ключ в `$laravelFlash` в гостевом layout, обработку в `sweetalert-flash.js` (и при необходимости метод в `window.swalPublic`).

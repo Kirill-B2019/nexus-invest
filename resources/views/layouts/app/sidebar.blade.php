@@ -21,6 +21,14 @@
                         <span>{{ __('Пустая страница') }}</span>
                     </a>
                 </li>
+                @can('manage-dictionaries')
+                <li class="{{ request()->routeIs('lk.admin.settings.dictionaries.*') ? 'active' : '' }}">
+                    <a href="#management">
+                        <i class="simple-icon-settings"></i>
+                        <span>{{ __('Управление') }}</span>
+                    </a>
+                </li>
+                @endcan
                 @role('roles-admin')
                 <li class="{{ request()->routeIs('lk.admin.roles.*') ? 'active' : '' }}">
                     <a href="#roles-admin">
@@ -80,6 +88,16 @@
                     </a>
                 </li>
             </ul>
+            @can('manage-dictionaries')
+            <ul class="list-unstyled" data-link="management">
+                <li class="list-group-heading text-muted small text-uppercase mt-2 mb-1">{{ __('Общие настройки') }}</li>
+                <li class="{{ request()->routeIs('lk.admin.settings.dictionaries.*') ? 'active' : '' }}">
+                    <a href="{{ route('lk.admin.settings.dictionaries.index') }}">
+                        <i class="simple-icon-book-open"></i> <span class="d-inline-block">{{ __('Справочники') }}</span>
+                    </a>
+                </li>
+            </ul>
+            @endcan
             @role('roles-admin')
             <ul class="list-unstyled" data-link="roles-admin">
                 <li class="{{ request()->routeIs('lk.admin.roles.users') || request()->routeIs('lk.admin.roles.user.*') ? 'active' : '' }}">

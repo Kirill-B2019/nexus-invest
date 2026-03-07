@@ -1449,11 +1449,26 @@ html, body {
     border-color: #6b7280;
     color: transparent;
 }
-.ganimed-status-checkbox.ganimed-status-ok::after {
+.ganimed-status-checkbox.ganimed-status-ok::after,
+input.ganimed-status-checkbox:checked::after {
     content: "✓";
     font-size: 0.75rem;
     font-weight: bold;
     line-height: 1;
+}
+/* Единый вид чекбокса (как в футере): для input скрываем нативный вид, при :checked — галочка */
+input.ganimed-status-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+    border-color: #94a3b8;
+    background-color: transparent;
+    color: transparent;
+}
+input.ganimed-status-checkbox:checked {
+    background-color: var(--color-badge-bg, #e0e7ff);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
 }
 .ganimed-status-btn {
     min-width: auto;
@@ -1636,3 +1651,410 @@ html, body {
         gap: 20px;
     }
 }
+
+/* --- Секция «Инвестиционные потребности регионов РФ» — фон и цвета как box-testimonials-3 --- */
+.section-box.box-investment-map {
+    background-color: var(--color-dark);
+    padding: 3rem 0;
+    background-image: url(../imgs/page/homepage1/bg-review-up.png);
+    background-position: top right;
+    background-repeat: no-repeat;
+}
+.section-box.box-investment-map .heading-2,
+.section-box.box-investment-map .neutral-600 {
+    color: rgba(255, 255, 255, 0.95);
+}
+.section-box.box-investment-map .neutral-600 {
+    opacity: 0.9;
+}
+/* Сетка: слева карточка фильтров, справа карта */
+.rf-map-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+/* Карточка фильтров — цвета в тон секции (тёмный фон), выпадающие не расширяют карточку, кнопки поверх */
+.rf-map-filters-card {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 0;
+    position: sticky;
+    top: 1rem;
+    max-height: min(85vh, 720px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 30;
+}
+.rf-map-filters-card-inner {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: visible;
+    padding: 1.25rem 1.25rem 0.5rem;
+}
+.rf-map-filters-card-inner::-webkit-scrollbar {
+    width: 6px;
+}
+.rf-map-filters-card-inner::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+.rf-map-filters-title {
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.rf-map-filters-icon {
+    color: rgba(255, 255, 255, 0.9);
+    flex-shrink: 0;
+}
+.rf-map-filter-block {
+    margin-bottom: 1rem;
+}
+.rf-map-filter-block:last-child {
+    margin-bottom: 0;
+}
+.rf-map-filters-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0 0 0.5rem 0;
+}
+/* Выпадающий список с множественным выбором */
+.rf-map-filter-dropdown .rf-map-dropdown {
+    position: relative;
+}
+.rf-map-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.95);
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+.rf-map-dropdown-trigger:hover {
+    border-color: var(--color-primary, #6366f1);
+    background: rgba(0, 0, 0, 0.35);
+}
+.rf-map-dropdown-trigger[aria-expanded="true"] {
+    border-color: var(--color-primary, #6366f1);
+    background: rgba(0, 0, 0, 0.35);
+}
+.rf-map-dropdown-text {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.rf-map-dropdown-arrow {
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.7);
+    transition: transform 0.2s ease;
+}
+.rf-map-dropdown-trigger[aria-expanded="true"] .rf-map-dropdown-arrow {
+    transform: rotate(180deg);
+}
+.rf-map-dropdown-panel {
+    position: fixed;
+    margin-top: 4px;
+    background: var(--color-dark, #191919);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    z-index: 100;
+    max-height: 220px;
+    overflow-y: auto;
+    /* top, left, width задаются в JS — панель не участвует в потоке и не расширяет карточку */
+}
+.rf-map-dropdown-panel[hidden] {
+    display: none;
+}
+.rf-map-dropdown-panel .rf-map-filter-options {
+    padding: 0.5rem;
+}
+.rf-map-filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+.rf-map-filter-dropdown .rf-map-filter-options {
+    max-height: none;
+}
+.rf-map-dropdown-panel .rf-map-filter-options {
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+.rf-map-filter-options::-webkit-scrollbar {
+    width: 4px;
+}
+.rf-map-filter-options::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 2px;
+}
+.rf-map-filter-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    padding: 0.25rem 0;
+}
+.rf-map-filter-option:hover {
+    color: var(--color-primary, #a5b4fc);
+}
+.rf-map-filter-option .ganimed-status-checkbox {
+    flex-shrink: 0;
+}
+.rf-map-filters-empty {
+    margin: 0;
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+.rf-map-filter-actions {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem 1.25rem 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(0, 0, 0, 0.25);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 110;
+}
+.rf-map-btn {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+.rf-map-btn-apply {
+    background: var(--color-primary);
+    color: var(--color-dark);
+    border: 1px solid var(--color-primary, #6366f1);
+}
+.rf-map-btn-apply:hover {
+    background: var(--color-primary-hover, #4f46e5);
+    border-color: var(--color-primary-hover, #4f46e5);
+}
+.rf-map-btn-reset {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+.rf-map-btn-reset:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+.rf-map-wrapper {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    min-height: 280px;
+}
+.rf-map {
+    position: relative;
+    width: 100%;
+    min-height: 260px;
+}
+
+.rf-map svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+}
+.rf-map path[data-code] {
+    fill: var(--color-text-muted);
+    stroke: #adb5bd;
+    stroke-width: 0.5;
+    cursor: pointer;
+    transition: fill 0.15s ease, stroke 0.15s ease;
+}
+.rf-map path[data-code]:hover,
+.rf-map path[data-code]:focus {
+    fill: var(--color-badge-bg, #6366f1);
+    stroke: var(--color-primary, #6366f1);
+    outline: none;
+}
+.rf-map path[data-code="RU-MOW"] {
+    fill: var(--color-primary, #6366f1);
+    stroke: var(--color-primary, #6366f1);
+    opacity: 0.95;
+}
+.rf-map path[data-code="RU-MOW"]:hover,
+.rf-map path[data-code="RU-MOW"]:focus {
+    fill: var(--color-primary-hover, #4f46e5);
+    stroke: var(--color-primary-hover, #4f46e5);
+    opacity: 1;
+}
+.rf-map .district {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 10;
+    padding: 8px 12px;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 13px;
+    border-radius: 8px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    max-width: 280px;
+}
+.rf-map .district.visible {
+    opacity: 1;
+    /* left/top задаются в JS для следования за курсором */
+}
+.rf-map .district b {
+    display: block;
+    margin-bottom: 2px;
+}
+.rf-map .district span {
+    font-weight: normal;
+    opacity: 0.9;
+}
+.rf-map .district-text {
+    position: absolute;
+    pointer-events: none;
+    font-size: 11px;
+    fill: #495057;
+}
+/* Список регионов под картой (мобильные, по образцу atuin.ru) */
+.rf-map .district-links {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.75rem;
+    font-size: 0.8125rem;
+    color: var(--color-primary, #6366f1);
+}
+.rf-map .district-links a {
+    color: inherit;
+    text-decoration: none;
+}
+.rf-map .district-links a:hover {
+    text-decoration: underline;
+}
+.rf-map .district-links div:not(:last-child)::after {
+    content: " | ";
+    margin-left: 0.25rem;
+    color: #6b7280;
+    pointer-events: none;
+}
+.region-details-modal {
+    max-width: 90vw;
+    width: 420px;
+    padding: 0;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+}
+.region-details-modal::backdrop {
+    background: rgba(0,0,0,0.4);
+}
+.region-details-inner {
+    padding: 0;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.region-details-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background: var(--color-surface-light, #f8f9fa);
+    border-bottom: 1px solid #e9ecef;
+}
+.region-details-header h3 {
+    color: #1a1a1a;
+}
+.region-details-close {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    color: #6c757d;
+    cursor: pointer;
+    border-radius: 8px;
+}
+.region-details-close:hover {
+    background: #e9ecef;
+    color: #1a1a1a;
+}
+.region-details-body {
+    padding: 1.25rem;
+    color: #333;
+    font-size: 0.9375rem;
+}
+@media (min-width: 768px) {
+    .rf-map .district-links {
+        display: none;
+    }
+}
+@media (max-width: 768px) {
+    .rf-map-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        gap: 1rem;
+        align-items: stretch;
+    }
+    .rf-map-filters-card {
+        position: static;
+        order: 1;
+        max-height: 320px;
+    }
+    .rf-map-wrapper {
+        order: 2;
+        width: 100%;
+        min-width: 0;
+        min-height: 320px;
+        display: block;
+        overflow: visible;
+    }
+    .rf-map-filters-regions {
+        max-height: 140px;
+    }
+    .section-box.box-investment-map {
+        padding: 2rem 0;
+    }
+    .rf-map {
+        width: 100%;
+        min-height: 300px;
+        display: block;
+    }
+    .rf-map svg {
+        width: 100%;
+        height: auto;
+        max-height: 450px;
+        min-height: 200px;
+        display: block;
+    }
+}
+

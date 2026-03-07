@@ -10,6 +10,7 @@ use App\Http\Controllers\App\MessengerAdminController;
 use App\Http\Controllers\App\RolesAdminController;
 use App\Http\Controllers\App\NewsFeedAdminController;
 use App\Http\Controllers\App\NmessPageController;
+use App\Http\Controllers\App\DictionariesAdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ComplianceController;
 use App\Http\Controllers\DocumentationController;
@@ -73,6 +74,31 @@ Route::middleware('auth')->group(function () {
         Route::post('/update', [NewsFeedAdminController::class, 'update'])->name('update');
         Route::delete('/{newsFeedItem}', [NewsFeedAdminController::class, 'destroy'])->name('destroy');
     });
+
+    Route::middleware('verified', 'lk.access', 'permission:manage-dictionaries')
+        ->prefix('lk/admin/settings/dictionaries')
+        ->name('lk.admin.settings.dictionaries.')
+        ->group(function () {
+            Route::get('/', [DictionariesAdminController::class, 'index'])->name('index');
+            Route::get('/search', [DictionariesAdminController::class, 'searchIndex'])->name('search.index');
+            Route::get('/group/create', [DictionariesAdminController::class, 'createGroup'])->name('group.create');
+            Route::post('/group', [DictionariesAdminController::class, 'storeGroup'])->name('group.store');
+            Route::get('/group/{group}/edit', [DictionariesAdminController::class, 'editGroup'])->name('group.edit');
+            Route::patch('/group/{group}', [DictionariesAdminController::class, 'updateGroup'])->name('group.update');
+            Route::delete('/group/{group}', [DictionariesAdminController::class, 'destroyGroup'])->name('group.destroy');
+            Route::get('/dictionary/create', [DictionariesAdminController::class, 'createDictionary'])->name('dictionary.create');
+            Route::post('/dictionary', [DictionariesAdminController::class, 'storeDictionary'])->name('dictionary.store');
+            Route::get('/dictionary/{dictionary}/edit', [DictionariesAdminController::class, 'editDictionary'])->name('dictionary.edit');
+            Route::patch('/dictionary/{dictionary}', [DictionariesAdminController::class, 'updateDictionary'])->name('dictionary.update');
+            Route::delete('/dictionary/{dictionary}', [DictionariesAdminController::class, 'destroyDictionary'])->name('dictionary.destroy');
+            Route::get('/{dictionary}/search', [DictionariesAdminController::class, 'searchItems'])->name('search');
+            Route::get('/{dictionary}', [DictionariesAdminController::class, 'show'])->name('show');
+            Route::get('/{dictionary}/items/create', [DictionariesAdminController::class, 'createItem'])->name('item.create');
+            Route::post('/{dictionary}/items', [DictionariesAdminController::class, 'storeItem'])->name('item.store');
+            Route::get('/{dictionary}/items/{item}/edit', [DictionariesAdminController::class, 'editItem'])->name('item.edit');
+            Route::patch('/{dictionary}/items/{item}', [DictionariesAdminController::class, 'updateItem'])->name('item.update');
+            Route::delete('/{dictionary}/items/{item}', [DictionariesAdminController::class, 'destroyItem'])->name('item.destroy');
+        });
 
     Route::get('/api/nmess/token', NmessTokenController::class)->middleware('lk.access')->name('api.nmess.token');
     Route::get('/api/nmess/contacts', NmessContactsController::class)->middleware('lk.access')->name('api.nmess.contacts');
