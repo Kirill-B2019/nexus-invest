@@ -30,6 +30,12 @@ class WelcomeController extends Controller
                 ->get(['id', 'name', 'code', 'map_code'])
                 ->keyBy('map_code')
                 ->toArray();
+            // Москва первой в списке регионов фильтра карты
+            if (!empty($regionsForMap['RU-MOW'])) {
+                $moscow = ['RU-MOW' => $regionsForMap['RU-MOW']];
+                unset($regionsForMap['RU-MOW']);
+                $regionsForMap = $moscow + $regionsForMap;
+            }
         }
 
         $mapSvg = '';
