@@ -167,7 +167,7 @@ class DictionariesAdminController extends Controller
                 'id' => $item->id,
                 'code' => $item->code,
                 'name' => $item->name,
-                'edit_url' => route('lk.admin.settings.dictionaries.item.edit', [$dictionary, $item]),
+                'edit_url' => route('lk.admin.settings.dictionaries.item.edit', ['dictionary' => $dictionary, 'item' => $item]),
             ];
         });
 
