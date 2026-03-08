@@ -93,10 +93,12 @@
                                 <td class="text-muted small" data-label="{{ __('Описание') }}">{{ $item->description ? \Illuminate\Support\Str::limit($item->description, 60) : '—' }}</td>
                                 <td data-label="{{ __('Активен') }}">{{ $item->is_active ? __('Да') : __('Нет') }}</td>
                                 @php
-                                    $itemEditUrl = url('/lk/admin/settings/dictionaries/' . (int) $dictionary->id . '/items/' . (int) $item->id . '/edit');
-                                    $itemDestroyUrl = url('/lk/admin/settings/dictionaries/' . (int) $dictionary->id . '/items/' . (int) $item->id);
+                                    $itemId = (int) (is_array($item) ? ($item['id'] ?? 0) : ($item->id ?? 0));
+                                    $itemEditUrl = $itemId > 0 ? url('/lk/admin/settings/dictionaries/' . (int) $dictionary->id . '/items/' . $itemId . '/edit') : null;
+                                    $itemDestroyUrl = $itemId > 0 ? url('/lk/admin/settings/dictionaries/' . (int) $dictionary->id . '/items/' . $itemId) : null;
                                 @endphp
                                 <td class="actions-cell">
+                                    @if($itemId > 0)
                                     <div class="table-actions-desktop d-none d-md-block">
                                         <a href="{{ $itemEditUrl }}" class="btn btn-outline-primary btn-sm mr-1">{{ __('Изменить') }}</a>
                                         <form method="post" action="{{ $itemDestroyUrl }}" class="d-inline" onsubmit="return confirm('{{ __('Удалить элемент?') }}');">
@@ -116,6 +118,9 @@
                                             </form>
                                         </div>
                                     </div>
+                                    @else
+                                    <span class="text-muted small">—</span>
+                                    @endif
                                 </td>
                             </tr>
                         @empty
