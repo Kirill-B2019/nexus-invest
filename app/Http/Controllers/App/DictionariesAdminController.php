@@ -104,7 +104,7 @@ class DictionariesAdminController extends Controller
     public function show(Request $request, RefDictionary $dictionary): View
     {
         $dictionary->load('group');
-        $query = $dictionary->items();
+        $query = $dictionary->items()->where('id', '>', 0);
 
         $q = $request->input('q', '');
         if ($q !== '') {

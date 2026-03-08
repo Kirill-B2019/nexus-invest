@@ -94,10 +94,12 @@
                                 <td data-label="{{ __('Активен') }}">{{ $item->is_active ? __('Да') : __('Нет') }}</td>
                                 @php
                                     $itemId = (int) ($item->id ?? 0);
-                                    $itemEditUrl = url('/lk/admin/settings/dictionaries/' . (int) $dictionary->id . '/items/' . $itemId . '/edit');
-                                    $itemDestroyUrl = url('/lk/admin/settings/dictionaries/' . (int) $dictionary->id . '/items/' . $itemId);
+                                    $hasValidId = $itemId > 0;
+                                    $itemEditUrl = $hasValidId ? url('/lk/admin/settings/dictionaries/' . (int) $dictionary->id . '/items/' . $itemId . '/edit') : '#';
+                                    $itemDestroyUrl = $hasValidId ? url('/lk/admin/settings/dictionaries/' . (int) $dictionary->id . '/items/' . $itemId) : '#';
                                 @endphp
                                 <td class="actions-cell">
+                                    @if($hasValidId)
                                     <div class="table-actions-desktop d-none d-md-block">
                                         <a href="{{ $itemEditUrl }}" class="btn btn-outline-primary btn-sm mr-1">{{ __('Изменить') }}</a>
                                         <form method="post" action="{{ $itemDestroyUrl }}" class="d-inline" onsubmit="return confirm('{{ __('Удалить элемент?') }}');">
@@ -117,6 +119,9 @@
                                             </form>
                                         </div>
                                     </div>
+                                    @else
+                                    <span class="text-muted small" title="{{ __('Нет идентификатора записи') }}">—</span>
+                                    @endif
                                 </td>
                             </tr>
                         @empty
