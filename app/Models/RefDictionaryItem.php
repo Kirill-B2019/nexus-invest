@@ -20,6 +20,8 @@ class RefDictionaryItem extends Model
         'item_type',
         'country_code',
         'map_code',
+        'document_url',
+        'is_ru',
         'sort_order',
         'is_active',
     ];
@@ -27,6 +29,7 @@ class RefDictionaryItem extends Model
     protected $casts = [
         'sort_order' => 'integer',
         'is_active' => 'boolean',
+        'is_ru' => 'boolean',
     ];
 
     public function dictionary(): BelongsTo

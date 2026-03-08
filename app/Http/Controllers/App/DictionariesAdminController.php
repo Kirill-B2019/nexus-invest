@@ -104,7 +104,7 @@ class DictionariesAdminController extends Controller
     public function show(Request $request, RefDictionary $dictionary): View
     {
         $dictionary->load('group');
-        $query = $dictionary->items()->where('id', '>', 0);
+        $query = $dictionary->items();
 
         $q = $request->input('q', '');
         if ($q !== '') {
@@ -121,7 +121,7 @@ class DictionariesAdminController extends Controller
 
         $sortBy = $request->input('sort', 'sort_order');
         $sortDir = strtolower($request->input('dir', 'asc')) === 'desc' ? 'desc' : 'asc';
-        $allowedSort = ['code', 'name', 'sort_order', 'is_active', 'item_type', 'country_code', 'map_code'];
+        $allowedSort = ['code', 'name', 'sort_order', 'is_active', 'is_ru', 'item_type', 'country_code', 'map_code'];
         if (! in_array($sortBy, $allowedSort, true)) {
             $sortBy = 'sort_order';
         }
@@ -162,12 +162,17 @@ class DictionariesAdminController extends Controller
             ->limit(20)
             ->get(['id', 'code', 'name']);
 
-        $result = $items->map(function ($item) use ($dictionary) {
+        $dictId = (int) $dictionary->id;
+        $result = $items->map(function ($item) use ($dictId) {
+            $itemId = (int) ($item->id ?? 0);
+            $editUrl = $itemId > 0
+                ? url('/lk/admin/settings/dictionaries/' . $dictId . '/items/' . $itemId . '/edit')
+                : '#';
             return [
                 'id' => $item->id,
                 'code' => $item->code,
                 'name' => $item->name,
-                'edit_url' => route('lk.admin.settings.dictionaries.item.edit', ['dictionary' => $dictionary, 'item' => $item]),
+                'edit_url' => $editUrl,
             ];
         });
 
@@ -344,6 +349,9 @@ class DictionariesAdminController extends Controller
         $rules['item_type'] = 'nullable|string|max:50|in:country,region,city';
         $rules['country_code'] = 'nullable|string|max:10';
         $rules['map_code'] = 'nullable|string|max:20';
+        if ($dictionary->code === 'regulatory_documents') {
+            $rules['document_url'] = 'nullable|url|max:500';
+        }
         $data = $request->validate($rules);
         $data['ref_dictionary_id'] = $dictionary->id;
         $data['sort_order'] = (int) ($data['sort_order'] ?? 0);
@@ -351,6 +359,10 @@ class DictionariesAdminController extends Controller
         $data['item_type'] = $request->input('item_type') ?: null;
         $data['country_code'] = $request->input('country_code') ?: null;
         $data['map_code'] = $request->input('map_code') ?: null;
+        if ($dictionary->code === 'regulatory_documents') {
+            $data['document_url'] = $request->input('document_url') ?: null;
+            $data['is_ru'] = $request->boolean('is_ru', false);
+        }
 
         $exists = RefDictionaryItem::where('ref_dictionary_id', $dictionary->id)->where('code', $data['code'])->exists();
         if ($exists) {
@@ -393,12 +405,19 @@ class DictionariesAdminController extends Controller
         $rules['item_type'] = 'nullable|string|max:50|in:country,region,city';
         $rules['country_code'] = 'nullable|string|max:10';
         $rules['map_code'] = 'nullable|string|max:20';
+        if ($dictionary->code === 'regulatory_documents') {
+            $rules['document_url'] = 'nullable|url|max:500';
+        }
         $data = $request->validate($rules);
         $data['sort_order'] = (int) ($data['sort_order'] ?? 0);
         $data['is_active'] = $request->boolean('is_active', true);
         $data['item_type'] = $request->input('item_type') ?: null;
         $data['country_code'] = $request->input('country_code') ?: null;
         $data['map_code'] = $request->input('map_code') ?: null;
+        if ($dictionary->code === 'regulatory_documents') {
+            $data['document_url'] = $request->input('document_url') ?: null;
+            $data['is_ru'] = $request->boolean('is_ru', false);
+        }
 
         $exists = RefDictionaryItem::where('ref_dictionary_id', $dictionary->id)
             ->where('code', $data['code'])

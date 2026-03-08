@@ -62,6 +62,23 @@
                     <small class="form-text text-muted">{{ __('Для синхронизации с картой регионов (напр. RU-MOW, RU-SPE).') }}</small>
                 </div>
                 @endif
+                @if($dictionary->code === 'regulatory_documents')
+                <div class="form-group">
+                    <label for="document_url" class="form-label">{{ __('Ссылка на документ') }}</label>
+                    <input type="url" class="form-control" id="document_url" name="document_url" value="{{ old('document_url', $item?->document_url) }}" maxlength="500" placeholder="https://">
+                    <small class="form-text text-muted">{{ __('URL страницы или файла с текстом документа.') }}</small>
+                    @error('document_url')
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="is_ru" name="is_ru" value="1" {{ old('is_ru', $item?->is_ru ?? false) ? 'checked' : '' }}>
+                        <label class="custom-control-label" for="is_ru">{{ __('RU') }}</label>
+                    </div>
+                    <small class="form-text text-muted">{{ __('Российский документ') }}</small>
+                </div>
+                @endif
                 <div class="form-group">
                     <label for="sort_order" class="form-label">{{ __('Порядок сортировки') }}</label>
                     <input type="number" class="form-control" id="sort_order" name="sort_order" value="{{ old('sort_order', $item?->sort_order ?? 0) }}" min="0">

@@ -72,6 +72,10 @@
                             @endif
                             <th>{{ __('Описание') }}</th>
                             <th><a href="{{ $sortLink('is_active') }}" class="text-dark">{{ __('Активен') }}@if($sortBy === 'is_active') {{ $sortDir === 'asc' ? ' ↑' : ' ↓' }}@endif</a></th>
+                            @if($dictionary->code === 'regulatory_documents')
+                            <th>{{ __('Ссылка') }}</th>
+                            <th><a href="{{ $sortLink('is_ru') }}" class="text-dark">{{ __('RU') }}@if($sortBy === 'is_ru') {{ $sortDir === 'asc' ? ' ↑' : ' ↓' }}@endif</a></th>
+                            @endif
                             <th></th>
                         </tr>
                     </thead>
@@ -92,6 +96,16 @@
                                 @endif
                                 <td class="text-muted small" data-label="{{ __('Описание') }}">{{ $item->description ? \Illuminate\Support\Str::limit($item->description, 60) : '—' }}</td>
                                 <td data-label="{{ __('Активен') }}">{{ $item->is_active ? __('Да') : __('Нет') }}</td>
+                                @if($dictionary->code === 'regulatory_documents')
+                                <td data-label="{{ __('Ссылка') }}">
+                                    @if(!empty($item->document_url))
+                                    <a href="{{ $item->document_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm">{{ __('Открыть') }}</a>
+                                    @else
+                                    <span class="text-muted">—</span>
+                                    @endif
+                                </td>
+                                <td data-label="{{ __('RU') }}">{{ ($item->is_ru ?? false) ? __('Да') : __('Нет') }}</td>
+                                @endif
                                 @php
                                     $itemId = (int) ($item->id ?? 0);
                                     $hasValidId = $itemId > 0;
@@ -126,7 +140,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="{{ $dictionary->code === 'regions' ? 8 : 5 }}" class="text-muted">{{ __('Нет элементов. Добавьте первый элемент.') }}</td>
+                                <td colspan="{{ $dictionary->code === 'regions' ? 8 : ($dictionary->code === 'regulatory_documents' ? 7 : 5) }}" class="text-muted">{{ __('Нет элементов. Добавьте первый элемент.') }}</td>
                             </tr>
                         @endforelse
                     </tbody>
