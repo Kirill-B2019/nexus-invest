@@ -1,9 +1,13 @@
-{{-- Боковое меню ЛК. --}}
+{{-- Боковое меню ЛК. Управление и настройки — только через страницу «Настройки» (/lk/admin/settings). --}}
+@php
+    $hasManagementAccess = auth()->user()->can('manage-dictionaries') || auth()->user()->hasRole('roles-admin') || auth()->user()->can('update-news-feed') || auth()->user()->can('manage-notifications') || auth()->user()->hasRole('messenger-admin');
+    $isLkSubMenuActive = request()->routeIs('lk') || request()->routeIs('lk.messenger') || request()->routeIs('lk.notifications.*') || request()->routeIs('app.blank');
+@endphp
 <div class="menu">
     <div class="main-menu">
         <div class="scroll">
             <ul class="list-unstyled">
-                <li class="{{ request()->routeIs('lk') ? 'active' : '' }}">
+                <li class="{{ $isLkSubMenuActive ? 'active' : '' }}">
                     <a href="#lk">
                         <i class="iconsminds-shop-4"></i>
                         <span>{{ __('Панели') }}</span>
@@ -21,30 +25,14 @@
                         <span>{{ __('Пустая страница') }}</span>
                     </a>
                 </li>
-                @can('manage-dictionaries')
-                <li class="{{ request()->routeIs('lk.admin.settings.dictionaries.*') ? 'active' : '' }}">
-                    <a href="#management">
+                @if($hasManagementAccess)
+                <li class="{{ request()->routeIs('lk.admin.*') ? 'active' : '' }}">
+                    <a href="{{ route('lk.admin.settings.index') }}">
                         <i class="simple-icon-settings"></i>
-                        <span>{{ __('Управление') }}</span>
+                        <span>{{ __('Настройки') }}</span>
                     </a>
                 </li>
-                @endcan
-                @role('roles-admin')
-                <li class="{{ request()->routeIs('lk.admin.roles.*') ? 'active' : '' }}">
-                    <a href="#roles-admin">
-                        <i class="simple-icon-people"></i>
-                        <span>{{ __('Управление ролями') }}</span>
-                    </a>
-                </li>
-                @endrole
-                @can('update-news-feed')
-                <li class="{{ request()->routeIs('lk.admin.news-feed.*') ? 'active' : '' }}">
-                    <a href="{{ route('lk.admin.news-feed.index') }}">
-                        <i class="simple-icon-doc"></i>
-                        <span>{{ __('Лента новостей') }}</span>
-                    </a>
-                </li>
-                @endcan
+                @endif
                 <li>
                     <a href="{{ route('welcome') }}">
                         <i class="simple-icon-home"></i>
@@ -68,55 +56,17 @@
                         <i class="simple-icon-bubble"></i> <span class="d-inline-block">{{ __('Мессенджер') }}</span>
                     </a>
                 </li>
-                @role('messenger-admin')
-                <li class="{{ request()->routeIs('lk.admin.messenger') ? 'active' : '' }}">
-                    <a href="{{ route('lk.admin.messenger') }}">
-                        <i class="simple-icon-settings"></i> <span class="d-inline-block">{{ __('Управление мессенджером') }}</span>
+                <li class="{{ request()->routeIs('lk.notifications.*') ? 'active' : '' }}">
+                    <a href="{{ route('lk.notifications.index') }}">
+                        <i class="simple-icon-bell"></i> <span class="d-inline-block">{{ __('Уведомления') }}</span>
                     </a>
                 </li>
-                @endrole
-                @can('update-news-feed')
-                <li class="{{ request()->routeIs('lk.admin.news-feed.*') ? 'active' : '' }}">
-                    <a href="{{ route('lk.admin.news-feed.index') }}">
-                        <i class="simple-icon-doc"></i> <span class="d-inline-block">{{ __('Лента новостей') }}</span>
-                    </a>
-                </li>
-                @endcan
                 <li class="{{ request()->routeIs('app.blank') ? 'active' : '' }}">
                     <a href="{{ route('app.blank') }}">
                         <i class="iconsminds-bucket"></i> <span class="d-inline-block">{{ __('Пустая страница') }}</span>
                     </a>
                 </li>
             </ul>
-            @can('manage-dictionaries')
-            <ul class="list-unstyled" data-link="management">
-                <li class="list-group-heading text-muted small text-uppercase mt-2 mb-1">{{ __('Общие настройки') }}</li>
-                <li class="{{ request()->routeIs('lk.admin.settings.dictionaries.*') ? 'active' : '' }}">
-                    <a href="{{ route('lk.admin.settings.dictionaries.index') }}">
-                        <i class="simple-icon-book-open"></i> <span class="d-inline-block">{{ __('Справочники') }}</span>
-                    </a>
-                </li>
-            </ul>
-            @endcan
-            @role('roles-admin')
-            <ul class="list-unstyled" data-link="roles-admin">
-                <li class="{{ request()->routeIs('lk.admin.roles.users') || request()->routeIs('lk.admin.roles.user.*') ? 'active' : '' }}">
-                    <a href="{{ route('lk.admin.roles.users') }}">
-                        <i class="simple-icon-people"></i> <span class="d-inline-block">{{ __('Пользователи') }}</span>
-                    </a>
-                </li>
-                <li class="{{ request()->routeIs('lk.admin.roles.roles') || request()->routeIs('lk.admin.roles.role.*') ? 'active' : '' }}">
-                    <a href="{{ route('lk.admin.roles.roles') }}">
-                        <i class="simple-icon-user-following"></i> <span class="d-inline-block">{{ __('Роли') }}</span>
-                    </a>
-                </li>
-                <li class="{{ request()->routeIs('lk.admin.roles.permissions') ? 'active' : '' }}">
-                    <a href="{{ route('lk.admin.roles.permissions') }}">
-                        <i class="simple-icon-lock"></i> <span class="d-inline-block">{{ __('Разрешения') }}</span>
-                    </a>
-                </li>
-            </ul>
-            @endrole
         </div>
     </div>
 </div>

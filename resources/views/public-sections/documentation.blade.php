@@ -91,30 +91,10 @@
 @endpush
 
 @section('content')
-@php
-    $pageTitle = __('Документация');
-@endphp
-{{-- Page header (как на features) --}}
-<section class="section-box">
-    <div class="banner-hero hero-4">
-        <div class="banner-inner">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('welcome') }}">{{ __('Главная') }}</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">{{ $pageTitle }}</li>
-                            </ol>
-                        </nav>
-                        <h1 class="heading-banner neutral-0">{{ $pageTitle }}</h1>
-                        <p class="banner-description text-lg neutral-200">{{ __('Условия использования платформы, политики и соглашения.') }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<x-guest.public-page-banner
+    :pageTitle="$title"
+    :bannerDescription="$description ?? ''"
+/>
 
 {{-- Контент документации (структура как на features: section-box + container) --}}
 <section class="section-box wow fadeIn box-preparing-2 doc-sticky-section">

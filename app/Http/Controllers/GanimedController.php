@@ -22,6 +22,7 @@ class GanimedController extends Controller
     {
         return view('public-sections.ganimed-tokens', [
             'title' => __('Токены GND и GANI'),
+            'description' => __('Двухтокеновая модель блокчейна ГАНИМЕД: утилитарный токен GND для комиссий и стейкинга, governance-токен GANI для управления протоколом и vote-escrow.'),
         ]);
     }
 }

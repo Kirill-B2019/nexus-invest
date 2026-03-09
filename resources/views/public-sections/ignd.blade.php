@@ -9,31 +9,10 @@
 @endsection
 
 @section('content')
-@php
-    $pageTitle = __('Система смягчения инвестиционных рисков НЕКСУС (токен iGND)');
-@endphp
-{{-- заголовок --}}
-<section class="section-box">
-    <div class="banner-hero hero-4">
-        <div class="banner-inner">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('welcome') }}">{{ __('Главная') }}</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">{{ __('Система смягчения рисков - iGND') }}</li>
-                            </ol>
-                        </nav>
-                        <h1 class="heading-banner neutral-0">{{ $pageTitle }}</h1>
-                        <p class="banner-description text-lg neutral-200 mb-4">{{ __('') }}</p>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<x-guest.public-page-banner
+    :pageTitle="$title"
+    :bannerDescription="$description ?? ''"
+/>
 {{-- Прогнозируемые риски  для инвесторов--}}
 <section class="section-box box-companion fadeIn ">
     <div class="container">

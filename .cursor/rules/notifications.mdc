@@ -1,0 +1,50 @@
+---
+description: Раздел «Уведомления» в ЛК — системные и ручные уведомления с сроком и важностью
+globs: 
+  - app/Notifications/** 
+  - app/Http/Controllers/App/Notifications*.php
+  - resources/views/app/pages/notifications*.blade.php
+  - resources/views/app/pages/notifications-admin/** 
+  - resources/views/layouts/app/topbar.blade.php
+---
+
+# Раздел «Уведомления» в ЛК
+
+## Назначение
+
+Системные и ручные уведомления с отображением в колокольчике topbar, на странице списка `/lk/notifications` и админ-интерфейсом создания для роли с правом `manage-notifications`. У каждого уведомления могут быть **срок действия** (`expires_at`) и **важность** (`importance`).
+
+## Ключевые файлы и маршруты
+
+- **Контроллеры:** `App\Http\Controllers\App\NotificationsController` (страница списка, API колокольчика, отметка прочитанным), `App\Http\Controllers\App\NotificationsAdminController` (создание и рассылка).
+- **Маршруты:** `lk.notifications.index` (`/lk/notifications`), `lk.notifications.dropdown` (GET, для колокольчика), `lk.notifications.mark-read` (POST `/{id}/read`), `lk.notifications.mark-all-read` (POST `/read-all`); админ: `lk.admin.notifications.index`, `lk.admin.notifications.create`, `lk.admin.notifications.store` (`/lk/admin/notifications`), защита: `permission:manage-notifications`.
+- **Представления:** `resources/views/app/pages/notifications/index.blade.php`, `resources/views/app/pages/notifications-admin/index.blade.php`, `resources/views/app/pages/notifications-admin/create.blade.php`. Колокольчик и загрузка данных: `resources/views/layouts/app/topbar.blade.php`, `resources/views/layouts/app/scripts.blade.php` (скрипт загрузки dropdown).
+- **Уведомление (канал database):** `App\Notifications\LkNotification`. Миграция таблицы: `database/migrations/*_create_notifications_table.php`.
+- **Разрешение:** `manage-notifications` (сидер `PermissionManageNotificationsSeeder`).
+
+## Структура `data` уведомлений
+
+В JSON-поле `data` записи уведомления хранятся:
+
+- **type** — `system` | `manual`
+- **title** — заголовок (строка)
+- **body** — текст (строка)
+- **link** — необязательная ссылка (URL или путь)
+- **importance** — `low` | `normal` | `high` | `urgent` (по умолчанию `normal`)
+- **expires_at** — необязательная дата/время окончания (ISO 8601); после неё уведомление не показывается в активных списках
+- **created_by** — для ручных: ID пользователя-отправителя
+
+Истёкшие уведомления не выводятся в колокольчике и по умолчанию в списке «Активные»; на странице уведомлений доступен фильтр «Истёкшие».
+
+## Разрешение `manage-notifications`
+
+Используется для доступа к маршрутам админ-раздела уведомлений (`/lk/admin/notifications`, создание и рассылка). Выдаётся нужным ролям через админку ролей или сидер.
+
+## Добавление новых системных уведомлений
+
+1. В нужном месте кода (событие, сервис, контроллер) создать экземпляр `App\Notifications\LkNotification` с параметрами: `title`, `body`, при необходимости `link`, `type: LkNotification::TYPE_SYSTEM`, `importance`, `expiresAt`.
+2. Отправить получателям: `$user->notify($notification)` или в цикле по коллекции пользователей (например, `User::permission('access-lk')->get()->each(fn ($u) => $u->notify($notification))`).
+
+Пример: при обновлении ленты новостей в `NewsFeedAdminController::update()` отправляется системное уведомление всем пользователям с разрешением `access-lk` (см. вызов `LkNotification` и `User::permission('access-lk')->get()->each(...)`).
+
+При добавлении новых типов событий или подтипов можно расширять `data` (например, добавить ключ `subtype` или `event`) и при необходимости учитывать их в отображении или фильтрации.

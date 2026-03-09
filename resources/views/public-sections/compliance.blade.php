@@ -9,30 +9,10 @@
 @endsection
 
 @section('content')
-@php
-    $pageTitle = __('Соответствие');
-@endphp
-{{-- Page header --}}
-<section class="section-box">
-    <div class="banner-hero hero-4">
-        <div class="banner-inner">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('welcome') }}">{{ __('Главная') }}</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">{{ $pageTitle }}</li>
-                            </ol>
-                        </nav>
-                        <h1 class="heading-banner neutral-0">{{ $pageTitle }}</h1>
-                        <p class="banner-description text-lg neutral-200">{{ __('Юридическое и нормативное соответствие экосистемы НЕКСУС законодательству Российской Федерации.') }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<x-guest.public-page-banner
+    :pageTitle="$title"
+    :bannerDescription="$description ?? ''"
+/>
 
 {{-- Нормативная база --}}
 <section class="section-box wow fadeIn box-preparing-2">

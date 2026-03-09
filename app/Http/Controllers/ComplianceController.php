@@ -13,7 +13,8 @@ class ComplianceController extends Controller
     public function __invoke()
     {
         return view('public-sections.compliance', [
-            'title' => __('Соответствие'),
+            'title' => __('Соответствие законодательству РФ'),
+            'description' => __('Юридическое и нормативное соответствие экосистемы НЕКСУС и блокчейна ГАНИМЕД федеральному законодательству: 259-ФЗ, 289-ФЗ, 39-ФЗ, ПОД/ФТ, персональные данные.'),
         ]);
     }
 }

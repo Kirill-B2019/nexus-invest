@@ -206,6 +206,32 @@
     left: auto;
     right: 0;
   }
+  /* Кнопки верхнего меню (иконки) — удобная зона нажатия на мобильных */
+  #app-container .navbar .header-icons .header-icon {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #app-container .navbar .header-icons .position-relative {
+    display: inline-flex;
+  }
+  #app-container .navbar #notificationButton {
+    position: relative;
+  }
+  #app-container .navbar #notificationButton .count {
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    line-height: 1;
+    box-sizing: border-box;
+  }
   #app-container .breadcrumb-container {
     padding-left: 0;
     padding-right: 0;
@@ -484,6 +510,68 @@
 
 .separator {
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Выпадающее окно уведомлений в topbar: структура и кнопка «Все уведомления» */
+#app-container .navbar #notificationDropdown {
+  min-width: 200px;
+  width: min(280px, calc(100vw - 1.5rem));
+  max-width: calc(100vw - 1.5rem);
+  height: auto;
+  max-height: min(70vh, 380px);
+  padding: 0 0 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  right: 0;
+  left: auto;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+#app-container .navbar #notificationDropdown #notificationDropdownScroll {
+  padding: 0.75rem 1rem;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: min(60vh, 320px);
+}
+#app-container .navbar #notificationDropdown #notificationDropdownScroll .text-muted.py-3 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+#app-container .navbar #notificationDropdown .notification-dropdown-item {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+#app-container .navbar #notificationDropdown .notification-dropdown-item:last-child {
+  border-bottom: none;
+}
+#app-container .navbar #notificationDropdown .dropdown-divider {
+  margin: 0;
+}
+#app-container .navbar #notificationDropdown > a.dropdown-item {
+  padding: 0.75rem 0.75rem 0.85rem;
+  text-align: center;
+  font-weight: 500;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  max-width: 100%;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
+}
+@media (max-width: 767.98px) {
+  #app-container .navbar #notificationDropdown {
+    min-width: 200px;
+    width: calc(100vw - 1.5rem);
+    max-width: calc(100vw - 1.5rem);
+  }
 }
 
 /* --- Стили админки/форм в духе внутренней темы --- */

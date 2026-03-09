@@ -36,4 +36,58 @@
         else document.getElementById('app-container').classList.remove('body-theme-dark');
     })();
 </script>
+<script>
+(function() {
+    var wrap = document.getElementById('notificationBellWrap');
+    if (!wrap) return;
+    var url = wrap.dataset.dropdownUrl;
+    var baseUrl = wrap.dataset.notificationsPageUrl;
+    var scrollEl = document.getElementById('notificationDropdownScroll');
+    var placeholder = document.getElementById('notificationDropdownPlaceholder');
+    var countEl = document.getElementById('notificationCount');
+    var csrfToken = document.querySelector('meta[name="csrf-token"]') && document.querySelector('meta[name="csrf-token"]').content;
+
+    function renderList(data) {
+        countEl.textContent = data.count > 99 ? '99+' : data.count;
+        while (scrollEl.firstChild) scrollEl.removeChild(scrollEl.firstChild);
+        if (data.count === 0) {
+            var p = document.createElement('div');
+            p.className = 'text-center text-muted py-3';
+            p.textContent = '{{ __("Нет уведомлений") }}';
+            scrollEl.appendChild(p);
+            return;
+        }
+        var html = '';
+        data.items.forEach(function(item) {
+            var importanceClass = item.importance === 'urgent' ? 'text-danger' : (item.importance === 'high' ? 'text-warning' : '');
+            html += '<div class="d-flex flex-row mb-3 pb-3 border-bottom notification-dropdown-item" data-id="' + item.id + '" data-link="' + escapeHtml(item.link || '') + '">';
+            html += '<div class="pl-3 pr-2 flex-grow-1"><p class="font-weight-medium mb-1 ' + importanceClass + '">' + escapeHtml(item.title) + '</p>';
+            html += '<p class="text-muted mb-0 text-small">' + escapeHtml(item.body) + '</p>';
+            html += '<p class="text-muted mb-0 text-small">' + item.created_at + '</p></div></div>';
+        });
+        scrollEl.insertAdjacentHTML('beforeend', html);
+        scrollEl.querySelectorAll('.notification-dropdown-item').forEach(function(el) {
+            el.style.cursor = 'pointer';
+            el.addEventListener('click', function() {
+                var id = this.dataset.id;
+                var link = this.dataset.link;
+                if (!csrfToken) { if (link) window.location.href = link; else window.location.href = baseUrl; return; }
+                fetch(baseUrl + '/' + id + '/read', { method: 'POST', headers: { 'X-CSRF-TOKEN': csrfToken, 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify({}) })
+                    .then(function(r) { return r.json(); })
+                    .then(function(res) { if (res.link) window.location.href = res.link; else window.location.href = baseUrl; })
+                    .catch(function() { if (link) window.location.href = link; else window.location.href = baseUrl; });
+            });
+        });
+    }
+    function escapeHtml(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+    fetch(url, { credentials: 'same-origin' })
+        .then(function(r) { return r.json(); })
+        .then(renderList)
+        .catch(function() {
+            if (placeholder) { placeholder.textContent = '{{ __("Нет уведомлений") }}'; placeholder.classList.remove('d-none'); }
+            if (countEl) countEl.textContent = '0';
+        });
+})();
+</script>
 @stack('scripts')

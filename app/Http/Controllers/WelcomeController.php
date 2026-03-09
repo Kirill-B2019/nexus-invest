@@ -73,6 +73,8 @@ class WelcomeController extends Controller
             ];
         }
 
-        return view('welcome', compact('newsFeedItems', 'regionsForMap', 'mapSvg', 'mapFilterDictionaries'));
+        return view('welcome', compact('newsFeedItems', 'regionsForMap', 'mapSvg', 'mapFilterDictionaries') + [
+            'title' => __('Платформа проектного финансирования и токенизации'),
+        ]);
     }
 }

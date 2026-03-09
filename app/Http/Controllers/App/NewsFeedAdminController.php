@@ -4,6 +4,8 @@ namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
 use App\Models\NewsFeedItem;
+use App\Models\User;
+use App\Notifications\LkNotification;
 use App\Services\DzenFeedService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -37,6 +39,15 @@ class NewsFeedAdminController extends Controller
 
         try {
             $saved = DzenFeedService::make()->fetchAndSync();
+            $notification = new LkNotification(
+                title: __('Обновлена лента новостей'),
+                body: __('Добавлено или обновлено записей: :count. Новости отображаются на главной странице.', ['count' => $saved]),
+                link: route('welcome'),
+                type: LkNotification::TYPE_SYSTEM,
+                importance: 'normal',
+                expiresAt: now()->addDays(7),
+            );
+            User::permission('access-lk')->get()->each(fn ($user) => $user->notify($notification));
             return redirect()
                 ->route('lk.admin.news-feed.index')
                 ->with('status', __('Лента обновлена. Обработано записей: :count.', ['count' => $saved]));

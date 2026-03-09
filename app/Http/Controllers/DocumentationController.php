@@ -13,7 +13,8 @@ class DocumentationController extends Controller
     public function __invoke()
     {
         return view('public-sections.documentation', [
-            'title' => __('Документация'),
+            'title' => __('Документация и правила платформы'),
+            'description' => __('Условия использования платформы НЕКСУС, политики, соглашения и регламентирующие документы.'),
         ]);
     }
 }

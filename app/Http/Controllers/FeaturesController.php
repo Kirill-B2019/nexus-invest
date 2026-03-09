@@ -13,7 +13,8 @@ class FeaturesController extends Controller
     public function __invoke()
     {
         return view('public-sections.features', [
-            'title' => __('Особенности'),
+            'title' => __('Особенности экосистемы НЕКСУС'),
+            'description' => __('Операционная модель и ключевые особенности платформы проектного финансирования: витрина проектов, карта регионов, типы инструментов и доходности.'),
         ]);
     }
 }

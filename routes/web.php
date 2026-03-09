@@ -11,6 +11,9 @@ use App\Http\Controllers\App\RolesAdminController;
 use App\Http\Controllers\App\NewsFeedAdminController;
 use App\Http\Controllers\App\NmessPageController;
 use App\Http\Controllers\App\DictionariesAdminController;
+use App\Http\Controllers\App\NotificationsController;
+use App\Http\Controllers\App\NotificationsAdminController;
+use App\Http\Controllers\App\AdminSettingsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ComplianceController;
 use App\Http\Controllers\DocumentationController;
@@ -46,6 +49,13 @@ Route::middleware('throttle:10,1')->post('/api/captcha/new', [CaptchaController:
 Route::middleware('auth')->group(function () {
     Route::get('/lk', LkController::class)->middleware('verified', 'lk.access')->name('lk');
     Route::get('/lk/messenger', NmessPageController::class)->middleware('verified', 'lk.access')->name('lk.messenger');
+
+    Route::middleware('verified', 'lk.access')->prefix('lk/notifications')->name('lk.notifications.')->group(function () {
+        Route::get('/', [NotificationsController::class, 'index'])->name('index');
+        Route::get('/dropdown', [NotificationsController::class, 'dropdown'])->name('dropdown');
+        Route::post('/read-all', [NotificationsController::class, 'markAllRead'])->name('mark-all-read');
+        Route::post('/{id}/read', [NotificationsController::class, 'markRead'])->name('mark-read');
+    });
     Route::get('/lk/admin/messenger', [MessengerAdminController::class, 'index'])->middleware('verified', 'lk.access', 'role:messenger-admin')->name('lk.admin.messenger');
     Route::post('/lk/admin/messenger', [MessengerAdminController::class, 'updateAccess'])->middleware('verified', 'lk.access', 'role:messenger-admin')->name('lk.admin.messenger.update');
     Route::post('/lk/admin/messenger/sync', [MessengerAdminController::class, 'syncWithServer'])->middleware('verified', 'lk.access', 'role:messenger-admin')->name('lk.admin.messenger.sync');
@@ -69,11 +79,19 @@ Route::middleware('auth')->group(function () {
         Route::delete('/permissions/{permission}', [RolesAdminController::class, 'permissionDestroy'])->name('permission.destroy');
     });
 
+    Route::middleware('verified', 'lk.access', 'permission:manage-notifications')->prefix('lk/admin/notifications')->name('lk.admin.notifications.')->group(function () {
+        Route::get('/', [NotificationsAdminController::class, 'index'])->name('index');
+        Route::get('/create', [NotificationsAdminController::class, 'create'])->name('create');
+        Route::post('/', [NotificationsAdminController::class, 'store'])->name('store');
+    });
+
     Route::middleware('verified', 'lk.access', 'permission:update-news-feed')->prefix('lk/admin/news-feed')->name('lk.admin.news-feed.')->group(function () {
         Route::get('/', [NewsFeedAdminController::class, 'index'])->name('index');
         Route::post('/update', [NewsFeedAdminController::class, 'update'])->name('update');
         Route::delete('/{newsFeedItem}', [NewsFeedAdminController::class, 'destroy'])->name('destroy');
     });
+
+    Route::get('/lk/admin/settings', AdminSettingsController::class)->middleware('verified', 'lk.access')->name('lk.admin.settings.index');
 
     Route::middleware('verified', 'lk.access', 'permission:manage-dictionaries')
         ->prefix('lk/admin/settings/dictionaries')

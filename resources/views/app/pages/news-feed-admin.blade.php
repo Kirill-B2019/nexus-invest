@@ -1,16 +1,16 @@
 @extends('layouts.app.app')
 
-@section('title', __('Лента новостей'))
+@section('title', __('Управление лентой новостей'))
 
 @section('header')
-    <h1>{{ __('Лента новостей') }}</h1>
+    <h1>{{ __('Управление лентой новостей') }}</h1>
 @endsection
 
 @section('content')
     <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
         <ol class="breadcrumb pt-0">
             <li class="breadcrumb-item"><a href="{{ route('lk') }}">{{ __('Личный кабинет') }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ __('Лента новостей') }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ __('Управление лентой новостей') }}</li>
         </ol>
     </nav>
     <div class="separator mb-4"></div>
