@@ -111,6 +111,10 @@
                     ]"
                     :links="[
                         [
+                            'href'  => asset('doc/NexusPublicOffer.pdf'),
+                            'label' => 'Публичная оферта',
+                        ],
+                        [
                             'href'  => asset('doc/NexusPrivacyPolicy-14022026.pdf'),
                             'label' => 'Политика конфиденциальности',
                         ],
