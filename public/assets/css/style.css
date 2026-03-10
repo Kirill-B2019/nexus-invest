@@ -10032,3 +10032,6 @@ a.icon-socials:hover {
     transform: scaleY(-1);     /* переворот только фона */
     z-index: -1;               /* чтобы не перекрывать контент */
 }
+.alert-footer {
+    background-color: var(--color-surface-dark);
+    border-color: var(--color-surface-dark-2); }

@@ -133,36 +133,33 @@
 
         <div class="footer-bottom mt-0 border-top pt-4" style="border-color: rgba(255,255,255,0.08) !important;">
             <div class="row align-items-start mb-20">
-                <div class="col-12 col-md-4 mb-20 mb-md-0 text-center text-md-start">
-                    <div class="text-start d-inline-block">
-                        <p class="text-lg title-follow neutral-0 mb-0">
-                            {{ __('Нативные токены платформы (UTILITY)') }}
-                        </p>
-                        <p class="small neutral-100 text-left">{{ __('Стандарт GNDst-1 (расширенный ERC | TRC)') }}</p>
-                        <p class="small neutral-700 text-left">{{ __('GND (Utility токен ГАНИМЕД) ') }}</p>
-                        <p class="small neutral-700 text-left">{{ __('GANI (Governance токен - управление) ') }}</p>
-                        <p class="small neutral-700 text-left">{{ __('iGND (Токен программы смягчения инвестиционных рисков)') }}</p>
+                <div class="col-12 col-md-6 mb-20 mb-md-0 text-center text-md-start">
+                    <div  class="alert alert-footer">
+                        <p class="neutral-400 uppercase text-md">{{ __('Важное уведомление для резидентов РФ') }}</p>
+                        <p class="neutral-600 mb-0 small">{{ __('GND, GANI, iGND  — технические токены протокола ГАНИМЕД, используемые исключительно для обеспечения работы блокчейн‑инфраструктуры. Они не подлежат прямой продаже, покупке или иному обороту резидентам Российской Федерации в соответствии с российским законодательством (ФЗ‑259 «О цифровых финансовых активах»).') }}</p>
                     </div>
                 </div>
-                <div class="col-12 col-md-4 mb-20 mb-md-0 text-center text-md-start">
-                    <h5 class="neutral-0 mb-10 text-18-semibold">{{ __('Канал Дзен') }}</h5>
-                    <p class="text-sm neutral-600 mb-15">{{ __('Новости и материалы о цифровых финансах и финтехе') }}</p>
+                <div class="col-12 col-md-3 mb-20 mb-md-0 text-center text-md-start">
+                    <h5 class="neutral-0 mb-10 text-18-semibold">{{ __('Канал Дзен от авторов НЕКСУС') }}</h5>
                     <a href="https://dzen.ru/digital_fintech" target="_blank" rel="noopener noreferrer" class="btn btn-brand-4-medium hover-up">
                         {{ __('Перейти в канал') }}
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-1" style="vertical-align: -0.2em;">
                             <path d="M14 5l7 7-7 7M3 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </a>
+                    <p class="text-sm neutral-600 mb-15">{{ __('Новости и материалы о цифровых финансах и финтехе') }}</p>
+
                 </div>
-                <div class="col-12 col-md-4 text-center text-md-start">
+                <div class="col-12 col-md-3 text-center text-md-start">
                     <h5 class="neutral-0 mb-10 text-18-semibold">{{ __('Канал Telegram') }}</h5>
-                    <p class="text-sm neutral-600 mb-15">{{ __('Официальный канал NEXUS — анонсы и обновления') }}</p>
                     <a href="https://t.me/dipp_NEXUS" target="_blank" rel="noopener noreferrer" class="btn btn-brand-4-medium hover-up">
                         {{ __('Перейти в канал') }}
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-1" style="vertical-align: -0.2em;">
                             <path d="M14 5l7 7-7 7M3 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </a>
+                    <p class="text-sm neutral-600 mb-15">{{ __('Официальный канал NEXUS — анонсы и обновления') }}</p>
+
                 </div>
             </div>
             <div class="row align-items-center mb-20 pb-3" style="border-bottom: 1px solid rgba(255,255,255,0.08);">
