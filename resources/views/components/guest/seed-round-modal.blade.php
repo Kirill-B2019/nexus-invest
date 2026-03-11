@@ -88,7 +88,7 @@
                 <p class="text-xl-center neutral-0 mb-3 uppercase border-warning rounded">{{__('SEED раунд закрывается : ')}}
                     <span class="display-5">{{__('30 ')}}</span>
                     {{__('апреля ')}}
-                    <span class="display-5">{{__('2026.')}}</span>
+                    <span class="display-5">{{__('2026 ')}}</span>
                     {{__('г.')}}
                 </p>
             </div>
@@ -98,3 +98,11 @@
         </div>
     </div>
 </div>
+<script>
+(function() {
+    var el = document.getElementById('seedRoundOfferModal');
+    if (!el) return;
+    el.addEventListener('show.bs.modal', function() { el.setAttribute('aria-hidden', 'false'); });
+    el.addEventListener('hidden.bs.modal', function() { el.setAttribute('aria-hidden', 'true'); });
+})();
+</script>
