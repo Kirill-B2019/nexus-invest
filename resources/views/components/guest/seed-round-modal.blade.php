@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
         <div class="modal-content modal-theme">
             <div class="modal-header border-0 pb-0">
-                <p class="text-lg display-4 modal-title neutral-0" id="seedRoundOfferModalLabel">{{ __('Предложение инвестору Seed-раунда') }}</p>
+                <p class="text-lg-center display-4 modal-title neutral-0" id="seedRoundOfferModalLabel">{{ __('Предложение инвестору Seed-раунда') }}</p>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="{{ __('Закрыть') }}"></button>
             </div>
             <div class="modal-body pt-2 seed-round-modal-body">
@@ -85,7 +85,7 @@
                     <li class="mb-1">{{ __('Заключить SAFE или конвертируемый заем') }}</li>
                     <li class="mb-1">{{ __('Вступить в состав инвесторов (quarterly updates) - РФ Москва, ВТБ депозитарий') }}</li>
                 </ul>
-                <p class="text-xl-center neutral-0 mb-3 uppercase border-warning rounded">{{__('SEED раунд закрывается : ')}}
+                <p class="text-xl-center neutral-0 mb-3 uppercase">{{__('SEED раунд закрывается : ')}}
                     <span class="display-5">{{__('30 ')}}</span>
                     {{__('апреля ')}}
                     <span class="display-5">{{__('2026 ')}}</span>
