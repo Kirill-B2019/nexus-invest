@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-sm-6">
-                    <p class="mb-0 text-muted">{{ config('app.name') }} {{ date('Y') }} |KB @CerbeRus Nexus Invest Team</p>
+                    <p class="mb-0 text-muted">{{ config('app.name') }} {{ date('Y') }} |KB @CerberRus00 Nexus Invest Team</p>
                 </div>
                 <div class="col-sm-6 d-none d-sm-block">
                     <ul class="breadcrumb pt-0 pr-0 float-right">

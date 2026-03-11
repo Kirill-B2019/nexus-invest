@@ -27,6 +27,12 @@
                         </div>
                     </div>
                 </div>
+                {{-- Кнопка предложения Seed-раунда — открывает модальное окно с условиями --}}
+                <div class="col-12 mb-20">
+                    <button type="button" class="btn btn-sm btn-border-brand-7 small uppercase" data-bs-toggle="modal" data-bs-target="#seedRoundOfferModal" aria-label="{{ __('Приглашаем инвестора Seed-раунда') }}">
+                        {{ __('Приглашаем партнера Seed-раунда') }}
+                    </button>
+                </div>
                 {{-- Статус блокчейна ГАНИМЕД по block/latest: статус + данные блока, блок прижат вправо --}}
                 <div class="row footer-ganimed-status-row py-3">
                     <div class="col-12">
@@ -176,7 +182,7 @@
             </div>
             <div class="row">
                 <div class="col-12 text-center">
-                    <p class="text-sm neutral-600 mb-0">{{ __('©') }} {{ date('Y') }} {{ config('app.name') }}. {{ __('Все права защищены.') }} | KB @CerbeRus - Nexus Invest Team  </p>
+                    <p class="text-sm neutral-600 mb-0">{{ __('©') }} {{ date('Y') }} {{ config('app.name') }}. {{ __('Все права защищены.') }} | KB @CerberRus00 - Nexus Invest Team  </p>
                 </div>
             </div>
         </div>

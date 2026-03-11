@@ -1280,6 +1280,19 @@ body {
   line-height: 28px;
   font-weight: 500;
 }
+
+.btn.btn-border-brand-7 {
+    padding: 10px 30px;
+    color: var(--color-surface-light);
+    border: 1px solid var(--color-primary);
+    border-radius: 38px;
+    line-height: 28px;
+    font-weight: 500;
+}
+.btn.btn-border-brand-7:hover, .btn.btn-border-brand-7.active {
+    color: var(--color-primary);
+    background: var(--color-badge-bg);
+}
 .btn.btn-neutral-100 {
   padding: 10px 30px;
   background-color: var(--color-surface-light);

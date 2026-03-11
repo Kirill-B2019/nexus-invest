@@ -12,7 +12,7 @@
     @endphp
     <meta name="description" content="@yield('metaDescription', $defaultMetaDescription)">
     <meta name="keywords" content="@yield('metaKeywords', $defaultMetaKeywords)">
-    <meta name="author" content="KB @CerbeRus - Nexus Invest Team">
+    <meta name="author" content="KB @CerberRus00 - Nexus Invest Team">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="zen-verification" content="K0H1Zjtz1fcqho7Y4wnB9NRcmHMocHkVIoMVPeC9m3QozrwKF7vzm4xrqgVJHPwy" />
     @php
@@ -34,6 +34,9 @@
     <link href="{{ asset('assets/css/roadmap.css') }}?v={{ $styleVer }}" rel="stylesheet" media="all">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" media="all">
     <style>
+        /* Резерв места под скроллбар — при открытии модалки контент не смещается */
+        html { scrollbar-gutter: stable; }
+        body.modal-open { padding-right: 0 !important; }
         body { overflow-x: clip; max-width: 100vw; }
         .main { max-width: 100%; overflow-x: clip; }
         html[lang="ru"] body,
@@ -66,6 +69,7 @@
     @include('layouts.guest.footer')
 
     <x-guest.contact-form-modal />
+    <x-guest.seed-round-modal />
 
     @if ($errors->hasAny(['name', 'email', 'message', 'captcha_answer']) && old('_form') === 'contact')
     <script>

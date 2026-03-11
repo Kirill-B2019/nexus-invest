@@ -21,6 +21,7 @@
 :root {
   /* Основной акцент */
   --color-primary: #C5FF41;
+  --color-primary-rgb: 197, 255, 65;
   --color-primary-hover: #d4ff6b;
   /* Тёмные фоны и текст */
   --color-dark: #191919;
@@ -1108,7 +1109,116 @@ div#onwer .card-testimonial-3:hover {
     background: rgba(236, 238, 242, 0.1);
 }
 
-/* Модальное окно обратной связи — тёмная тема */
+/* Модальные окна в теме сайта (тёмная тема) */
+.modal-theme {
+    background: var(--color-dark);
+    border: 1px solid rgba(236, 238, 242, 0.15);
+    color: var(--color-surface-light);
+}
+.modal-theme .btn-outline-secondary {
+    border-color: rgba(236, 238, 242, 0.5);
+    color: var(--color-surface-light);
+}
+.modal-theme .btn-outline-secondary:hover {
+    background: rgba(236, 238, 242, 0.1);
+    border-color: rgba(236, 238, 242, 0.5);
+    color: var(--color-surface-light);
+}
+.modal-backdrop.show {
+    opacity: 0.75;
+}
+.modal-theme .seed-round-table {
+    --bs-table-bg: transparent;
+    --bs-table-border-color: rgba(236, 238, 242, 0.2);
+    color: var(--color-surface-light);
+}
+.modal-theme .seed-round-table th,
+.modal-theme .seed-round-table td {
+    border-color: rgba(236, 238, 242, 0.2);
+    padding: 0.35rem 0.5rem;
+}
+.modal-theme .seed-round-table tbody tr.seed-round-table-row-highlight {
+    background-color: rgba(var(--color-primary-rgb, 34, 209, 238), 0.15);
+}
+.modal-theme .seed-round-table tbody tr.seed-round-table-row-highlight td {
+    color: var(--color-surface-light);
+}
+.modal-theme .seed-round-modal-body .seed-round-benefits-list .ganimed-status-checkbox.ganimed-status-ok {
+    background-color: rgba(var(--color-primary-rgb, 34, 209, 238), 0.2);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+.modal-theme .seed-round-modal-close {
+    background-color: var(--color-primary);
+    color: var(--color-dark);
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+}
+.modal-theme .seed-round-modal-close:hover {
+    background-color: var(--color-primary-hover, var(--color-primary));
+    color: var(--color-dark);
+}
+.modal-theme .seed-round-modal-body h6 {
+    margin-top: 1rem;
+}
+.modal-theme .seed-round-modal-body h6:first-of-type {
+    margin-top: 0;
+}
+
+/* Карточки раундов (мобильные и десктоп) */
+.seed-round-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+@media (min-width: 768px) {
+    .seed-round-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+.seed-round-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(236, 238, 242, 0.2);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+}
+.seed-round-card-header {
+    font-weight: 600;
+    color: var(--color-surface-light);
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid rgba(236, 238, 242, 0.15);
+}
+.seed-round-card-highlight {
+    background-color: rgba(var(--color-primary-rgb, 197, 255, 65), 0.12);
+    border-color: rgba(var(--color-primary-rgb, 197, 255, 65), 0.35);
+}
+.seed-round-card-highlight .seed-round-card-header {
+    color: var(--color-primary);
+}
+.seed-round-card-body div {
+    padding: 0.2rem 0;
+}
+.seed-round-card-body dt {
+    flex-shrink: 0;
+    margin-right: 0.5rem;
+    font-weight: 500;
+}
+.seed-round-card-body dd {
+    flex: 1;
+    text-align: right;
+}
+.modal-theme .seed-round-modal-body a {
+    color: var(--color-primary);
+}
+.modal-theme .seed-round-modal-body a:hover {
+    color: var(--color-primary-hover, var(--color-primary));
+}
+
+/* Модальное окно обратной связи — расширение темы */
 .contact-form-modal-content {
     background: var(--color-dark);
     border: 1px solid rgba(236, 238, 242, 0.15);

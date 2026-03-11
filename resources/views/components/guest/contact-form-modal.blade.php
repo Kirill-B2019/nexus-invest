@@ -1,6 +1,6 @@
 <div class="modal fade" id="contactFormModal" tabindex="-1" aria-labelledby="contactFormModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
-        <div class="modal-content contact-form-modal-content">
+        <div class="modal-content modal-theme contact-form-modal-content">
             <div class="modal-header border-0 pb-0">
                 <h5 class="modal-title text-18-semibold neutral-0" id="contactFormModalLabel">{{ __('Обратная связь') }}</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="{{ __('Закрыть') }}"></button>
