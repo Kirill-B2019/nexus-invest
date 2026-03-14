@@ -30,10 +30,20 @@
 <script>
     document.body.classList.remove('show-spinner');
     (function() {
-        var theme = typeof localStorage !== 'undefined' && localStorage.getItem('dore-theme-color');
-        if (!theme) theme = 'dore.dark.greenlime.min.css';
-        if (theme && theme.indexOf('dark') > -1) document.getElementById('app-container').classList.add('body-theme-dark');
-        else document.getElementById('app-container').classList.remove('body-theme-dark');
+        function getCookie(name) {
+            var m = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + '=([^;]*)'));
+            return m ? decodeURIComponent(m[1]) : null;
+        }
+        var theme = getCookie('app_theme') || (typeof localStorage !== 'undefined' && localStorage.getItem('dore-theme-color')) || 'dore.dark.greenlime.min.css';
+        var isDark = theme && theme.indexOf('dark') > -1;
+        var container = document.getElementById('app-container');
+        if (isDark) {
+            container.classList.add('body-theme-dark');
+            document.documentElement.classList.remove('theme-light');
+        } else {
+            container.classList.remove('body-theme-dark');
+            document.documentElement.classList.add('theme-light');
+        }
     })();
 </script>
 <script>
@@ -90,4 +100,18 @@
         });
 })();
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+@php
+    $laravelFlashLk = [
+        'success' => session('alert_success'),
+        'error' => session('alert_error'),
+        'warning' => session('alert_warning'),
+        'info' => session('info'),
+        'errors' => [],
+    ];
+@endphp
+<script>
+    window.laravelFlashLk = @json($laravelFlashLk);
+</script>
+<script src="{{ asset('app/js/sweetalert-flash-lk.js') }}?v=1.0.0"></script>
 @stack('scripts')

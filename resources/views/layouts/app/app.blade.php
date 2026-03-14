@@ -2,8 +2,14 @@
   Layout закрытой части (ЛК). Ресурсы: public/app/ (asset('app/...')).
   Подключения через @include директивы.
 --}}
+@php
+    $themeFile = request()->cookie('app_theme', 'dore.dark.greenlime.min.css');
+    $validThemes = ['dore.light.greenlime.min.css', 'dore.light.bluenavy.min.css', 'dore.light.blueyale.min.css', 'dore.light.blueolympic.min.css', 'dore.light.greenmoss.min.css', 'dore.light.purplemonster.min.css', 'dore.light.orangecarrot.min.css', 'dore.light.redruby.min.css', 'dore.light.yellowgranola.min.css', 'dore.dark.greenlime.min.css', 'dore.dark.bluenavy.min.css', 'dore.dark.blueyale.min.css', 'dore.dark.blueolympic.min.css', 'dore.dark.greenmoss.min.css', 'dore.dark.purplemonster.min.css', 'dore.dark.orangecarrot.min.css', 'dore.dark.redruby.min.css', 'dore.dark.yellowgranola.min.css'];
+    $themeFile = in_array($themeFile, $validThemes) ? $themeFile : 'dore.dark.greenlime.min.css';
+    $isDarkTheme = str_contains($themeFile, 'dark');
+@endphp
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @if(!$isDarkTheme) class="theme-light" @endif>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -24,7 +30,7 @@
     <link rel="stylesheet" href="{{ asset('app/css/vendor/nouislider.min.css') }}">
     <link rel="stylesheet" href="{{ asset('app/css/vendor/bootstrap-datepicker3.min.css') }}">
     <link rel="stylesheet" href="{{ asset('app/css/vendor/component-custom-switch.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('app/css/dore.dark.greenlime.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('app/css/' . $themeFile) }}">
     <link rel="stylesheet" href="{{ asset('app/css/main.css') }}">
     <style>
         /* Верхнее меню ЛК всегда закреплено (на prod без зависимости от загрузки main.css) */
@@ -52,7 +58,7 @@
     </style>
     @stack('styles')
 </head>
-<body id="app-container" class="menu-default show-spinner">
+<body id="app-container" class="menu-default show-spinner{{ $isDarkTheme ? ' body-theme-dark' : '' }}">
     @include('layouts.app.topbar')
     @include('layouts.app.sidebar')
     <div class="menu-backdrop d-md-none" id="menu-backdrop" aria-hidden="true" title="{{ __('Закрыть меню') }}"></div>

@@ -16,8 +16,7 @@ resources/views/app/
 │       ├── sidebar.blade.php
 │       └── footer.blade.php
 └── pages/
-    ├── lk.blade.php            # Главная страница ЛК (/lk)
-    └── blank.blade.php         # Пустая страница (/app/blank)
+    └── lk.blade.php            # Главная страница ЛК (/lk)
 ```
 
 Компонент **`<x-app-layout>`** рендерит **`app.layouts.lk`** (полный Dashboard.Default).
@@ -27,7 +26,7 @@ resources/views/app/
 | Часть        | Точка входа      | Маршруты / представления |
 |-------------|------------------|---------------------------|
 | Публичная   | `/` (welcome)    | welcome, features, compliance, auth (login, register и т.д.) |
-| Внутренняя (ЛК) | **`/lk`**   | lk, profile, app.blank; все используют layout `lk.blade.php` |
+| Внутренняя (ЛК) | **`/lk`**   | lk, profile; все используют layout `lk.blade.php` |
 
 После входа редирект ведёт на **`route('lk')`** (`/lk`). Старый адрес `/dashboard` перенаправляется на `/lk` (301).
 
@@ -39,5 +38,4 @@ resources/views/app/
 
 - **`/lk`** — главная ЛК (`app.pages.lk`), middleware `verified`
 - **`/dashboard`** — редирект на `/lk`
-- **`/app/blank`** — пустая страница
 - **`/profile`** — профиль пользователя

@@ -1,0 +1,110 @@
+/**
+ * Светлая тема ЛК: Вариант 2 — Зелёно-нейтральный (эргономичная гамма).
+ * Применяется когда #app-container не имеет body-theme-dark (светлая тема).
+ *
+ * Палитра:
+ * - Фон: #F7F8F6 (светло-серый с лёгким зелёным)
+ * - Поверхности: #FFFFFF
+ * - Текст: #1F2937 (тёмно-серый)
+ * - Акцент: #4B7B5B (приглушённый зелёный)
+ * - Акцент светлый: #E8F0EA (фон для выделения)
+ */
+#app-container:not(.body-theme-dark) {
+  --theme-color-1: #4B7B5B;
+  --theme-color-2: #5a8f6a;
+  --theme-color-3: #8fa89a;
+  --theme-color-4: #3d6349;
+  --theme-color-5: #5a8f6a;
+  --theme-color-6: #6e9e7a;
+  --theme-color-1-10: rgba(75, 123, 91, 0.1);
+  --theme-color-2-10: rgba(90, 143, 106, 0.1);
+  --theme-color-3-10: rgba(143, 168, 154, 0.1);
+  --theme-color-4-10: rgba(61, 99, 73, 0.1);
+  --theme-color-5-10: rgba(90, 143, 106, 0.1);
+  --theme-color-6-10: rgba(110, 158, 122, 0.1);
+  --primary-color: #1F2937;
+  --foreground-color: #ffffff;
+  --separator-color: #E5E5E0;
+}
+
+/* body имеет id="app-container" */
+html.theme-light {
+  background-color: #F7F8F6 !important;
+}
+#app-container:not(.body-theme-dark) {
+  background-color: #F7F8F6 !important;
+  color: #1F2937 !important;
+}
+
+#app-container:not(.body-theme-dark) .card,
+#app-container:not(.body-theme-dark) .list .card,
+#app-container:not(.body-theme-dark) .navbar,
+#app-container:not(.body-theme-dark) .menu {
+  background-color: #FFFFFF !important;
+}
+
+#app-container:not(.body-theme-dark) .card .card-body,
+#app-container:not(.body-theme-dark) .list .card .card-body {
+  background-color: #FFFFFF !important;
+}
+
+#app-container:not(.body-theme-dark) .btn-primary,
+#app-container:not(.body-theme-dark) .custom-switch-primary .custom-switch-input:checked ~ .custom-switch-btn {
+  background-color: #4B7B5B !important;
+  border-color: #4B7B5B !important;
+}
+
+#app-container:not(.body-theme-dark) .btn-primary:hover {
+  background-color: #3d6349 !important;
+  border-color: #3d6349 !important;
+}
+
+#app-container:not(.body-theme-dark) .btn-outline-primary {
+  color: #4B7B5B !important;
+  border-color: #4B7B5B !important;
+}
+
+#app-container:not(.body-theme-dark) .btn-outline-primary:hover {
+  background-color: #E8F0EA !important;
+  color: #3d6349 !important;
+  border-color: #4B7B5B !important;
+}
+
+#app-container:not(.body-theme-dark) .nav-link.active,
+#app-container:not(.body-theme-dark) .nav-pills .nav-link.active {
+  background-color: #4B7B5B !important;
+  color: #FFFFFF !important;
+}
+
+#app-container:not(.body-theme-dark) .menu .list-unstyled li.active a {
+  background-color: #E8F0EA !important;
+  color: #1F2937 !important;
+}
+
+#app-container:not(.body-theme-dark) .menu .list-unstyled a:hover {
+  background-color: #E8F0EA !important;
+}
+
+#app-container:not(.body-theme-dark) a:not(.btn) {
+  color: #4B7B5B;
+}
+
+#app-container:not(.body-theme-dark) a:not(.btn):hover {
+  color: #3d6349;
+}
+
+#app-container:not(.body-theme-dark) .separator {
+  background-color: #E5E5E0;
+}
+
+#app-container:not(.body-theme-dark) .text-muted {
+  color: #5C5C5C !important;
+}
+
+#app-container:not(.body-theme-dark) ::selection {
+  background: #E8F0EA;
+}
+
+#app-container:not(.body-theme-dark) ::-moz-selection {
+  background: #E8F0EA;
+}

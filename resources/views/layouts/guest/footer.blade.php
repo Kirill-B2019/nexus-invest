@@ -1,17 +1,15 @@
 <footer class="footer footer-style-3 footer-style-5">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-sm-12 mb-30">
+            <div class="col-12 col-md-6 col-sm-12 mb-30">
                 <a href="{{ route('welcome') }}">
                     <img alt="{{ config('app.name') }}" src="{{ asset('assets/imgs/template/logo.svg') }}" class="w-85">
                 </a>
-                <div class="mt-20 mb-20">
+                <div class="mb-20">
                     <p class="text-md neutral-600 mb-10">{{ config('app.name') }}</p>
-
                 </div>
-
-                <div class="row align-items-end">
-                    <div class="col-12 mb-20" id="newsletter-form">
+                {{-- Подписаться на рассылку --}}
+                <div class="mb-20" id="newsletter-form">
                         <h5 class="text-18-semibold neutral-0">{{ __('Подписаться на рассылку') }}</h5>
                         <p class="text-sm neutral-600 mb-20">{{ __('Без рекламы. Без ограничений. Без обязательств') }}</p>
                         <div class="form-newsletter form-newsletter-2">
@@ -26,60 +24,14 @@
                             </form>
                         </div>
                     </div>
-                </div>
                 {{-- Кнопка предложения Seed-раунда — открывает модальное окно с условиями --}}
-                <div class="col-12 mb-20">
+                <div class="mb-20">
                     <button type="button" class="btn btn-sm btn-border-brand-7 small uppercase" data-bs-toggle="modal" data-bs-target="#seedRoundOfferModal" aria-label="{{ __('Приглашаем инвестора Seed-раунда') }}">
                         {{ __('Приглашаем партнера Seed-раунда') }}
                     </button>
                 </div>
-                {{-- Статус блокчейна ГАНИМЕД по block/latest: статус + данные блока, блок прижат вправо --}}
-                <div class="row footer-ganimed-status-row py-3">
-                    <div class="col-12">
-                        <div id="ganimed-node-status"
-                             class="d-flex flex-column align-items-start gap-2 text-sm w-100"
-                             data-status-url="{{ route('api.ganimed.block') }}">
-
-                            <!-- строка статуса -->
-                            <h5 class="neutral-0 mb-15 text-18-semibold">{{ __('Статус блокчейна ГАНИМЕД') }}</h5>
-                            <div class="d-flex flex-wrap align-items-center gap-2 justify-content-start w-100">
-
-                                <p></p><span id="ganimed-status-loading" class="text-sm neutral-500">{{ __('Загрузка…') }}</span>
-                                <span id="ganimed-status-result" class="d-none d-flex align-items-center gap-1">
-                                    <span id="ganimed-status-checkbox" class="ganimed-status-checkbox" role="img" aria-hidden="true"></span>
-                                    <span id="ganimed-status-text" class="text-sm neutral-200"></span>
-                                    https://scan.gnd-net.com
-                                </span>
-                            </div>
-
-                            <!-- детали блока, тоже на всю ширину -->
-                            <div id="ganimed-block-details"
-                                 class="d-none text-start small neutral-500 w-100">
-                                <div><span class="neutral-600">{{ __('Высота блока:') }}</span> <span id="ganimed-block-height" class="text-sm neutral-200"></span></div>
-                                <div><span class="neutral-600">{{ __('Hash:') }}</span> <span id="ganimed-block-hash" class="text-sm neutral-200"></span></div>
-                                <div><span class="neutral-600">{{ __('Маркле:') }}</span> <span id="ganimed-block-merkle" class="text-sm neutral-200"></span></div>
-                                <div><span class="neutral-600">{{ __('Валидатор:') }}</span> <span id="ganimed-block-miner" class="text-sm neutral-200"></span></div>
-                                <div><span class="neutral-600">{{ __('Время окончания генерации:') }}</span> <span id="ganimed-block-updated" class="text-sm neutral-200"></span></div>
-                                <div class="d-flex align-items-center gap-1 justify-content-start">
-                                    <span class="neutral-600">{{ __('Финализирован:') }}</span>
-                                    <span id="ganimed-block-finalized" class="ganimed-status-checkbox ganimed-status-fail" role="img" aria-hidden="true"></span>
-                                </div>
-
-                            </div>
-
-                            <!-- кнопка -->
-                            <button type="button"
-                                    id="ganimed-status-refresh"
-                                    class="cookie-banner__btn cookie-banner__btn--reject">
-                                {{ __('Проверить') }}
-                            </button>
-                            <a class="btn btn-sm btn-brand-5-new small uppercase" href="{{ url('https://scan.gnd-net.com') }}" target="_blank" rel="noopener noreferrer">{{ __('Сканер ГАНИМЕД - scan.gnd-net.com') }}</a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-            <div class="col-md-6 col-sm-12">
+            <div class="col-12 col-md-6 col-sm-12">
                 <div class="row">
                     <div class="col-12 col-sm-6 mb-30">
                         <h5 class="neutral-0 mb-10 text-18-semibold">{{ __('Документы') }}</h5>
@@ -93,8 +45,7 @@
                     <div class="col-12 col-sm-6 mb-30">
                         <h5 class="neutral-0 mb-10 text-18-semibold">{{ __('Поддержка') }}</h5>
                         <ul class="menu-footer">
-                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#contactFormModal">{{ __('Связаться с нами') }}</a></li>
-                            <li><a href="{{ route('lk') }}">{{ __('Ваш кабинет') }}&nbsp;<i class="fi-rr-sign-in-alt"></i></a></li>
+                            <li><a href="#" class="btn btn-sm btn-border-brand-7 small uppercase" data-bs-toggle="modal" data-bs-target="#contactFormModal">{{ __('Связаться с нами') }}</a></li>
 
                         </ul>
                     </div>
@@ -136,9 +87,81 @@
 
             </div>
         </div>
+        <div class="row pb-3">
+            <div class="col-12 col-md-6 col-sm-12">
+                {{-- Статус блокчейна ГАНИМЕД по block/latest: статус + данные блока, блок прижат вправо --}}
+                <div class="row footer-ganimed-status-row">
+                    <div class="col-12 ">
+                        <div id="ganimed-node-status"
+                             class="d-flex flex-column align-items-start gap-2 text-sm w-100"
+                             data-status-url="{{ route('api.ganimed.block') }}">
 
+                            <!-- строка статуса -->
+                            <h5 class="neutral-0 mb-15 text-18-semibold">{{ __('Статус блокчейна ГАНИМЕД') }}</h5>
+                            <div class="d-flex flex-wrap align-items-center gap-2 justify-content-start w-100">
+
+                                <p></p><span id="ganimed-status-loading" class="text-sm neutral-500">{{ __('Загрузка…') }}</span>
+                                <span id="ganimed-status-result" class="d-none d-flex align-items-center gap-1">
+                                    <span id="ganimed-status-checkbox" class="ganimed-status-checkbox" role="img" aria-hidden="true"></span>
+                                    <span id="ganimed-status-text" class="text-sm neutral-200"></span>
+                                    https://scan.gnd-net.com
+                                </span>
+                            </div>
+
+                            <!-- детали блока, тоже на всю ширину -->
+                            <div id="ganimed-block-details"
+                                 class="d-none text-start small neutral-500 w-100">
+                                <div><span class="neutral-600">{{ __('Высота блока:') }}</span> <span id="ganimed-block-height" class="text-sm neutral-200"></span></div>
+                                <div><span class="neutral-600">{{ __('Hash:') }}</span> <span id="ganimed-block-hash" class="text-sm neutral-200"></span></div>
+                                <div><span class="neutral-600">{{ __('Маркле:') }}</span> <span id="ganimed-block-merkle" class="text-sm neutral-200"></span></div>
+                                <div><span class="neutral-600">{{ __('Валидатор:') }}</span> <span id="ganimed-block-miner" class="text-sm neutral-200"></span></div>
+                                <div><span class="neutral-600">{{ __('Время окончания генерации:') }}</span> <span id="ganimed-block-updated" class="text-sm neutral-200"></span></div>
+                                <div class="d-flex align-items-center gap-1 justify-content-start">
+                                    <span class="neutral-600">{{ __('Финализирован:') }}</span>
+                                    <span id="ganimed-block-finalized" class="ganimed-status-checkbox ganimed-status-fail" role="img" aria-hidden="true"></span>
+                                </div>
+
+                            </div>
+
+                            <!-- кнопка -->
+                            <button type="button"
+                                    id="ganimed-status-refresh"
+                                    class="cookie-banner__btn cookie-banner__btn--reject">
+                                {{ __('Проверить') }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-sm-12">
+                <h5 class="neutral-0 mb-10 text-18-semibold">{{ __('Ресурсы экосистемы') }}</h5>
+                <ul class="menu-footer text-sm">
+                    <li>
+                        <a class="href-white" href="https://nexus-invest.fund" target="_blank" rel="noopener noreferrer">
+                            <span class="neutral-500 text-right">{{ __('nexus-invest.fund') }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="href-white" href="https://main-node.gnd-net.com" target="_blank" rel="noopener noreferrer">
+                            <span class="neutral-500 text-right href-white">{{ __('main-node.gnd-net.com - описание API ГАНИМЕД (мастер нод)') }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="href-white"  href="https://scan.gnd-net.comm" target="_blank" rel="noopener noreferrer">
+                            <span class="neutral-500 text-right">{{ __('scan.gnd-net.com - сканер блокчейна ГАНИМЕД') }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="href-white"  href="https://mess.nexus-invest.fund" target="_blank" rel="noopener noreferrer">
+                            <span class="neutral-500 text-right href-white">{{ __('mess.nexus-invest.fund - мессенджер и конференц-связь НЕКСУС') }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom mt-0 border-top pt-4" style="border-color: rgba(255,255,255,0.08) !important;">
             <div class="row align-items-start mb-20">
+                {{-- Важное уведомление для резидентов РФ --}}
                 <div class="col-12 col-md-6 mb-20 mb-md-0 text-center text-md-start">
                     <div  class="alert alert-footer">
                         <p class="neutral-300 uppercase text-md">{{ __('Важное уведомление для резидентов РФ') }}</p>
@@ -146,6 +169,7 @@
                         <p class="neutral-600 mb-0 small">{{ __('Проектные утилити токены (GND-RWA)- утилитарные цифровые права (УЦП) и учетные токены без денежных прав/доходности (до получения лицензии оператора). Право на услуги, участие в проектах RWA (токенизация активов) или информацию.') }}</p>
                     </div>
                 </div>
+                {{-- Канал Дзен от авторов НЕКСУС --}}
                 <div class="col-12 col-md-3 mb-20 mb-md-0 text-center text-md-start">
                     <h5 class="neutral-0 mb-10 text-18-semibold">{{ __('Канал Дзен от авторов НЕКСУС') }}</h5>
                     <a href="https://dzen.ru/digital_fintech" target="_blank" rel="noopener noreferrer" class="btn btn-brand-4-medium hover-up">
@@ -157,6 +181,7 @@
                     <p class="text-sm neutral-600 mb-15">{{ __('Новости и материалы о цифровых финансах и финтехе') }}</p>
 
                 </div>
+                {{-- Официальный канал NEXUS — анонсы и обновления --}}
                 <div class="col-12 col-md-3 text-center text-md-start">
                     <h5 class="neutral-0 mb-10 text-18-semibold">{{ __('Канал Telegram') }}</h5>
                     <a href="https://t.me/dipp_NEXUS" target="_blank" rel="noopener noreferrer" class="btn btn-brand-4-medium hover-up">

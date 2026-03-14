@@ -1,10 +1,12 @@
 <?php
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -29,5 +31,31 @@ return Application::configure(basePath: dirname(__DIR__))
                 return response()->json(['message' => __('Необходима авторизация.')], 401);
             }
             return redirect()->guest(route('login'));
+        });
+
+        // 403 в закрытой части — SweetAlert2 + редирект на главную ЛК
+        $exceptions->renderable(function (AuthorizationException $e, Request $request) {
+            if ($request->expectsJson()) {
+                return response()->json(['message' => $e->getMessage() ?: __('Доступ запрещён.')], 403);
+            }
+            if ($request->user() && $request->is(['lk*', 'profile*', 'app/*', 'dashboard'])) {
+                return redirect()->route('lk')
+                    ->with('alert_error', $e->getMessage() ?: __('Доступ к этому разделу запрещён. Недостаточно прав или роли.'));
+            }
+            abort(403, $e->getMessage());
+        });
+
+        $exceptions->renderable(function (HttpException $e, Request $request) {
+            if ($e->getStatusCode() !== 403) {
+                return null;
+            }
+            if ($request->expectsJson()) {
+                return response()->json(['message' => $e->getMessage() ?: __('Доступ запрещён.')], 403);
+            }
+            if ($request->user() && $request->is(['lk*', 'profile*', 'app/*', 'dashboard'])) {
+                return redirect()->route('lk')
+                    ->with('alert_error', $e->getMessage() ?: __('Доступ к этому разделу запрещён. Недостаточно прав или роли.'));
+            }
+            return null;
         });
     })->create();

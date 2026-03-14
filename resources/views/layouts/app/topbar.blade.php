@@ -50,9 +50,13 @@
     <div class="navbar-right">
         <div class="header-icons d-inline-block align-middle">
             <div class="d-none d-md-inline-block align-text-bottom mr-3">
+                @php
+                    $themeCookie = request()->cookie('app_theme', 'dore.dark.greenlime.min.css');
+                    $themeIsDark = str_contains($themeCookie, 'dark');
+                @endphp
                 <div class="custom-switch custom-switch-primary-inverse custom-switch-small pl-1"
                      data-toggle="tooltip" data-placement="left" title="{{ __('Тёмная тема') }}">
-                    <input class="custom-switch-input" id="switchDark" type="checkbox" checked>
+                    <input class="custom-switch-input" id="switchDark" type="checkbox" {{ $themeIsDark ? 'checked' : '' }}>
                     <label class="custom-switch-btn" for="switchDark"></label>
                 </div>
             </div>
@@ -98,6 +102,9 @@
 
         @php
             $userAvatarUrl = Auth::user()->profile_photo_url ?? asset('assets/imgs/template/logo-only.svg');
+            $isSuperAdmin = Auth::user()->hasRole('super-admin');
+            $roleSwitch = app(\App\Services\LkRoleSwitchService::class);
+            $effectiveRole = $roleSwitch->getEffectiveRole(Auth::user());
         @endphp
         <div class="user d-inline-block">
             <button class="btn btn-empty p-0 d-flex align-items-center" type="button" data-toggle="dropdown" aria-haspopup="true"
@@ -115,6 +122,17 @@
                 </span>
             </button>
             <div class="dropdown-menu dropdown-menu-right mt-3">
+                @if($isSuperAdmin)
+                <div class="dropdown-header">{{ __('Переключение роли') }}</div>
+                @foreach(\App\Services\LkRoleSwitchService::SWITCHABLE_ROLES as $roleKey => $roleLabel)
+                <form method="POST" action="{{ route('lk.switch-role') }}" class="d-inline w-100">
+                    @csrf
+                    <input type="hidden" name="role" value="{{ $roleKey }}">
+                    <button type="submit" class="dropdown-item {{ ($effectiveRole ?? 'super-admin') === $roleKey ? 'active font-weight-bold' : '' }}">{{ $roleLabel }}</button>
+                </form>
+                @endforeach
+                <div class="dropdown-divider"></div>
+                @endif
                 <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Аккаунт') }}</a>
                 <a class="dropdown-item" href="{{ route('lk') }}">{{ __('Возможности') }}</a>
                 <a class="dropdown-item" href="{{ route('welcome') }}">{{ __('Главная') }}</a>

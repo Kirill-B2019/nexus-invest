@@ -32,8 +32,8 @@ class PermissionAccessLkSeeder extends Seeder
             $role->givePermissionTo($permission);
         }
 
-        // Админ-роли тоже должны заходить в кабинет
-        foreach (['roles-admin', 'messenger-admin'] as $adminRoleName) {
+        // Админ-роли и супер-админ тоже должны заходить в кабинет
+        foreach (['super-admin', 'roles-admin', 'messenger-admin'] as $adminRoleName) {
             $adminRole = Role::where('name', $adminRoleName)->where('guard_name', 'web')->first();
             if ($adminRole && ! $adminRole->hasPermissionTo($permission)) {
                 $adminRole->givePermissionTo($permission);

@@ -22,7 +22,7 @@ class TrueConfTokenController extends Controller
         }
 
         $hasAccess = (bool) ($user->messenger_access ?? false);
-        if (! $user->hasRole('messenger-admin') && (! $user->can('use-messenger') || ! $hasAccess)) {
+        if (! $user->hasRole('super-admin') && ! $user->hasRole('messenger-admin') && (! $user->can('use-messenger') || ! $hasAccess)) {
             return response()->json(['message' => 'Нет доступа к мессенджеру.'], 403);
         }
 

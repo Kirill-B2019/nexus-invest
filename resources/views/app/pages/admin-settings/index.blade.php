@@ -41,13 +41,13 @@
         <div class="card-body">
             <h2 class="h5 mb-3 text-uppercase text-muted">{{ __('Системные') }}</h2>
             <ul class="list-unstyled mb-0">
-                @role('messenger-admin')
+                @if(auth()->user()->hasRole('super-admin') || auth()->user()->hasRole('messenger-admin'))
                 <li class="mb-2">
                     <a href="{{ route('lk.admin.messenger') }}">
                         <i class="simple-icon-bubble mr-2"></i>{{ __('Мессенджер') }}
                     </a>
                 </li>
-                @endrole
+                @endif
                 @can('update-news-feed')
                 <li class="mb-2">
                     <a href="{{ route('lk.admin.news-feed.index') }}">
@@ -55,7 +55,7 @@
                     </a>
                 </li>
                 @endcan
-                @role('roles-admin')
+                @if(auth()->user()->hasRole('super-admin') || auth()->user()->hasRole('roles-admin'))
                 <li class="mb-2">
                     <a href="{{ route('lk.admin.roles.users') }}">
                         <i class="simple-icon-people mr-2"></i>{{ __('Пользователи') }}
@@ -71,7 +71,7 @@
                         <i class="simple-icon-lock mr-2"></i>{{ __('Разрешения') }}
                     </a>
                 </li>
-                @endrole
+                @endif
                 @can('manage-notifications')
                 <li class="mb-2">
                     <a href="{{ route('lk.admin.notifications.index') }}">
@@ -79,7 +79,7 @@
                     </a>
                 </li>
                 @endcan
-                @if(!auth()->user()->hasRole('messenger-admin') && !auth()->user()->can('update-news-feed') && !auth()->user()->hasRole('roles-admin') && !auth()->user()->can('manage-notifications'))
+                @if(!auth()->user()->hasRole('super-admin') && !auth()->user()->hasRole('messenger-admin') && !auth()->user()->can('update-news-feed') && !auth()->user()->hasRole('roles-admin') && !auth()->user()->can('manage-notifications'))
                 <li class="text-muted small">{{ __('Нет доступных разделов.') }}</li>
                 @endif
             </ul>
@@ -90,7 +90,18 @@
     <div class="card mb-4">
         <div class="card-body">
             <h2 class="h5 mb-3 text-uppercase text-muted">{{ __('Модульные') }}</h2>
-            <p class="text-muted small mb-0">{{ __('Разделы модулей будут добавлены здесь.') }}</p>
+            <ul class="list-unstyled mb-0">
+                @if(auth()->user()->hasRole('super-admin') || auth()->user()->can('moderate-projects'))
+                <li class="mb-2">
+                    <a href="{{ route('lk.admin.projects.moderation.index') }}">
+                        <i class="simple-icon-doc mr-2"></i>{{ __('Модерация проектов') }}
+                    </a>
+                </li>
+                @endif
+                @if(!auth()->user()->hasRole('super-admin') && !auth()->user()->can('moderate-projects'))
+                <li class="text-muted small mb-0">{{ __('Нет доступных разделов.') }}</li>
+                @endif
+            </ul>
         </div>
     </div>
 @endsection

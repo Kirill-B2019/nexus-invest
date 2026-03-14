@@ -17,11 +17,13 @@ class AdminSettingsController extends Controller
     public function __invoke(Request $request): View|Response
     {
         $user = $request->user();
-        $hasAccess = $user->can('manage-dictionaries')
+        $hasAccess = $user->hasRole('super-admin')
+            || $user->can('manage-dictionaries')
             || $user->hasRole('roles-admin')
             || $user->can('update-news-feed')
             || $user->can('manage-notifications')
-            || $user->hasRole('messenger-admin');
+            || $user->hasRole('messenger-admin')
+            || $user->can('moderate-projects');
 
         if (! $hasAccess) {
             abort(403, __('Доступ к настройкам запрещён.'));

@@ -36,4 +36,26 @@ class RefDictionaryItem extends Model
     {
         return $this->belongsTo(RefDictionary::class, 'ref_dictionary_id');
     }
+
+    /**
+     * Получить название элемента по коду справочника и коду элемента.
+     */
+    public static function labelByCode(string $dictCode, ?string $itemCode): ?string
+    {
+        if (! $itemCode) {
+            return null;
+        }
+
+        $dict = RefDictionary::where('code', $dictCode)->first();
+
+        if (! $dict) {
+            return null;
+        }
+
+        $item = self::where('ref_dictionary_id', $dict->id)
+            ->where('code', $itemCode)
+            ->first();
+
+        return $item?->name;
+    }
 }

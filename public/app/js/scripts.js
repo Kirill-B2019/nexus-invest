@@ -6,6 +6,21 @@ Table of Contents
 02. Theme Selector And Initializer
 */
 
+/* Cookie helpers для хранения темы (светлая/тёмная) */
+function getCookie(name) {
+  var match = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + '=([^;]*)'));
+  return match ? decodeURIComponent(match[1]) : null;
+}
+function setCookie(name, value, days) {
+  var expires = '';
+  if (days) {
+    var d = new Date();
+    d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+    expires = '; expires=' + d.toUTCString();
+  }
+  document.cookie = name + '=' + encodeURIComponent(value) + expires + '; path=/; SameSite=Lax';
+}
+
 /* 01. Css Loading Util — не добавляем второй link, если тема уже есть в документе */
 function loadStyle(href, callback) {
   var themeFile = href ? href.split("/").pop() : "";
@@ -111,12 +126,18 @@ function loadStyle(href, callback) {
   var direction = "ltr";
   var radius = "rounded";
 
+  /* Тема: куки (с fallback на localStorage для миграции) */
+  var themeCookie = getCookie("app_theme");
+  if (themeCookie) {
+    theme = themeCookie;
+  } else if (typeof Storage !== "undefined" && localStorage.getItem("dore-theme-color")) {
+    theme = localStorage.getItem("dore-theme-color");
+    setCookie("app_theme", theme, 365);
+  } else {
+    setCookie("app_theme", theme, 365);
+  }
+
   if (typeof Storage !== "undefined") {
-    if (localStorage.getItem("dore-theme-color")) {
-      theme = localStorage.getItem("dore-theme-color");
-    } else {
-      localStorage.setItem("dore-theme-color", theme);
-    }
     if (localStorage.getItem("dore-direction")) {
       direction = localStorage.getItem("dore-direction");
     } else {
@@ -153,10 +174,9 @@ function loadStyle(href, callback) {
   $("body").on("click", ".theme-color", function (event) {
     event.preventDefault();
     var dataTheme = $(this).data("theme");
-    if (typeof Storage !== "undefined") {
-      localStorage.setItem("dore-theme-color", dataTheme);
-      window.location.reload();
-    }
+    setCookie("app_theme", dataTheme, 365);
+    if (typeof Storage !== "undefined") localStorage.setItem("dore-theme-color", dataTheme);
+    window.location.reload();
   });
 
   $("input[name='directionRadio']").on("change", function (event) {
@@ -182,10 +202,9 @@ function loadStyle(href, callback) {
     } else if (mode == "light") {
       theme = theme.replace("dark", "light");
     }
-    if (typeof Storage !== "undefined") {
-      localStorage.setItem("dore-theme-color", theme);
-      window.location.reload();
-    }
+    setCookie("app_theme", theme, 365);
+    if (typeof Storage !== "undefined") localStorage.setItem("dore-theme-color", theme);
+    window.location.reload();
   });
 
   $(".theme-button").on("click", function (event) {

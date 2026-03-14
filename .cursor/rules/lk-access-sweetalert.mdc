@@ -1,0 +1,75 @@
+---
+description: Запреты доступа и SweetAlert2 во внутренней части (ЛК)
+globs: routes/**/*.php, app/Http/**/*.php, resources/views/**/app/**/*.blade.php, public/app/**/*.js
+alwaysApply: false
+---
+
+# Запреты доступа и сообщения SweetAlert2 во внутренней части (ЛК)
+
+Вся внутренняя закрытая часть (ЛК) управляется через **роли и разрешения** (Spatie Permission). При нарушении доступа пользователь получает **SweetAlert2** в теме ЛК и редирект на главную.
+
+## Роли и разрешения
+
+- **Роли:** `super-admin`, `investor`, `initiator`, `expert`, `cabinet-user`, `roles-admin`, `messenger-admin` и др.
+- **Супер админ** (`super-admin`): полный доступ ко всем разделам; может переключаться между ролями в выпадающем меню topbar для просмотра интерфейса от имени выбранной роли.
+- **Разрешения:** `access-lk`, `use-messenger`, `manage-dictionaries`, `update-news-feed`, `manage-notifications` и др.
+- Middleware: `role:name`, `permission:name`, `role_or_permission:role|permission`.
+
+## Обработка 403 в закрытой части
+
+**Источник:** `bootstrap/app.php` — обработчики `AuthorizationException` и `HttpException` (status 403).
+
+**Поведение:**
+- Маршруты закрытой части: `lk*`, `profile*`, `app/*`, `dashboard`.
+- При 403: редирект на `route('lk')` с `session('alert_error', $message)`.
+- Сообщение показывается через SweetAlert2 в теме ЛК (тёмный фон, акцент #C5FF41).
+
+**JSON-запросы:** возвращается `{"message": "..."}` с кодом 403.
+
+## Добавление защищённых маршрутов
+
+1. **По роли:** `->middleware('role:investor')` — только пользователи с ролью `investor`.
+2. **По разрешению:** `->middleware('permission:manage-dictionaries')` — только с разрешением.
+3. **По роли или разрешению:** `->middleware('role_or_permission:admin|manage-news')`.
+
+При отсутствии роли/разрешения Spatie выбрасывает `AuthorizationException` → срабатывает обработчик 403.
+
+## Проверка доступа внутри контроллера
+
+Если логика доступа сложная (например, `messenger_access` + `use-messenger`):
+
+```php
+if (! $user->hasRole('messenger-admin') && (! $user->can('use-messenger') || ! $user->messenger_access)) {
+    throw new \Symfony\Component\HttpKernel\Exception\HttpException(
+        403,
+        __('Доступ к мессенджеру не предоставлен. Обратитесь к администратору платформы.')
+    );
+}
+```
+
+## Сохранение flash при редиректе из LkController
+
+`LkController` при редиректе на дашборд по роли **передаёт** flash-сообщения (`alert_error`, `alert_success`, `alert_warning`, `info`), иначе они теряются при втором редиректе. Не менять логику `preserveFlash` в `LkController`.
+
+## SweetAlert2 во внутренней части
+
+- **Подключение:** `resources/views/layouts/app/scripts.blade.php` — CDN SweetAlert2, `window.laravelFlashLk`, `public/app/js/sweetalert-flash-lk.js`.
+- **Flash-ключи:** `alert_error`, `alert_success`, `alert_warning`, `info`.
+- **Стили:** `public/app/css/app.css` — классы `swal-lk-theme`, `swal-lk-btn-confirm`.
+- **Вызов из JS:** `window.swalLk.error(text)`, `swalLk.success(text)`, `swalLk.warning(text)`, `swalLk.info(text)`.
+
+## Отображение пунктов меню
+
+Пункты меню в ЛК показываются **только при наличии доступа** к функционалу. Пример:
+
+- Мессенджер — только при `messenger-admin` или (`use-messenger` + `messenger_access`).
+- Дашборды по ролям — только при соответствующей роли (`investor`, `initiator`, `expert`).
+- Настройки — только при наличии прав управления.
+
+Логика в `resources/views/layouts/app/sidebar.blade.php`.
+
+## При добавлении нового раздела
+
+1. Добавить маршрут с `role` или `permission` middleware.
+2. В sidebar добавить пункт меню с `@if($user->hasRole(...) || $user->can(...))`.
+3. При кастомной проверке — использовать `abort(403, '...')` или `throw new HttpException(403, '...')` вместо возврата страницы «Нет доступа».

@@ -42,13 +42,13 @@
                     <label class="form-label">{{ __('Разрешения') }}</label>
                     <div class="row">
                         @foreach($permissions as $perm)
-                            <div class="col-md-6 col-lg-4">
+                            <div class="col-12 col-md-6 col-lg-4">
                                 <div class="custom-control custom-checkbox">
                                     @php
                                         $checked = $role && $role->hasPermissionTo($perm->name);
                                     @endphp
                                     <input type="checkbox" class="custom-control-input" id="perm-{{ $perm->id }}" name="permissions[]" value="{{ $perm->id }}" {{ old('permissions') !== null ? (in_array($perm->id, old('permissions', [])) ? 'checked' : '') : ($checked ? 'checked' : '') }}>
-                                    <label class="custom-control-label" for="perm-{{ $perm->id }}">{{ $perm->name }}</label>
+                                    <label class="custom-control-label" for="perm-{{ $perm->id }}">{{ $perm->name }}@if($perm->slug)<span class="text-muted small"> — {{ $perm->slug }}</span>@endif</label>
                                 </div>
                             </div>
                         @endforeach

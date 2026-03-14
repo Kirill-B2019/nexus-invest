@@ -39,10 +39,12 @@ class RolesAdminController extends Controller
     public function userEdit(User $user): View
     {
         $roles = Role::where('guard_name', 'web')->orderBy('name')->get();
+        $permissions = Permission::where('guard_name', 'web')->orderBy('name')->get();
 
         return view('app.pages.roles-admin.user-edit', [
             'user' => $user,
             'roles' => $roles,
+            'permissions' => $permissions,
         ]);
     }
 
@@ -51,14 +53,20 @@ class RolesAdminController extends Controller
         $request->validate([
             'roles' => 'sometimes|array',
             'roles.*' => 'string|exists:roles,name',
+            'permissions' => 'sometimes|array',
+            'permissions.*' => 'integer|exists:permissions,id',
         ]);
 
         $roleNames = $request->input('roles', []);
         $user->syncRoles($roleNames);
 
+        $permissionIds = array_filter(array_map('intval', (array) $request->input('permissions', [])));
+        $permissions = $permissionIds ? Permission::whereIn('id', $permissionIds)->get() : collect();
+        $user->syncPermissions($permissions);
+
         return redirect()
             ->route('lk.admin.roles.users')
-            ->with('status', __('Роли пользователя :name обновлены.', ['name' => $user->name]));
+            ->with('status', __('Роли и разрешения пользователя :name обновлены.', ['name' => $user->name]));
     }
 
     // --- Роли ---

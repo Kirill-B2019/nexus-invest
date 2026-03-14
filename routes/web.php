@@ -4,8 +4,11 @@ use App\Http\Controllers\Api\CaptchaController;
 use App\Http\Controllers\Api\NmessContactsController;
 use App\Http\Controllers\Api\NmessTokenController;
 use App\Http\Controllers\Api\TrueConfTokenController;
-use App\Http\Controllers\App\BlankPageController;
+use App\Http\Controllers\App\DashboardController;
+use App\Http\Controllers\App\ProjectModerationController;
+use App\Http\Controllers\App\ProjectsController;
 use App\Http\Controllers\App\LkController;
+use App\Http\Controllers\App\LkRoleSwitchController;
 use App\Http\Controllers\App\MessengerAdminController;
 use App\Http\Controllers\App\RolesAdminController;
 use App\Http\Controllers\App\NewsFeedAdminController;
@@ -48,7 +51,32 @@ Route::middleware('throttle:10,1')->post('/api/captcha/new', [CaptchaController:
 */
 Route::middleware('auth')->group(function () {
     Route::get('/lk', LkController::class)->middleware('verified', 'lk.access')->name('lk');
+    Route::post('/lk/switch-role', LkRoleSwitchController::class)->middleware('verified', 'lk.access', 'role:super-admin')->name('lk.switch-role');
+    Route::get('/lk/investor', [DashboardController::class, 'investor'])->middleware('verified', 'lk.access', 'role:super-admin|investor')->name('lk.dashboard.investor');
+    Route::get('/lk/initiator', [DashboardController::class, 'initiator'])->middleware('verified', 'lk.access', 'role:super-admin|initiator')->name('lk.dashboard.initiator');
+    Route::get('/lk/expert', [DashboardController::class, 'expert'])->middleware('verified', 'lk.access', 'role:super-admin|expert')->name('lk.dashboard.expert');
     Route::get('/lk/messenger', NmessPageController::class)->middleware('verified', 'lk.access')->name('lk.messenger');
+
+    Route::middleware('verified', 'lk.access', 'role:super-admin|investor')->group(function () {
+        Route::get('/lk/portfolio', [ProjectsController::class, 'portfolio'])->name('lk.portfolio');
+        Route::get('/lk/projects', [ProjectsController::class, 'all'])->name('lk.projects.all');
+    });
+    Route::middleware('verified', 'lk.access', 'role:super-admin|initiator')->group(function () {
+        Route::get('/lk/projects/my', [ProjectsController::class, 'my'])->name('lk.projects.my');
+        Route::get('/lk/projects/create', [ProjectsController::class, 'create'])->name('lk.projects.create');
+        Route::post('/lk/projects', [ProjectsController::class, 'store'])->name('lk.projects.store');
+        Route::get('/lk/projects/{project}/edit', [ProjectsController::class, 'edit'])->name('lk.projects.edit');
+        Route::patch('/lk/projects/{project}', [ProjectsController::class, 'update'])->name('lk.projects.update');
+        Route::post('/lk/projects/{project}/submit', [ProjectsController::class, 'submit'])->name('lk.projects.submit');
+            Route::delete('/lk/projects/{project}/documents/{document}', [ProjectsController::class, 'deleteDocument'])->name('lk.projects.document.delete');
+            Route::delete('/lk/projects/{project}/images/{image}', [ProjectsController::class, 'deleteImage'])->name('lk.projects.image.delete');
+    });
+
+    Route::middleware('verified', 'lk.access', 'role_or_permission:super-admin|moderate-projects')->prefix('lk/admin/projects/moderation')->name('lk.admin.projects.moderation.')->group(function () {
+        Route::get('/', [ProjectModerationController::class, 'index'])->name('index');
+        Route::get('/{project}', [ProjectModerationController::class, 'show'])->name('show');
+        Route::post('/{project}', [ProjectModerationController::class, 'moderate'])->name('moderate');
+    });
 
     Route::middleware('verified', 'lk.access')->prefix('lk/notifications')->name('lk.notifications.')->group(function () {
         Route::get('/', [NotificationsController::class, 'index'])->name('index');
@@ -56,11 +84,11 @@ Route::middleware('auth')->group(function () {
         Route::post('/read-all', [NotificationsController::class, 'markAllRead'])->name('mark-all-read');
         Route::post('/{id}/read', [NotificationsController::class, 'markRead'])->name('mark-read');
     });
-    Route::get('/lk/admin/messenger', [MessengerAdminController::class, 'index'])->middleware('verified', 'lk.access', 'role:messenger-admin')->name('lk.admin.messenger');
-    Route::post('/lk/admin/messenger', [MessengerAdminController::class, 'updateAccess'])->middleware('verified', 'lk.access', 'role:messenger-admin')->name('lk.admin.messenger.update');
-    Route::post('/lk/admin/messenger/sync', [MessengerAdminController::class, 'syncWithServer'])->middleware('verified', 'lk.access', 'role:messenger-admin')->name('lk.admin.messenger.sync');
+    Route::get('/lk/admin/messenger', [MessengerAdminController::class, 'index'])->middleware('verified', 'lk.access', 'role:super-admin|messenger-admin')->name('lk.admin.messenger');
+    Route::post('/lk/admin/messenger', [MessengerAdminController::class, 'updateAccess'])->middleware('verified', 'lk.access', 'role:super-admin|messenger-admin')->name('lk.admin.messenger.update');
+    Route::post('/lk/admin/messenger/sync', [MessengerAdminController::class, 'syncWithServer'])->middleware('verified', 'lk.access', 'role:super-admin|messenger-admin')->name('lk.admin.messenger.sync');
 
-    Route::middleware('verified', 'lk.access', 'role:roles-admin')->prefix('lk/admin/roles')->name('lk.admin.roles.')->group(function () {
+    Route::middleware('verified', 'lk.access', 'role:super-admin|roles-admin')->prefix('lk/admin/roles')->name('lk.admin.roles.')->group(function () {
         Route::get('/', [RolesAdminController::class, 'index'])->name('index');
         Route::get('/users', [RolesAdminController::class, 'users'])->name('users');
         Route::get('/users/{user}/edit', [RolesAdminController::class, 'userEdit'])->name('user.edit');
@@ -79,13 +107,13 @@ Route::middleware('auth')->group(function () {
         Route::delete('/permissions/{permission}', [RolesAdminController::class, 'permissionDestroy'])->name('permission.destroy');
     });
 
-    Route::middleware('verified', 'lk.access', 'permission:manage-notifications')->prefix('lk/admin/notifications')->name('lk.admin.notifications.')->group(function () {
+    Route::middleware('verified', 'lk.access', 'role_or_permission:super-admin|manage-notifications')->prefix('lk/admin/notifications')->name('lk.admin.notifications.')->group(function () {
         Route::get('/', [NotificationsAdminController::class, 'index'])->name('index');
         Route::get('/create', [NotificationsAdminController::class, 'create'])->name('create');
         Route::post('/', [NotificationsAdminController::class, 'store'])->name('store');
     });
 
-    Route::middleware('verified', 'lk.access', 'permission:update-news-feed')->prefix('lk/admin/news-feed')->name('lk.admin.news-feed.')->group(function () {
+    Route::middleware('verified', 'lk.access', 'role_or_permission:super-admin|update-news-feed')->prefix('lk/admin/news-feed')->name('lk.admin.news-feed.')->group(function () {
         Route::get('/', [NewsFeedAdminController::class, 'index'])->name('index');
         Route::post('/update', [NewsFeedAdminController::class, 'update'])->name('update');
         Route::delete('/{newsFeedItem}', [NewsFeedAdminController::class, 'destroy'])->name('destroy');
@@ -93,7 +121,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/lk/admin/settings', AdminSettingsController::class)->middleware('verified', 'lk.access')->name('lk.admin.settings.index');
 
-    Route::middleware('verified', 'lk.access', 'permission:manage-dictionaries')
+    Route::middleware('verified', 'lk.access', 'role_or_permission:super-admin|manage-dictionaries')
         ->prefix('lk/admin/settings/dictionaries')
         ->name('lk.admin.settings.dictionaries.')
         ->group(function () {
@@ -123,8 +151,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/api/messenger/trueconf-token', TrueConfTokenController::class)->middleware('lk.access')->name('api.messenger.trueconf-token');
 
     Route::redirect('/dashboard', '/lk', 301)->middleware('lk.access');
-
-    Route::get('/app/blank', BlankPageController::class)->middleware('lk.access')->name('app.blank');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->middleware('lk.access')->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->middleware('lk.access')->name('profile.update');

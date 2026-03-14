@@ -410,6 +410,29 @@
     word-wrap: break-word;
     overflow-wrap: break-word;
   }
+  /* input-group: перенос на узких экранах, чтобы не выходить за экран */
+  #app-container main .input-group {
+    flex-wrap: wrap;
+  }
+  #app-container main .input-group .form-control {
+    min-width: 0;
+  }
+  /* Форма проекта: шаги и кроппер */
+  #app-container main .nav-pills-project-steps {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  #app-container main .nav-pills-project-steps .nav-link {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.5rem;
+  }
+  #projectCropperContainer.project-cropper-container {
+    max-height: min(300px, 50vh);
+  }
+  .project-cropper-row .project-cropper-preview {
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
 }
 
 /* Оверлей при открытом боковом меню на мобильной */
@@ -801,4 +824,28 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* SweetAlert2 — тема закрытой части (ЛК) */
+.swal2-popup.swal-lk-theme {
+  background: var(--app-color-dark);
+  color: var(--app-color-surface);
+}
+.swal-lk-theme .swal2-title {
+  color: var(--app-color-surface);
+}
+.swal-lk-theme .swal2-html-container {
+  color: var(--app-color-surface);
+}
+.swal-lk-theme .swal2-styled.swal2-confirm,
+.swal-lk-theme .swal-lk-btn-confirm {
+  background-color: var(--app-color-primary) !important;
+  color: #0a0a0a !important;
+}
+.swal-lk-theme .swal2-styled.swal2-confirm:hover,
+.swal-lk-theme .swal-lk-btn-confirm:hover {
+  background-color: #b3e635 !important;
+}
+.swal-lk-theme .swal2-timer-progress-bar {
+  background: var(--app-color-primary);
 }

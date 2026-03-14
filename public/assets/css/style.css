@@ -10048,3 +10048,10 @@ a.icon-socials:hover {
 .alert-footer {
     background-color: var(--color-surface-dark);
     border-color: var(--color-surface-dark-2); }
+
+a.href-white:hover,
+a.href-white:active,
+a.href-white:hover span,
+a.href-white:active span {
+    color: var(--color-white) !important;
+}
