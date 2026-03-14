@@ -206,7 +206,7 @@
                                 <div class="mb-2">
                                     <div id="project-cover-previews" class="d-flex flex-wrap">
                                         @foreach($project->exists ? $project->coverImages : [] as $img)
-                                            <div class="project-image-item project-image-item-server mr-2 mb-2 position-relative" data-id="{{ $img->id }}" data-type="cover" data-delete-url="{{ route('lk.projects.image.delete', [$project, $img]) }}">
+                                            <div class="project-image-item project-image-item-server mr-2 mb-2 position-relative" data-id="{{ $img->id }}" data-type="cover" data-delete-url="{{ url('/lk/projects/' . $project->id . '/images/' . $img->id) }}">
                                                 <img src="{{ asset('storage/'.$img->path) }}" alt="" class="img-thumbnail d-block" style="max-width:80px;aspect-ratio:1;object-fit:cover">
                                                 @if(!$isReadOnly)
                                                     <button type="button" class="project-image-delete-btn btn btn-danger btn-sm" title="{{ __('Удалить') }}" aria-label="{{ __('Удалить') }}">×</button>
@@ -231,7 +231,7 @@
                                 <div class="mb-2">
                                     <div id="project-card-previews" class="d-flex flex-wrap">
                                         @foreach($project->exists ? $project->cardImages : [] as $img)
-                                            <div class="project-image-item project-image-item-server mr-2 mb-2 position-relative" data-id="{{ $img->id }}" data-type="card" data-delete-url="{{ route('lk.projects.image.delete', [$project, $img]) }}">
+                                            <div class="project-image-item project-image-item-server mr-2 mb-2 position-relative" data-id="{{ $img->id }}" data-type="card" data-delete-url="{{ url('/lk/projects/' . $project->id . '/images/' . $img->id) }}">
                                                 <img src="{{ asset('storage/'.$img->path) }}" alt="" class="img-thumbnail d-block" style="max-width:120px;aspect-ratio:16/9;object-fit:cover">
                                                 @if(!$isReadOnly)
                                                     <button type="button" class="project-image-delete-btn btn btn-danger btn-sm" title="{{ __('Удалить') }}" aria-label="{{ __('Удалить') }}">×</button>
@@ -293,7 +293,7 @@
                                 <div class="small mb-1 d-flex align-items-center">
                                     <span>{{ \App\Models\ProjectDocument::typeLabel($doc->type) }}: {{ $doc->original_name ?? basename($doc->path) }}</span>
                                     @if(!$isReadOnly)
-                                        <form method="post" action="{{ route('lk.projects.document.delete', [$project, $doc]) }}" class="d-inline ml-2" data-swal-confirm="{{ __('Удалить файл?') }}" data-swal-title="{{ __('Подтверждение') }}">
+                                        <form method="post" action="{{ url('/lk/projects/' . $project->id . '/documents/' . $doc->id) }}" class="d-inline ml-2" data-swal-confirm="{{ __('Удалить файл?') }}" data-swal-title="{{ __('Подтверждение') }}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-link btn-sm p-0 text-danger">{{ __('Удалить') }}</button>

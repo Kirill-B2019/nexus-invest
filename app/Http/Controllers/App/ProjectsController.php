@@ -216,7 +216,7 @@ class ProjectsController extends Controller
                 'id' => $img->id,
                 'type' => ProjectImage::TYPE_COVER,
                 'url' => asset('storage/'.$img->path),
-                'delete_url' => route('lk.projects.image.delete', [$project, $img]),
+                'delete_url' => url('/lk/projects/' . $project->id . '/images/' . $img->id),
             ];
         }
 
@@ -235,7 +235,7 @@ class ProjectsController extends Controller
                 'id' => $img->id,
                 'type' => ProjectImage::TYPE_CARD,
                 'url' => asset('storage/'.$img->path),
-                'delete_url' => route('lk.projects.image.delete', [$project, $img]),
+                'delete_url' => url('/lk/projects/' . $project->id . '/images/' . $img->id),
             ];
         }
 
