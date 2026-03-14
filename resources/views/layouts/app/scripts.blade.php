@@ -98,8 +98,12 @@
     }
     function escapeHtml(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
-    fetch(url, { credentials: 'same-origin' })
-        .then(function(r) { return r.json(); })
+    var fetchUrl = url.startsWith('http') ? url : (window.location.origin + (url.startsWith('/') ? '' : '/') + url);
+    fetch(fetchUrl, { credentials: 'same-origin', headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' } })
+        .then(function(r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.json();
+        })
         .then(renderList)
         .catch(function() {
             if (scrollEl) {

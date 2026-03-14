@@ -538,7 +538,7 @@
 /* Выпадающее окно уведомлений в topbar: структура и кнопка «Все уведомления» */
 #app-container .navbar #notificationDropdown {
   min-width: 200px;
-  width: min(280px, calc(100vw - 1.5rem));
+  width: 280px;
   max-width: calc(100vw - 1.5rem);
   height: auto;
   max-height: min(70vh, 380px);
@@ -548,7 +548,7 @@
   right: 0;
   left: auto;
   box-sizing: border-box;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 #app-container .navbar #notificationDropdown #notificationDropdownScroll {
   padding: 0.75rem 1rem;
@@ -574,29 +574,32 @@
 #app-container .navbar #notificationDropdown .dropdown-divider {
   margin: 0;
 }
-#app-container .navbar #notificationDropdown > a.dropdown-item {
+#app-container .navbar #notificationDropdown .notification-dropdown-footer {
+  width: 100%;
+  min-width: 0;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 0;
+}
+#app-container .navbar #notificationDropdown .notification-all-link {
   width: 100%;
   min-width: 0;
   padding: 0.75rem 0.75rem 0.85rem;
   text-align: center;
   font-weight: 500;
   min-height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  max-width: 100%;
-  white-space: normal;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+  display: block;
   box-sizing: border-box;
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
   border-radius: 0;
 }
-#app-container .navbar #notificationDropdown > a.dropdown-item:hover,
-#app-container .navbar #notificationDropdown > a.dropdown-item:focus {
+#app-container .navbar #notificationDropdown .notification-all-link:hover,
+#app-container .navbar #notificationDropdown .notification-all-link:focus {
   outline: none;
   background-color: rgba(0, 0, 0, 0.04);
+  text-decoration: none;
 }
 @media (max-width: 767.98px) {
   #app-container .navbar #notificationDropdown {

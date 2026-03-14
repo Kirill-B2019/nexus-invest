@@ -80,7 +80,7 @@
                     </a>
                 </div>
             </div>
-            <div class="position-relative d-inline-block" id="notificationBellWrap" data-dropdown-url="{{ route('lk.notifications.dropdown') }}" data-notifications-page-url="{{ route('lk.notifications.index') }}">
+            <div class="position-relative d-inline-block" id="notificationBellWrap" data-dropdown-url="{{ url(route('lk.notifications.dropdown')) }}" data-notifications-page-url="{{ route('lk.notifications.index') }}">
                 <button class="header-icon btn btn-empty" type="button" id="notificationButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="simple-icon-bell"></i>
@@ -91,7 +91,9 @@
                         <div class="text-center text-muted py-3" id="notificationDropdownPlaceholder">{{ __('Загрузка…') }}</div>
                     </div>
                     <div class="dropdown-divider my-0"></div>
-                    <a href="{{ route('lk.notifications.index') }}" class="dropdown-item text-center">{{ __('Все уведомления') }}</a>
+                    <div class="notification-dropdown-footer">
+                        <a href="{{ route('lk.notifications.index') }}" class="dropdown-item text-center notification-all-link">{{ __('Все уведомления') }}</a>
+                    </div>
                 </div>
             </div>
             <button class="header-icon btn btn-empty d-none d-sm-inline-block" type="button" id="fullScreenButton">
