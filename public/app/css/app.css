@@ -575,6 +575,8 @@
   margin: 0;
 }
 #app-container .navbar #notificationDropdown > a.dropdown-item {
+  width: 100%;
+  min-width: 0;
   padding: 0.75rem 0.75rem 0.85rem;
   text-align: center;
   font-weight: 500;
@@ -588,6 +590,13 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
   box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 0;
+}
+#app-container .navbar #notificationDropdown > a.dropdown-item:hover,
+#app-container .navbar #notificationDropdown > a.dropdown-item:focus {
+  outline: none;
+  background-color: rgba(0, 0, 0, 0.04);
 }
 @media (max-width: 767.98px) {
   #app-container .navbar #notificationDropdown {

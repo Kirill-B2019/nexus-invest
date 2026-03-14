@@ -58,9 +58,11 @@
     var csrfToken = document.querySelector('meta[name="csrf-token"]') && document.querySelector('meta[name="csrf-token"]').content;
 
     function renderList(data) {
-        countEl.textContent = data.count > 99 ? '99+' : data.count;
+        var count = typeof data.count === 'number' ? data.count : parseInt(data.count, 10) || 0;
+        countEl.textContent = count > 99 ? '99+' : String(count);
+        countEl.classList.toggle('d-none', count === 0);
         while (scrollEl.firstChild) scrollEl.removeChild(scrollEl.firstChild);
-        if (data.count === 0) {
+        if (count === 0) {
             var p = document.createElement('div');
             p.className = 'text-center text-muted py-3';
             p.textContent = '{{ __("Нет уведомлений") }}';
@@ -96,7 +98,7 @@
         .then(renderList)
         .catch(function() {
             if (placeholder) { placeholder.textContent = '{{ __("Нет уведомлений") }}'; placeholder.classList.remove('d-none'); }
-            if (countEl) countEl.textContent = '0';
+            if (countEl) { countEl.textContent = '0'; countEl.classList.add('d-none'); }
         });
 })();
 </script>
