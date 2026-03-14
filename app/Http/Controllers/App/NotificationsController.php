@@ -77,15 +77,18 @@ class NotificationsController extends Controller
     }
 
     /**
-     * API для колокольчика: счётчик и последние N непрочитанных активных уведомлений.
+     * API для колокольчика: счётчик непрочитанных; список — последние N активных уведомлений (от новых к старым).
      */
     public function dropdown(Request $request): JsonResponse
     {
         $user = $request->user();
-        $query = $user->notifications();
-        $this->activeQuery($query, true);
-        $count = $query->count();
-        $items = (clone $query)->limit(self::DROPDOWN_LIMIT)->get();
+        $unreadQuery = $user->notifications();
+        $this->activeQuery($unreadQuery, true);
+        $count = $unreadQuery->count();
+
+        $listQuery = $user->notifications();
+        $this->activeQuery($listQuery, false);
+        $items = $listQuery->limit(self::DROPDOWN_LIMIT)->get();
 
         $list = $items->map(function ($n) {
             $data = $n->data;

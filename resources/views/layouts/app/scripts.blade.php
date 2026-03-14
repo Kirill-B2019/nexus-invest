@@ -70,7 +70,7 @@
         }
         if (!scrollEl) return;
         while (scrollEl.firstChild) scrollEl.removeChild(scrollEl.firstChild);
-        if (count === 0 || items.length === 0) {
+        if (items.length === 0) {
             var p = document.createElement('div');
             p.className = 'text-center text-muted py-3';
             p.textContent = '{{ __("Нет уведомлений") }}';
@@ -103,7 +103,8 @@
     function loadDropdown() {
         if (loaded) return;
         loaded = true;
-        var fetchUrl = (url && url.indexOf('http') === 0) ? url : (window.location.origin + (url && url.indexOf('/') === 0 ? '' : '/') + (url || ''));
+        var path = (typeof url === 'string' && url) ? url : '/lk/notifications/dropdown';
+        var fetchUrl = (path.indexOf('http') === 0 || path.indexOf('//') === 0) ? path : (window.location.origin + (path.indexOf('/') === 0 ? '' : '/') + path);
         if (scrollEl) {
             while (scrollEl.firstChild) scrollEl.removeChild(scrollEl.firstChild);
             var loading = document.createElement('div');
@@ -128,8 +129,12 @@
             });
     }
 
-    if (btn) btn.addEventListener('click', function() { loadDropdown(); });
-    wrap.addEventListener('show.bs.dropdown', function() { loadDropdown(); });
+    function ensureLoaded() {
+        if (!loaded) loadDropdown();
+    }
+    if (btn) btn.addEventListener('click', ensureLoaded);
+    wrap.addEventListener('show.bs.dropdown', ensureLoaded);
+    loadDropdown();
 })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
