@@ -53,9 +53,12 @@
     var url = wrap.dataset.dropdownUrl;
     var baseUrl = wrap.dataset.notificationsPageUrl;
     var scrollEl = document.getElementById('notificationDropdownScroll');
-    var placeholder = document.getElementById('notificationDropdownPlaceholder');
     var countEl = document.getElementById('notificationCount');
+    var btn = document.getElementById('notificationButton');
     var csrfToken = document.querySelector('meta[name="csrf-token"]') && document.querySelector('meta[name="csrf-token"]').content;
+    var loaded = false;
+
+    function escapeHtml(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
     function renderList(data) {
         if (!data || typeof data !== 'object') { data = { count: 0, items: [] }; }
@@ -96,25 +99,37 @@
             });
         });
     }
-    function escapeHtml(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
-    var fetchUrl = url.startsWith('http') ? url : (window.location.origin + (url.startsWith('/') ? '' : '/') + url);
-    fetch(fetchUrl, { credentials: 'same-origin', headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' } })
-        .then(function(r) {
-            if (!r.ok) throw new Error('HTTP ' + r.status);
-            return r.json();
-        })
-        .then(renderList)
-        .catch(function() {
-            if (scrollEl) {
-                while (scrollEl.firstChild) scrollEl.removeChild(scrollEl.firstChild);
-                var p = document.createElement('div');
-                p.className = 'text-center text-muted py-3';
-                p.textContent = '{{ __("Нет уведомлений") }}';
-                scrollEl.appendChild(p);
-            }
-            if (countEl) { countEl.textContent = '0'; countEl.style.display = 'none'; }
-        });
+    function loadDropdown() {
+        if (loaded) return;
+        loaded = true;
+        var fetchUrl = (url && url.indexOf('http') === 0) ? url : (window.location.origin + (url && url.indexOf('/') === 0 ? '' : '/') + (url || ''));
+        if (scrollEl) {
+            while (scrollEl.firstChild) scrollEl.removeChild(scrollEl.firstChild);
+            var loading = document.createElement('div');
+            loading.className = 'text-center text-muted py-3';
+            loading.textContent = '{{ __("Загрузка…") }}';
+            scrollEl.appendChild(loading);
+        }
+        fetch(fetchUrl, { credentials: 'same-origin', headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' } })
+            .then(function(r) {
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                return r.json();
+            })
+            .then(renderList)
+            .catch(function() {
+                if (scrollEl) {
+                    while (scrollEl.firstChild) scrollEl.removeChild(scrollEl.firstChild);
+                    var p = document.createElement('div');
+                    p.className = 'text-center text-muted py-3';
+                    p.textContent = '{{ __("Нет уведомлений") }}';
+                    scrollEl.appendChild(p);
+                }
+            });
+    }
+
+    if (btn) btn.addEventListener('click', function() { loadDropdown(); });
+    wrap.addEventListener('show.bs.dropdown', function() { loadDropdown(); });
 })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>

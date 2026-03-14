@@ -80,11 +80,14 @@
                     </a>
                 </div>
             </div>
-            <div class="position-relative d-inline-block" id="notificationBellWrap" data-dropdown-url="{{ url(route('lk.notifications.dropdown')) }}" data-notifications-page-url="{{ route('lk.notifications.index') }}">
+            @php
+                $unreadCount = isset($unreadNotificationsCount) ? (int) $unreadNotificationsCount : 0;
+            @endphp
+            <div class="dropdown position-relative d-inline-block" id="notificationBellWrap" data-dropdown-url="{{ url(route('lk.notifications.dropdown')) }}" data-notifications-page-url="{{ route('lk.notifications.index') }}" data-initial-count="{{ $unreadCount }}">
                 <button class="header-icon btn btn-empty" type="button" id="notificationButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="simple-icon-bell"></i>
-                    <span class="count" id="notificationCount">0</span>
+                    <span class="count" id="notificationCount" @if($unreadCount === 0) style="display: none;" @endif>{{ $unreadCount > 99 ? '99+' : $unreadCount }}</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right mt-3 position-absolute" id="notificationDropdown">
                     <div class="scroll" id="notificationDropdownScroll">
