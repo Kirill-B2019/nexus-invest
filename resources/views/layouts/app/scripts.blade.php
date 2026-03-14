@@ -58,11 +58,16 @@
     var csrfToken = document.querySelector('meta[name="csrf-token"]') && document.querySelector('meta[name="csrf-token"]').content;
 
     function renderList(data) {
+        if (!data || typeof data !== 'object') { data = { count: 0, items: [] }; }
         var count = typeof data.count === 'number' ? data.count : parseInt(data.count, 10) || 0;
-        countEl.textContent = count > 99 ? '99+' : String(count);
-        countEl.classList.toggle('d-none', count === 0);
+        var items = Array.isArray(data.items) ? data.items : [];
+        if (countEl) {
+            countEl.textContent = count > 99 ? '99+' : String(count);
+            countEl.style.display = count === 0 ? 'none' : '';
+        }
+        if (!scrollEl) return;
         while (scrollEl.firstChild) scrollEl.removeChild(scrollEl.firstChild);
-        if (count === 0) {
+        if (count === 0 || items.length === 0) {
             var p = document.createElement('div');
             p.className = 'text-center text-muted py-3';
             p.textContent = '{{ __("Нет уведомлений") }}';
@@ -70,12 +75,12 @@
             return;
         }
         var html = '';
-        data.items.forEach(function(item) {
+        items.forEach(function(item) {
             var importanceClass = item.importance === 'urgent' ? 'text-danger' : (item.importance === 'high' ? 'text-warning' : '');
-            html += '<div class="d-flex flex-row mb-3 pb-3 border-bottom notification-dropdown-item" data-id="' + item.id + '" data-link="' + escapeHtml(item.link || '') + '">';
-            html += '<div class="pl-3 pr-2 flex-grow-1"><p class="font-weight-medium mb-1 ' + importanceClass + '">' + escapeHtml(item.title) + '</p>';
-            html += '<p class="text-muted mb-0 text-small">' + escapeHtml(item.body) + '</p>';
-            html += '<p class="text-muted mb-0 text-small">' + item.created_at + '</p></div></div>';
+            html += '<div class="d-flex flex-row mb-3 pb-3 border-bottom notification-dropdown-item" data-id="' + escapeHtml(String(item.id)) + '" data-link="' + escapeHtml(item.link || '') + '">';
+            html += '<div class="pl-3 pr-2 flex-grow-1"><p class="font-weight-medium mb-1 ' + importanceClass + '">' + escapeHtml(item.title || '') + '</p>';
+            html += '<p class="text-muted mb-0 text-small">' + escapeHtml(item.body || '') + '</p>';
+            html += '<p class="text-muted mb-0 text-small">' + (item.created_at || '') + '</p></div></div>';
         });
         scrollEl.insertAdjacentHTML('beforeend', html);
         scrollEl.querySelectorAll('.notification-dropdown-item').forEach(function(el) {
@@ -97,8 +102,14 @@
         .then(function(r) { return r.json(); })
         .then(renderList)
         .catch(function() {
-            if (placeholder) { placeholder.textContent = '{{ __("Нет уведомлений") }}'; placeholder.classList.remove('d-none'); }
-            if (countEl) { countEl.textContent = '0'; countEl.classList.add('d-none'); }
+            if (scrollEl) {
+                while (scrollEl.firstChild) scrollEl.removeChild(scrollEl.firstChild);
+                var p = document.createElement('div');
+                p.className = 'text-center text-muted py-3';
+                p.textContent = '{{ __("Нет уведомлений") }}';
+                scrollEl.appendChild(p);
+            }
+            if (countEl) { countEl.textContent = '0'; countEl.style.display = 'none'; }
         });
 })();
 </script>

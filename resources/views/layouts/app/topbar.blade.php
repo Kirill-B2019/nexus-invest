@@ -84,7 +84,7 @@
                 <button class="header-icon btn btn-empty" type="button" id="notificationButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="simple-icon-bell"></i>
-                    <span class="count d-none" id="notificationCount">0</span>
+                    <span class="count" id="notificationCount">0</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right mt-3 position-absolute" id="notificationDropdown">
                     <div class="scroll" id="notificationDropdownScroll">
