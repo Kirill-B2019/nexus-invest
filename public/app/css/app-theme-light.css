@@ -108,3 +108,49 @@ html.theme-light {
 #app-container:not(.body-theme-dark) ::-moz-selection {
   background: #E8F0EA;
 }
+
+/* SweetAlert2 — светлая тема ЛК */
+.swal2-popup.swal-lk-theme.swal-lk-theme-light {
+  background: #FFFFFF !important;
+  color: #1F2937 !important;
+  border: 1px solid #E5E5E0;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-title {
+  color: #1F2937 !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-html-container {
+  color: #1F2937 !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-styled.swal2-confirm,
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal-lk-btn-confirm {
+  background-color: #4B7B5B !important;
+  color: #FFFFFF !important;
+  border-color: #4B7B5B !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-styled.swal2-confirm:hover,
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal-lk-btn-confirm:hover {
+  background-color: #3d6349 !important;
+  border-color: #3d6349 !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-styled.swal2-cancel {
+  background-color: transparent !important;
+  color: #1F2937 !important;
+  border: 1px solid #E5E5E0 !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-styled.swal2-cancel:hover {
+  background-color: #E8F0EA !important;
+  border-color: #4B7B5B !important;
+  color: #3d6349 !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-timer-progress-bar {
+  background: #4B7B5B !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-icon {
+  border-color: #4B7B5B !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-success [class^='swal2-success-line'] {
+  background-color: #4B7B5B !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-success .swal2-success-ring {
+  border-color: rgba(75, 123, 91, 0.3) !important;
+}

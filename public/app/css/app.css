@@ -846,6 +846,16 @@
 .swal-lk-theme .swal-lk-btn-confirm:hover {
   background-color: #b3e635 !important;
 }
+.swal-lk-theme:not(.swal-lk-theme-light) .swal2-styled.swal2-cancel {
+  background-color: transparent !important;
+  color: var(--app-color-surface) !important;
+  border: 1px solid rgba(236, 238, 242, 0.5) !important;
+}
+.swal-lk-theme:not(.swal-lk-theme-light) .swal2-styled.swal2-cancel:hover {
+  background-color: rgba(236, 238, 242, 0.15) !important;
+  border-color: var(--app-color-primary) !important;
+  color: var(--app-color-primary) !important;
+}
 .swal-lk-theme .swal2-timer-progress-bar {
   background: var(--app-color-primary);
 }

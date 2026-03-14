@@ -116,7 +116,7 @@
                                     @if($hasValidId)
                                     <div class="table-actions-desktop d-none d-md-block">
                                         <a href="{{ $itemEditUrl }}" class="btn btn-outline-primary btn-sm mr-1">{{ __('Изменить') }}</a>
-                                        <form method="post" action="{{ $itemDestroyUrl }}" class="d-inline" onsubmit="return confirm('{{ __('Удалить элемент?') }}');">
+                                        <form method="post" action="{{ $itemDestroyUrl }}" class="d-inline" data-swal-confirm="{{ __('Удалить элемент?') }}" data-swal-title="{{ __('Подтверждение') }}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-outline-danger btn-sm">{{ __('Удалить') }}</button>
@@ -126,7 +126,7 @@
                                         <button type="button" class="btn btn-outline-secondary btn-sm lk-actions-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="{{ __('Действия') }}" title="{{ __('Действия') }}">⋯</button>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item" href="{{ $itemEditUrl }}">{{ __('Изменить') }}</a>
-                                            <form method="post" action="{{ $itemDestroyUrl }}" class="dropdown-item p-0" onsubmit="return confirm('{{ __('Удалить элемент?') }}');">
+                                            <form method="post" action="{{ $itemDestroyUrl }}" class="dropdown-item p-0" data-swal-confirm="{{ __('Удалить элемент?') }}" data-swal-title="{{ __('Подтверждение') }}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="dropdown-item text-danger">{{ __('Удалить') }}</button>

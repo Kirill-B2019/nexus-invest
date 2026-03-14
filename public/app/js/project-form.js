@@ -5,6 +5,16 @@
 (function() {
     var msgs = window.PROJECT_FORM_MESSAGES || {};
 
+    function swalFireFallback(type, text) {
+        if (typeof Swal === 'undefined') return;
+        var container = document.getElementById('app-container');
+        var isDark = container && container.classList.contains('body-theme-dark');
+        var cfg = isDark
+            ? { background: '#191919', color: '#ECEEF2', confirmButtonColor: '#C5FF41', customClass: { popup: 'swal-lk-theme' } }
+            : { background: '#FFFFFF', color: '#1F2937', confirmButtonColor: '#4B7B5B', customClass: { popup: 'swal-lk-theme swal-lk-theme-light' } };
+        Swal.fire({ ...cfg, icon: type, title: type === 'error' ? 'Ошибка' : 'Внимание', text: text });
+    }
+
     /**
      * После сохранения черновика: очистить file inputs и заменить клиентские превью
      * на серверные, чтобы при повторном сохранении изображения не дублировались.
@@ -124,13 +134,41 @@
                         var first = Object.values(err.errors)[0];
                         if (first) txt = Array.isArray(first) ? first[0] : String(first);
                     }
-                    if (window.swalLk) window.swalLk.error(txt);
-                    else alert(txt);
+                    (window.swalLk || {}).error ? window.swalLk.error(txt) : (typeof Swal !== 'undefined' && swalFireFallback('error', txt));
                 });
+            },
+            validateStep: function(stepNum) {
+                if (stepNum === 1) {
+                    var name = this.form.name && String(this.form.name).trim();
+                    var pitch = this.form.pitch && String(this.form.pitch).trim();
+                    var desc = this.form.description && String(this.form.description).trim();
+                    var coverCount = document.querySelectorAll('#project-cover-previews .project-image-item').length;
+                    var cardCount = document.querySelectorAll('#project-card-previews .project-image-item').length;
+                    return !!(name && pitch && desc && coverCount >= 1 && cardCount >= 1);
+                }
+                return true;
+            },
+            validateStepsUpTo: function(targetStep) {
+                for (var s = 1; s < targetStep; s++) {
+                    if (!this.validateStep(s)) return false;
+                }
+                return true;
             },
             goToStep: function(n) {
                 if (this.readOnly) {
                     this.step = n;
+                    return;
+                }
+                if (n > this.step && !this.validateStepsUpTo(n)) {
+                    var txt = msgs.fillRequired || 'Заполните обязательные поля: название, краткое и полное описание.';
+                    var coverCount = document.querySelectorAll('#project-cover-previews .project-image-item').length;
+                    var cardCount = document.querySelectorAll('#project-card-previews .project-image-item').length;
+                    if (coverCount < 1 || cardCount < 1) {
+                        txt = msgs.addImages || 'Добавьте хотя бы одно изображение обложки (1:1) и одно изображение карточки (16:9).';
+                    } else if (!(this.form.name && String(this.form.name).trim()) || !(this.form.pitch && String(this.form.pitch).trim()) || !(this.form.description && String(this.form.description).trim())) {
+                        txt = msgs.fillRequired || 'Заполните обязательные поля: название, краткое и полное описание.';
+                    }
+                    (window.swalLk || {}).warning ? window.swalLk.warning(txt) : (typeof Swal !== 'undefined' && swalFireFallback('warning', txt));
                     return;
                 }
                 this.step = n;
@@ -149,10 +187,21 @@
             },
             nextStep: function() {
                 if (this.readOnly) return;
-                if (this.step < 5) {
-                    this.step = this.step + 1;
-                    this.submitDraft(this.step, false);
+                if (this.step >= 5) return;
+                if (!this.validateStepsUpTo(this.step + 1)) {
+                    var txt = msgs.fillRequired || 'Заполните обязательные поля: название, краткое и полное описание.';
+                    var coverCount = document.querySelectorAll('#project-cover-previews .project-image-item').length;
+                    var cardCount = document.querySelectorAll('#project-card-previews .project-image-item').length;
+                    if (coverCount < 1 || cardCount < 1) {
+                        txt = msgs.addImages || 'Добавьте хотя бы одно изображение обложки (1:1) и одно изображение карточки (16:9).';
+                    } else if (!(this.form.name && String(this.form.name).trim()) || !(this.form.pitch && String(this.form.pitch).trim()) || !(this.form.description && String(this.form.description).trim())) {
+                        txt = msgs.fillRequired || 'Заполните обязательные поля: название, краткое и полное описание.';
+                    }
+                    (window.swalLk || {}).warning ? window.swalLk.warning(txt) : (typeof Swal !== 'undefined' && swalFireFallback('warning', txt));
+                    return;
                 }
+                this.step = this.step + 1;
+                this.submitDraft(this.step, false);
             },
             submitForModeration: function() {
                 var name = this.form.name && this.form.name.trim();
@@ -160,16 +209,14 @@
                 var desc = this.form.description && this.form.description.trim();
                 if (!name || !pitch || !desc) {
                     var txt = msgs.fillRequired || 'Заполните обязательные поля: название, краткое и полное описание.';
-                    if (window.swalLk) window.swalLk.warning(txt);
-                    else alert(msgs.fillRequiredShort || 'Заполните обязательные поля.');
+                    (window.swalLk || {}).warning ? window.swalLk.warning(txt) : (typeof Swal !== 'undefined' && swalFireFallback('warning', txt));
                     return;
                 }
                 var coverCount = document.querySelectorAll('#project-cover-previews .project-image-item').length;
                 var cardCount = document.querySelectorAll('#project-card-previews .project-image-item').length;
                 if (coverCount < 1 || cardCount < 1) {
                     var txt2 = msgs.addImages || 'Добавьте хотя бы одно изображение обложки (1:1) и одно изображение карточки (16:9).';
-                    if (window.swalLk) window.swalLk.warning(txt2);
-                    else alert(msgs.addImagesShort || 'Добавьте изображения обложки и карточки.');
+                    (window.swalLk || {}).warning ? window.swalLk.warning(txt2) : (typeof Swal !== 'undefined' && swalFireFallback('warning', txt2));
                     return;
                 }
                 var f = document.getElementById('submit-form');
@@ -211,14 +258,12 @@
                 } else {
                     btn.disabled = false;
                     var err = msgs.deleteError || 'Не удалось удалить изображение.';
-                    if (window.swalLk) window.swalLk.error(err);
-                    else alert(err);
+                    (window.swalLk || {}).error ? window.swalLk.error(err) : (typeof Swal !== 'undefined' && swalFireFallback('error', err));
                 }
             }).catch(function() {
                 btn.disabled = false;
                 var err = msgs.deleteError || 'Не удалось удалить изображение.';
-                if (window.swalLk) window.swalLk.error(err);
-                else alert(err);
+                (window.swalLk || {}).error ? window.swalLk.error(err) : (typeof Swal !== 'undefined' && swalFireFallback('error', err));
             });
         } else {
             var fileIndex = parseInt(item.dataset.fileIndex, 10);

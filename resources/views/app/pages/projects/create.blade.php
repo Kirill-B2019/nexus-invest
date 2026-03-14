@@ -2,6 +2,27 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('app/css/vendor/cropper.min.css') }}">
+    <style>
+    /* Пошаговая форма: индикатор шагов */
+    .project-form-stepper { border-bottom: 1px solid var(--separator-color, #e5e5e0); padding-bottom: 1rem; }
+    .project-form-stepper-title { font-weight: 500; }
+    .nav-pills-project-steps { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: stretch; }
+    .project-step-item { flex: 1; min-width: 0; }
+    .project-step-link { display: flex !important; align-items: center; gap: 0.5rem; padding: 0.5rem 0.75rem; border-radius: 0.35rem; text-decoration: none !important; transition: background-color 0.2s, color 0.2s; }
+    .project-step-link:hover { background-color: rgba(0,0,0,0.05); }
+    #app-container.body-theme-dark .project-step-link:hover { background-color: rgba(255,255,255,0.08); }
+    .project-step-num { display: inline-flex; align-items: center; justify-content: center; min-width: 1.5rem; height: 1.5rem; border-radius: 50%; font-size: 0.75rem; font-weight: 600; background: rgba(0,0,0,0.1); color: inherit; }
+    #app-container.body-theme-dark .project-step-num { background: rgba(255,255,255,0.15); }
+    .project-step-link.active .project-step-num { background: var(--theme-color-1, #4B7B5B); color: #fff !important; }
+    #app-container.body-theme-dark .project-step-link.active .project-step-num { background: var(--app-color-primary, #C5FF41); color: #191919 !important; }
+    .project-step-link.completed .project-step-num { background: var(--theme-color-1, #4B7B5B); color: #fff !important; }
+    #app-container.body-theme-dark .project-step-link.completed .project-step-num { background: rgba(197,255,65,0.3); color: #C5FF41 !important; }
+    .project-step-label { font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    @media (max-width: 767.98px) {
+        .project-step-label { font-size: 0.75rem; }
+        .nav-pills-project-steps { flex-direction: column; }
+    }
+    </style>
 @endpush
 
 @section('title', $project->exists ? ($project->canEdit() ? __('Редактирование проекта') : __('Просмотр проекта')) : __('Новый проект'))
@@ -41,24 +62,42 @@
                     @endif
                 </div>
             @endif
-            {{-- Индикатор шагов --}}
-            <ul class="nav nav-pills nav-pills-project-steps mb-4" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link" :class="{ active: step === 1 }" href="#" @click.prevent="goToStep(1)">{{ __('1. Основные сведения') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" :class="{ active: step === 2 }" href="#" @click.prevent="goToStep(2)">{{ __('2. Контакты и документы') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" :class="{ active: step === 3 }" href="#" @click.prevent="goToStep(3)">{{ __('3. Финансы') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" :class="{ active: step === 4 }" href="#" @click.prevent="goToStep(4)">{{ __('4. Критерии оценки, анализ AI') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" :class="{ active: step === 5 }" href="#" @click.prevent="goToStep(5)">{{ __('5. Заявитель') }}</a>
-                </li>
-            </ul>
+            {{-- Пошаговая форма: индикатор шагов --}}
+            <div class="project-form-stepper mb-4">
+                <p class="project-form-stepper-title text-muted small mb-3">{{ __('Пошаговая форма') }} · {{ __('Шаг') }} <span x-text="step"></span> {{ __('из') }} 5</p>
+                <ul class="nav nav-pills nav-pills-project-steps" role="tablist">
+                    <li class="nav-item project-step-item">
+                        <a class="nav-link project-step-link" :class="{ active: step === 1, completed: step > 1 }" href="#" @click.prevent="goToStep(1)">
+                            <span class="project-step-num" x-text="step > 1 ? '✓' : '1'"></span>
+                            <span class="project-step-label">{{ __('Основные сведения') }}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item project-step-item">
+                        <a class="nav-link project-step-link" :class="{ active: step === 2, completed: step > 2 }" href="#" @click.prevent="goToStep(2)">
+                            <span class="project-step-num" x-text="step > 2 ? '✓' : '2'"></span>
+                            <span class="project-step-label">{{ __('Контакты и документы') }}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item project-step-item">
+                        <a class="nav-link project-step-link" :class="{ active: step === 3, completed: step > 3 }" href="#" @click.prevent="goToStep(3)">
+                            <span class="project-step-num" x-text="step > 3 ? '✓' : '3'"></span>
+                            <span class="project-step-label">{{ __('Финансы') }}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item project-step-item">
+                        <a class="nav-link project-step-link" :class="{ active: step === 4, completed: step > 4 }" href="#" @click.prevent="goToStep(4)">
+                            <span class="project-step-num" x-text="step > 4 ? '✓' : '4'"></span>
+                            <span class="project-step-label">{{ __('Критерии, AI') }}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item project-step-item">
+                        <a class="nav-link project-step-link" :class="{ active: step === 5, completed: false }" href="#" @click.prevent="goToStep(5)">
+                            <span class="project-step-num">5</span>
+                            <span class="project-step-label">{{ __('Заявитель') }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
             <form method="post" action="{{ $project->exists ? route('lk.projects.update', $project) : route('lk.projects.store') }}" id="project-form" enctype="multipart/form-data">
                 @csrf
@@ -254,7 +293,7 @@
                                 <div class="small mb-1 d-flex align-items-center">
                                     <span>{{ \App\Models\ProjectDocument::typeLabel($doc->type) }}: {{ $doc->original_name ?? basename($doc->path) }}</span>
                                     @if(!$isReadOnly)
-                                        <form method="post" action="{{ route('lk.projects.document.delete', [$project, $doc]) }}" class="d-inline ml-2" onsubmit="return confirm('{{ __('Удалить файл?') }}')">
+                                        <form method="post" action="{{ route('lk.projects.document.delete', [$project, $doc]) }}" class="d-inline ml-2" data-swal-confirm="{{ __('Удалить файл?') }}" data-swal-title="{{ __('Подтверждение') }}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-link btn-sm p-0 text-danger">{{ __('Удалить') }}</button>

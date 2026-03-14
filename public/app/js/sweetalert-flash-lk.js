@@ -8,7 +8,7 @@
     var flash = window.laravelFlashLk || {};
     var hasMessage = flash.success || flash.error || flash.warning || flash.info || (flash.errors && Object.keys(flash.errors).length > 0);
 
-    if (!hasMessage || typeof Swal === "undefined") return;
+    if (typeof Swal === "undefined") return;
 
     function getSwalConfig() {
         var container = document.getElementById("app-container");
@@ -37,12 +37,13 @@
     }
 
     function showSuccess(text) {
+        var cfg = getSwalConfig();
         Swal.fire({
-            ...getSwalConfig(),
+            ...cfg,
             icon: "success",
             title: "Готово",
             text: text,
-            iconColor: "#C5FF41",
+            iconColor: cfg.confirmButtonColor,
         });
     }
 
@@ -58,7 +59,7 @@
 
     function showWarning(text) {
         Swal.fire({
-            ...swalConfig,
+            ...getSwalConfig(),
             icon: "warning",
             title: "Внимание",
             text: text,
@@ -76,20 +77,35 @@
         });
     }
 
-    if (flash.success) {
-        showSuccess(flash.success);
-    } else if (flash.error) {
-        showError(flash.error);
-    } else if (flash.warning) {
-        showWarning(flash.warning);
-    } else if (flash.info) {
-        showInfo(flash.info);
-    }
-
     window.swalLk = {
         success: showSuccess,
         error: showError,
         warning: showWarning,
         info: showInfo,
+        confirm: function(text, title) {
+            var cfg = getSwalConfig();
+            return Swal.fire({
+                ...cfg,
+                icon: "question",
+                title: title || "Подтверждение",
+                text: text,
+                showCancelButton: true,
+                confirmButtonText: "Да",
+                cancelButtonText: "Отмена",
+                timer: undefined,
+                timerProgressBar: false,
+            }).then(function(r) { return r.isConfirmed; });
+        },
     };
-})();
+
+    if (hasMessage) {
+        if (flash.success) {
+            showSuccess(flash.success);
+        } else if (flash.error) {
+            showError(flash.error);
+        } else if (flash.warning) {
+            showWarning(flash.warning);
+        } else if (flash.info) {
+            showInfo(flash.info);
+        }
+    }

@@ -76,7 +76,7 @@
                     <div class="d-flex align-items-center">
                         <div class="table-actions-desktop d-none d-md-block">
                             <a href="{{ route('lk.admin.settings.dictionaries.group.edit', $group) }}" class="btn btn-outline-secondary btn-sm mr-1">{{ __('Изменить') }}</a>
-                            <form method="post" action="{{ route('lk.admin.settings.dictionaries.group.destroy', $group) }}" class="d-inline" onsubmit="return confirm('{{ __('Удалить группу и все её справочники?') }}');">
+                            <form method="post" action="{{ route('lk.admin.settings.dictionaries.group.destroy', $group) }}" class="d-inline" data-swal-confirm="{{ __('Удалить группу и все её справочники?') }}" data-swal-title="{{ __('Подтверждение') }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-outline-danger btn-sm">{{ __('Удалить') }}</button>
@@ -86,7 +86,7 @@
                             <button type="button" class="btn btn-outline-secondary btn-sm lk-actions-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="{{ __('Действия') }}" title="{{ __('Действия') }}">⋯</button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="{{ route('lk.admin.settings.dictionaries.group.edit', $group) }}">{{ __('Изменить') }}</a>
-                                <form method="post" action="{{ route('lk.admin.settings.dictionaries.group.destroy', $group) }}" class="dropdown-item p-0" onsubmit="return confirm('{{ __('Удалить группу и все её справочники?') }}');">
+                                <form method="post" action="{{ route('lk.admin.settings.dictionaries.group.destroy', $group) }}" class="dropdown-item p-0" data-swal-confirm="{{ __('Удалить группу и все её справочники?') }}" data-swal-title="{{ __('Подтверждение') }}">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="dropdown-item text-danger">{{ __('Удалить') }}</button>
@@ -114,7 +114,7 @@
                                     <td class="actions-cell">
                                         <div class="table-actions-desktop d-none d-md-block">
                                             <a href="{{ route('lk.admin.settings.dictionaries.dictionary.edit', $dict) }}" class="btn btn-outline-secondary btn-sm mr-1">{{ __('Изм.') }}</a>
-                                            <form method="post" action="{{ route('lk.admin.settings.dictionaries.dictionary.destroy', $dict) }}" class="d-inline" onsubmit="return confirm('{{ __('Удалить справочник?') }}');">
+                                            <form method="post" action="{{ route('lk.admin.settings.dictionaries.dictionary.destroy', $dict) }}" class="d-inline" data-swal-confirm="{{ __('Удалить справочник?') }}" data-swal-title="{{ __('Подтверждение') }}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-outline-danger btn-sm">{{ __('Удалить') }}</button>
@@ -125,7 +125,7 @@
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <a class="dropdown-item" href="{{ route('lk.admin.settings.dictionaries.show', $dict) }}">{{ __('Открыть') }}</a>
                                                 <a class="dropdown-item" href="{{ route('lk.admin.settings.dictionaries.dictionary.edit', $dict) }}">{{ __('Изменить') }}</a>
-                                                <form method="post" action="{{ route('lk.admin.settings.dictionaries.dictionary.destroy', $dict) }}" class="dropdown-item p-0" onsubmit="return confirm('{{ __('Удалить справочник?') }}');">
+                                                <form method="post" action="{{ route('lk.admin.settings.dictionaries.dictionary.destroy', $dict) }}" class="dropdown-item p-0" data-swal-confirm="{{ __('Удалить справочник?') }}" data-swal-title="{{ __('Подтверждение') }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="dropdown-item text-danger">{{ __('Удалить') }}</button>

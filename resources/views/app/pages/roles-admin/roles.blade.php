@@ -46,7 +46,7 @@
                                     <div class="table-actions-desktop d-none d-md-block">
                                         <a href="{{ route('lk.admin.roles.role.edit', $role) }}" class="btn btn-outline-primary btn-sm mr-1">{{ __('Изменить') }}</a>
                                         @if(!in_array($role->name, ['roles-admin'], true))
-                                            <form method="post" action="{{ route('lk.admin.roles.role.destroy', $role) }}" class="d-inline" onsubmit="return confirm('{{ __('Удалить роль?') }}');">
+                                            <form method="post" action="{{ route('lk.admin.roles.role.destroy', $role) }}" class="d-inline" data-swal-confirm="{{ __('Удалить роль?') }}" data-swal-title="{{ __('Подтверждение') }}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-outline-danger btn-sm">{{ __('Удалить') }}</button>
@@ -58,7 +58,7 @@
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item" href="{{ route('lk.admin.roles.role.edit', $role) }}">{{ __('Изменить') }}</a>
                                             @if(!in_array($role->name, ['roles-admin'], true))
-                                                <form method="post" action="{{ route('lk.admin.roles.role.destroy', $role) }}" class="dropdown-item p-0" onsubmit="return confirm('{{ __('Удалить роль?') }}');">
+                                                <form method="post" action="{{ route('lk.admin.roles.role.destroy', $role) }}" class="dropdown-item p-0" data-swal-confirm="{{ __('Удалить роль?') }}" data-swal-title="{{ __('Подтверждение') }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="dropdown-item text-danger">{{ __('Удалить') }}</button>

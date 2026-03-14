@@ -45,7 +45,7 @@
                                 <td class="actions-cell">
                                     <div class="table-actions-desktop d-none d-md-block">
                                         <a href="{{ route('lk.admin.roles.permission.edit', $perm) }}" class="btn btn-outline-primary btn-sm mr-1">{{ __('Изменить') }}</a>
-                                        <form method="post" action="{{ route('lk.admin.roles.permission.destroy', $perm) }}" class="d-inline" onsubmit="return confirm('{{ __('Удалить разрешение?') }}');">
+                                        <form method="post" action="{{ route('lk.admin.roles.permission.destroy', $perm) }}" class="d-inline" data-swal-confirm="{{ __('Удалить разрешение?') }}" data-swal-title="{{ __('Подтверждение') }}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-outline-danger btn-sm">{{ __('Удалить') }}</button>
@@ -55,7 +55,7 @@
                                         <button type="button" class="btn btn-outline-secondary btn-sm lk-actions-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="{{ __('Действия') }}" title="{{ __('Действия') }}">⋯</button>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item" href="{{ route('lk.admin.roles.permission.edit', $perm) }}">{{ __('Изменить') }}</a>
-                                            <form method="post" action="{{ route('lk.admin.roles.permission.destroy', $perm) }}" class="dropdown-item p-0" onsubmit="return confirm('{{ __('Удалить разрешение?') }}');">
+                                            <form method="post" action="{{ route('lk.admin.roles.permission.destroy', $perm) }}" class="dropdown-item p-0" data-swal-confirm="{{ __('Удалить разрешение?') }}" data-swal-title="{{ __('Подтверждение') }}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="dropdown-item text-danger">{{ __('Удалить') }}</button>
