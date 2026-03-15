@@ -147,7 +147,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="href-white"  href="https://scan.gnd-net.comm" target="_blank" rel="noopener noreferrer">
+                        <a class="href-white"  href="https://scan.gnd-net.com" target="_blank" rel="noopener noreferrer">
                             <span class="neutral-500 text-right">{{ __('scan.gnd-net.com - сканер блокчейна ГАНИМЕД') }}</span>
                         </a>
                     </li>
