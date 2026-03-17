@@ -7,8 +7,8 @@
     <meta name="msapplication-TileColor" content="#0E0E0E">
     <meta name="template-color" content="#0E0E0E">
     @php
-        $defaultMetaDescription = config('app.name') . ' - ' . __('Публичная страница');
-        $defaultMetaKeywords = __('главная, страница');
+        $defaultMetaDescription = __('Платформа проектного финансирования и токенизации активов. НЕКСУС — экосистема для запуска проектов через ЦФА, RWA и блокчейн ГАНИМЕД. Соответствие 259-ФЗ, 289-ФЗ.');
+        $defaultMetaKeywords = __('проектное финансирование, токенизация, ЦФА, RWA, блокчейн ГАНИМЕД, НЕКСУС, инвестиции, цифровые активы, 259-ФЗ');
     @endphp
     <meta name="description" content="@yield('metaDescription', $defaultMetaDescription)">
     <meta name="keywords" content="@yield('metaKeywords', $defaultMetaKeywords)">

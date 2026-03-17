@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\NewsFeedItem;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -178,6 +179,9 @@ class DzenFeedService
             );
             $saved++;
         }
+
+        // Заполнить published_at из created_at для записей без даты публикации
+        NewsFeedItem::whereNull('published_at')->update(['published_at' => DB::raw('created_at')]);
 
         return $saved;
     }
@@ -373,6 +377,13 @@ class DzenFeedService
         $pub = $item['publication'] ?? null;
         if (is_array($pub)) {
             $ts = $ts ?? $pub['date'] ?? $pub['time'] ?? $pub['timestamp'] ?? null;
+        }
+        // Вложенные структуры API (statistics, meta и т.п.)
+        if ($ts === null && isset($item['statistics']) && is_array($item['statistics'])) {
+            $ts = $item['statistics']['creation_time'] ?? $item['statistics']['published_at'] ?? null;
+        }
+        if ($ts === null && isset($item['meta']) && is_array($item['meta'])) {
+            $ts = $item['meta']['creation_time'] ?? $item['meta']['published_at'] ?? null;
         }
         if (is_array($ts) && isset($ts['seconds'])) {
             $ts = $ts['seconds'];

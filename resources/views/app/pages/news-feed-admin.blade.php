@@ -39,6 +39,7 @@
                 <table class="table table-hover table-sm table-mobile-stack">
                     <thead>
                         <tr>
+                            <th>{{ __('ID') }}</th>
                             <th>{{ __('Дата') }}</th>
                             <th>{{ __('Заголовок') }}</th>
                             <th>{{ __('Ссылка') }}</th>
@@ -48,7 +49,8 @@
                     <tbody>
                         @forelse(($items ?? []) as $item)
                             <tr>
-                                <td class="text-nowrap text-muted small" data-label="{{ __('Дата') }}">{{ $item->published_at?->format('d.m.Y H:i') ?? '—' }}</td>
+                                <td class="text-nowrap text-muted small" data-label="{{ __('ID') }}">{{ $item->id }}</td>
+                                <td class="text-nowrap text-muted small" data-label="{{ __('Дата') }}">{{ ($item->published_at ?? $item->created_at)?->format('d.m.Y H:i') ?? '—' }}</td>
                                 <td data-label="{{ __('Заголовок') }}">{{ str()->limit($item->title, 60) }}</td>
                                 <td data-label="{{ __('Ссылка') }}"><a href="{{ $item->url }}" target="_blank" rel="noopener noreferrer" class="small">{{ __('Открыть') }}</a></td>
                                 <td class="text-end actions-cell">
@@ -73,7 +75,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4" class="text-muted">{{ __('Нет записей. Нажмите «Обновить ленту».') }}</td>
+                                <td colspan="5" class="text-muted">{{ __('Нет записей. Нажмите «Обновить ленту».') }}</td>
                             </tr>
                         @endforelse
                     </tbody>
