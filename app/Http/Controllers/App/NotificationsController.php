@@ -110,6 +110,8 @@ class NotificationsController extends Controller
 
     /**
      * Отметить уведомление прочитанным и опционально редирект по ссылке.
+     * При AJAX (колокольчик): возвращает link для перехода по клику.
+     * При форме (страница уведомлений): всегда остаёмся на странице уведомлений.
      */
     public function markRead(Request $request, string $id): RedirectResponse|JsonResponse
     {
@@ -120,9 +122,8 @@ class NotificationsController extends Controller
             if ($request->wantsJson()) {
                 return response()->json(['read' => true, 'link' => $link]);
             }
-            if ($link) {
-                return redirect()->to($link);
-            }
+            // Форма «Прочитано» на странице уведомлений — всегда остаёмся на странице
+            return redirect()->route('lk.notifications.index')->with('status', __('Уведомление отмечено прочитанным.'));
         }
 
         if ($request->wantsJson()) {

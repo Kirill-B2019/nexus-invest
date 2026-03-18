@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="{{ asset('app/css/vendor/component-custom-switch.min.css') }}">
     <link rel="stylesheet" href="{{ asset('app/css/' . $themeFile) }}">
     <link rel="stylesheet" href="{{ asset('app/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('app/css/app.css') }}">
     <style>
         /* Верхнее меню ЛК всегда закреплено (на prod без зависимости от загрузки main.css) */
         #app-container .navbar.fixed-top {
@@ -67,7 +68,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    @yield('header')
+                    @hasSection('header')
+                    <div class="app-page-header">
+                        @yield('header')
+                    </div>
+                    @endif
                     @include('layouts.app.header')
                     {{ $slot ?? '' }}
                     @yield('content')
