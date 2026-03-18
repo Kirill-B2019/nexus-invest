@@ -1,3 +1,7 @@
+/**
+ * main.css — базовая разметка ЛК по Dashboard.Default.html.
+ * Темы: dore.dark.greenlime.css / dore.light.greenlime.css (подключаются в layout).
+ */
 html {
   width: 100%;
 }
@@ -6,12 +10,12 @@ body {
   overflow-x: hidden !important;
 }
 
-body.show-spinner>main {
+body.show-spinner > main {
   overflow: hidden !important;
 }
 
 /* Hide everything under body tag */
-body.show-spinner>* {
+body.show-spinner > * {
   opacity: 0;
 }
 
@@ -33,32 +37,36 @@ body.show-spinner::after {
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
 }
 
 @-webkit-keyframes spin {
-  to {
-    -webkit-transform: rotate(360deg);
-  }
+  to { -webkit-transform: rotate(360deg); }
 }
 
-/* ЛК: верхнее меню закреплено, не прокручивается с экраном */
-#app-container .navbar.fixed-top {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  z-index: 1030 !important;
-}
+/* Navbar: фиксирован, логотип по центру (как Dashboard.Default) */
 #app-container .navbar {
+  position: relative !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
   flex-wrap: nowrap !important;
   width: 100% !important;
 }
+
+#app-container .navbar.fixed-top {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1100 !important;
+}
+
+/* Navbar выше sidebar (Dore menu z-index: 5) */
+#app-container .menu {
+  z-index: 1000 !important;
+}
+
 #app-container .navbar .navbar-left {
   flex: 1 !important;
   min-width: 0 !important;
@@ -67,6 +75,7 @@ body.show-spinner::after {
   justify-content: flex-start !important;
   z-index: 1 !important;
 }
+
 #app-container .navbar .navbar-right {
   flex: 1 !important;
   min-width: 0 !important;
@@ -75,6 +84,7 @@ body.show-spinner::after {
   justify-content: flex-end !important;
   z-index: 1 !important;
 }
+
 #app-container .navbar .navbar-logo {
   position: absolute !important;
   left: 50% !important;
@@ -85,7 +95,7 @@ body.show-spinner::after {
   justify-content: center !important;
 }
 
-/* Мобильная: бургер, затем word-only логотип слева; справа — уведомление и пользователь */
+/* Мобильная: бургер, word-only логотип слева */
 @media (max-width: 767.98px) {
   #app-container .navbar .navbar-left {
     flex: 1 !important;
@@ -115,16 +125,8 @@ body.show-spinner::after {
   }
 }
 
-/* ЛК: контент сверху, футер прижат к низу; отступ под фиксированный navbar */
+/* Layout: Dore theme задаёт main/footer; минимальная база */
 #app-container {
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
-}
-#app-container main {
-  flex: 1 0 auto;
-  padding-top: 55px; /* высота верхнего меню, чтобы контент не уходил под navbar */
-}
-#app-container .page-footer {
-  flex-shrink: 0;
+  position: relative;
 }

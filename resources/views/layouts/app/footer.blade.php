@@ -1,17 +1,10 @@
-{{-- Футер ЛК. --}}
+{{-- Футер ЛК: формат как в Dashboard.Default — row/col, прижат к низу. --}}
 <footer class="page-footer">
     <div class="footer-content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 col-sm-6">
-                    <p class="mb-0 text-muted">{{ config('app.name') }} {{ date('Y') }} |KB @CerberRus00 Nexus Invest Team</p>
-                </div>
-                <div class="col-sm-6 d-none d-sm-block">
-                    <ul class="breadcrumb pt-0 pr-0 float-right">
-                        <li class="breadcrumb-item mb-0">
-                            <a href="{{ route('welcome') }}" class="btn-link">{{ __('Главная') }}</a>
-                        </li>
-                    </ul>
+                <div class="col-12">
+                    <p class="page-footer-text mb-0">{{ config('app.name') }} {{ date('Y') }} | <a href="{{ route('welcome') }}" class="btn-link">{{ __('Главная') }}</a></p>
                 </div>
             </div>
         </div>

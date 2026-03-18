@@ -21,7 +21,7 @@
 
     <div class="card">
         <div class="card-body">
-            <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+            <div class="d-flex flex-wrap align-items-center gap-2 mb-3 lk-card-header-actions">
                 <span class="text-muted mr-2">{{ __('Показать:') }}</span>
                 <a href="{{ route('lk.notifications.index', ['filter' => 'active']) }}" class="btn btn-sm {{ ($filter ?? 'active') === 'active' ? 'btn-primary' : 'btn-outline-secondary' }}">{{ __('Активные') }}</a>
                 <a href="{{ route('lk.notifications.index', ['filter' => 'unread']) }}" class="btn btn-sm {{ ($filter ?? '') === 'unread' ? 'btn-primary' : 'btn-outline-secondary' }}">{{ __('Непрочитанные') }}</a>
@@ -68,12 +68,23 @@
                                     @endif
                                 </td>
                                 <td data-label="{{ __('Дата') }}" class="text-nowrap text-muted small">{{ $n->created_at->format('d.m.Y H:i') }}</td>
-                                <td data-label="{{ __('Действия') }}" class="text-end">
+                                <td class="actions-cell text-end">
                                     @if(!$n->read_at)
-                                        <form method="post" action="{{ route('lk.notifications.mark-read', $n->id) }}" class="d-inline">
-                                            @csrf
-                                            <button type="submit" class="btn btn-outline-primary btn-sm">{{ __('Прочитано') }}</button>
-                                        </form>
+                                        <div class="table-actions-desktop d-none d-md-block">
+                                            <form method="post" action="{{ route('lk.notifications.mark-read', $n->id) }}" class="d-inline">
+                                                @csrf
+                                                <button type="submit" class="btn btn-outline-primary btn-sm">{{ __('Прочитано') }}</button>
+                                            </form>
+                                        </div>
+                                        <div class="table-actions-mobile d-md-none dropdown">
+                                            <button type="button" class="btn btn-outline-secondary btn-sm lk-actions-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="{{ __('Действия') }}" title="{{ __('Действия') }}">⋯</button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <form method="post" action="{{ route('lk.notifications.mark-read', $n->id) }}" class="dropdown-item p-0">
+                                                    @csrf
+                                                    <button type="submit" class="dropdown-item">{{ __('Прочитано') }}</button>
+                                                </form>
+                                            </div>
+                                        </div>
                                     @else
                                         <span class="text-muted small">{{ __('Прочитано') }}</span>
                                     @endif

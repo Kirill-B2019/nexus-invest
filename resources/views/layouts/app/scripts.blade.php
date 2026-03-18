@@ -24,28 +24,20 @@
     if (container && backdrop) {
         backdrop.addEventListener('click', function() { container.classList.remove('main-show-temporary'); });
     }
+    // Показать подменю-карточку при загрузке, если активен пункт с подменю (Панели, Проекты)
+    if (container && typeof $ !== 'undefined') {
+        $(function() {
+            var activeHref = $('.main-menu ul li.active a').attr('href');
+            var link = activeHref ? String(activeHref).replace('#', '') : '';
+            if (link && $('.sub-menu ul[data-link="' + link + '"]').length) {
+                container.classList.add('sub-show-temporary');
+            }
+        });
+    }
 })();
 </script>
 <script src="{{ asset('app/js/scripts.js') }}"></script>
-<script>
-    document.body.classList.remove('show-spinner');
-    (function() {
-        function getCookie(name) {
-            var m = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + '=([^;]*)'));
-            return m ? decodeURIComponent(m[1]) : null;
-        }
-        var theme = getCookie('app_theme') || (typeof localStorage !== 'undefined' && localStorage.getItem('dore-theme-color')) || 'dore.dark.greenlime.min.css';
-        var isDark = theme && theme.indexOf('dark') > -1;
-        var container = document.getElementById('app-container');
-        if (isDark) {
-            container.classList.add('body-theme-dark');
-            document.documentElement.classList.remove('theme-light');
-        } else {
-            container.classList.remove('body-theme-dark');
-            document.documentElement.classList.add('theme-light');
-        }
-    })();
-</script>
+<script>document.body.classList.remove('show-spinner');</script>
 <script>
 (function() {
     var wrap = document.getElementById('notificationBellWrap');

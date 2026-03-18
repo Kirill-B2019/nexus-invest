@@ -8,108 +8,123 @@
   --app-color-surface: #ECEEF2;
   --app-color-white: #ffffff;
   --app-color-danger: #dc3545;
-  --app-sidebar-width: 255px;
-  --app-navbar-height: 55px;
+  --app-navbar-height: 100px;
 }
 
-.app-body {
-  min-height: 100vh;
-  background-color: var(--app-color-surface);
-  color: var(--app-color-dark);
-  padding-top: var(--app-navbar-height);
+#app-container.theme-dark {
+  --app-color-surface: #212220;
 }
 
-/* Top navbar (как в Blank.Page.html) */
-.navbar-app {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: var(--app-navbar-height);
-  padding: 0 1rem;
-  background: var(--app-color-white);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+/* ========== ЛК: минимальные переопределения поверх Dore (Dashboard.Default) ========== */
+#app-container {
+  position: relative;
+  isolation: isolate;
+  overflow-x: hidden;
 }
 
-.navbar-app .navbar-left,
-.navbar-app .navbar-right {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+#app-container main {
+  min-width: 0;
+}
+#app-container main .container-fluid {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  max-width: 100%;
 }
 
-.navbar-app .menu-button {
-  padding: 0.5rem;
-  color: var(--app-color-dark);
-  text-decoration: none;
-  border: none;
-  background: transparent;
-  cursor: pointer;
+#app-container .navbar .dropdown-menu,
+#app-container .dropdown .dropdown-menu,
+#app-container [data-toggle="dropdown"] + .dropdown-menu {
+  z-index: 1050 !important;
 }
 
-.navbar-app .navbar-logo {
-  font-weight: 600;
-  color: var(--app-color-dark);
-  text-decoration: none;
+/* Скрыть палитру тем Dore; логотип light/dark под тему */
+#app-container .theme-colors,
+#app-container .theme-button { display: none !important; }
+#app-container .navbar-logo .logo,
+#app-container .navbar-logo .logo-mobile { background: none !important; background-image: none !important; }
+#app-container .navbar-logo .logo-dark,
+#app-container .navbar-logo .logo-mobile.logo-dark { visibility: hidden; position: absolute; }
+#app-container .navbar-logo .logo-light,
+#app-container .navbar-logo .logo-mobile.logo-light { visibility: visible; }
+#app-container.theme-dark .navbar-logo .logo-light,
+#app-container.theme-dark .navbar-logo .logo-mobile.logo-light { visibility: hidden; position: absolute; }
+#app-container.theme-dark .navbar-logo .logo-dark,
+#app-container.theme-dark .navbar-logo .logo-mobile.logo-dark { visibility: visible; position: static; }
+#app-container .navbar-logo .navbar-logo-img { height: 28px; width: auto; max-width: 140px; object-fit: contain; vertical-align: middle; }
+#app-container .navbar-logo .logo-mobile .navbar-logo-img { max-width: 120px; }
+
+/* Убрать рамки у элементов справа в topbar (header-icon, user) */
+#app-container .navbar .header-icon,
+#app-container .navbar .header-icons .btn,
+#app-container .navbar .user .btn-empty {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
-.navbar-app .navbar-logo:hover {
-  color: var(--app-color-dark);
+/* Убираем прозрачную планку от Dore .scroll */
+#app-container .menu .main-menu .scroll,
+#app-container .menu .sub-menu .scroll {
+  margin-right: 0 !important;
 }
 
-/* Sidebar menu (как в Blank.Page.html) */
-.menu {
-  position: fixed;
-  top: var(--app-navbar-height);
-  left: 0;
-  width: var(--app-sidebar-width);
-  height: calc(100vh - var(--app-navbar-height));
-  background: var(--app-color-white);
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.06);
-  z-index: 1020;
-  transform: translateX(-100%);
-  transition: transform 0.25s ease;
-  overflow-y: auto;
+/* Десктоп: menu-hidden — сворачиваем в узкую полоску (как Dashboard.Default) */
+@media (min-width: 768px) {
+  #app-container.menu-hidden:not(.main-show-temporary) .main-menu,
+  #app-container.main-hidden:not(.main-show-temporary) .main-menu {
+    transform: translateX(0) !important;
+    width: 60px !important;
+    min-width: 60px !important;
+  }
+  #app-container.menu-hidden:not(.main-show-temporary) .main-menu ul li a span,
+  #app-container.main-hidden:not(.main-show-temporary) .main-menu ul li a span {
+    display: none !important;
+  }
+  #app-container.menu-hidden:not(.main-show-temporary) .main-menu ul li a,
+  #app-container.main-hidden:not(.main-show-temporary) .main-menu ul li a {
+    height: 60px !important;
+  }
+  #app-container.menu-hidden .sub-menu,
+  #app-container.main-hidden .sub-menu {
+    left: 60px !important;
+    transform: translateX(-230px) !important;
+  }
+  #app-container.menu-hidden.main-show-temporary .sub-menu {
+    left: 120px !important;
+    transform: translateX(-230px) !important;
+  }
+  #app-container.menu-hidden main,
+  #app-container.main-hidden main {
+    margin-left: 60px !important;
+  }
+  #app-container.menu-hidden.main-show-temporary main {
+    margin-left: 180px !important;
+  }
 }
 
-.menu.menu-open,
-#app-container.main-show-temporary .menu {
-  transform: translateX(0);
+/* Sub-menu: border-radius при hover для юзабилити */
+#app-container .menu .sub-menu ul li a {
+  border-radius: 8px;
+  margin: 0 8px;
 }
-
-.menu .main-menu { padding: 1rem 0; }
-.menu .scroll { padding: 0 0.5rem; }
-
-.menu .list-unstyled li { margin-bottom: 0; }
-.menu .list-unstyled a {
-  display: block;
-  padding: 0.6rem 1rem;
-  color: var(--app-color-dark);
-  text-decoration: none;
+#app-container .menu .sub-menu ul li a:hover {
   border-radius: 8px;
 }
 
-.menu .list-unstyled a:hover {
-  background: var(--app-color-surface);
-  color: var(--app-color-dark);
-}
-
-.menu .list-unstyled li.active a {
-  background: var(--app-color-primary);
-  color: var(--app-color-dark);
-  font-weight: 600;
-}
-
-@media (min-width: 768px) {
-  .menu {
-    transform: translateX(0);
-  }
-  #app-container.main-show-temporary .menu,
-  #app-container.menu-open .menu { transform: translateX(0); }
-  #app-container main { margin-left: var(--app-sidebar-width); }
-}
-
+/* Мобильная: меню скрыто, показывается по клику на гамбургер */
 @media (max-width: 767.98px) {
-  #app-container main { margin-left: 0; }
+  #app-container .menu {
+    transform: translateX(-100%);
+  }
+  #app-container.main-show-temporary .menu {
+    transform: translateX(0) !important;
+  }
+  #app-container main,
+  #app-container .page-footer {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
 }
 
 /* ========== Мобильная адаптация закрытой части (ЛК), формат как Ui.Components.Tables ========== */
@@ -190,15 +205,16 @@
   #app-container .table-responsive .table-mobile-stack {
     max-width: 100%;
   }
+  #app-container main .dataTables_wrapper {
+    overflow-x: auto;
+    max-width: 100%;
+  }
   #app-container .table:not(.table-mobile-stack) {
     min-width: 480px;
   }
   #app-container .page-footer .container-fluid {
     padding-left: 1rem;
     padding-right: 1rem;
-  }
-  #app-container .page-footer .footer-content {
-    padding: 0.75rem 0;
   }
   #app-container .navbar .dropdown-menu {
     max-height: min(70vh, 400px);
@@ -267,18 +283,14 @@
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--separator-color, rgba(0, 0, 0, 0.08));
     border-radius: 0.25rem;
     margin-bottom: 0.75rem;
     padding: 0.75rem;
-    background: var(--app-color-surface, #f8f9fa);
+    background: var(--app-color-surface, #f8f9fa) !important;
   }
   #app-container .table-mobile-stack tbody tr:last-child {
     margin-bottom: 0;
-  }
-  #app-container.body-theme-dark .table-mobile-stack tbody tr {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
   }
   #app-container .table-mobile-stack tbody td {
     display: block;
@@ -314,7 +326,7 @@
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.02em;
-    color: var(--app-color-dark, #333);
+    color: var(--primary-color, #333);
     opacity: 0.8;
     display: block;
     margin-bottom: 0.15rem;
@@ -322,7 +334,7 @@
   #app-container .table-mobile-stack tbody td.actions-cell {
     padding-top: 0.5rem;
     margin-top: 0.25rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    border-top: 1px solid var(--separator-color, rgba(0, 0, 0, 0.06));
   }
   #app-container .table-mobile-stack tbody td.actions-cell::before {
     display: none;
@@ -356,6 +368,9 @@
   }
   #app-container main .card-body .lk-card-header-actions .btn {
     margin: 0;
+  }
+  #app-container main .card-body .lk-card-header-actions form.ml-auto {
+    margin-left: 0 !important;
   }
   /* Кнопки в блоках и под таблицами — по центру, отступ от контента */
   #app-container main .lk-form-actions {
@@ -435,9 +450,10 @@
   }
 }
 
-/* Оверлей при открытом боковом меню на мобильной */
-.menu-backdrop {
-  display: none;
+/* Оверлей при открытом боковом меню — только на мобильной и только когда меню открыто */
+#app-container .menu-backdrop {
+  display: none !important;
+  pointer-events: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -448,94 +464,31 @@
   transition: opacity 0.2s ease;
 }
 @media (max-width: 767.98px) {
-  .menu-backdrop {
-    display: block;
-    opacity: 0;
-    pointer-events: none;
-  }
   #app-container.main-show-temporary .menu-backdrop {
-    opacity: 1;
+    display: block !important;
     pointer-events: auto;
   }
 }
-@media (min-width: 768px) {
-  .menu-backdrop {
-    display: none !important;
-  }
-}
 
-/* Main content */
-.app-main {
-  min-height: calc(100vh - var(--app-navbar-height));
-  padding: 1.5rem;
-  transition: margin-left 0.25s ease;
-}
-
-.app-page-header {
+#app-container .app-page-header {
   margin-bottom: 1rem;
 }
 
-.app-page-header h1,
-.app-page-title {
+#app-container .app-page-header h1,
+#app-container .app-page-title {
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0 0 0.5rem 0;
 }
 
-.app-page-content {
-  margin-top: 0.5rem;
+/* Dropdown уведомлений: скрыт по умолчанию, flex только при .show */
+#app-container .navbar #notificationDropdown {
+  display: none;
 }
-
-/* Cards and utilities */
-.app-card {
-  background: var(--app-color-white);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
+#app-container .navbar .dropdown.show #notificationDropdown {
+  display: flex !important;
+  flex-direction: column;
 }
-
-.app-btn-primary {
-  background-color: var(--app-color-primary);
-  color: var(--app-color-dark);
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-}
-
-.app-btn-primary:hover {
-  opacity: 0.95;
-}
-
-.mb-0 { margin-bottom: 0; }
-
-/* Footer (как в Blank.Page.html) */
-.page-footer {
-  margin-left: 0;
-  padding: 1rem 0;
-  background: var(--app-color-white);
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-@media (min-width: 768px) {
-  .page-footer { margin-left: var(--app-sidebar-width); }
-}
-
-.page-footer .footer-content {
-  padding: 0 1rem;
-}
-
-.page-footer .text-muted {
-  font-size: 0.875rem;
-}
-
-.separator {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-/* Выпадающее окно уведомлений в topbar: структура и кнопка «Все уведомления» */
 #app-container .navbar #notificationDropdown {
   min-width: 200px;
   width: 280px;
@@ -543,8 +496,6 @@
   height: auto;
   max-height: min(70vh, 380px);
   padding: 0 0 0.5rem 0;
-  display: flex;
-  flex-direction: column;
   right: 0;
   left: auto;
   box-sizing: border-box;
@@ -563,7 +514,7 @@
 }
 #app-container .navbar #notificationDropdown .notification-dropdown-item {
   padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid var(--separator-color, rgba(0, 0, 0, 0.08));
   min-height: 44px;
   display: flex;
   align-items: center;
@@ -598,7 +549,6 @@
 #app-container .navbar #notificationDropdown .notification-all-link:hover,
 #app-container .navbar #notificationDropdown .notification-all-link:focus {
   outline: none;
-  background-color: rgba(0, 0, 0, 0.04);
   text-decoration: none;
 }
 @media (max-width: 767.98px) {
@@ -609,168 +559,24 @@
   }
 }
 
-/* --- Стили админки/форм в духе внутренней темы --- */
-
+/* Карточки и таблицы: минимальные отступы */
 #app-container .card {
-  background: var(--app-color-white);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  margin-bottom: 1.5rem;
 }
-
 #app-container .card .card-body {
   padding: 1.25rem 1.5rem;
-  color: var(--app-color-dark);
 }
 
-#app-container .btn-primary {
-  background-color: var(--app-color-primary);
-  color: var(--app-color-dark);
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
+/* Таблицы ЛК: padding */
+#app-container main .table thead th,
+#app-container main .dataTables_wrapper .table thead th {
+  padding: 0.75rem !important;
 }
-
-#app-container .btn-primary:hover {
-  background-color: var(--app-color-primary);
-  color: var(--app-color-dark);
-  opacity: 0.92;
-  filter: brightness(0.98);
-}
-
-#app-container .btn-outline-secondary {
-  border: 1px solid var(--app-color-dark);
-  color: var(--app-color-dark);
-  background: transparent;
-  border-radius: 8px;
-  padding: 0.4rem 0.85rem;
-  font-size: 0.875rem;
-}
-
-#app-container .btn-outline-secondary:hover {
-  background: var(--app-color-surface);
-  color: var(--app-color-dark);
-  border-color: var(--app-color-dark);
-}
-
-#app-container .btn-outline-primary {
-  border: 1px solid var(--app-color-primary);
-  color: var(--app-color-dark);
-  background: transparent;
-  border-radius: 8px;
-  padding: 0.4rem 0.85rem;
-  font-weight: 500;
-}
-
-#app-container .btn-outline-primary:hover {
-  background: rgba(197, 255, 65, 0.15);
-  color: var(--app-color-dark);
-  border-color: var(--app-color-primary);
-}
-
-#app-container .btn-danger {
-  background-color: var(--app-color-danger);
-  color: var(--app-color-white);
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-}
-
-#app-container .btn-danger:hover {
-  background-color: var(--app-color-danger);
-  color: var(--app-color-white);
-  opacity: 0.9;
-  filter: brightness(1.05);
-}
-
-#app-container .btn-link {
-  color: var(--app-color-dark);
-  text-decoration: underline;
-  border-radius: 8px;
-}
-
-#app-container .btn-link:hover {
-  color: var(--app-color-dark);
-  opacity: 0.85;
-}
-
-#app-container .btn-sm {
-  border-radius: 8px;
-  padding: 0.35rem 0.75rem;
-  font-size: 0.875rem;
-}
-
-#app-container .table {
-  color: var(--app-color-dark);
-}
-
-#app-container .table thead th {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  font-weight: 600;
-  padding: 0.75rem;
-}
-
-#app-container .table td {
-  padding: 0.75rem;
-  vertical-align: middle;
-}
-
-/* Подсветка строки при наведении: контрастный фон, надписи ярко и читаемо */
-#app-container .table tbody tr:hover {
-  background: rgba(197, 255, 65, 0.28);
-}
-#app-container .table tbody tr:hover td {
-  color: #0a0a0a !important;
-  font-weight: 600;
-  text-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
-}
-#app-container .table tbody tr:hover td a {
-  color: #0a0a0a !important;
-  font-weight: 700;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-#app-container .table tbody tr:hover td.text-muted,
-#app-container .table tbody tr:hover td.small {
-  color: #1a1a1a !important;
-  opacity: 1;
-  font-weight: 500;
-}
-#app-container .table tbody tr:hover .badge {
-  filter: brightness(0.92);
-}
-#app-container.body-theme-dark .table tbody tr:hover {
-  background: rgba(197, 255, 65, 0.22);
-}
-#app-container.body-theme-dark .table tbody tr:hover td {
-  color: #ffffff !important;
-  font-weight: 600;
-  text-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
-}
-#app-container.body-theme-dark .table tbody tr:hover td a {
-  color: var(--app-color-primary) !important;
-  font-weight: 700;
-}
-#app-container.body-theme-dark .table tbody tr:hover td.text-muted,
-#app-container.body-theme-dark .table tbody tr:hover td.small {
-  color: rgba(255, 255, 255, 0.9) !important;
-  opacity: 1;
-}
-
-#app-container .form-control {
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 8px;
-  padding: 0.5rem 0.75rem;
-  color: var(--app-color-dark);
-  background: var(--app-color-white);
-}
-
-#app-container .form-control:focus {
-  border-color: var(--app-color-primary);
-  box-shadow: 0 0 0 2px rgba(197, 255, 65, 0.25);
-  outline: none;
+#app-container main .table td,
+#app-container main .table tbody td,
+#app-container main .dataTables_wrapper .table td {
+  padding: 0.75rem !important;
+  vertical-align: middle !important;
 }
 
 /* Переключатель в стиле внутренней темы */
@@ -826,18 +632,49 @@
   box-shadow: 0 0 0 2px rgba(197, 255, 65, 0.35);
 }
 
-/* Аватар пользователя в topbar: при отсутствии фото — logo-only.svg */
-#app-container .header-avatar-wrapper {
+/* Аватар пользователя в topbar — центрирование, переопределение Dore .navbar .user img */
+#app-container .navbar .user .header-avatar-wrapper {
   width: 32px;
   height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  max-width: 32px;
+  max-height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
   background: var(--app-color-surface);
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 0;
+  aspect-ratio: 1;
+  align-self: center;
+  margin-left: 0 !important;
 }
-#app-container .header-avatar {
-  width: 100%;
-  height: 100%;
+#app-container .navbar .user .header-avatar-wrapper .header-avatar,
+#app-container .navbar .user img.header-avatar {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: cover;
+  object-position: center;
+  display: block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
-
+#app-container .navbar .user .user-desktop {
+  align-items: center;
+  gap: 0;
+}
+#app-container .navbar .user .btn-empty {
+  padding: 0.25rem 0;
+  display: flex;
+  align-items: center;
+}
 /* SweetAlert2 — тема закрытой части (ЛК) */
 .swal2-popup.swal-lk-theme {
   background: var(--app-color-dark);

@@ -29,7 +29,7 @@
                             <th>{{ __('Инициатор') }}</th>
                             <th>{{ __('Статус') }}</th>
                             <th>{{ __('Дата отправки') }}</th>
-                            <th class="actions-cell">{{ __('Действия') }}</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,12 +47,12 @@
                                 @endif
                             </td>
                             <td data-label="{{ __('Дата отправки') }}">{{ $project->submitted_at?->format('d.m.Y H:i') ?? '—' }}</td>
-                            <td class="actions-cell" data-label="{{ __('Действия') }}">
+                            <td class="actions-cell">
                                 <div class="table-actions-desktop d-none d-md-block">
                                     <a href="{{ route('lk.admin.projects.moderation.show', $project) }}" class="btn btn-sm btn-outline-primary">{{ __('Просмотр') }}</a>
                                 </div>
                                 <div class="table-actions-mobile d-md-none dropdown">
-                                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">⋯</button>
+                                    <button type="button" class="btn btn-outline-secondary btn-sm lk-actions-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="{{ __('Действия') }}" title="{{ __('Действия') }}">⋯</button>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="{{ route('lk.admin.projects.moderation.show', $project) }}">{{ __('Просмотр') }}</a>
                                     </div>

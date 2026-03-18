@@ -51,7 +51,7 @@
         <div class="header-icons d-inline-block align-middle">
             <div class="d-none d-md-inline-block align-text-bottom mr-3">
                 @php
-                    $themeCookie = request()->cookie('app_theme', 'dore.dark.greenlime.min.css');
+                    $themeCookie = request()->cookie('app_theme', 'dore.dark.greenlime.css');
                     $themeIsDark = str_contains($themeCookie, 'dark');
                 @endphp
                 <div class="custom-switch custom-switch-primary-inverse custom-switch-small pl-1"
