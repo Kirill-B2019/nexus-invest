@@ -196,7 +196,7 @@
             </div>
             <div class="row align-items-center mb-20 pb-3" style="border-bottom: 1px solid rgba(255,255,255,0.08);">
                 {{-- РАЗГРАНИЧЕНИЕ ПРАВОВОГО СТАТУСА: ГАНИМЕД И ПЛАТФОРМА НЕКСУС --}}
-                <div class="col-12 col-md-6 mb-20 mb-md-0 text-center text-md-start">
+                <div class="col-12 mb-20 mb-md-0 text-center text-sm-start">
                     <div  class="alert alert-footer">
                         <p class="neutral-300 uppercase text-md">{{ __('РАЗГРАНИЧЕНИЕ ПРАВОВОГО СТАТУСА: ГАНИМЕД И ПЛАТФОРМА НЕКСУС') }}</p>
                         <p class="neutral-600 mb-0 small">
