@@ -386,22 +386,25 @@
         <div class="roadmap-horizontal">
             <div class="list-change-log roadmap-list">
                 <div class="item-log">
-                    <div class="date-log"><span class="btn btn-brand-4-sm">{{__('Стадия I: 4 кв. 2026')}}</span></div>
+                    <div class="date-log">
+                        <span class="btn btn-brand-4-sm">{{ __('Стадия I (Q4 2026)') }}</span>
+                        <div class="roadmap-stage1-progress mt-3">
+                            <span class="roadmap-progress-label text-sm neutral-400">{{ __('Прогресс') }}</span>
+                            <div class="progress roadmap-progress-bar">
+                                <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <span class="roadmap-progress-value text-sm neutral-400">70%</span>
+                        </div>
+                    </div>
                     <div class="line-log"></div>
                     <div class="info-log">
                         <h4 class="neutral-400 text-sm">{{ __('V 1.0.0') }}</h4>
                         <p class="text-md neutral-0 uppercase">{{ __('MVP запуск проектной платформы НЕКСУС и блокчейна ГАНИМЕД') }}</p>
-                        <ul class="list-check-black text-sm">
-                            <li>{{ __('Базовый функционал платформы НЕКСУС запущен') }}</li>
-                            <li>{{ __('ГАНИМЕД запущен, ноды активны, шардинг (сегментирование) работает') }}</li>
-                            <li>{{ __('Валидаторы PoA регистрируются') }}</li>
-                            <li>{{ __('Кошельки платформы активны') }}</li>
-                            <li>{{ __('Система смягчения инвестиционных рисков реализована') }}</li>
-                            <li>{{ __('ИИ продолжает обучение  модели и участвует в оценке, аналитике и прогнозах') }}</li>
-                            <li>{{ __('Платежные шлюзы ввод/вывод средств активны') }}</li>
-                            <li>{{ __('Комплаенс работает') }}</li>
-                            <li>{{ __('Библиотека смарт-контрактов сформирована и доступна пользователям') }}</li>
-
+                        <ul class="roadmap-stage1-checklist text-sm">
+                            <li class="roadmap-item-done">{{ __('Архитектура блокчейна ГАНИМЕД — готова (MVP)') }}</li>
+                            <li class="roadmap-item-done">{{ __('Мастер-нода запущена') }}</li>
+                            <li class="roadmap-item-progress">{{ __('Платформа НЕКСУС — в разработке (70%)') }}</li>
+                            <li class="roadmap-item-progress">{{ __('Регистрация ОИС НЕКСУС в ЦБ РФ — документы готовятся') }}</li>
                         </ul>
                     </div>
                 </div>

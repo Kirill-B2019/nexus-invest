@@ -73,3 +73,64 @@
   max-width: 100%;
   height: auto;
 }
+
+/* Этап 1: прогресс-бар в стиле публичной темы */
+.roadmap-stage1-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  min-width: 120px;
+}
+.roadmap-stage1-progress .roadmap-progress-label {
+  display: block;
+}
+.roadmap-stage1-progress .roadmap-progress-bar {
+  height: 8px;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  overflow: hidden;
+}
+.roadmap-stage1-progress .roadmap-progress-bar .progress-bar {
+  background-color: var(--color-primary) !important;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+.roadmap-stage1-progress .roadmap-progress-value {
+  display: block;
+  font-weight: 600;
+}
+
+/* Этап 1: чекбоксы в стиле публичной темы */
+#Road .roadmap-stage1-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+  max-width: none;
+}
+.roadmap-stage1-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 6px 0;
+  color: rgba(255, 255, 255, 0.85);
+  padding-left: 0;
+}
+.roadmap-stage1-checklist li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.roadmap-item-done::before {
+  background-image: url(../imgs/page/homepage3/check.svg);
+}
+.roadmap-item-progress::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Ccircle cx='10' cy='10' r='8' stroke='%23C5FF55' stroke-width='2' stroke-dasharray='3 5' stroke-linecap='round'/%3E%3Cpath d='M10 6V10L13 13' stroke='%23C5FF55' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  opacity: 0.9;
+}

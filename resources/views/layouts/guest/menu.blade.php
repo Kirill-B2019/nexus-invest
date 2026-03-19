@@ -9,7 +9,6 @@
             <ul class="sub-menu">
                 <li><a href="{{ route('features') }}">{{ __('Особенности') }}</a></li>
                 <li><a href="{{ route('compliance') }}">{{ __('Комплаенс') }}</a></li>
-
             </ul>
 
         </li>
