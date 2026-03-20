@@ -22,7 +22,9 @@
     var container = document.getElementById('app-container');
     var backdrop = document.getElementById('menu-backdrop');
     if (container && backdrop) {
-        backdrop.addEventListener('click', function() { container.classList.remove('main-show-temporary'); });
+        backdrop.addEventListener('click', function() {
+            container.classList.remove('main-show-temporary', 'sub-show-temporary');
+        });
     }
     // Показать подменю-карточку при загрузке, если активен пункт с подменю (Панели, Проекты)
     if (container && typeof $ !== 'undefined') {

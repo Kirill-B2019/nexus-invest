@@ -704,6 +704,12 @@
 
 /* Мобильная: вертикальная раскладка */
 @media (max-width: 991.98px) {
+    /* Секция Road: overflow visible, чтобы не обрезать прогресс и пункты шага 1 */
+    #Road.section-box,
+    #Road .container,
+    #Road .roadmap-horizontal {
+        overflow: visible !important;
+    }
     .roadmap-horizontal {
         overflow-x: visible;
         padding: 30px 0 20px;
@@ -753,6 +759,21 @@
         min-height: auto;
         padding: 24px 20px 20px;
         box-sizing: border-box;
+    }
+    /* Шаг 1: прогресс и чеклист — явно видимы на мобильных */
+    .roadmap-horizontal .roadmap-list .item-log .date-log .roadmap-stage1-progress {
+        display: flex !important;
+        flex-direction: column;
+        width: 100%;
+        min-width: 0;
+        margin-top: 12px;
+    }
+    .roadmap-horizontal .roadmap-list .item-log .info-log .roadmap-stage1-checklist {
+        display: block !important;
+        margin-top: 12px;
+    }
+    .roadmap-horizontal .roadmap-list .item-log .info-log .roadmap-stage1-checklist li {
+        display: flex !important;
     }
 }
 

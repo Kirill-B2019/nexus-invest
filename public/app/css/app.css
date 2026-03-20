@@ -115,9 +115,11 @@
 @media (max-width: 767.98px) {
   #app-container .menu {
     transform: translateX(-100%);
+    z-index: 1020 !important;
   }
   #app-container.main-show-temporary .menu {
     transform: translateX(0) !important;
+    z-index: 1020 !important;
   }
   #app-container main,
   #app-container .page-footer {
