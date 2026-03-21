@@ -179,6 +179,9 @@ class DzenFeedService
                 $payload['published_at'] = $publishedAt instanceof \DateTimeInterface ? $publishedAt->format('Y-m-d H:i:s') : $publishedAt;
             }
 
+            // id — автоинкремент, задаётся только БД; не передавать в updateOrCreate
+            unset($payload['id']);
+
             NewsFeedItem::updateOrCreate(
                 ['external_id' => $externalId, 'source' => 'dzen'],
                 $payload
