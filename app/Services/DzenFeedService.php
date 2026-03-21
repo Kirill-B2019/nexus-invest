@@ -128,7 +128,8 @@ class DzenFeedService
 
         foreach ($items as $rawItem) {
             $item = $this->normalizeFeedItem($rawItem);
-            $externalId = (string) ($item['publication_object_id'] ?? $item['id'] ?? $rawItem['publication_object_id'] ?? $rawItem['id'] ?? '');
+            // publication_object_id — стабильный ID публикации в Дзен; id может быть отрицательным внутренним идентификатором
+            $externalId = (string) ($item['publication_object_id'] ?? $item['publication_id'] ?? $item['id'] ?? $rawItem['publication_object_id'] ?? $rawItem['publication_id'] ?? $rawItem['id'] ?? '');
             if ($externalId === '') {
                 continue;
             }
@@ -141,7 +142,7 @@ class DzenFeedService
                 continue;
             }
 
-            $url = $item['link'] ?? $item['url'] ?? $rawItem['link'] ?? $rawItem['url'] ?? "{$baseUrl}/{$externalId}";
+            $url = $item['link'] ?? $item['share_link'] ?? $item['url'] ?? $rawItem['link'] ?? $rawItem['share_link'] ?? $rawItem['url'] ?? "{$baseUrl}/{$externalId}";
             if (! Str::startsWith($url, 'http')) {
                 $url = "{$baseUrl}/{$externalId}";
             }
@@ -169,7 +170,12 @@ class DzenFeedService
             if ($imageStoragePath !== null) {
                 $payload['image_url'] = $imageStoragePath;
             }
-            if ($publishedAt !== null) {
+
+            $existing = NewsFeedItem::where('external_id', $externalId)->where('source', 'dzen')->first();
+            // published_at: устанавливать только при создании или если у записи его нет.
+            // API Дзен возвращает относительные даты («9 часов назад»), при каждом обновлении
+            // они пересчитываются в «сейчас минус N» — это искажает реальную дату публикации.
+            if ($publishedAt !== null && ($existing === null || $existing->published_at === null)) {
                 $payload['published_at'] = $publishedAt instanceof \DateTimeInterface ? $publishedAt->format('Y-m-d H:i:s') : $publishedAt;
             }
 

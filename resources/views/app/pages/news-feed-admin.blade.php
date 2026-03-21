@@ -49,7 +49,12 @@
                     <tbody>
                         @forelse(($items ?? []) as $item)
                             <tr>
-                                <td class="text-nowrap text-muted small" data-label="{{ __('ID') }}">{{ $item->id }}</td>
+                                <td class="text-nowrap text-muted small" data-label="{{ __('ID') }}">
+                                    <span title="{{ __('Внутренний ID') }}">{{ $item->id }}</span>
+                                    @if($item->external_id)
+                                        <br><span class="text-muted" style="font-size:0.85em" title="{{ __('ID в источнике (Дзен)') }}">{{ Str::limit($item->external_id, 12) }}</span>
+                                    @endif
+                                </td>
                                 <td class="text-nowrap text-muted small" data-label="{{ __('Дата') }}">{{ ($item->published_at ?? $item->created_at)?->format('d.m.Y H:i') ?? '—' }}</td>
                                 <td data-label="{{ __('Заголовок') }}">{{ str()->limit($item->title, 60) }}</td>
                                 <td data-label="{{ __('Ссылка') }}"><a href="{{ $item->url }}" target="_blank" rel="noopener noreferrer" class="small">{{ __('Открыть') }}</a></td>
