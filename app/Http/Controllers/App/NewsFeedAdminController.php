@@ -22,6 +22,7 @@ class NewsFeedAdminController extends Controller
     public function index(): View
     {
         $items = NewsFeedItem::query()
+            ->select(['id', 'external_id', 'title', 'url', 'image_url', 'description', 'published_at', 'source', 'created_at', 'updated_at'])
             ->orderByDesc('published_at')
             ->orderByDesc('id')
             ->limit(50)

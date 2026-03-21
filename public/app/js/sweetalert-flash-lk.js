@@ -12,7 +12,7 @@
 
     function getSwalConfig() {
         var container = document.getElementById("app-container");
-        var isDark = container && container.classList.contains("body-theme-dark");
+        var isDark = container && container.classList.contains("theme-dark");
         return isDark
             ? {
                 customClass: { popup: "swal-lk-theme", confirmButton: "swal-lk-btn-confirm" },

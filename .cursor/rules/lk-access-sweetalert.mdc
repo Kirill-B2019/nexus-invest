@@ -53,10 +53,20 @@ if (! $user->hasRole('messenger-admin') && (! $user->can('use-messenger') || ! $
 
 ## SweetAlert2 во внутренней части
 
-- **Подключение:** `resources/views/layouts/app/scripts.blade.php` — CDN SweetAlert2, `window.laravelFlashLk`, `public/app/js/sweetalert-flash-lk.js`.
+- **Подключение:** `resources/views/layouts/app/scripts.blade.php` — CDN SweetAlert2, `window.laravelFlashLk`, `public/app/js/sweetalert-flash-lk.js`, `public/app/js/swal-confirm-forms.js`.
 - **Flash-ключи:** `alert_error`, `alert_success`, `alert_warning`, `info`.
 - **Стили:** `public/app/css/app.css` — классы `swal-lk-theme`, `swal-lk-btn-confirm`.
 - **Вызов из JS:** `window.swalLk.error(text)`, `swalLk.success(text)`, `swalLk.warning(text)`, `swalLk.info(text)`.
+
+### Цвета в соответствии с выбранной темой
+
+**SweetAlert2 должен отображаться в цветах выбранной пользователем темы ЛК.**
+
+- **Определение темы:** по классу `theme-dark` или `theme-light` на `#app-container` (body).
+- **Тёмная тема** (`theme-dark`): фон `#191919`, текст `#ECEEF2`, кнопка подтверждения `#C5FF41`, backdrop `rgba(0,0,0,0.75)`. Класс popup: `swal-lk-theme`.
+- **Светлая тема** (`theme-light`): фон `#FFFFFF`, текст `#1F2937`, кнопка подтверждения `#4B7B5B`, backdrop `rgba(0,0,0,0.4)`. Класс popup: `swal-lk-theme swal-lk-theme-light`.
+- **Реализация:** `sweetalert-flash-lk.js` и `swal-confirm-forms.js` определяют тему через `container.classList.contains('theme-dark')` и передают соответствующие `customClass`, `background`, `color`, `confirmButtonColor` в `Swal.fire()`.
+- При добавлении новых вызовов SweetAlert2 в ЛК — использовать `getSwalConfig()` из `sweetalert-flash-lk.js` или `getConfirmConfig()` из `swal-confirm-forms.js`, либо вызывать `window.swalLk.*`, чтобы сохранить цвета темы.
 
 ## Отображение пунктов меню
 

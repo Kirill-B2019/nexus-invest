@@ -179,13 +179,18 @@ class DzenFeedService
                 $payload['published_at'] = $publishedAt instanceof \DateTimeInterface ? $publishedAt->format('Y-m-d H:i:s') : $publishedAt;
             }
 
-            // id — автоинкремент, задаётся только БД; не передавать в updateOrCreate
+            // id — автоинкремент, задаётся только БД; при update не трогать id (Query Builder)
+            $payload = array_intersect_key($payload, array_flip((new NewsFeedItem)->getFillable()));
             unset($payload['id']);
 
-            NewsFeedItem::updateOrCreate(
-                ['external_id' => $externalId, 'source' => 'dzen'],
-                $payload
-            );
+            if ($existing !== null) {
+                NewsFeedItem::where('external_id', $externalId)->where('source', 'dzen')->update($payload);
+            } else {
+                NewsFeedItem::create(array_merge(
+                    ['external_id' => $externalId, 'source' => 'dzen'],
+                    $payload
+                ));
+            }
             $saved++;
         }
 

@@ -9,9 +9,6 @@ class NewsFeedItem extends Model
 {
     protected $table = 'news_feed_items';
 
-    /** @var list<string> Исключить id из массового присвоения — автоинкремент задаётся только БД. */
-    protected $guarded = ['id'];
-
     protected $fillable = [
         'external_id',
         'title',

@@ -7,7 +7,7 @@
 
     function getConfirmConfig() {
         var container = document.getElementById('app-container');
-        var isDark = container && container.classList.contains('body-theme-dark');
+        var isDark = container && container.classList.contains('theme-dark');
         return isDark
             ? { customClass: { popup: 'swal-lk-theme', confirmButton: 'swal-lk-btn-confirm' }, background: '#191919', color: '#ECEEF2', confirmButtonColor: '#C5FF41', cancelButtonColor: '#6c757d', backdrop: 'rgba(0,0,0,0.75)' }
             : { customClass: { popup: 'swal-lk-theme swal-lk-theme-light', confirmButton: 'swal-lk-btn-confirm' }, background: '#FFFFFF', color: '#1F2937', confirmButtonColor: '#4B7B5B', cancelButtonColor: 'transparent', backdrop: 'rgba(0,0,0,0.4)' };

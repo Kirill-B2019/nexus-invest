@@ -50,7 +50,7 @@
                         @forelse(($items ?? []) as $newsItem)
                             <tr>
                                 <td class="text-nowrap text-muted small" data-label="{{ __('ID') }}">
-                                    <span title="{{ __('Внутренний ID') }}">{{ $newsItem->id }}</span>
+                                    <span title="{{ __('Внутренний ID') }}">{{ $newsItem->getKey() ?? $newsItem->id ?? '—' }}</span>
                                     @if($newsItem->external_id)
                                         <br><span class="text-muted" style="font-size:0.85em" title="{{ __('ID в источнике (Дзен)') }}">{{ Str::limit($newsItem->external_id, 12) }}</span>
                                     @endif
@@ -59,9 +59,9 @@
                                 <td data-label="{{ __('Заголовок') }}">{{ str()->limit($newsItem->title, 60) }}</td>
                                 <td data-label="{{ __('Ссылка') }}"><a href="{{ $newsItem->url }}" target="_blank" rel="noopener noreferrer" class="small">{{ __('Открыть') }}</a></td>
                                 <td class="text-end actions-cell">
-                                    @if($newsItem->id)
+                                    @if($newsItem->getKey())
                                     <div class="table-actions-desktop d-none d-md-block">
-                                        <form method="post" action="{{ route('lk.admin.news-feed.destroy', ['newsFeedItem' => $newsItem->id]) }}" class="d-inline" data-swal-confirm="{{ __('Удалить статью с сайта? Картинка также будет удалена.') }}" data-swal-title="{{ __('Подтверждение') }}">
+                                        <form method="post" action="{{ route('lk.admin.news-feed.destroy', ['newsFeedItem' => $newsItem->getKey()]) }}" class="d-inline" data-swal-confirm="{{ __('Удалить статью с сайта? Картинка также будет удалена.') }}" data-swal-title="{{ __('Подтверждение') }}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-outline-danger btn-sm">{{ __('Удалить') }}</button>
@@ -70,7 +70,7 @@
                                     <div class="table-actions-mobile d-md-none dropdown">
                                         <button type="button" class="btn btn-outline-secondary btn-sm lk-actions-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="{{ __('Действия') }}" title="{{ __('Действия') }}">⋯</button>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <form method="post" action="{{ route('lk.admin.news-feed.destroy', ['newsFeedItem' => $newsItem->id]) }}" class="dropdown-item p-0" data-swal-confirm="{{ __('Удалить статью с сайта? Картинка также будет удалена.') }}" data-swal-title="{{ __('Подтверждение') }}">
+                                            <form method="post" action="{{ route('lk.admin.news-feed.destroy', ['newsFeedItem' => $newsItem->getKey()]) }}" class="dropdown-item p-0" data-swal-confirm="{{ __('Удалить статью с сайта? Картинка также будет удалена.') }}" data-swal-title="{{ __('Подтверждение') }}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="dropdown-item text-danger">{{ __('Удалить') }}</button>
