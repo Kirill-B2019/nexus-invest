@@ -47,20 +47,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse(($items ?? []) as $item)
+                        @forelse(($items ?? []) as $newsItem)
                             <tr>
                                 <td class="text-nowrap text-muted small" data-label="{{ __('ID') }}">
-                                    <span title="{{ __('Внутренний ID') }}">{{ $item->id }}</span>
-                                    @if($item->external_id)
-                                        <br><span class="text-muted" style="font-size:0.85em" title="{{ __('ID в источнике (Дзен)') }}">{{ Str::limit($item->external_id, 12) }}</span>
+                                    <span title="{{ __('Внутренний ID') }}">{{ $newsItem->id }}</span>
+                                    @if($newsItem->external_id)
+                                        <br><span class="text-muted" style="font-size:0.85em" title="{{ __('ID в источнике (Дзен)') }}">{{ Str::limit($newsItem->external_id, 12) }}</span>
                                     @endif
                                 </td>
-                                <td class="text-nowrap text-muted small" data-label="{{ __('Дата') }}">{{ ($item->published_at ?? $item->created_at)?->format('d.m.Y H:i') ?? '—' }}</td>
-                                <td data-label="{{ __('Заголовок') }}">{{ str()->limit($item->title, 60) }}</td>
-                                <td data-label="{{ __('Ссылка') }}"><a href="{{ $item->url }}" target="_blank" rel="noopener noreferrer" class="small">{{ __('Открыть') }}</a></td>
+                                <td class="text-nowrap text-muted small" data-label="{{ __('Дата') }}">{{ ($newsItem->published_at ?? $newsItem->created_at)?->format('d.m.Y H:i') ?? '—' }}</td>
+                                <td data-label="{{ __('Заголовок') }}">{{ str()->limit($newsItem->title, 60) }}</td>
+                                <td data-label="{{ __('Ссылка') }}"><a href="{{ $newsItem->url }}" target="_blank" rel="noopener noreferrer" class="small">{{ __('Открыть') }}</a></td>
                                 <td class="text-end actions-cell">
                                     <div class="table-actions-desktop d-none d-md-block">
-                                        <form method="post" action="{{ url('/lk/admin/news-feed/' . $item->id) }}" class="d-inline" data-swal-confirm="{{ __('Удалить статью с сайта? Картинка также будет удалена.') }}" data-swal-title="{{ __('Подтверждение') }}">
+                                        <form method="post" action="{{ route('lk.admin.news-feed.destroy', $newsItem) }}" class="d-inline" data-swal-confirm="{{ __('Удалить статью с сайта? Картинка также будет удалена.') }}" data-swal-title="{{ __('Подтверждение') }}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-outline-danger btn-sm">{{ __('Удалить') }}</button>
@@ -69,7 +69,7 @@
                                     <div class="table-actions-mobile d-md-none dropdown">
                                         <button type="button" class="btn btn-outline-secondary btn-sm lk-actions-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="{{ __('Действия') }}" title="{{ __('Действия') }}">⋯</button>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <form method="post" action="{{ url('/lk/admin/news-feed/' . $item->id) }}" class="dropdown-item p-0" data-swal-confirm="{{ __('Удалить статью с сайта? Картинка также будет удалена.') }}" data-swal-title="{{ __('Подтверждение') }}">
+                                            <form method="post" action="{{ route('lk.admin.news-feed.destroy', $newsItem) }}" class="dropdown-item p-0" data-swal-confirm="{{ __('Удалить статью с сайта? Картинка также будет удалена.') }}" data-swal-title="{{ __('Подтверждение') }}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="dropdown-item text-danger">{{ __('Удалить') }}</button>
