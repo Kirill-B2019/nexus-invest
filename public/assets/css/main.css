@@ -2189,3 +2189,32 @@ input.ganimed-status-checkbox:checked {
     }
 }
 
+/* --- Архитектура экосистемы НЕКСУС / ГАНИМЕД — отступы как у box-preparing-3 --- */
+.box-ecosystem-arch {
+    background-color: var(--color-dark);
+    padding: 142px 0;
+    background-image: url(../imgs/page/homepage1/bg-review-up.png);
+    background-position: top right;
+    background-repeat: no-repeat;
+}
+.ecosystem-arch-svg-wrap {
+    width: 100%;
+    padding: 10px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+.ecosystem-arch-svg {
+    width: 80%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+@media (max-width: 991.98px) {
+    .box-ecosystem-arch { padding: 80px 0 60px !important; }
+}
+@media (max-width: 575.98px) {
+    .box-ecosystem-arch { padding: 50px 0 40px !important; }
+}
+

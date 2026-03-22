@@ -110,10 +110,11 @@
     </div>
 
 </section>
+@include('partials.ecosystem-architecture')
 
 
-{{-- копоненты --}}
-<section class="section-box wow animate__animated animate__fadeIn box-preparing-3 animated box-testimonials-3" style="visibility: visible;">
+{{-- Компоненты --}}
+<section class="section-box wow animate__animated animate__fadeIn box-preparing-3 animated" style="visibility: visible;">
     <div class="container">
         <div class="text-center">
             <h2 class="neutral-0 mb-20 uppercase">{{__('Компоненты экосистемы')}}</h2>
