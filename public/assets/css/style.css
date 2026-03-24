@@ -10055,3 +10055,13 @@ a.href-white:hover span,
 a.href-white:active span {
     color: var(--color-white) !important;
 }
+
+a.dot {
+    border-bottom: 1px dashed var(--color-text-muted-2); /* Добавляем свою линию */
+}
+a.dot:hover,
+a.dot:active
+{
+    color: var(--color-white) !important;
+    border-bottom: none;
+}
