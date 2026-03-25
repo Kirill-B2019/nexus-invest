@@ -23,6 +23,12 @@
         <div class="row">
             <div class="col-12 col-lg-8 text-center">
                 <img class="wow fadeInUp w-100" src="{{ asset('assets/imgs/page/homepage1/arch-image.png') }}" alt="{{ config('app.name') }}">
+                <div class="card-casestudy box-border-rounded">
+                    <div class="card-title">
+                        <p>{{__('Юридически чистый национальный контур ЦФА + технологический блокчейн‑слой + регулируемый выход в глобальный рынок.')}}</p>
+                        <p>{{__('ОИС НЕКСУС берет на себя роль оператора по ФЗ‑259, ГАНИМЕД обеспечивает кросс‑юрисдикционный учёт и криптографический мост ГОСТ↔AES, а СФОРДЕКС открывает законный канал к международной ликвидности через токены GANI и GND.')}}</p>
+                    </div>
+                </div>
             </div>
             <div class="col-12 col-lg-4">
                 <div class="box-border-rounded">
