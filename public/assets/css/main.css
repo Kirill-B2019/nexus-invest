@@ -2189,13 +2189,17 @@ input.ganimed-status-checkbox:checked {
     }
 }
 
-/* --- Архитектура экосистемы НЕКСУС / ГАНИМЕД — отступы как у box-preparing-3 --- */
+/* --- Архитектура экосистемы НЕКСУС / ГАНИМЕД — светлая секция, отступы как у box-preparing-3 --- */
 .box-ecosystem-arch {
-    background-color: var(--color-dark);
+    background-color: var(--color-white);
     padding: 142px 0;
-    background-image: url(../imgs/page/homepage1/bg-review-up.png);
-    background-position: top right;
-    background-repeat: no-repeat;
+    background-image: none;
+}
+.box-ecosystem-arch .ecosystem-arch-heading {
+    color: var(--color-dark);
+}
+.box-ecosystem-arch .ecosystem-arch-lead {
+    color: var(--color-text-muted);
 }
 .ecosystem-arch-svg-wrap {
     width: 100%;
@@ -2204,8 +2208,19 @@ input.ganimed-status-checkbox:checked {
     display: flex;
     justify-content: center;
 }
-.ecosystem-arch-svg {
-    width: 80%;
+.ecosystem-arch-figure {
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+}
+.ecosystem-arch-scalable {
+    width: 100%;
+    max-width: 100%;
+    line-height: 0;
+}
+/* Растровая схема: масштабируется по ширине контейнера, пропорции по width/height у img */
+.ecosystem-arch-diagram {
+    width: 100%;
     max-width: 100%;
     height: auto;
     display: block;
