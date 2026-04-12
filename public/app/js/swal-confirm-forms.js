@@ -28,6 +28,8 @@
             confirmButtonColor: cfg.confirmButtonColor,
             cancelButtonColor: cfg.cancelButtonColor,
             backdrop: cfg.backdrop,
+            heightAuto: false,
+            scrollbarPadding: false,
             icon: 'question',
             iconColor: cfg.iconColor,
             title: form.getAttribute('data-swal-title') || 'Подтверждение',

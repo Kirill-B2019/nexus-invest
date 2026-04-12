@@ -211,6 +211,8 @@
                     confirmButtonColor: '#C5FF41',
                     confirmButtonText: 'OK',
                     backdrop: 'rgba(0,0,0,0.75)',
+                    heightAuto: false,
+                    scrollbarPadding: false,
                     icon: 'info',
                     title: 'Информация',
                     text: 'Проекты доступны после размещения на платформе',

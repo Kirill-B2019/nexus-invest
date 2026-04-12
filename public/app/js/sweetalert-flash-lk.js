@@ -153,6 +153,8 @@
                 timerProgressBar: true,
                 backdrop: "rgba(0,0,0,0.4)",
             };
+        base.heightAuto = false;
+        base.scrollbarPadding = false;
         base.didOpen = function () {
             scheduleSyncLkSwalPopupTheme();
         };

@@ -20,6 +20,8 @@
             color: cfg.color,
             confirmButtonColor: cfg.confirmButtonColor,
             customClass: cfg.customClass,
+            heightAuto: false,
+            scrollbarPadding: false,
             icon: type,
             iconColor: iconColor,
             title: type === 'error' ? 'Ошибка' : 'Внимание',

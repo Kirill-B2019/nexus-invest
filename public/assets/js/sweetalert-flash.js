@@ -22,6 +22,8 @@
         timer: 5000,
         timerProgressBar: true,
         backdrop: "rgba(0,0,0,0.75)",
+        heightAuto: false,
+        scrollbarPadding: false,
     };
 
     function showSuccess(text) {

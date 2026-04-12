@@ -300,11 +300,11 @@
 </section>
 
 {{-- FAQ --}}
-<section class="section-box box-faqs-3" id="faq">
+<section class="section-box box-faqs-3 faq-section-light" id="faq">
     <div class="container">
         <div class="row">
             <div class="col-lg-5">
-                <div class="box-faq-left">
+                <div class="box-faq-left box-faq-left--intro">
                     <a class="btn btn-brand-4-sm" href="#faq">{{ __('Часто задаваемые вопросы') }}</a>
                     <h2 class="heading-2 mb-20 mt-20">{{ __('Вопросы о системе смягчения инвестиционных рисков') }}</h2>
                     <p class="text-lg neutral-700">{{ __('Ответы на частые вопросы о токене iGND, пулах смягчения рисков и правовых ограничениях.') }}</p>

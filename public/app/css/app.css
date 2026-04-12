@@ -11,6 +11,10 @@
   --app-navbar-height: 100px;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 #app-container.theme-dark {
   --app-color-surface: #212220;
 }
@@ -847,6 +851,16 @@
 }
 .swal-lk-theme .swal2-timer-progress-bar {
   background: var(--app-color-primary);
+}
+
+/* SweetAlert2: блокировка прокрутки фона при открытом окне (согласовано с публичной частью, main.css) */
+html.swal2-shown,
+html.swal2-height-auto {
+  overflow: hidden !important;
+}
+body.swal2-shown,
+body.swal2-height-auto {
+  overflow: hidden !important;
 }
 
 /* SweetAlert2 — иконки в палитре темы (тёмная), без дефолтных «кислотных» цветов Swal */
