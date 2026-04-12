@@ -1,7 +1,7 @@
 (function ($) {
     ("use strict");
-    // Page loading
-    $(window).on("load", function () {
+    // Page loading — скрываем после готовности DOM (не ждём window.load и все изображения)
+    $(function () {
         $("#preloader-active").fadeOut("slow");
     });
     /*-----------------
@@ -173,7 +173,8 @@
         $(this).toggleClass("show");
         $(".more_slide_open").slideToggle();
     });
-    /* --- SwiperJS --- */
+    /* --- SwiperJS (библиотека подключается только на страницах с @stack scripts-vendor) --- */
+    if (typeof Swiper !== "undefined") {
     $(".swiper-group-6").each(function () {
         var swiper_6_items = new Swiper(this, {
             spaceBetween: 30,
@@ -439,7 +440,8 @@
     $(".swiper-group-animate-2").mouseleave(function () {
         swiper_animate_items_2.autoplay.start();
     });
-    var swiper_animate_items_verticle = null;
+    } /* end Swiper */
+    if (typeof $.fn.slick !== "undefined") {
     $(".swiper-group-animate-verticle").each(function () {
         $(this).slick({
             autoplay: true,
@@ -483,7 +485,9 @@
             adaptiveHeight: false
         });
     });
+    } /* end slick */
 
+    if (typeof $.fn.carouselTicker !== "undefined") {
     $("#slide-top").each(function () {
         $(this).carouselTicker({
             mode: "vertical",
@@ -545,6 +549,7 @@
             delay: 30
         });
     });
+    } /* end carouselTicker */
 
     //Dropdown selected item
     $(".dropdown-menu li a").on("click", function (e) {
@@ -616,14 +621,16 @@
         msnry.layout();
     });
 
-    /*------ Timer Countdown ----*/
-    $("[data-countdown]").each(function () {
-        var $this = $(this),
-            finalDate = $(this).data("countdown");
-        $this.countdown(finalDate, function (event) {
-            $(this).html(event.strftime("" + '<span class="countdown-section"><span class="countdown-amount font-sm-bold lh-16">%D</span><span class="countdown-period lh-14 font-xs"> days </span></span>' + '<span class="countdown-section"><span class="countdown-amount font-sm-bold lh-16">%H</span><span class="countdown-period font-xs lh-14"> hours </span></span>' + '<span class="countdown-section"><span class="countdown-amount font-sm-bold lh-16">%M</span><span class="countdown-period font-xs lh-14"> mins </span></span>' + '<span class="countdown-section"><span class="countdown-amount font-sm-bold lh-16">%S</span><span class="countdown-period font-xs lh-14"> secs </span></span>'));
+    /*------ Timer Countdown (jquery.countdown — только если подключён плагин) ----*/
+    if ($.fn.countdown) {
+        $("[data-countdown]").each(function () {
+            var $this = $(this),
+                finalDate = $(this).data("countdown");
+            $this.countdown(finalDate, function (event) {
+                $(this).html(event.strftime("" + '<span class="countdown-section"><span class="countdown-amount font-sm-bold lh-16">%D</span><span class="countdown-period lh-14 font-xs"> days </span></span>' + '<span class="countdown-section"><span class="countdown-amount font-sm-bold lh-16">%H</span><span class="countdown-period font-xs lh-14"> hours </span></span>' + '<span class="countdown-section"><span class="countdown-amount font-sm-bold lh-16">%M</span><span class="countdown-period font-xs lh-14"> mins </span></span>' + '<span class="countdown-section"><span class="countdown-amount font-sm-bold lh-16">%S</span><span class="countdown-period font-xs lh-14"> secs </span></span>'));
+            });
         });
-    });
+    }
 })(jQuery);
 // Check billed
 function switchBilled() {
@@ -665,5 +672,9 @@ function switchBilledType2(val) {
         }
     }
 }
-//Perfect Scrollbar
-const ps = new PerfectScrollbar(".mobile-header-wrapper-inner");
+// Perfect Scrollbar (мобильное меню)
+if (typeof PerfectScrollbar !== "undefined" && document.querySelector(".mobile-header-wrapper-inner")) {
+    try {
+        new PerfectScrollbar(".mobile-header-wrapper-inner");
+    } catch (e) {}
+}

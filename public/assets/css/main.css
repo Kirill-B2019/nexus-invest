@@ -451,62 +451,6 @@
 .mobile-header-wrapper-style .mobile-header-wrapper-inner .mobile-header-content-area .mobile-menu-wrap nav .mobile-menu li.has-children .menu-expand {
   pointer-events: none;
 }
-.up-info-block {
-    padding: 10px 20px;
-    background-color: var(--color-accent-purple);
-    color: var(--color-white);
-    font-size: 12px;
-    line-height: 24px;
-    font-weight: 400;
-    font-family: "Urbanist", sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 900px;
-    box-sizing: border-box;
-    margin-left: auto;
-    margin-right: auto;
-}
-.up-info-block span {
-    display: inline-block;
-    padding: 4px 10px;
-    font-size: 12px;
-    line-height: 12px;
-    font-weight: bold;
-    border-radius: 35px;
-    background-color: var(--color-primary);
-    color: var(--color-dark);
-    margin-right: 10px;
-    flex-shrink: 0;
-}
-@media (max-width: 767.98px) {
-    .up-info-block {
-        padding: 8px 14px;
-        font-size: 13px;
-        line-height: 20px;
-
-    }
-    .up-info-block span {
-        padding: 3px 8px;
-        font-size: 11px;
-        line-height: 11px;
-        margin-right: 8px;
-    }
-}
-@media (max-width: 575.98px) {
-    .up-info-block {
-        padding: 6px 12px;
-        font-size: 12px;
-        line-height: 18px;
-
-    }
-    .up-info-block span {
-        padding: 2px 6px;
-        font-size: 10px;
-        line-height: 10px;
-    }
-}
 .box-banner-feature-2 {
     position: relative;
     background-color: var(--color-dark);
@@ -1148,95 +1092,159 @@ div#onwer .card-testimonial-3:hover {
 .modal-backdrop.show {
     opacity: 0.75;
 }
-.modal-theme .seed-round-table {
-    --bs-table-bg: transparent;
-    --bs-table-border-color: rgba(236, 238, 242, 0.2);
-    color: var(--color-surface-light);
-}
-.modal-theme .seed-round-table th,
-.modal-theme .seed-round-table td {
-    border-color: rgba(236, 238, 242, 0.2);
-    padding: 0.35rem 0.5rem;
-}
-.modal-theme .seed-round-table tbody tr.seed-round-table-row-highlight {
-    background-color: rgba(var(--color-primary-rgb, 34, 209, 238), 0.15);
-}
-.modal-theme .seed-round-table tbody tr.seed-round-table-row-highlight td {
-    color: var(--color-surface-light);
-}
-.modal-theme .seed-round-modal-body .seed-round-benefits-list .ganimed-status-checkbox.ganimed-status-ok {
-    background-color: rgba(var(--color-primary-rgb, 34, 209, 238), 0.2);
-    border-color: var(--color-primary);
-    color: var(--color-primary);
-}
-.modal-theme .seed-round-modal-close {
-    background-color: var(--color-primary);
-    color: var(--color-dark);
-    font-weight: 600;
-    border-radius: 8px;
-    border: none;
-}
-.modal-theme .seed-round-modal-close:hover {
-    background-color: var(--color-primary-hover, var(--color-primary));
-    color: var(--color-dark);
-}
-.modal-theme .seed-round-modal-body h6 {
-    margin-top: 1rem;
-}
-.modal-theme .seed-round-modal-body h6:first-of-type {
-    margin-top: 0;
-}
 
-/* Карточки раундов (мобильные и десктоп) */
-.seed-round-cards {
+/* Таймер «до публичного запуска» (hero): на всю ширину колонки, типографика display-1, без карточек */
+.public-launch-countdown {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    align-items: stretch;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: none;
+    padding: 0.25rem 0 0.5rem;
+    color: #fff;
+    isolation: isolate;
+}
+.public-launch-countdown__label {
+    margin: 0;
+    font-family: "Urbanist", system-ui, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    line-height: 1.3;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.92);
+}
+.public-launch-countdown__segments {
+    position: relative;
+    z-index: 1;
+    /* minmax(min-content, 1fr): колонки не сужаются меньше ширины цифр — без наложения на соседей */
+    display: grid;
+    grid-template-columns:
+        minmax(min-content, 1fr)
+        auto
+        minmax(min-content, 1fr)
+        auto
+        minmax(min-content, 1fr)
+        auto
+        minmax(min-content, 1fr);
+    align-items: end;
+    justify-items: center;
+    width: 100%;
+    column-gap: 0.35rem;
+    box-sizing: border-box;
 }
 @media (min-width: 768px) {
-    .seed-round-cards {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+    .public-launch-countdown__segments {
+        justify-items: start;
     }
 }
-.seed-round-card {
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(236, 238, 242, 0.2);
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
+.public-launch-countdown__segment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.15rem;
+    min-width: 0;
 }
-.seed-round-card-header {
+@media (min-width: 768px) {
+    .public-launch-countdown__segment {
+        align-items: flex-start;
+    }
+}
+.public-launch-countdown__value.display-1 {
+    font-family: "Urbanist", sans-serif;
     font-weight: 600;
-    color: var(--color-surface-light);
-    margin-bottom: 0.5rem;
-    padding-bottom: 0.35rem;
-    border-bottom: 1px solid rgba(236, 238, 242, 0.15);
+    font-size: clamp(2rem, 11vw, 104px);
+    line-height: 1;
+    letter-spacing: 0;
+    font-variant-numeric: tabular-nums;
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    text-align: center;
 }
-.seed-round-card-highlight {
-    background-color: rgba(var(--color-primary-rgb, 197, 255, 65), 0.12);
-    border-color: rgba(var(--color-primary-rgb, 197, 255, 65), 0.35);
+@media (min-width: 768px) {
+    .public-launch-countdown__value.display-1 {
+        text-align: left;
+    }
 }
-.seed-round-card-highlight .seed-round-card-header {
-    color: var(--color-primary);
-}
-.seed-round-card-body div {
-    padding: 0.2rem 0;
-}
-.seed-round-card-body dt {
-    flex-shrink: 0;
-    margin-right: 0.5rem;
+.public-launch-countdown__sep {
+    padding-bottom: clamp(1.5rem, 4vw, 2.75rem);
+    font-family: "Urbanist", sans-serif;
     font-weight: 500;
+    font-size: clamp(1.25rem, 5vw, 3rem);
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.35);
+    user-select: none;
 }
-.seed-round-card-body dd {
-    flex: 1;
-    text-align: right;
+.public-launch-countdown__unit {
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(236, 238, 242, 0.6);
+    width: 100%;
+    text-align: center;
 }
-.modal-theme .seed-round-modal-body a {
-    color: var(--color-primary);
+@media (min-width: 768px) {
+    .public-launch-countdown__unit {
+        text-align: left;
+    }
 }
-.modal-theme .seed-round-modal-body a:hover {
-    color: var(--color-primary-hover, var(--color-primary));
+.public-launch-countdown__decor {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: visible;
+}
+.public-launch-countdown__orbit {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    width: min(100%, 34rem);
+    height: min(48vw, 13rem);
+    transform: translate(-50%, -35%);
+    border: 1px dashed rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    opacity: 0.55;
+}
+.public-launch-countdown__nodes::before,
+.public-launch-countdown__nodes::after {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(197, 255, 65, 0.45);
+    box-shadow: 0 0 10px rgba(197, 255, 65, 0.3);
+}
+.public-launch-countdown__nodes::before {
+    left: 4%;
+    top: 28%;
+}
+.public-launch-countdown__nodes::after {
+    right: 8%;
+    bottom: 18%;
+}
+.public-launch-countdown__noscript {
+    max-width: none;
+}
+
+/* Публичная часть: видимый фокус клавиатуры, главный CTA героя */
+.main a:focus-visible,
+.main button:focus-visible,
+.main input:focus-visible,
+.main textarea:focus-visible,
+.main select:focus-visible {
+    outline: 2px solid rgba(197, 255, 65, 0.65);
+    outline-offset: 2px;
+}
+.hero-cta-primary:focus-visible {
+    outline-width: 3px;
+    outline-offset: 3px;
 }
 
 /* Модальное окно обратной связи — расширение темы */

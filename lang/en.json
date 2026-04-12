@@ -173,5 +173,11 @@
     "Профиль": "Profile",
     "По умолчанию": "Default",
     "Вы вошли в систему!": "You're logged in!",
-    "Нет уведомлений": "No notifications"
+    "Нет уведомлений": "No notifications",
+    "Until public launch": "Until public launch:",
+    "countdown unit days": "d",
+    "countdown unit hours": "h",
+    "countdown unit minutes": "min",
+    "countdown unit seconds": "s",
+    "Public launch": "Public launch"
 }

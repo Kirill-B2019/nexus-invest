@@ -30,7 +30,7 @@
         </div>
         <div class="row mt-130">
             <div class="col-12 col-lg-4 order-2 order-lg-1">
-                <img alt="НЕКСУС iGND" src="{{asset('assets/imgs/page/homepage1/ignd.png')}}" class="w-80">
+                <img alt="НЕКСУС iGND" src="{{asset('assets/imgs/page/homepage1/ignd.png')}}" class="w-80" loading="lazy" decoding="async">
             </div>
             <div class="col-12 col-lg-8 order-1 order-lg-2">
                 <h2 class="heading-2 neutral-0 mb-20">{{__('Комплекс мер и механизмов для управления рисками и доступа к специализированным сервисам платформы')}}</h2>
@@ -42,28 +42,28 @@
             <div class="col-12 col-lg-8">
                 <div class="box-list mt-55">
                     <div class="card-feature-2">
-                        <div class="card-image card-image-no-bg"><img src="{{asset('assets/imgs/page/homepage1/ignd-list/1.png')}}"></div>
+                        <div class="card-image card-image-no-bg"><img src="{{asset('assets/imgs/page/homepage1/ignd-list/1.png')}}" loading="lazy" decoding="async" alt=""></div>
                         <div class="card-info"><a href="#">
                                 <h3 class="text-22-bold neutral-0">{{__('Персональный риск‑профиль инвестора')}}</h3></a>
                             <p class="text-md neutral-200">{{__('допустимый уровень риска и служит базой для рекомендаций по структуре портфеля и ограничениям по отдельным сделкам в системе смягчения рисков.')}}</p>
                         </div>
                     </div>
                     <div class="card-feature-2">
-                        <div class="card-image card-image-no-bg"><img src="{{asset('assets/imgs/page/homepage1/ignd-list/2.png')}}"></div>
+                        <div class="card-image card-image-no-bg"><img src="{{asset('assets/imgs/page/homepage1/ignd-list/2.png')}}" loading="lazy" decoding="async" alt=""></div>
                         <div class="card-info"><a href="#">
                                 <h3 class="text-22-bold neutral-0">{{__('Индекс диверсификации портфеля')}}</h3></a>
                             <p class="text-md neutral-200">{{__('степень распределения вложений между разными проектами и отраслями и мотивирует инвестора поддерживать структуру портфеля, снижающую концентрацию риска.')}}</p>
                         </div>
                     </div>
                     <div class="card-feature-2">
-                        <div class="card-image card-image-no-bg"><img src="{{asset('assets/imgs/page/homepage1/ignd-list/3.png')}}"></div>
+                        <div class="card-image card-image-no-bg"><img src="{{asset('assets/imgs/page/homepage1/ignd-list/3.png')}}" loading="lazy" decoding="async" alt=""></div>
                         <div class="card-info"><a href="#">
                                 <h3 class="text-22-bold neutral-0">{{__('Пулы смягчения рисков на базе iGND')}}</h3></a>
                             <p class="text-md neutral-200">{{__('аккумулируют ресурсы в экосистеме и позволяют при наступлении риск‑событий частично компенсировать их последствия через начисление iGND по выбранным планам участия.')}}</p>
                         </div>
                     </div>
                     <div class="card-feature-2">
-                        <div class="card-image card-image-no-bg"><img src="{{asset('assets/imgs/page/homepage1/ignd-list/4.png')}}"></div>
+                        <div class="card-image card-image-no-bg"><img src="{{asset('assets/imgs/page/homepage1/ignd-list/4.png')}}" loading="lazy" decoding="async" alt=""></div>
                         <div class="card-info"><a href="#">
                                 <h3 class="text-22-bold neutral-0">{{__('Алгоритмический AI‑скоринг проектов')}}</h3></a>
                             <p class="text-md neutral-200">{{__('анализирует множество факторов по каждому проекту, присваивает риск‑оценку и помогает системе ограничивать избыточные риски и формировать более взвешенные рекомендации для инвесторов.')}}</p>
@@ -98,7 +98,7 @@
                 <div class="row mt-50">
                     <div class="col-12">
                         <div class="card-feature-2">
-                            <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/ignd-list/1.png') }}" alt="{{ __('Интеграция ИИ') }}"></div>
+                            <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/ignd-list/1.png') }}" alt="{{ __('Интеграция ИИ') }}" loading="lazy" decoding="async"></div>
                             <div class="card-info"><a href="#"><h3 class="text-22-bold">{{ __('ИИ‑ядро платформы превращает статический риск‑профиль в живой инструмент, который подстраивается под поведение и цели инвестора.') }}</h3></a>
                                 <p class="text-md neutral-800">{{ __('- При регистрации и прохождении KYC инвестор заполняет анкету (доход, опыт, горизонт, отношение к риску).') }}</p>
                                 <p class="text-md neutral-800">{{ __('- ИИ‑модуль НЕКСУС формирует риск‑профиль (условно: консервативный, сбалансированный, агрессивный) и рекомендуемые лимиты по классам активов.') }}</p>
@@ -111,13 +111,13 @@
                 </div>
             </div>
             <div class="col-12 col-lg-4 mb-40 align-self-lg-start text-center">
-                <div class="wow fadeInDown" data-wow-delay="0"><img src="{{ asset('assets/imgs/page/homepage1/ignd-risk.png') }}" alt="{{ config('app.name') }}"></div>
+                <div class="wow fadeInDown" data-wow-delay="0"><img src="{{ asset('assets/imgs/page/homepage1/ignd-risk.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
             </div>
         </div>
         {{-- Пулы смягчения рисков и начисление iGND --}}
         <div class="row align-items-center">
             <div class="col-12 col-lg-4 mb-40  align-self-lg-start text-center order-2 order-lg-1">
-                        <div class="wow fadeInDown" data-wow-delay="0"><img src="{{ asset('assets/imgs/page/homepage1/ignd-pool.png') }}" alt="{{ config('app.name') }}"></div>
+                        <div class="wow fadeInDown" data-wow-delay="0"><img src="{{ asset('assets/imgs/page/homepage1/ignd-pool.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
             </div>
             <div class="col-12 col-lg-8 mb-40 order-1 order-lg-2">
                 <div class="strate-icon"><span></span> {{ __('Как устроены пулы') }}</div>
@@ -128,7 +128,7 @@
                 <div class="row mt-50">
                     <div class="col-12">
                         <div class="card-feature-2">
-                            <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/ignd-list/3.png') }}" alt="{{ __('Пулы смягчения рисков') }}"></div>
+                            <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/ignd-list/3.png') }}" alt="{{ __('Пулы смягчения рисков') }}" loading="lazy" decoding="async"></div>
                             <div class="card-info"><a href="#"><h3 class="text-22-bold">{{ __('ИИ‑ядро платформы превращает статический риск‑профиль в живой инструмент, который подстраивается под поведение и цели инвестора.') }}</h3></a>
                                 <p class="neutral-700">{{ __('При наступлении формально описанного риск‑события по проекту (например, дефолт эмитента или существенное ухудшение показателей) это событие фиксируется в блокчейне.') }}</p>
                                 <p class="neutral-700">{{ __('Инвесторы, которые по данной сделке выбрали план участия и подпадают под условия пула, могут получить начисление iGND из соответствующего пула. Размер начисления зависит от: параметров выбранного плана; размера фактических убытков по проекту; текущего состояния пула и действующих лимитов.') }}</p>
@@ -262,7 +262,7 @@
         <div class="row mt-90">
             <div class="col-lg-4 col-md-6">
                 <div class="card-preparing">
-                    <div class="card-image"><img class="wow fadeInUp" src="{{asset('assets/imgs/page/homepage1/img-prepare-ignd.png')}}" alt="{{__('Планы участия экосистемы')}}" style="visibility: visible; animation-name: fadeInUp;"></div>
+                    <div class="card-image"><img class="wow fadeInUp" src="{{asset('assets/imgs/page/homepage1/img-prepare-ignd.png')}}" alt="{{__('Планы участия экосистемы')}}" style="visibility: visible; animation-name: fadeInUp;" loading="lazy" decoding="async"></div>
                     <div class="card-info">
                         <h5>{{__('Планы участия')}}</h5>
                         <p class="text-start">{{ __('В момент совершения инвестиционной сделки инвестор может выбрать один из предложенных экосистемой планов участия в механизме смягчения рисков.') }}</p>
@@ -274,7 +274,7 @@
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="card-preparing">
-                    <div class="card-image"><img class="wow fadeInUp" src="{{asset('assets/imgs/page/homepage1/img-prepare-ignd-2.png')}}" alt="{{__('Технологическая основа и надёжность')}}" style="visibility: visible; animation-name: fadeInUp;"></div>
+                    <div class="card-image"><img class="wow fadeInUp" src="{{asset('assets/imgs/page/homepage1/img-prepare-ignd-2.png')}}" alt="{{__('Технологическая основа и надёжность')}}" style="visibility: visible; animation-name: fadeInUp;" loading="lazy" decoding="async"></div>
                     <div class="card-info">
                         <h5>{{__('Технологическая основа и надёжность')}}</h5>
                         <p class="text-start">{{ __('Все операции с iGND и пулами реализованы на блокчейне ГАНИМЕД с консенсусом PoSA (гибрид Proof‑of‑Stake / Proof‑of‑Authority) и механизмами slashing и circuit‑breakers.') }}</p>
@@ -285,7 +285,7 @@
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="card-preparing">
-                    <div class="card-image"><img class="wow fadeInUp" src="{{asset('assets/imgs/page/homepage1/img-prepare-ignd-3.png')}}" alt="{{__('Правовая природа и ограничения')}}" style="visibility: visible; animation-name: fadeInUp;"></div>
+                    <div class="card-image"><img class="wow fadeInUp" src="{{asset('assets/imgs/page/homepage1/img-prepare-ignd-3.png')}}" alt="{{__('Правовая природа и ограничения')}}" style="visibility: visible; animation-name: fadeInUp;" loading="lazy" decoding="async"></div>
                     <div class="card-info">
                         <h5>{{__('Правовая природа и ограничения')}}</h5>
                         <p class="text-start">{{ __('Механизм с использованием iGND представляет собой добровольный сервис по смягчению последствий инвестиционных рисков и не является классическим страховым продуктом, финансовой гарантией или обещанием возместить убытки.') }}</p>

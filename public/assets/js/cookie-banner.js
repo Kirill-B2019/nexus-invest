@@ -40,9 +40,52 @@
         }
     }
 
+    function loadYandexMetrika() {
+        if (window.__nexusYmLoaded) {
+            return;
+        }
+        window.__nexusYmLoaded = true;
+        var id = window.NEXUS_YANDEX_METRIKA_ID || 106896230;
+        (function (m, e, t, r, i, k, a) {
+            m[i] =
+                m[i] ||
+                function () {
+                    (m[i].a = m[i].a || []).push(arguments);
+                };
+            m[i].l = 1 * new Date();
+            for (var j = 0; j < document.scripts.length; j++) {
+                if (document.scripts[j].src === r) {
+                    return;
+                }
+            }
+            k = e.createElement(t);
+            a = e.getElementsByTagName(t)[0];
+            k.async = 1;
+            k.src = r;
+            a.parentNode.insertBefore(k, a);
+        })(
+            window,
+            document,
+            "script",
+            "https://mc.webvisor.org/metrika/tag_ww.js?id=" + id,
+            "ym"
+        );
+        ym(id, "init", {
+            ssr: true,
+            webvisor: true,
+            clickmap: true,
+            ecommerce: "dataLayer",
+            referrer: document.referrer,
+            url: location.href,
+            accurateTrackBounce: true,
+            trackLinks: true,
+        });
+    }
+
     function handleChoice(value) {
         if (value === "accepted") {
             setCookie(COOKIE_NAME, value, COOKIE_DAYS);
+            loadYandexMetrika();
             if (typeof window.onCookieConsentAccepted === "function") {
                 window.onCookieConsentAccepted();
             }
@@ -53,6 +96,7 @@
 
     function init() {
         if (getCookie(COOKIE_NAME) === "accepted") {
+            loadYandexMetrika();
             return;
         }
         showBanner();

@@ -1,5 +1,29 @@
 @extends('layouts.guest.guest')
 
+@push('styles')
+    @php
+        $styleVerRoadmap = config('app.asset_version');
+        if ($styleVerRoadmap === null || $styleVerRoadmap === '') {
+            $styleVerRoadmap = '1.0.' . (config('app.env') === 'production' ? '0' : time());
+        }
+    @endphp
+    <link rel="preload" href="{{ asset('assets/css/roadmap.css') }}?v={{ $styleVerRoadmap }}" as="style">
+    <link href="{{ asset('assets/css/roadmap.css') }}?v={{ $styleVerRoadmap }}" rel="stylesheet" media="all">
+@endpush
+
+@push('scripts-vendor')
+    @php
+        $v = config('app.asset_version');
+        if ($v === null || $v === '') {
+            $v = '1.0.' . (config('app.env') === 'production' ? '0' : time());
+        }
+    @endphp
+    <script src="{{ asset('assets/js/plugins/swiper-bundle.min.js') }}?v={{ $v }}"></script>
+    <script src="{{ asset('assets/js/plugins/jquery.carouselTicker.js') }}?v={{ $v }}"></script>
+    <script src="{{ asset('assets/js/plugins/waypoints.js') }}?v={{ $v }}"></script>
+    <script src="{{ asset('assets/js/plugins/counterup.js') }}?v={{ $v }}"></script>
+@endpush
+
 @section('metaDescription')
 {{ __('НЕКСУС — платформа проектного финансирования и токенизации активов через ЦФА и RWA на блокчейне ГАНИМЕД. Маркетплейс результатов. Соответствие 259-ФЗ, 289-ФЗ.') }}
 @endsection
@@ -24,7 +48,7 @@
                                 <p class="text-lg neutral-200 mb-55 display-4 pt-3 uppercase">
                                     {{ __('Полнофункциональная платформа быстрого запуска и финансирования проектов через цифровые активы и токенизацию') }}<br />
                                     {{ __('Постпроектное сопровождение, реализация результатов (маркетплейс)') }}</p>
-                                <a class="btn btn-brand-4-medium hover-up mb-4" href="{{asset('doc/NexusWhitePaper.pdf') }}" target="_blank" rel="noopener noreferrer">
+                                <a class="btn btn-brand-4-medium hover-up mb-4 hero-cta-primary" href="{{asset('doc/NexusWhitePaper.pdf') }}" target="_blank" rel="noopener noreferrer">
                                     {{ __('WHITE PAPER НЕКСУС') }}
                                     <svg width="22" height="8" viewBox="0 0 22 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M22 4.00032L18.4791 0.479492V3.3074H0V4.69333H18.4791V7.52129L22 4.00032Z" fill=""></path>
@@ -43,11 +67,45 @@
                                             <span class="text-semibold">{{ __('RWA (Real World Assets)') }}</span> {{ __(' — это любые материальные активы, которые переносят в цифровой формат на блокчейне: например,золото, недвижимость, ценные бумаги, произведения искусства') }}
                                         </p>
                                 </div>
-                                <div class="flex-shrink-0 d-flex flex-column align-items-center align-items-md-start gap-2 mt-40 mx-auto mx-md-0" style="max-width: 11rem;">
-                                    <a href="{{ asset('doc/NexusSeedPresentation.pdf') }}" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center justify-content-center rounded border border-white border-opacity-50 text-decoration-none flex-shrink-0" style="width: 100px; aspect-ratio: 1;" title="{{ __('Презентация SEED-Раунда') }}" aria-label="{{ __('Презентация SEED-Раунда') }} (PDF)">
-                                        <i class="fi-rr-presentation d-inline-block neutral-0" style="font-size: 3.5rem; line-height: 1;" aria-hidden="true"></i>
-                                    </a>
-                                    <a class="uppercase dot neutral-200 text-semibold text-center text-md-start smaller" href="{{ asset('doc/NexusSeedPresentation.pdf') }}" target="_blank" rel="noopener noreferrer">{{ __('Презентация SEED-Раунда') }}</a>
+                                <div class="w-100 mt-40">
+                                    <div
+                                        class="public-launch-countdown w-100"
+                                        data-public-launch-countdown
+                                        data-deadline="2027-01-01T00:00:00+03:00"
+                                        role="timer"
+                                        aria-live="polite"
+                                        aria-atomic="true"
+                                    >
+                                        <p class="public-launch-countdown__label">{{ __('Until public launch') }}</p>
+                                        <div class="public-launch-countdown__segments">
+                                            <div class="public-launch-countdown__segment">
+                                                <span class="public-launch-countdown__value display-1 text-semibold neutral-0 text-nowrap" data-unit="days">--</span>
+                                                <span class="public-launch-countdown__unit">{{ __('countdown unit days') }}</span>
+                                            </div>
+                                            <span class="public-launch-countdown__sep" aria-hidden="true">:</span>
+                                            <div class="public-launch-countdown__segment">
+                                                <span class="public-launch-countdown__value display-1 text-semibold neutral-0 text-nowrap" data-unit="hours">--</span>
+                                                <span class="public-launch-countdown__unit">{{ __('countdown unit hours') }}</span>
+                                            </div>
+                                            <span class="public-launch-countdown__sep" aria-hidden="true">:</span>
+                                            <div class="public-launch-countdown__segment">
+                                                <span class="public-launch-countdown__value display-1 text-semibold neutral-0 text-nowrap" data-unit="minutes">--</span>
+                                                <span class="public-launch-countdown__unit">{{ __('countdown unit minutes') }}</span>
+                                            </div>
+                                            <span class="public-launch-countdown__sep" aria-hidden="true">:</span>
+                                            <div class="public-launch-countdown__segment">
+                                                <span class="public-launch-countdown__value display-1 text-semibold neutral-0 text-nowrap" data-unit="seconds">--</span>
+                                                <span class="public-launch-countdown__unit">{{ __('countdown unit seconds') }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="public-launch-countdown__decor" aria-hidden="true">
+                                            <span class="public-launch-countdown__orbit"></span>
+                                            <span class="public-launch-countdown__nodes"></span>
+                                        </div>
+                                    </div>
+                                    <noscript>
+                                        <p class="public-launch-countdown__noscript small neutral-300 mt-2 mb-0">{{ __('Public launch') }}: 01.01.2027</p>
+                                    </noscript>
                                 </div>
                                 </div>
                         </div>
@@ -115,9 +173,6 @@
                     </div>
                 </div>
             </div>
-            <div class="up-info-block p-0 m-0 uppercase">
-                <span>{{__('Обратите внимание!')}}</span>{{__('ЭКОСИСТЕМА НЕКСУС находится в стадии запуска прототипа (сборка MVP версии).')}}<br />{{__('Вся информация - ПРЕЗЕНТАЦИЯ ЭКОСИСТЕМЫ.')}}
-            </div>
         </div>
     </div>
 </section>
@@ -136,7 +191,7 @@
             <ul class="carouselTicker__list list-logos">
                 @foreach ($logos as $logo)
                 <li class="carouselTicker__item">
-                    <div class="item-logo"><img src="{{ asset('assets/imgs/page/homepage1/out-logo/' . basename($logo)) }}" alt="{{ config('app.name') }}"></div>
+                    <div class="item-logo"><img src="{{ asset('assets/imgs/page/homepage1/out-logo/' . basename($logo)) }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
                 </li>
                 @endforeach
             </ul>
@@ -152,7 +207,7 @@
             <div class="col-12 col-lg-4 text-center order-2 order-lg-1">
                 <div class="box-banner-feature-2">
 
-                    <img src="{{ asset('assets/imgs/page/homepage1/hero-goal.png')}}" alt="{{__('СФОРДЭКС')}}">
+                    <img src="{{ asset('assets/imgs/page/homepage1/hero-goal.png')}}" alt="{{__('СФОРДЭКС')}}" loading="lazy" decoding="async">
                         <h4 class="neutral-0 mb-15">{{__('Целевые масштабы экосистемы к ')}} <span class="display-3">{{__('2031')}}</span>  {{__(' году')}}</h4>
                         <p class="text-md neutral-500 text-start">{{__('Экосистема призвана стать стандартом в сфере проектного финансирования и служить базовой платформой для структурирования и обращения проектных активов, объединяя инвесторов и инициаторов в едином цифровом пространстве.')}}</p>
                         <div class="list-our-works">
@@ -256,7 +311,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="card-for-who-image"><img class="wow fadeInUp" src="{{ asset('assets/imgs/page/homepage1/forwho.png') }}" alt="{{ config('app.name') }}"></div>
+                                <div class="card-for-who-image"><img class="wow fadeInUp" src="{{ asset('assets/imgs/page/homepage1/forwho.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
                             </div>
                         </div>
                     </div>
@@ -270,7 +325,7 @@
                                 <div class="card-casestudy">
                                     <div class="card-title"><h6><span class="step-badge">1</span>{{ __('Регистрация в системе') }}</h6></div>
                                     <div class="card-desc"><p>{{ __('Быстрая и простая регистрация даёт доступ сразу в индивидуальное рабочее пространство по выбранной цели на платформе (кабинет инициатора, инвестора, эксперта, аудитора, аналитика и т.д.).') }}</p></div>
-                                    <div class="card-image"><img class="wow fadeInUp" src="{{ asset('assets/imgs/page/homepage1/img-prepare.png') }}" alt="{{ config('app.name') }}"></div>
+                                    <div class="card-image"><img class="wow fadeInUp" src="{{ asset('assets/imgs/page/homepage1/img-prepare.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
                                 </div>
                             </div>
                         </div>
@@ -282,7 +337,7 @@
                                         <p>{{ __('Начало работы с проектом или формирование инвестиционного портфеля.') }}</p>
                                         <p>{{ __('Совместно с экспертами и нашим ИИ подберем наилучшую стратегию привлечения или предложим наиболее интересные и доходные инструменты.') }}</p>
                                     </div>
-                                    <div class="card-image"><img class="wow fadeInUp" src="{{ asset('assets/imgs/page/homepage1/img-prepare2.png') }}" alt="{{ config('app.name') }}"></div>
+                                    <div class="card-image"><img class="wow fadeInUp" src="{{ asset('assets/imgs/page/homepage1/img-prepare2.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
                                 </div>
                             </div>
                         </div>
@@ -291,7 +346,7 @@
                                 <div class="card-casestudy">
                                     <div class="card-title"><h6><span class="step-badge">3</span>{{ __('Запуск и доход') }}</h6></div>
                                     <div class="card-desc"><p>{{ __('Запуск проекта или активация выбранных инвестиционных инструментов. Экосистема автоматизирует ключевые процессы, обеспечивая прозрачность, контроль и стабильный поток привлечения или дохода в реальном времени.') }}</p></div>
-                                    <div class="card-image"><img class="wow fadeInUp" src="{{ asset('assets/imgs/page/homepage1/img-prepare3.png') }}" alt="{{ config('app.name') }}"></div>
+                                    <div class="card-image"><img class="wow fadeInUp" src="{{ asset('assets/imgs/page/homepage1/img-prepare3.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
                                 </div>
                             </div>
                         </div>
@@ -326,7 +381,7 @@
                 <div class="row mt-50">
                     <div class="col-12">
                         <div class="card-feature-2">
-                            <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/ai-brain.svg') }}" alt="{{ __('Интеграция ИИ') }}"></div>
+                            <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/ai-brain.svg') }}" alt="{{ __('Интеграция ИИ') }}" loading="lazy" decoding="async"></div>
                             <div class="card-info"><a href="#"><h3 class="text-22-bold">{{ __('Глубокая интеграция ИИ расширяет базовые возможности') }}</h3></a>
                                 <p class="text-md neutral-800">{{ __('- Автоматизация проектного скоринга с вынесением индекса инвестиционной привлекательности и решения об алгоритме токенизации, прогнозы по капитализации после завершения проекта.') }}</p>
                                 <p class="text-md neutral-800">{{ __('- ИИ анализирует потоки заявок, конверсии и выплаты, подсвечивая сильные и слабые сегменты портфеля.') }}</p>
@@ -341,7 +396,7 @@
             <div class="col-12 col-lg-4 mb-40">
                 <div class="box-border-image">
                     <div class="box-image-line-1">
-                        <div class="wow fadeInDown" data-wow-delay="0"><img src="{{ asset('assets/imgs/page/homepage1/ai-strategy.png') }}" alt="{{ config('app.name') }}"></div>
+                        <div class="wow fadeInDown" data-wow-delay="0"><img src="{{ asset('assets/imgs/page/homepage1/ai-strategy.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
                     </div>
                 </div>
             </div>
@@ -351,7 +406,7 @@
             <div class="col-12 col-lg-4 text-center mb-40 order-2 order-lg-1">
                 <div class="box-border-image">
                     <div class="box-image-line-1">
-                        <div class="wow fadeInDown" data-wow-delay="0"><img src="{{ asset('assets/imgs/page/homepage1/sheld-ignd.png') }}" alt="{{ config('app.name') }}"></div>
+                        <div class="wow fadeInDown" data-wow-delay="0"><img src="{{ asset('assets/imgs/page/homepage1/sheld-ignd.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
                     </div>
                 </div>
             </div>
@@ -362,7 +417,7 @@
                 <div class="row mt-50">
                      <div class="col-lg-12">
                         <div class="card-feature-2 card-feature-2-mobile-text-first">
-                            <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/sheld-risk.svg') }}" alt="{{ __('Система смягчения рисков') }}"></div>
+                            <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/sheld-risk.svg') }}" alt="{{ __('Система смягчения рисков') }}" loading="lazy" decoding="async"></div>
                             <div class="card-info"><a href="#"><h3 class="text-22-bold">{{ __('Автоматизированная система смягчения рисков (смарт-контракт платформы, нативный внутренний токен iGND) для инвесторов и инициаторов проектов') }}</h3></a>
                                 <p class="text-md neutral-700">{{ __('Участникам системы смягчения рисков, в случае реализации инвестиционных рисков по отдельным проектам, начисляются дополнительные специализированные внутренние токены системы.') }}</p>
                                 <p class="text-md neutral-700">{{ __('- Начисление и обращение токенов iGND реализуется через смарт‑контракты блокчейна экосистемы и ') }} <span class="neutral-1000">{{ __('не является гарантией сохранения капитала или доходности.') }}</span></p>
@@ -590,7 +645,7 @@
         <div class="row">
             <div class="col-lg-6 mb-30">
                 <div class="testimonial-img-animated">
-                    <img src="{{ asset('assets/imgs/page/homepage1/img-testimonial.png') }}" alt="{{ config('app.name') }}">
+                    <img src="{{ asset('assets/imgs/page/homepage1/img-testimonial.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async">
                 </div>
                 <ul class="list-checked">
                     <li>{{__('Команда разработки (backend, frontend, mobile, DevOps, QA) ')}}</li>
@@ -606,7 +661,7 @@
                 </div>
                 <div class="testimonials-stack mt-30" id="onwer">
                     <div class="card-testimonial-3 mb-30 ">
-                        <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/img-review.png') }}" alt="{{ config('app.name') }}"></div>
+                        <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/img-review.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
                         <div class="card-info">
                             <p class="text-md neutral-500"><i class="fi-rr-quote-right"></i>&nbsp;{{ __('Мы создаём не просто бизнес‑платформу для инвестиций, а новую инфраструктуру рынка, где цифровые инструменты становятся понятным, прозрачным и эффективно работающим каналом капитала в реальную экономику.') }}"</p>
                             <div class="card-author-review">
@@ -616,7 +671,7 @@
                         </div>
                     </div>
                     <div class="card-testimonial-3">
-                        <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/img-review-k.png') }}" alt="{{ config('app.name') }}"></div>
+                        <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/img-review-k.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
                         <div class="card-info">
                             <p class="text-md neutral-500"><i class="fi-rr-quote-right"></i>&nbsp;{{ __('Я проектирую платформу как целостный механизм, в котором архитектура, код и каждый технический узел связаны в одну логику — превратить сложную финансовую “машину” в управляемую, безопасную и предсказуемую среду роста для проектов и инвесторов.') }}"</p>
                             <div class="card-author-review">
@@ -631,3 +686,13 @@
     </div>
 </section>
 @endsection
+
+@push('scripts')
+    @php
+        $vCount = config('app.asset_version');
+        if ($vCount === null || $vCount === '') {
+            $vCount = '1.0.' . (config('app.env') === 'production' ? '0' : time());
+        }
+    @endphp
+    <script src="{{ asset('assets/js/public-launch-countdown.js') }}?v={{ $vCount }}"></script>
+@endpush

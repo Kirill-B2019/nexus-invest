@@ -24,12 +24,6 @@
                             </form>
                         </div>
                     </div>
-                {{-- Кнопка предложения Seed-раунда — открывает модальное окно с условиями --}}
-                <div class="mb-20">
-                    <button type="button" class="btn btn-sm btn-border-brand-7 small uppercase" data-bs-toggle="modal" data-bs-target="#seedRoundOfferModal" aria-label="{{ __('Приглашаем инвестора Seed-раунда') }}">
-                        {{ __('Приглашаем партнера Seed-раунда') }}
-                    </button>
-                </div>
             </div>
             <div class="col-12 col-md-6 col-sm-12">
                 <div class="row">

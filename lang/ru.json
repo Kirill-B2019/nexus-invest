@@ -178,5 +178,11 @@
     "Delete Account": "Удалить аккаунт",
     "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.": "После удаления аккаунта все данные будут удалены безвозвратно. Сохраните нужные данные заранее.",
     "Are you sure you want to delete your account?": "Вы уверены, что хотите удалить аккаунт?",
-    "Password": "Пароль"
+    "Password": "Пароль",
+    "Until public launch": "до публичного запуска:",
+    "countdown unit days": "д",
+    "countdown unit hours": "ч",
+    "countdown unit minutes": "мин",
+    "countdown unit seconds": "с",
+    "Public launch": "Публичный запуск"
 }

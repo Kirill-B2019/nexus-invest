@@ -22,7 +22,7 @@
             <p class="text-lg neutral-500 mb-55">{{ __('Взаимосвязь компонентов российской юрисдикции и мультиюрисдикционной инфраструктуры') }}</p>
         <div class="row">
             <div class="col-12 col-lg-8 text-center">
-                <img class="wow fadeInUp w-100" src="{{ asset('assets/imgs/page/homepage1/arch-image.png') }}" alt="{{ config('app.name') }}">
+                <img class="wow fadeInUp w-100" src="{{ asset('assets/imgs/page/homepage1/arch-image.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async">
                 <div class="card-casestudy box-border-rounded">
                     <div class="card-title">
                         <p>{{__('Юридически чистый национальный контур ЦФА + технологический блокчейн‑слой + регулируемый выход в глобальный рынок.')}}</p>
@@ -167,7 +167,7 @@
         <p class="text-lg neutral-500 mb-55">{{__('Ориентиры в экосистеме: интерактивная карта России, фильтры по отраслям, стадиям и риску, типы привлечения капитала и доходности, рекомендации по профилю инвестора и связка всех проектов с токенами НЕКСУС')}}</p>
         <div class="row">
             <div class="col-12 col-lg-8 text-center">
-                <img class="wow fadeInUp w-50" src="{{ asset('assets/imgs/page/homepage1/map-rf.png') }}" alt="{{ config('app.name') }}">
+                <img class="wow fadeInUp w-50" src="{{ asset('assets/imgs/page/homepage1/map-rf.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async">
             </div>
             <div class="col-12 col-lg-4">
                 <div class="box-border-rounded">

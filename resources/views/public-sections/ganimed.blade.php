@@ -96,7 +96,7 @@
         <div class="row mt-40">
             <div class="col-12 col-lg-5">
                 <div class="card-design">
-                    <div class="card-image"><img alt="{{__('Блокчейн для реальных активов')}}" src="{{ asset('assets/imgs/page/homepage6/ready.png') }}"></div>
+                    <div class="card-image"><img alt="{{__('Блокчейн для реальных активов')}}" src="{{ asset('assets/imgs/page/homepage6/ready.png') }}" loading="lazy" decoding="async"></div>
                     <div class="card-info">
                         <p class=" text-xl mb-30">{{__('Блокчейн для реальных активов')}}</p>
                         <p class="text-lg card-desc">{{__('ГАНИМЕД создан как основа для токенизации «понятных» вещей — недвижимости, бизнеса, инфраструктурных проектов и других реальных активов, а не ради спекуляций «ради токена»')}}</p>
@@ -105,7 +105,7 @@
             </div>
             <div class="col-12 col-lg-7">
                 <div class="card-design card-design-style2">
-                    <div class="card-image"><img alt="{{__('Интеллектуальный слой')}}" src="{{__(asset('assets/imgs/page/homepage6/integration.png'))}}"></div>
+                    <div class="card-image"><img alt="{{__('Интеллектуальный слой')}}" src="{{__(asset('assets/imgs/page/homepage6/integration.png'))}}" loading="lazy" decoding="async"></div>
                     <div class="card-info">
                         <p class=" text-xl mb-30">{{__('Интеллектуальный слой на основе ИИ анализирует своё состояние с помощью моделей искусственного интеллекта, чтобы лучше управлять нагрузкой, рисками и параметрами работы блокчейна по мере роста экосистемы.')}}</p>
                     </div>
@@ -115,7 +115,7 @@
         <div class="row">
             <div class="col-12 col-lg-4">
                 <div class="card-design card-design-style4">
-                    <div class="card-image"><img alt="{{__('Экосистема - не одиночная сеть')}}" src="{{ asset('assets/imgs/page/homepage6/design.png') }}"></div>
+                    <div class="card-image"><img alt="{{__('Экосистема - не одиночная сеть')}}" src="{{ asset('assets/imgs/page/homepage6/design.png') }}" loading="lazy" decoding="async"></div>
                     <div class="card-info">
                         <p class=" text-xl mb-30">{{__('Экосистема - не одиночная сеть')}}</p>
                         <p class="text-lg card-desc">{{__('ГАНИМЕД реализован как технологическое ядро для целой экосистемы: инвестиционная платформа, вторичный рынок, депозитарий, маркетплейс — всё работает на одной технологической базе.')}}</p>
@@ -124,7 +124,7 @@
             </div>
             <div class="col-12 col-lg-4">
                 <div class="card-design card-design-style3">
-                    <div class="card-image"><img alt="{{__('Прозрачные правила')}}" src="{{__('assets/imgs/page/homepage6/fast.png')}}"></div>
+                    <div class="card-image"><img alt="{{__('Прозрачные правила')}}" src="{{__('assets/imgs/page/homepage6/fast.png')}}" loading="lazy" decoding="async"></div>
                     <div class="card-info">
                         <p class=" text-xl mb-30">{{__('Прозрачные правила')}}</p>
                         <p class="text-lg card-desc">{{__('Условия выпуска токенов, ограничения, права и роли участников, данные системы смягчения заранее зашиваются в протокол и смарт‑контракты, поэтому участники видят правила и могут им доверять, а не полагаться на чьи‑то обещания.')}}</p>
@@ -133,7 +133,7 @@
             </div>
             <div class="col-12 col-lg-4">
                 <div class="card-design card-design-style5">
-                    <div class="card-image"><img alt="{{__('Токены')}}" src="{{ asset('assets/imgs/page/homepage6/power.png') }}"></div>
+                    <div class="card-image"><img alt="{{__('Токены')}}" src="{{ asset('assets/imgs/page/homepage6/power.png') }}" loading="lazy" decoding="async"></div>
                     <div class="card-info">
                         <p class=" text-xl mb-30">{{__('Токены в сети могут отражать долю в проекте, право на доход или актив, который стоит за сделкой, убирая часть бумажной волокиты и делая учёт прозрачным в онлайне.')}}</p>
                     </div>
@@ -314,7 +314,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-lg-4">
-                            <img class="wow fadeInUp w-80" src="{{ asset('assets/imgs/page/homepage1/gndgani.png') }}" alt="{{ config('app.name') }}">
+                            <img class="wow fadeInUp w-80" src="{{ asset('assets/imgs/page/homepage1/gndgani.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async">
                         </div>
                     </div>
 

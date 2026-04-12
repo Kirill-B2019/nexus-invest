@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'metrika' => [
+        'id' => (int) env('YANDEX_METRIKA_ID', 106896230),
+    ],
+
 ];
