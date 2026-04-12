@@ -39,7 +39,7 @@
                             <li><a href="{{ asset('doc/NexusPublicOffer.pdf') }}" target="_blank" rel="noopener noreferrer">{{ __('Публичная оферта') }}</a></li>
                             <li><a href="{{ asset('doc/NexusPrivacyPolicy-14022026.pdf') }}" target="_blank" rel="noopener noreferrer">{{ __('Политика конфиденциальности') }}</a></li>
                             <li><a href="{{ asset('doc/NexusUserAgreement-15022026.pdf') }}" target="_blank" rel="noopener noreferrer">{{ __('Пользовательское соглашение') }}</a></li>
-                            <li><a href="{{ asset('doc/NEXUS-KYCAMLPolicy-17022026 .pdf') }}">{{ __('KYC/AML‑политика НЕКСУС') }}</a></li>
+                            <li><a href="{{ asset('doc/NEXUS-KYCAMLPolicy-17022026.pdf') }}" target="_blank" rel="noopener noreferrer">{{ __('KYC/AML‑политика НЕКСУС') }}</a></li>
                         </ul>
                     </div>
                     <div class="col-12 col-sm-6 mb-30">

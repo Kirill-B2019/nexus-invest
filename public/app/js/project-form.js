@@ -7,12 +7,31 @@
 
     function swalFireFallback(type, text) {
         if (typeof Swal === 'undefined') return;
-        var container = document.getElementById('app-container');
-        var isDark = container && container.classList.contains('body-theme-dark');
+        var palette = typeof window.getLkSwalThemePalette === 'function' ? window.getLkSwalThemePalette() : null;
+        var isDark = typeof window.isLkDarkTheme === 'function' ? window.isLkDarkTheme() : !!(document.getElementById('app-container') && document.getElementById('app-container').classList.contains('theme-dark'));
         var cfg = isDark
-            ? { background: '#191919', color: '#ECEEF2', confirmButtonColor: '#C5FF41', customClass: { popup: 'swal-lk-theme' } }
-            : { background: '#FFFFFF', color: '#1F2937', confirmButtonColor: '#4B7B5B', customClass: { popup: 'swal-lk-theme swal-lk-theme-light' } };
-        Swal.fire({ ...cfg, icon: type, title: type === 'error' ? 'Ошибка' : 'Внимание', text: text });
+            ? { background: '#191919', color: '#ECEEF2', confirmButtonColor: palette ? palette.accent : '#C5FF41', customClass: { popup: 'swal-lk-theme' } }
+            : { background: '#FFFFFF', color: '#1F2937', confirmButtonColor: palette ? palette.accent : '#4B7B5B', customClass: { popup: 'swal-lk-theme swal-lk-theme-light' } };
+        var iconColor = palette
+            ? (type === 'error' ? palette.error : palette.warning)
+            : (isDark ? '#FBBF24' : '#B45309');
+        Swal.fire({
+            background: cfg.background,
+            color: cfg.color,
+            confirmButtonColor: cfg.confirmButtonColor,
+            customClass: cfg.customClass,
+            icon: type,
+            iconColor: iconColor,
+            title: type === 'error' ? 'Ошибка' : 'Внимание',
+            text: text,
+            didOpen: function () {
+                if (typeof window.scheduleSyncLkSwalPopupTheme === 'function') {
+                    window.scheduleSyncLkSwalPopupTheme();
+                } else if (typeof window.syncLkSwalPopupTheme === 'function') {
+                    window.syncLkSwalPopupTheme();
+                }
+            },
+        });
     }
 
     /**
@@ -83,6 +102,7 @@
         };
         return {
             step: initialStep || 1,
+            showAdvanced: false,
             readOnly: !!readOnlyMode,
             initial: JSON.parse(JSON.stringify(initialData)),
             form: initialData,

@@ -7,17 +7,11 @@
 @endsection
 
 @section('content')
-    <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
-        <ol class="breadcrumb pt-0">
-            <li class="breadcrumb-item"><a href="{{ route('lk') }}">{{ __('Личный кабинет') }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ __('Уведомления') }}</li>
-        </ol>
-    </nav>
-    <div class="separator mb-4"></div>
-
-    @if(session('status'))
-        <div class="alert alert-success">{{ session('status') }}</div>
-    @endif
+    <x-lk-breadcrumb :items="[
+        ['label' => __('Личный кабинет'), 'url' => route('lk')],
+        ['label' => __('Уведомления')],
+    ]" separator-margin="mb-4" />
+    @include('layouts.app.flash')
 
     <div class="card">
         <div class="card-body">

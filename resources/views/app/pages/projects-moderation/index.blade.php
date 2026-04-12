@@ -7,14 +7,12 @@
 @endsection
 
 @section('content')
-    <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
-        <ol class="breadcrumb pt-0">
-            <li class="breadcrumb-item"><a href="{{ route('lk') }}">{{ __('Личный кабинет') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('lk.admin.settings.index') }}">{{ __('Настройки') }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ __('Модерация проектов') }}</li>
-        </ol>
-    </nav>
-    <div class="separator mb-5"></div>
+    <x-lk-breadcrumb :items="[
+        ['label' => __('Личный кабинет'), 'url' => route('lk')],
+        ['label' => __('Настройки'), 'url' => route('lk.admin.settings.index')],
+        ['label' => __('Модерация проектов')],
+    ]" separator-margin="mb-5" />
+    @include('layouts.app.flash')
 
     <div class="card">
         <div class="card-body">
@@ -29,7 +27,7 @@
                             <th>{{ __('Инициатор') }}</th>
                             <th>{{ __('Статус') }}</th>
                             <th>{{ __('Дата отправки') }}</th>
-                            <th></th>
+                            <th class="actions-cell">{{ __('Действия') }}</th>
                         </tr>
                     </thead>
                     <tbody>

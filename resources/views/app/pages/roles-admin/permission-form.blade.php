@@ -7,15 +7,12 @@
 @endsection
 
 @section('content')
-    <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
-        <ol class="breadcrumb pt-0">
-            <li class="breadcrumb-item"><a href="{{ route('lk') }}">{{ __('Личный кабинет') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('lk.admin.roles.users') }}">{{ __('Управление ролями') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('lk.admin.roles.permissions') }}">{{ __('Разрешения') }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ $permission ? $permission->name : __('Новое') }}</li>
-        </ol>
-    </nav>
-    <div class="separator mb-4"></div>
+    <x-lk-breadcrumb :items="[
+        ['label' => __('Личный кабинет'), 'url' => route('lk')],
+        ['label' => __('Управление ролями'), 'url' => route('lk.admin.roles.users')],
+        ['label' => __('Разрешения'), 'url' => route('lk.admin.roles.permissions')],
+        ['label' => $permission ? $permission->name : __('Новое')],
+    ]" separator-margin="mb-4" />
 
     @if($errors->any())
         <div class="alert alert-danger">

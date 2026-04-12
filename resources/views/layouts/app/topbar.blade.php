@@ -24,12 +24,7 @@
         <a class="navbar-logo-mobile d-flex d-md-none align-items-center ml-2 mr-2" href="{{ route('lk') }}" aria-label="{{ config('app.name') }}">
             <img src="{{ asset('assets/imgs/template/word-only.png') }}" alt="{{ config('app.name') }}" class="navbar-logo-mobile-img">
         </a>
-        <div class="search d-none d-md-block" data-search-path="{{ url('/') }}/app/search?q=">
-            <input placeholder="{{ __('Поиск…') }}">
-            <span class="search-icon">
-                <i class="simple-icon-magnifier"></i>
-            </span>
-        </div>
+        {{-- Глобальный поиск в шаблоне Dore отключён: нет маршрута /app/search; при появлении API вернуть блок .search с data-search-path. --}}
     </div>
 
     <a class="navbar-logo d-none d-md-flex" href="{{ route('lk') }}">
@@ -68,11 +63,11 @@
                 <div class="dropdown-menu dropdown-menu-right mt-3  position-absolute" id="iconMenuDropdown">
                     <a href="{{ route('profile.edit') }}" class="icon-menu-item">
                         <i class="iconsminds-equalizer d-block"></i>
-                        <span>{{ __('Настройки') }}</span>
+                        <span>{{ __('Профиль') }}</span>
                     </a>
                     <a href="{{ route('lk') }}" class="icon-menu-item">
                         <i class="iconsminds-bar-chart-4 d-block"></i>
-                        <span>{{ __('Доходы') }}</span>
+                        <span>{{ __('Дашборд') }}</span>
                     </a>
                     <a href="{{ route('welcome') }}" class="icon-menu-item">
                         <i class="simple-icon-home d-block"></i>
@@ -139,9 +134,11 @@
                 <div class="dropdown-divider"></div>
                 @endif
                 <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Аккаунт') }}</a>
-                <a class="dropdown-item" href="{{ route('lk') }}">{{ __('Возможности') }}</a>
+                <a class="dropdown-item" href="{{ route('lk') }}">{{ __('Дашборд') }}</a>
                 <a class="dropdown-item" href="{{ route('welcome') }}">{{ __('Главная') }}</a>
-                <a class="dropdown-item" href="#">{{ __('Поддержка') }}</a>
+                @if(config('mail.support_address'))
+                <a class="dropdown-item" href="mailto:{{ config('mail.support_address') }}">{{ __('Поддержка') }}</a>
+                @endif
                 <form method="POST" action="{{ route('logout') }}" class="d-inline">
                     @csrf
                     <button type="submit" class="dropdown-item">{{ __('Выйти') }}</button>

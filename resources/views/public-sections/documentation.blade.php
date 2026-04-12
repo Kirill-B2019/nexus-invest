@@ -123,7 +123,7 @@
                             'label' => 'Пользовательское соглашение',
                         ],
                         [
-                            'href'  => asset('doc/NEXUS-KYCAMLPolicy-17022026 .pdf'),
+                            'href'  => asset('doc/NEXUS-KYCAMLPolicy-17022026.pdf'),
                             'label' => 'KYC/AML‑политика НЕКСУС',
                         ],
                     ]"

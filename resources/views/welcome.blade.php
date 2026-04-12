@@ -19,7 +19,7 @@
                         <div class="box-banner-left">
                                 <a class="btn btn-brand-5-new" href="{{ url('https://main-node.gnd-net.com') }}" target="_blank" rel="noopener noreferrer"><span>{{ __('Работает на:') }}</span> {{ __('блокчейне ГАНИМЕД') }}</a>
                                 <p class="neutral-300 small pt-3 uppercase">{{ __('Новационная Единая Комплексная Система Управления Сделками') }}</p>
-                                <h6 class="display-6 neutral-200 text-semibold pt-3">{{ __('ПРОЕКТНОЕ ФИНАСИРОВАНИЕ') }}</h6>
+                                <h6 class="display-6 neutral-200 text-semibold pt-3">{{ __('ПРОЕКТНОЕ ФИНАНСИРОВАНИЕ') }}</h6>
                                 <h1 class="display-1 neutral-0 text-semibold pt-3">{{ __('НЕКСУС') }}</h1>
                                 <p class="text-lg neutral-200 mb-55 display-4 pt-3 uppercase">
                                     {{ __('Полнофункциональная платформа быстрого запуска и финансирования проектов через цифровые активы и токенизацию') }}<br />
@@ -32,14 +32,9 @@
                                 </a>
 
                                 <p class="neutral-300 small pt-3">{{ __('полное соответствие законодательству РФ: 259-ФЗ о ЦФА, 289-ФЗ о платформенной экономике, 39-ФЗ об инвестиционной деятельности, 187‑ФЗ о безопасности, 115-ФЗ о ПОД/ФТ, 152-ФЗ о персональных данных, ГОСТы 34.10, 34.11, 34.12') }}</p>
-                                <div class="mt-40">
-                                    <a class="uppercase dot neutral-200 text-semibold" href="{{asset('doc/NexusSeedPresentation.pdf') }}" target="_blank" rel="noopener noreferrer">
-                                        {{ __('Презентация SEED-Раунда') }}
-                                    </a>
-                                </div>
-                                <div class="d-flex mb-60">
 
-                                <div class="neutral-400 mt-40 sidebar-border-left border-secondary d-none d-md-block">
+                                <div class="d-flex mb-60 align-items-start gap-3 flex-wrap">
+                                <div class="neutral-400 mt-40 sidebar-border-left border-secondary d-none d-md-block flex-grow-1 min-w-0">
                                         <i class="fi-rr-quote-right"></i>
                                         <p class="smaller">
                                             <span class="text-semibold">{{ __(' ТОКЕН') }}</span>{{ __(' - единица учёта, не являющаяся криптовалютой, предназначенная для представления цифрового баланса в некотором активе, иными словами, выполняющая функцию «заменителя ценных бумаг» в цифровом мире. Токены представляют собой запись в регистре, распределённую вблокчейн-цепочке.') }}
@@ -47,10 +42,14 @@
                                         <p class="smaller">
                                             <span class="text-semibold">{{ __('RWA (Real World Assets)') }}</span> {{ __(' — это любые материальные активы, которые переносят в цифровой формат на блокчейне: например,золото, недвижимость, ценные бумаги, произведения искусства') }}
                                         </p>
-
-                                    </div>
-                            </div>
-
+                                </div>
+                                <div class="flex-shrink-0 d-flex flex-column align-items-center align-items-md-start gap-2 mt-40 mx-auto mx-md-0" style="max-width: 11rem;">
+                                    <a href="{{ asset('doc/NexusSeedPresentation.pdf') }}" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center justify-content-center rounded border border-white border-opacity-50 text-decoration-none flex-shrink-0" style="width: 100px; aspect-ratio: 1;" title="{{ __('Презентация SEED-Раунда') }}" aria-label="{{ __('Презентация SEED-Раунда') }} (PDF)">
+                                        <i class="fi-rr-presentation d-inline-block neutral-0" style="font-size: 3.5rem; line-height: 1;" aria-hidden="true"></i>
+                                    </a>
+                                    <a class="uppercase dot neutral-200 text-semibold text-center text-md-start smaller" href="{{ asset('doc/NexusSeedPresentation.pdf') }}" target="_blank" rel="noopener noreferrer">{{ __('Презентация SEED-Раунда') }}</a>
+                                </div>
+                                </div>
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 order-2 order-lg-2 hero-5-col-cards">

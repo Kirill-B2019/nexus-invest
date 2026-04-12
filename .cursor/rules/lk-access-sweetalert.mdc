@@ -22,7 +22,7 @@ alwaysApply: false
 **Поведение:**
 - Маршруты закрытой части: `lk*`, `profile*`, `app/*`, `dashboard`.
 - При 403: редирект на `route('lk')` с `session('alert_error', $message)`.
-- Сообщение показывается через SweetAlert2 в теме ЛК (тёмный фон, акцент #C5FF41).
+- Сообщение показывается через SweetAlert2 в теме ЛК (фон и акцент зависят от `theme-dark` / `theme-light` на `#app-container`).
 
 **JSON-запросы:** возвращается `{"message": "..."}` с кодом 403.
 
@@ -55,18 +55,30 @@ if (! $user->hasRole('messenger-admin') && (! $user->can('use-messenger') || ! $
 
 - **Подключение:** `resources/views/layouts/app/scripts.blade.php` — CDN SweetAlert2, `window.laravelFlashLk`, `public/app/js/sweetalert-flash-lk.js`, `public/app/js/swal-confirm-forms.js`.
 - **Flash-ключи:** `alert_error`, `alert_success`, `alert_warning`, `info`.
-- **Стили:** `public/app/css/app.css` — классы `swal-lk-theme`, `swal-lk-btn-confirm`.
-- **Вызов из JS:** `window.swalLk.error(text)`, `swalLk.success(text)`, `swalLk.warning(text)`, `swalLk.info(text)`.
+- **Стили:** `public/app/css/app.css` — классы `swal-lk-theme`, `swal-lk-theme-light`, `swal-lk-btn-confirm`; для иконок (success / error / warning / info / question) заданы цвета в той же палитре, что и кнопки (не дефолтные «кислотные» цвета SweetAlert2). Стили SweetAlert2 подгружаются с CDN **после** `app.css`, поэтому заголовок и текст тёмной темы задаются с селектором `.swal2-popup.swal-lk-theme:not(.swal-lk-theme-light) .swal2-title` / `.swal2-html-container` и **`!important`**, плюс явный `#ECEEF2` (не `var(--app-color-surface)` — внутри `#app-container` эта переменная для тёмной темы тёмная и в попапе могла бы давать невидимый текст).
+- **Вызов из JS:** `window.swalLk.error(text)`, `swalLk.success(text)`, `swalLk.warning(text)`, `swalLk.info(text)`, `swalLk.confirm(text, title)`.
+- **Палитра для JS:** `window.getLkSwalThemePalette()` — объект `{ accent, error, warning, info, question }` в зависимости от темы; используется в `sweetalert-flash-lk.js`, доступен для `swal-confirm-forms.js` и кастомных вызовов (например fallback в `project-form.js`). Не использовать устаревший класс `body-theme-dark` на контейнере — в разметке ЛК только `theme-dark` / `theme-light` на `#app-container`.
 
 ### Цвета в соответствии с выбранной темой
 
-**SweetAlert2 должен отображаться в цветах выбранной пользователем темы ЛК.**
+**SweetAlert2 в ЛК должен совпадать с темой: фон, кнопка OK, иконка типа сообщения.**
 
-- **Определение темы:** по классу `theme-dark` или `theme-light` на `#app-container` (body).
-- **Тёмная тема** (`theme-dark`): фон `#191919`, текст `#ECEEF2`, кнопка подтверждения `#C5FF41`, backdrop `rgba(0,0,0,0.75)`. Класс popup: `swal-lk-theme`.
-- **Светлая тема** (`theme-light`): фон `#FFFFFF`, текст `#1F2937`, кнопка подтверждения `#4B7B5B`, backdrop `rgba(0,0,0,0.4)`. Класс popup: `swal-lk-theme swal-lk-theme-light`.
-- **Реализация:** `sweetalert-flash-lk.js` и `swal-confirm-forms.js` определяют тему через `container.classList.contains('theme-dark')` и передают соответствующие `customClass`, `background`, `color`, `confirmButtonColor` в `Swal.fire()`.
-- При добавлении новых вызовов SweetAlert2 в ЛК — использовать `getSwalConfig()` из `sweetalert-flash-lk.js` или `getConfirmConfig()` из `swal-confirm-forms.js`, либо вызывать `window.swalLk.*`, чтобы сохранить цвета темы.
+| Элемент | Тёмная тема (`theme-dark`) | Светлая тема (`theme-light`) |
+|--------|---------------------------|------------------------------|
+| Фон popup | `#191919` | `#FFFFFF` |
+| Текст | `#ECEEF2` | `#1F2937` |
+| Акцент / OK / success / question | `#C5FF41` | `#4B7B5B` |
+| Иконка ошибки | `#F87171` | `#B91C1C` |
+| Иконка предупреждения | `#FBBF24` | `#B45309` |
+| Иконка информации | `#7DD3FC` | `#1D4ED8` |
+
+- **Определение темы:** `window.isLkDarkTheme()` — порядок: атрибут **`data-lk-theme="dark|light"`** на `#app-container` (выставляет сервер в `layouts/app/app.blade.php`, совпадает с подключённым CSS темы); затем классы `theme-light` / `theme-dark`; затем cookie `app_theme` (учитываются имена `dore.light.*` / `dore.dark.*`, чтобы не было ложных срабатываний по подстроке `dark`).
+- **Синхронизация popup:** `syncLkSwalPopupTheme()` и `scheduleSyncLkSwalPopupTheme()` (повторы через `requestAnimationFrame` / `setTimeout` — стили Swal с CDN могут применяться после первого `didOpen`). Inline `background`/`color` с `!important` на `.swal2-popup`, заголовок и `#swal2-html-container`.
+- **Классы popup:** тёмная — `swal-lk-theme`; светлая — оба `swal-lk-theme` и `swal-lk-theme-light`.
+- **Код:** `sweetalert-flash-lk.js` — палитра, `getSwalConfig().didOpen`, `swal-confirm-forms.js` и fallback в `project-form.js` вызывают `syncLkSwalPopupTheme`.
+- **CSS:** `public/app/css/app.css` — палитра иконок и текста для обеих тем.
+
+При новых вызовах `Swal.fire` в ЛК — `window.swalLk.*`, либо передавать `didOpen: () => window.syncLkSwalPopupTheme()`, либо `...window.getLkSwalBaseConfig()` (после загрузки Swal).
 
 ## Отображение пунктов меню
 

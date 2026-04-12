@@ -7,18 +7,12 @@
 @endsection
 
 @section('content')
-    <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
-        <ol class="breadcrumb pt-0">
-            <li class="breadcrumb-item"><a href="{{ route('lk') }}">{{ __('Личный кабинет') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('lk.admin.settings.dictionaries.index') }}">{{ __('Справочники') }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ $dictionary->name }}</li>
-        </ol>
-    </nav>
-    <div class="separator mb-4"></div>
-
-    @if(session('status'))
-        <div class="alert alert-success">{{ session('status') }}</div>
-    @endif
+    <x-lk-breadcrumb :items="[
+        ['label' => __('Личный кабинет'), 'url' => route('lk')],
+        ['label' => __('Справочники'), 'url' => route('lk.admin.settings.dictionaries.index')],
+        ['label' => $dictionary->name],
+    ]" separator-margin="mb-4" />
+    @include('layouts.app.flash')
 
     <div class="card">
         <div class="card-body">
@@ -42,7 +36,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="list-group position-absolute shadow-sm border bg-white" id="dictionaries-search-dropdown" style="display: none; z-index: 1050; max-height: 280px; overflow-y: auto; left: 0; right: 0; top: 100%; margin-top: 2px; min-width: 200px;"></div>
+                    <div class="list-group lk-dictionaries-search-dropdown position-absolute shadow-sm border" id="dictionaries-search-dropdown" style="display: none; z-index: 1050; max-height: 280px; overflow-y: auto; left: 0; right: 0; top: 100%; margin-top: 2px; min-width: 200px;"></div>
                 </div>
             </form>
 
@@ -50,8 +44,16 @@
                 <p class="text-muted small mb-2">{{ __('Найдено записей: :count', ['count' => $items->count()]) }}</p>
             @endif
 
-            <div class="table-responsive">
-                <table class="table table-hover table-mobile-stack">
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2 lk-dictionaries-density" id="dictionaries-items-density-wrap">
+                <span class="small text-muted mb-0">{{ __('Плотность таблицы:') }}</span>
+                <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('Плотность таблицы') }}">
+                    <button type="button" class="btn btn-outline-secondary lk-density-btn" data-density="normal" aria-pressed="true">{{ __('Обычная') }}</button>
+                    <button type="button" class="btn btn-outline-secondary lk-density-btn" data-density="compact" aria-pressed="false">{{ __('Компактная') }}</button>
+                </div>
+            </div>
+
+            <div class="table-responsive dictionaries-table-responsive" id="dictionaries-items-table-wrap">
+                <table class="table table-hover table-mobile-stack dictionaries-admin-table" id="dictionaries-items-table">
                     <thead>
                         <tr>
                             @php
@@ -76,7 +78,7 @@
                             <th>{{ __('Ссылка') }}</th>
                             <th><a href="{{ $sortLink('is_ru') }}" class="text-dark">{{ __('RU') }}@if($sortBy === 'is_ru') {{ $sortDir === 'asc' ? ' ↑' : ' ↓' }}@endif</a></th>
                             @endif
-                            <th></th>
+                            <th class="actions-cell">{{ __('Действия') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -123,7 +125,7 @@
                                         </form>
                                     </div>
                                     <div class="table-actions-mobile d-md-none dropdown">
-                                        <button type="button" class="btn btn-outline-secondary btn-sm lk-actions-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="{{ __('Действия') }}" title="{{ __('Действия') }}">⋯</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="{{ __('Действия') }}" title="{{ __('Действия') }}">{{ __('Действия') }}</button>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item" href="{{ $itemEditUrl }}">{{ __('Изменить') }}</a>
                                             <form method="post" action="{{ $itemDestroyUrl }}" class="dropdown-item p-0" data-swal-confirm="{{ __('Удалить элемент?') }}" data-swal-title="{{ __('Подтверждение') }}">
@@ -213,6 +215,35 @@
         });
         document.addEventListener('click', function(e) {
             if (wrap && !wrap.contains(e.target)) { hideDropdown(); }
+        });
+    })();
+    (function() {
+        var KEY = 'lk_dictionaries_items_compact';
+        var table = document.getElementById('dictionaries-items-table');
+        var scrollWrap = document.getElementById('dictionaries-items-table-wrap');
+        var densityWrap = document.getElementById('dictionaries-items-density-wrap');
+        if (!table || !scrollWrap || !densityWrap) return;
+        var btns = densityWrap.querySelectorAll('.lk-density-btn');
+        function setCompact(on) {
+            table.classList.toggle('table-dictionaries-compact', on);
+            table.classList.toggle('table-sm', on);
+            scrollWrap.classList.toggle('dictionaries-table-responsive--scroll', on);
+            btns.forEach(function(b) {
+                var isC = b.getAttribute('data-density') === 'compact';
+                var sel = on === isC;
+                b.classList.toggle('btn-primary', sel);
+                b.classList.toggle('btn-outline-secondary', !sel);
+                b.setAttribute('aria-pressed', sel ? 'true' : 'false');
+            });
+            try { localStorage.setItem(KEY, on ? '1' : '0'); } catch (e) {}
+        }
+        var stored = null;
+        try { stored = localStorage.getItem(KEY); } catch (e) {}
+        setCompact(stored === '1');
+        btns.forEach(function(b) {
+            b.addEventListener('click', function() {
+                setCompact(b.getAttribute('data-density') === 'compact');
+            });
         });
     })();
     </script>

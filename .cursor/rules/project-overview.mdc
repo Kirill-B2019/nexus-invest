@@ -7,21 +7,24 @@ alwaysApply: true
 
 - **Стек:** Laravel 12, Laravel Breeze, Spatie Permission, Blade, Tailwind CSS, Alpine.js, Vite.
 - **Язык кода и комментариев:** русский (сообщения, подсказки, docblock при необходимости).
-- **Доступ:** основной сайт только для авторизованных; гостевые маршруты (логин, регистрация, восстановление пароля) в `routes/auth.php`.
+- **Доступ:** публичные страницы (главная, разделы сайта) — `routes/public.php`; гостевая авторизация — `routes/auth.php`. ЛК (`/lk`, `/profile`, админ-поддерево `/lk/admin/...`) — только для авторизованных; вход в `/lk` дополнительно требует разрешение `access-lk` (middleware `lk.access`).
 
 ## Структура приложения
 
-- **Публичная часть:** welcome, features, compliance; точка входа `/`.
-- **Личный кабинет (ЛК):** точка входа `/lk` (имя маршрута `lk`). Layout — `resources/views/app/layouts/lk.blade.php`. После входа редирект на `route('lk')`. `/dashboard` — 301 редирект на `/lk`.
+- **Точка входа маршрутов:** `routes/web.php` последовательно подключает `public.php`, `api.php`, `lk.php`, `admin.php`, `auth.php` (отдельные файлы, не всё в одном `web.php`).
+- **Публичная часть:** welcome, `public-sections/*`; точка входа `/` — см. `routes/public.php`.
+- **Личный кабинет (ЛК):** точка входа `/lk` (имя маршрута `lk`). Layout — `resources/views/layouts/app/app.blade.php` (`@extends('layouts.app.app')`). Страницы ЛК — `resources/views/app/pages/` (и `resources/views/app/profile/` для профиля). Компонент `<x-app-layout>` — опционально для slot-based страниц; основной поток — `@extends` + `@section`. После входа редирект на `route('lk')`. `/dashboard` — 301 на `/lk`.
+- **Маршруты ЛК:** `routes/lk.php` (HTML, профиль, уведомления пользователя). JSON/API для виджетов ЛК (`/api/nmess/*`, `/api/messenger/trueconf-token`) — `routes/lk-api.php`: файл подключается через `require` **из `routes/lk.php`** внутри группы `Route::middleware('auth')`, поэтому цепочка такая же `web` + `auth`, что и раньше; на самих API-маршрутах дополнительно `lk.access`.
 - **Ресурсы ЛК:** стили и скрипты в `public/app/`; в layout подключаются через `asset('app/...')`.
 
 ## Важно при изменениях
 - **Публичная часть:** делать изменения в публичной части (публичные страницы, гостевые меню и т.п.) только если это явно указано в задании или в ветви обсуждения.
 - **Документация:** создавать или обновлять документацию (README, .md и т.п.) только если это явно указано в задании.
 - Сообщения пользовательской части (успех, ошибка, предупреждение, информация) показывать через SweetAlert2; не использовать обычные `<div class="alert">` на публичных страницах. Подробнее — правило `sweetalert-messages.mdc`.
+- **ЛК (закрытая часть):** flash и алерты — см. `blade-views.mdc` (ключи session, `layouts/app/flash.blade.php`).
 - всегда проверять мобильную верстку
 - в карточках и row мобильной верстки сверху текст ниже картинка (если есть и не предусмотрено заданием иное)
 - Не ломать маршруты и имена `lk`, `profile.*`.
-- Новые страницы ЛК — в `resources/views/app-section/pages/`, с использованием layout ЛК (`<x-app-layout>` / `app.layouts.lk`).
-- Новые страницы публичные в `resources/views/public-section/pages/`.
+- Новые страницы ЛК — в `resources/views/app/pages/` (подпапки по разделам: `roles-admin`, `dictionaries-admin` и т.д.).
+- Новые страницы публичные в `resources/views/public-sections/` или корне `resources/views/` по существующей структуре.
 - Проверять middleware: для `/lk` используется `verified`.

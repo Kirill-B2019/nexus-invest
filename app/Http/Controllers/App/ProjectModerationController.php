@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\App;
 
+use App\Application\Projects\ModerateProjectAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ModerateProjectRequest;
 use App\Models\Project;
-use App\Services\ProjectNotificationService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -15,7 +15,7 @@ use Illuminate\View\View;
 class ProjectModerationController extends Controller
 {
     public function __construct(
-        private ProjectNotificationService $notifications
+        private readonly ModerateProjectAction $moderateProjectAction
     ) {}
 
     /**
@@ -37,6 +37,7 @@ class ProjectModerationController extends Controller
      */
     public function show(Project $project): View
     {
+        $this->authorize('view', $project);
         $project->load('user', 'documents', 'images');
 
         return view('app.pages.projects-moderation.show', compact('project'));
@@ -47,31 +48,15 @@ class ProjectModerationController extends Controller
      */
     public function moderate(ModerateProjectRequest $request, Project $project): RedirectResponse
     {
-        if ($project->status !== Project::STATUS_MODERATION) {
-            return redirect()
-                ->route('lk.admin.projects.moderation.index')
-                ->with('alert_warning', __('Проект уже рассмотрен.'));
-        }
+        $this->authorize('moderate', $project);
 
         $action = $request->validated('action');
-
-        if ($action === 'approve') {
-            $project->status = Project::STATUS_APPROVED;
-            $project->moderation_comment = null;
-        } else {
-            $project->status = Project::STATUS_REJECTED;
-            $project->moderation_comment = $request->validated('moderation_comment');
-        }
-
-        $project->moderated_at = now();
-        $project->moderated_by = $request->user()->id;
-        $project->save();
-
-        if ($action === 'approve') {
-            $this->notifications->notifyInitiatorApproved($project);
-        } else {
-            $this->notifications->notifyInitiatorRejected($project);
-        }
+        $this->moderateProjectAction->handle(
+            project: $project,
+            moderator: $request->user(),
+            action: $action,
+            comment: $request->validated('moderation_comment')
+        );
 
         $message = $action === 'approve'
             ? __('Проект одобрен. Инициатор уведомлён.')

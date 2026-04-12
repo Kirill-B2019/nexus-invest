@@ -6,21 +6,34 @@ alwaysApply: false
 
 # Blade и представления
 
-- **ЛК:** все страницы ЛК в `resources/views/app/`. Layout — `app.layouts.lk`; страницы в `app.pages.*`. Использовать компонент `<x-app-layout>` для полного layout ЛК.
+- **ЛК:** страницы в `resources/views/app/pages/`, `resources/views/app/profile/`, частичные шаблоны в `app/partials/`. Основной layout — `@extends('layouts.app.app')` и `@section('title'|'header'|'content')`. Компонент `<x-app-layout>` — только если нужен slot-based layout; основной поток — extends.
 - **Публичная часть:** welcome, features, compliance и auth-шаблоны — свои layout’ы по существующей структуре.
 - Текст интерфейса — на русском; для переводимых строк — `@lang()` / `__()`.
 - Подключение стилей/скриптов ЛК: `asset('app/...')`; для Vite — `@vite` в соответствующих layout’ах.
 - Избегать дублирования разметки: выносить повторяющиеся блоки в `partials` или Blade-компоненты.
-- Имена view: точечная нотация, например `app.pages.lk`, `app.layouts.lk`.
+- Имена view: точечная нотация, например `app.pages.lk`, `layouts.app.app`.
 
-## Пример
+## Flash-сообщения в ЛК
+
+Единая разметка алертов: `@include('layouts.app.flash')` в контенте страницы (не дублировать рядом «сырой» `session('status')` / `<div class="alert">` для тех же ключей). Ошибки валидации (`$errors`) выводить отдельно, где нужно.
+
+Ключи session, которые обрабатывает `layouts/app/flash.blade.php`:
+
+| Ключ | Назначение |
+|------|------------|
+| `alert_success` | Успех (зелёный) |
+| `alert_error` или `error` | Ошибка (красный) |
+| `alert_warning` или `warning` | Предупреждение |
+| `info` | Информация |
+| `status` | Строка успеха или служебные значения (`profile-updated`, `password-updated`); иначе произвольная строка показывается как успех |
+
+## Пример (ЛК)
 
 ```blade
-{{-- Страница ЛК --}}
-<x-app-layout>
-    <x-slot:title>{{ $title ?? 'Личный кабинет' }}</x-slot>
-    <div class="...">
-        {{ __('Приветствие') }}
-    </div>
-</x-app-layout>
+@extends('layouts.app.app')
+
+@section('content')
+    @include('layouts.app.flash')
+    ...
+@endsection
 ```

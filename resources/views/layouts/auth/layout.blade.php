@@ -38,7 +38,7 @@
                     <img src="{{ asset('assets/imgs/template/logo-head.svg') }}" alt="{{ config('app.name') }}" class="auth-logo">
                 </a>
             </div>
-            <h4 class="display-6 neutral-300 pt-0">{{ __('ПРОЕКТНОЕ ФИНАСИРОВАНИЕ') }}</h4>
+            <h4 class="display-6 neutral-300 pt-0">{{ __('ПРОЕКТНОЕ ФИНАНСИРОВАНИЕ') }}</h4>
             <div class="auth-card">
                 {{ $slot }}
             </div>

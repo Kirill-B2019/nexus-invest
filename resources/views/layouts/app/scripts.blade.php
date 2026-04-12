@@ -144,6 +144,6 @@
 <script>
     window.laravelFlashLk = @json($laravelFlashLk);
 </script>
-<script src="{{ asset('app/js/sweetalert-flash-lk.js') }}?v=1.0.0"></script>
-<script src="{{ asset('app/js/swal-confirm-forms.js') }}"></script>
+<script src="{{ asset('app/js/sweetalert-flash-lk.js') }}?v=1.0.3"></script>
+<script src="{{ asset('app/js/swal-confirm-forms.js') }}?v=1.0.1"></script>
 @stack('scripts')

@@ -7,14 +7,12 @@
 @endsection
 
 @section('content')
-    <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
-        <ol class="breadcrumb pt-0">
-            <li class="breadcrumb-item"><a href="{{ route('lk') }}">{{ __('Личный кабинет') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('lk.projects.my') }}">{{ __('Проекты') }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ __('Мои проекты') }}</li>
-        </ol>
-    </nav>
-    <div class="separator mb-5"></div>
+    <x-lk-breadcrumb :items="[
+        ['label' => __('Личный кабинет'), 'url' => route('lk')],
+        ['label' => __('Проекты'), 'url' => route('lk.projects.my')],
+        ['label' => __('Мои проекты')],
+    ]" separator-margin="mb-5" />
+    @include('layouts.app.flash')
 
     <div class="card">
         <div class="card-body">
@@ -70,7 +68,9 @@
                                         @endif
                                     </div>
                                     <div class="table-actions-mobile d-md-none dropdown">
-                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">⋯</button>
+                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-label="{{ __('Действия') }}" title="{{ __('Действия') }}">
+                                            {{ __('Действия') }}
+                                        </button>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             @if($project->canEdit())
                                                 <a class="dropdown-item" href="{{ route('lk.projects.edit', $project) }}">{{ __('Редактировать') }}</a>

@@ -7,19 +7,14 @@
 @endsection
 
 @section('content')
-    <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
-        <ol class="breadcrumb pt-0">
-            <li class="breadcrumb-item"><a href="{{ route('lk') }}">{{ __('Личный кабинет') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('lk.admin.roles.users') }}">{{ __('Управление ролями') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('lk.admin.roles.users') }}">{{ __('Пользователи') }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ $user->name }}</li>
-        </ol>
-    </nav>
-    <div class="separator mb-4"></div>
+    <x-lk-breadcrumb :items="[
+        ['label' => __('Личный кабинет'), 'url' => route('lk')],
+        ['label' => __('Управление ролями'), 'url' => route('lk.admin.roles.users')],
+        ['label' => __('Пользователи'), 'url' => route('lk.admin.roles.users')],
+        ['label' => $user->name],
+    ]" separator-margin="mb-4" />
 
-    @if(session('status'))
-        <div class="alert alert-success">{{ session('status') }}</div>
-    @endif
+    @include('layouts.app.flash')
     @if($errors->any())
         <div class="alert alert-danger">{{ $errors->first() }}</div>
     @endif

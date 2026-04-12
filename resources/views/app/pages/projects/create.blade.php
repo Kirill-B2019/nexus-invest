@@ -18,6 +18,8 @@
     .project-step-link.completed .project-step-num { background: var(--theme-color-1, #4B7B5B); color: #fff !important; }
     #app-container.body-theme-dark .project-step-link.completed .project-step-num { background: rgba(197,255,65,0.3); color: #C5FF41 !important; }
     .project-step-label { font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .project-advanced-toggle { cursor: pointer; user-select: none; }
+    .project-advanced-box { border: 1px dashed var(--separator-color, #e5e5e0); border-radius: 0.5rem; padding: 1rem; }
     @media (max-width: 767.98px) {
         .project-step-label { font-size: 0.75rem; }
         .nav-pills-project-steps { flex-direction: column; }
@@ -32,18 +34,12 @@
 @endsection
 
 @section('content')
-    <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
-        <ol class="breadcrumb pt-0">
-            <li class="breadcrumb-item"><a href="{{ route('lk') }}">{{ __('Личный кабинет') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('lk.projects.my') }}">{{ __('Проекты') }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ $project->exists ? __('Редактирование') : __('Новый проект') }}</li>
-        </ol>
-    </nav>
-    <div class="separator mb-5"></div>
-
-    @if(session('status'))
-        <div class="alert alert-success">{{ session('status') }}</div>
-    @endif
+    <x-lk-breadcrumb :items="[
+        ['label' => __('Личный кабинет'), 'url' => route('lk')],
+        ['label' => __('Проекты'), 'url' => route('lk.projects.my')],
+        ['label' => $project->exists ? __('Редактирование') : __('Новый проект')],
+    ]" separator-margin="mb-5" />
+    @include('layouts.app.flash')
 
     @php
         $isReadOnly = $project->exists && !$project->canEdit();
@@ -64,7 +60,8 @@
             @endif
             {{-- Пошаговая форма: индикатор шагов --}}
             <div class="project-form-stepper mb-4">
-                <p class="project-form-stepper-title text-muted small mb-3">{{ __('Пошаговая форма') }} · {{ __('Шаг') }} <span x-text="step"></span> {{ __('из') }} 5</p>
+                <p class="project-form-stepper-title text-muted small mb-2">{{ __('Шаг') }} <span x-text="step"></span> {{ __('из') }} 5</p>
+                <p class="text-muted small mb-3">{{ __('Обязательные поля отмечены звездочкой. Остальные данные можно заполнить позже и сохранить как черновик.') }}</p>
                 <ul class="nav nav-pills nav-pills-project-steps" role="tablist">
                     <li class="nav-item project-step-item">
                         <a class="nav-link project-step-link" :class="{ active: step === 1, completed: step > 1 }" href="#" @click.prevent="goToStep(1)">
@@ -75,7 +72,7 @@
                     <li class="nav-item project-step-item">
                         <a class="nav-link project-step-link" :class="{ active: step === 2, completed: step > 2 }" href="#" @click.prevent="goToStep(2)">
                             <span class="project-step-num" x-text="step > 2 ? '✓' : '2'"></span>
-                            <span class="project-step-label">{{ __('Контакты и документы') }}</span>
+                            <span class="project-step-label">{{ __('Контакты') }}</span>
                         </a>
                     </li>
                     <li class="nav-item project-step-item">
@@ -87,7 +84,7 @@
                     <li class="nav-item project-step-item">
                         <a class="nav-link project-step-link" :class="{ active: step === 4, completed: step > 4 }" href="#" @click.prevent="goToStep(4)">
                             <span class="project-step-num" x-text="step > 4 ? '✓' : '4'"></span>
-                            <span class="project-step-label">{{ __('Критерии, AI') }}</span>
+                            <span class="project-step-label">{{ __('Проверка') }}</span>
                         </a>
                     </li>
                     <li class="nav-item project-step-item">
@@ -109,6 +106,7 @@
                 {{-- Шаг 1 --}}
                 <div x-show="step === 1" x-cloak>
                     <h5 class="mb-3">{{ __('Основные сведения о проекте') }}</h5>
+                    <p class="text-muted small mb-3">{{ __('Сначала заполните обязательные поля и загрузите изображения. Детальные классификаторы можно открыть ниже.') }}</p>
                     <div class="form-group">
                         <label for="name">{{ __('Название проекта') }} <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="name" name="name" maxlength="200" x-model="form.name" :readonly="readOnly" required>
@@ -125,75 +123,87 @@
                         <textarea class="form-control" id="description" name="description" rows="5" maxlength="5000" x-model="form.description" :readonly="readOnly" required></textarea>
                         @error('description')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="region">{{ __('Регион') }}</label>
-                                <select class="form-control" id="region" name="region" x-model="form.region" :disabled="readOnly">
-                                    <option value="">{{ __('— Выберите —') }}</option>
-                                    @foreach($regions ?? [] as $item)
-                                        <option value="{{ $item->code }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="sector_direction">{{ __('Сектор направления') }}</label>
-                                <select class="form-control" id="sector_direction" name="sector_direction" x-model="form.sector_direction" :disabled="readOnly">
-                                    <option value="">{{ __('— Выберите —') }}</option>
-                                    @foreach($sector_directions ?? [] as $item)
-                                        <option value="{{ $item->code }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
+                    <div class="mb-3">
+                        <button type="button"
+                                class="btn btn-link p-0 project-advanced-toggle"
+                                @click="showAdvanced = !showAdvanced"
+                                :aria-expanded="showAdvanced ? 'true' : 'false'">
+                            <span x-show="!showAdvanced">{{ __('Показать дополнительные параметры') }}</span>
+                            <span x-show="showAdvanced">{{ __('Скрыть дополнительные параметры') }}</span>
+                        </button>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="industry">{{ __('Отрасль') }}</label>
-                                <select class="form-control" id="industry" name="industry" x-model="form.industry" :disabled="readOnly">
-                                    <option value="">{{ __('— Выберите —') }}</option>
-                                    @foreach($industries ?? [] as $item)
-                                        <option value="{{ $item->code }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
+
+                    <div class="project-advanced-box mb-3" x-show="showAdvanced" x-cloak>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="region">{{ __('Регион') }}</label>
+                                    <select class="form-control" id="region" name="region" x-model="form.region" :disabled="readOnly">
+                                        <option value="">{{ __('— Выберите —') }}</option>
+                                        @foreach($regions ?? [] as $item)
+                                            <option value="{{ $item->code }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="sector_direction">{{ __('Сектор направления') }}</label>
+                                    <select class="form-control" id="sector_direction" name="sector_direction" x-model="form.sector_direction" :disabled="readOnly">
+                                        <option value="">{{ __('— Выберите —') }}</option>
+                                        @foreach($sector_directions ?? [] as $item)
+                                            <option value="{{ $item->code }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="project_type">{{ __('Тип проекта') }}</label>
-                                <select class="form-control" id="project_type" name="project_type" x-model="form.project_type" :disabled="readOnly">
-                                    <option value="">{{ __('— Выберите —') }}</option>
-                                    @foreach($project_types ?? [] as $item)
-                                        <option value="{{ $item->code }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="industry">{{ __('Отрасль') }}</label>
+                                    <select class="form-control" id="industry" name="industry" x-model="form.industry" :disabled="readOnly">
+                                        <option value="">{{ __('— Выберите —') }}</option>
+                                        @foreach($industries ?? [] as $item)
+                                            <option value="{{ $item->code }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="project_type">{{ __('Тип проекта') }}</label>
+                                    <select class="form-control" id="project_type" name="project_type" x-model="form.project_type" :disabled="readOnly">
+                                        <option value="">{{ __('— Выберите —') }}</option>
+                                        @foreach($project_types ?? [] as $item)
+                                            <option value="{{ $item->code }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="category">{{ __('Категория') }}</label>
-                                <select class="form-control" id="category" name="category" x-model="form.category" :disabled="readOnly">
-                                    <option value="">{{ __('— Выберите —') }}</option>
-                                    @foreach($project_categories ?? [] as $item)
-                                        <option value="{{ $item->code }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="category">{{ __('Категория') }}</label>
+                                    <select class="form-control" id="category" name="category" x-model="form.category" :disabled="readOnly">
+                                        <option value="">{{ __('— Выберите —') }}</option>
+                                        @foreach($project_categories ?? [] as $item)
+                                            <option value="{{ $item->code }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="stage">{{ __('Стадия проекта') }}</label>
-                                <select class="form-control" id="stage" name="stage" x-model="form.stage" :disabled="readOnly">
-                                    <option value="">{{ __('— Выберите —') }}</option>
-                                    @foreach($project_statuses ?? [] as $item)
-                                        <option value="{{ $item->code }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="stage">{{ __('Стадия проекта') }}</label>
+                                    <select class="form-control" id="stage" name="stage" x-model="form.stage" :disabled="readOnly">
+                                        <option value="">{{ __('— Выберите —') }}</option>
+                                        @foreach($project_statuses ?? [] as $item)
+                                            <option value="{{ $item->code }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -254,7 +264,8 @@
 
                 {{-- Шаг 2: Контакты и документы --}}
                 <div x-show="step === 2" x-cloak>
-                    <h5 class="mb-3">{{ __('Контакты и документы') }}</h5>
+                    <h5 class="mb-2">{{ __('Контакты и документы') }}</h5>
+                    <p class="text-muted small mb-3">{{ __('Контакты нужны для обратной связи. Документы можно добавить сразу или вернуться к ним позже.') }}</p>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -377,11 +388,11 @@
 
                 {{-- Шаг 4: Критерии оценки, анализ AI --}}
                 <div x-show="step === 4" x-cloak>
-                    <h5 class="mb-3">{{ __('Критерии оценки, анализ AI') }}</h5>
-                    <p class="text-muted mb-4">{{ __('На данном этапе проект будет проанализирован системой на соответствие критериям оценки. Результаты AI-анализа отобразятся после заполнения и сохранения данных.') }}</p>
+                    <h5 class="mb-3">{{ __('Проверка готовности') }}</h5>
+                    <p class="text-muted mb-4">{{ __('Перед отправкой на модерацию проверьте ключевые данные проекта. Система покажет ошибки, если обязательные поля не заполнены.') }}</p>
                     <div class="card bg-light border-0">
                         <div class="card-body">
-                            <p class="mb-0 text-muted small">{{ __('Критерии оценки включают: полноту описания, реалистичность финансовых показателей, соответствие отраслевым стандартам и другие параметры.') }}</p>
+                            <p class="mb-0 text-muted small">{{ __('Минимальные требования: название, краткое и полное описание, а также изображения для обложки и карточки проекта.') }}</p>
                         </div>
                     </div>
                 </div>
@@ -403,7 +414,7 @@
 
                 <div class="d-flex flex-wrap lk-form-actions" x-show="!readOnly">
                     <button type="button" class="btn btn-outline-secondary" @click="resetFields()">{{ __('Отмена') }}</button>
-                    <button type="button" class="btn btn-outline-primary" @click="saveDraft()">{{ __('Черновик') }}</button>
+                    <button type="button" class="btn btn-outline-primary" @click="saveDraft()">{{ __('Сохранить') }}</button>
                     <button type="button" class="btn btn-primary" @click="nextStep()" x-show="step < 5">{{ __('Следующий шаг') }}</button>
                     @if($project->exists && $project->canSubmit())
                         <button type="button" class="btn btn-success" @click="submitForModeration()">{{ __('Отправить на модерацию') }}</button>
@@ -449,7 +460,7 @@
     </script>
     <script src="{{ asset('app/js/vendor/cropper.min.js') }}"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
-    <script src="{{ asset('app/js/project-form.js') }}"></script>
+    <script src="{{ asset('app/js/project-form.js') }}?v=1.0.1"></script>
     @if(!$isReadOnly)
     <script src="{{ asset('app/js/project-image-cropper.js') }}"></script>
     @endif

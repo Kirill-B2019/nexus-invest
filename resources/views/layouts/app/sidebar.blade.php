@@ -19,8 +19,8 @@
             <ul class="list-unstyled">
                 <li class="{{ $isLkSubMenuActive ? 'active' : '' }}">
                     <a href="#lk">
-                        <i class="iconsminds-shop-4"></i>
-                        <span>{{ __('Панели') }}</span>
+                        <i class="simple-icon-speedometer"></i>
+                        <span>{{ __('Дашборд') }}</span>
                     </a>
                 </li>
                 @if($hasInvestor)

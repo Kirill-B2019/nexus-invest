@@ -7,18 +7,19 @@
 @endsection
 
 @section('content')
-    <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
-        <ol class="breadcrumb pt-0">
-            <li class="breadcrumb-item"><a href="{{ route('lk') }}">{{ __('Личный кабинет') }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ __('Эксперт') }}</li>
-        </ol>
-    </nav>
-    <div class="separator mb-5"></div>
+    <x-lk-breadcrumb :items="[
+        ['label' => __('Личный кабинет'), 'url' => route('lk')],
+        ['label' => __('Эксперт')],
+    ]" separator-margin="mb-5" />
 
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">{{ __('Панель эксперта') }}</h5>
-            <p class="mb-0">{{ __('Здесь отображаются проекты на экспертизу, очередь проверок, формы оценки и отчёты.') }}</p>
+    <x-lk-placeholder-card
+        :title="__('Панель эксперта')"
+        :description="__('Здесь появятся очередь экспертизы, формы оценки и отчёты. Пока используйте уведомления и главную ЛК.')"
+    >
+        <div class="d-flex flex-wrap lk-form-actions">
+            <a href="{{ route('lk.notifications.index') }}" class="btn btn-primary btn-sm">{{ __('Уведомления') }}</a>
+            <a href="{{ route('lk') }}" class="btn btn-outline-primary btn-sm">{{ __('Главная ЛК') }}</a>
+            <a href="{{ route('profile.edit') }}" class="btn btn-outline-primary btn-sm">{{ __('Профиль') }}</a>
         </div>
-    </div>
+    </x-lk-placeholder-card>
 @endsection

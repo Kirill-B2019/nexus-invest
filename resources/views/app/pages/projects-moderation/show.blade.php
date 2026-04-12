@@ -7,15 +7,35 @@
 @endsection
 
 @section('content')
-    <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
-        <ol class="breadcrumb pt-0">
-            <li class="breadcrumb-item"><a href="{{ route('lk') }}">{{ __('Личный кабинет') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('lk.admin.settings.index') }}">{{ __('Настройки') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('lk.admin.projects.moderation.index') }}">{{ __('Модерация проектов') }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ $project->name ?: __('Проект') }}</li>
-        </ol>
-    </nav>
-    <div class="separator mb-5"></div>
+    <x-lk-breadcrumb :items="[
+        ['label' => __('Личный кабинет'), 'url' => route('lk')],
+        ['label' => __('Настройки'), 'url' => route('lk.admin.settings.index')],
+        ['label' => __('Модерация проектов'), 'url' => route('lk.admin.projects.moderation.index')],
+        ['label' => $project->name ?: __('Проект')],
+    ]" separator-margin="mb-5" />
+    @include('layouts.app.flash')
+
+    @if($project->status === 'moderation')
+    <div class="card mb-4 border-warning">
+        <div class="card-body">
+            <h6 class="mb-2">{{ __('Решение модератора') }}</h6>
+            <p class="text-muted small mb-3">{{ __('Сначала примите решение по проекту, затем при необходимости изучите подробные разделы ниже.') }}</p>
+            <form method="post" action="{{ route('lk.admin.projects.moderation.moderate', $project) }}">
+                @csrf
+                <div class="form-group">
+                    <label for="moderation_comment">{{ __('Комментарий (обязателен при отклонении)') }}</label>
+                    <textarea class="form-control" id="moderation_comment" name="moderation_comment" rows="3" maxlength="1000" placeholder="{{ __('Укажите причину отклонения для инициатора...') }}">{{ old('moderation_comment') }}</textarea>
+                    @error('moderation_comment')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
+                </div>
+                <div class="d-flex flex-wrap lk-form-actions">
+                    <button type="submit" name="action" value="approve" class="btn btn-success">{{ __('Одобрить') }}</button>
+                    <button type="submit" name="action" value="reject" class="btn btn-danger">{{ __('Отклонить') }}</button>
+                    <a href="{{ route('lk.admin.projects.moderation.index') }}" class="btn btn-outline-secondary">{{ __('Назад') }}</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    @endif
 
     <div class="card mb-4">
         <div class="card-body">
@@ -99,26 +119,7 @@
         </div>
     </div>
 
-    @if($project->status === 'moderation')
-    <div class="card">
-        <div class="card-body">
-            <h6 class="mb-3">{{ __('Решение модератора') }}</h6>
-            <form method="post" action="{{ route('lk.admin.projects.moderation.moderate', $project) }}">
-                @csrf
-                <div class="form-group">
-                    <label for="moderation_comment">{{ __('Комментарий (обязателен при отклонении)') }}</label>
-                    <textarea class="form-control" id="moderation_comment" name="moderation_comment" rows="3" maxlength="1000" placeholder="{{ __('Укажите причину отклонения для инициатора...') }}">{{ old('moderation_comment') }}</textarea>
-                    @error('moderation_comment')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
-                </div>
-                <div class="d-flex flex-wrap lk-form-actions">
-                    <button type="submit" name="action" value="approve" class="btn btn-success">{{ __('Одобрить') }}</button>
-                    <button type="submit" name="action" value="reject" class="btn btn-danger">{{ __('Отклонить') }}</button>
-                    <a href="{{ route('lk.admin.projects.moderation.index') }}" class="btn btn-outline-secondary">{{ __('Назад') }}</a>
-                </div>
-            </form>
-        </div>
-    </div>
-    @else
+    @if($project->status !== 'moderation')
     <div class="card">
         <div class="card-body">
             <p class="text-muted mb-0">{{ __('Проект уже рассмотрен.') }} <a href="{{ route('lk.admin.projects.moderation.index') }}">{{ __('К списку') }}</a></p>

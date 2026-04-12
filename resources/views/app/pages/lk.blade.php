@@ -7,17 +7,5 @@
 @endsection
 
 @section('content')
-    <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
-        <ol class="breadcrumb pt-0">
-            <li class="breadcrumb-item"><a href="{{ route('lk') }}">{{ __('Личный кабинет') }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ __('Главная') }}</li>
-        </ol>
-    </nav>
-    <div class="separator mb-5"></div>
-
-    <div class="card">
-        <div class="card-body">
-            <p class="mb-0">{{ __('Вы вошли в систему!') }}</p>
-        </div>
-    </div>
+    @include('app.partials.lk-home-dashboard')
 @endsection

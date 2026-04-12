@@ -7,23 +7,20 @@
 @endsection
 
 @section('content')
-    <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
-        <ol class="breadcrumb pt-0">
-            <li class="breadcrumb-item"><a href="{{ route('lk') }}">{{ __('Личный кабинет') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('lk.admin.settings.dictionaries.index') }}">{{ __('Управление') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('lk.admin.settings.dictionaries.index') }}">{{ __('Общие настройки') }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ __('Справочники') }}</li>
-        </ol>
-    </nav>
-    <div class="separator mb-4"></div>
-
-    @if(session('status'))
-        <div class="alert alert-success">{{ session('status') }}</div>
-    @endif
+    <x-lk-breadcrumb :items="[
+        ['label' => __('Личный кабинет'), 'url' => route('lk')],
+        ['label' => __('Управление'), 'url' => route('lk.admin.settings.dictionaries.index')],
+        ['label' => __('Общие настройки'), 'url' => route('lk.admin.settings.dictionaries.index')],
+        ['label' => __('Справочники')],
+    ]" separator-margin="mb-4" />
+    @include('layouts.app.flash')
 
     <div class="card mb-4">
         <div class="card-body">
-            <p class="text-muted mb-3">{{ __('Группы и справочники для системной классификации. Выберите справочник для редактирования элементов.') }}</p>
+            <div class="d-flex flex-wrap align-items-center justify-content-between lk-card-header-actions mb-3">
+                <p class="text-muted mb-0">{{ __('Группы и справочники для системной классификации. Выберите справочник для редактирования элементов.') }}</p>
+                <span class="badge badge-light">{{ __('Вариант UI: карточки + быстрые действия') }}</span>
+            </div>
             <form method="get" action="{{ route('lk.admin.settings.dictionaries.index') }}" class="mb-3" id="dictionaries-index-search-form">
                 <input type="hidden" name="sort" value="{{ $sortBy ?? 'sort_order' }}">
                 <input type="hidden" name="dir" value="{{ $sortDir ?? 'asc' }}">
@@ -37,7 +34,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="list-group position-absolute shadow-sm border bg-white" id="dictionaries-index-search-dropdown" style="display: none; z-index: 1050; max-height: 280px; overflow-y: auto; left: 0; right: 0; top: 100%; margin-top: 2px; min-width: 200px;"></div>
+                    <div class="list-group lk-dictionaries-search-dropdown position-absolute shadow-sm border" id="dictionaries-index-search-dropdown" style="display: none; z-index: 1050; max-height: 280px; overflow-y: auto; left: 0; right: 0; top: 100%; margin-top: 2px; min-width: 200px;"></div>
                 </div>
             </form>
             @if(!empty($searchQuery))
@@ -58,6 +55,13 @@
                 <a href="{{ $indexSortLink('name') }}" class="btn btn-outline-secondary btn-sm">{{ __('По названию') }}{{ $indexSortBy === 'name' ? ($indexSortDir === 'asc' ? ' ↑' : ' ↓') : '' }}</a>
                 <a href="{{ route('lk.admin.settings.dictionaries.group.create') }}" class="btn btn-outline-primary btn-sm ml-2">{{ __('Добавить группу') }}</a>
                 <a href="{{ route('lk.admin.settings.dictionaries.dictionary.create') }}" class="btn btn-primary btn-sm">{{ __('Добавить справочник') }}</a>
+            </div>
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mt-3 pt-3 border-top lk-dictionaries-density" id="dictionaries-index-density-wrap">
+                <span class="small text-muted mb-0">{{ __('Плотность таблиц в группах:') }}</span>
+                <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('Плотность таблиц') }}">
+                    <button type="button" class="btn btn-outline-secondary lk-density-btn" data-density="normal" aria-pressed="true">{{ __('Обычная') }}</button>
+                    <button type="button" class="btn btn-outline-secondary lk-density-btn" data-density="compact" aria-pressed="false">{{ __('Компактная') }}</button>
+                </div>
             </div>
         </div>
     </div>
@@ -83,7 +87,7 @@
                             </form>
                         </div>
                         <div class="table-actions-mobile d-md-none dropdown">
-                            <button type="button" class="btn btn-outline-secondary btn-sm lk-actions-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="{{ __('Действия') }}" title="{{ __('Действия') }}">⋯</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="{{ __('Действия') }}" title="{{ __('Действия') }}">{{ __('Действия') }}</button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="{{ route('lk.admin.settings.dictionaries.group.edit', $group) }}">{{ __('Изменить') }}</a>
                                 <form method="post" action="{{ route('lk.admin.settings.dictionaries.group.destroy', $group) }}" class="dropdown-item p-0" data-swal-confirm="{{ __('Удалить группу и все её справочники?') }}" data-swal-title="{{ __('Подтверждение') }}">
@@ -96,12 +100,12 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-hover table-mobile-stack mb-0">
+                    <table class="table table-hover table-mobile-stack dictionaries-admin-table mb-0">
                         <thead>
                             <tr>
                                 <th>{{ __('Справочник') }}</th>
                                 <th>{{ __('Код') }}</th>
-                                <th></th>
+                                <th class="actions-cell">{{ __('Действия') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -121,7 +125,7 @@
                                             </form>
                                         </div>
                                         <div class="table-actions-mobile d-md-none dropdown">
-                                            <button type="button" class="btn btn-outline-secondary btn-sm lk-actions-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="{{ __('Действия') }}" title="{{ __('Действия') }}">⋯</button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="{{ __('Действия') }}" title="{{ __('Действия') }}">{{ __('Действия') }}</button>
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <a class="dropdown-item" href="{{ route('lk.admin.settings.dictionaries.show', $dict) }}">{{ __('Открыть') }}</a>
                                                 <a class="dropdown-item" href="{{ route('lk.admin.settings.dictionaries.dictionary.edit', $dict) }}">{{ __('Изменить') }}</a>
@@ -208,6 +212,35 @@
             input.addEventListener('keydown', function(e) { if (e.key === 'Escape') { hideDropdown(); input.blur(); } });
         }
         document.addEventListener('click', function(e) { if (wrap && !wrap.contains(e.target)) hideDropdown(); });
+    })();
+    (function() {
+        var KEY = 'lk_dictionaries_index_compact';
+        var tables = document.querySelectorAll('table.dictionaries-admin-table');
+        var wrap = document.getElementById('dictionaries-index-density-wrap');
+        if (!tables.length || !wrap) return;
+        var btns = wrap.querySelectorAll('.lk-density-btn');
+        function setCompact(on) {
+            tables.forEach(function(t) {
+                t.classList.toggle('table-dictionaries-compact', on);
+                t.classList.toggle('table-sm', on);
+            });
+            btns.forEach(function(b) {
+                var isC = b.getAttribute('data-density') === 'compact';
+                var sel = on === isC;
+                b.classList.toggle('btn-primary', sel);
+                b.classList.toggle('btn-outline-secondary', !sel);
+                b.setAttribute('aria-pressed', sel ? 'true' : 'false');
+            });
+            try { localStorage.setItem(KEY, on ? '1' : '0'); } catch (e) {}
+        }
+        var stored = null;
+        try { stored = localStorage.getItem(KEY); } catch (e) {}
+        setCompact(stored === '1');
+        btns.forEach(function(b) {
+            b.addEventListener('click', function() {
+                setCompact(b.getAttribute('data-density') === 'compact');
+            });
+        });
     })();
     </script>
     @endpush

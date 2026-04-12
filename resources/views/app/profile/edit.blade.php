@@ -7,20 +7,11 @@
 @endsection
 
 @section('content')
-    <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
-        <ol class="breadcrumb pt-0">
-            <li class="breadcrumb-item"><a href="{{ route('lk') }}">{{ __('Личный кабинет') }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ __('Профиль') }}</li>
-        </ol>
-    </nav>
-    <div class="separator mb-4"></div>
-
-    @if(session('status') === 'profile-updated')
-        <div class="alert alert-success">{{ __('Данные профиля сохранены.') }}</div>
-    @endif
-    @if(session('status') === 'password-updated')
-        <div class="alert alert-success">{{ __('Пароль изменён.') }}</div>
-    @endif
+    <x-lk-breadcrumb :items="[
+        ['label' => __('Личный кабинет'), 'url' => route('lk')],
+        ['label' => __('Профиль')],
+    ]" separator-margin="mb-4" />
+    @include('layouts.app.flash')
 
     @php
         $profileAvatarUrl = Auth::user()->profile_photo_url ?? asset('assets/imgs/template/logo-only.svg');

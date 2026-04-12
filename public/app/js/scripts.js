@@ -21,6 +21,15 @@ function setCookie(name, value, days) {
   document.cookie = name + '=' + encodeURIComponent(value) + expires + '; path=/; SameSite=Lax';
 }
 
+/** Имена файлов темы как в Laravel (layouts.app.app): только greenlime .css без .min — иначе loadStyle подгружает второй CSS. */
+function normalizeAppTheme(t) {
+  if (!t || typeof t !== 'string') return 'dore.dark.greenlime.css';
+  var s = t.replace(/\.min\.css$/i, '.css').toLowerCase();
+  if (s.indexOf('light') !== -1 && s.indexOf('greenlime') !== -1) return 'dore.light.greenlime.css';
+  if (s.indexOf('dark') !== -1 && s.indexOf('greenlime') !== -1) return 'dore.dark.greenlime.css';
+  return s.indexOf('light') !== -1 ? 'dore.light.greenlime.css' : 'dore.dark.greenlime.css';
+}
+
 /* 01. Css Loading Util — не добавляем второй link, если тема уже есть в документе */
 function loadStyle(href, callback) {
   var themeFile = href ? href.split("/").pop() : "";
@@ -137,6 +146,13 @@ function loadStyle(href, callback) {
     setCookie("app_theme", theme, 365);
   }
 
+  var themeBeforeNormalize = theme;
+  theme = normalizeAppTheme(theme);
+  if (theme !== themeBeforeNormalize) {
+    setCookie("app_theme", theme, 365);
+    if (typeof Storage !== "undefined") localStorage.setItem("dore-theme-color", theme);
+  }
+
   if (typeof Storage !== "undefined") {
     if (localStorage.getItem("dore-direction")) {
       direction = localStorage.getItem("dore-direction");
@@ -197,11 +213,7 @@ function loadStyle(href, callback) {
 
   $("#switchDark").on("change", function (event) {
     var mode = $(event.currentTarget)[0].checked ? "dark" : "light";
-    if (mode == "dark") {
-      theme = theme.replace("light", "dark");
-    } else if (mode == "light") {
-      theme = theme.replace("dark", "light");
-    }
+    theme = mode === "dark" ? "dore.dark.greenlime.css" : "dore.light.greenlime.css";
     setCookie("app_theme", theme, 365);
     if (typeof Storage !== "undefined") localStorage.setItem("dore-theme-color", theme);
     window.location.reload();

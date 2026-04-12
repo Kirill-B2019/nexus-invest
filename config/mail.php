@@ -115,4 +115,11 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Support (ЛК: ссылка «Поддержка» в топбаре — mailto:)
+    |--------------------------------------------------------------------------
+    */
+    'support_address' => env('MAIL_SUPPORT_ADDRESS', env('MAIL_FROM_ADDRESS', 'hello@example.com')),
+
 ];

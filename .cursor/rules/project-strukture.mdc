@@ -1,21 +1,37 @@
+---
+description: Структура каталогов resources/views (публичная и закрытая части)
+globs: resources/views/**/*.blade.php
+alwaysApply: false
+---
 
-#Структура view проекта
+# Структура view проекта
 - раскладывать страницы согласно структуре папок и шаблонов публичной и закрытой части
 - если не указано какой шаблон использовать, уточнить публичная часть или закрытая (пользовательская)
+- каталог `resources/views/app-sections/` **не используется** (страницы ЛК только под `app/pages/` и `app/partials/`)
 
 resources/views/
 ├── welcome.blade.php          # Главная публичная (/)
-├── public-sections/			# Для страниц публичных (section)
-│   ├── ...
-├── app-sections/
-│   ├── lk.blade.php 				#страницы закрытой части
+├── public-sections/           # Публичные секции (features, compliance, documentation и т.д.)
+├── app/pages/                 # Страницы личного кабинета (закрытая часть)
+│   ├── lk.blade.php
+│   ├── dashboard-*.blade.php
+│   ├── messenger.blade.php, messenger-no-access.blade.php
+│   ├── admin-settings/
+│   ├── roles-admin/
+│   ├── dictionaries-admin/
+│   ├── notifications/, notifications-admin/
+│   ├── projects/, projects-moderation/
+│   └── ...
+├── app/profile/               # Профиль пользователя (ЛК)
+├── app/partials/              # Частичные шаблоны ЛК (например lk-home-dashboard)
 ├── layouts/
+│   ├── app.blade.php             # Legacy: Breeze dashboard (Vite, navigation), не основной layout ЛК
 │   ├── guest/
-│   │   |── guest.blade.php       # Layout для гостей публичная (публичный шаблон)
+│   │   ├── guest.blade.php       # Layout для гостей публичная (публичный шаблон)
 │   │   ├── header.blade.php
 │   │   ├── footer.blade.php
-│   │   └── menu.blade.php
-│   │   └── mobile-menu.blade.php #мобильное меню
+│   │   ├── menu.blade.php
+│   │   └── mobile-menu.blade.php # мобильное меню
 │   ├── auth/                     # Логин, регистрация, сброс пароля (гости)
 │   │   ├── login.blade.php
 │   │   ├── register.blade.php
@@ -24,17 +40,15 @@ resources/views/
 │   │   ├── verify-email.blade.php
 │   │   └── confirm-password.blade.php
 │   ├── app/
-│   │   ├── app.blade.php 			# Layout закрытый - внутренний (непубличный шаблон)
+│   │   ├── app.blade.php         # Основной layout ЛК (@extends('layouts.app.app'))
+│   │   ├── flash.blade.php       # Единые алерты flash (см. blade-views.mdc)
 │   │   ├── header.blade.php
 │   │   ├── footer.blade.php
-│   │   ├── topbar.blade.php   # Шапка ЛК
-│   │   ├── sidebar.blade.php  # Боковое меню
-│   │   └── mobile-menu.blade.php #мобильное меню
-└── components/               # Общие компоненты для обоих шаблонов(модалки, формы, кнопки и т.д.)
-│   ├── app/	 			# Компоненты закрытого шаблона
-│   ├── guest/ 			# Компоненты публичного шаблона
-│   │   ├── faq-accordion.blade.php
-│   │   ├── cookie-banner.blade.php
-│   │   ├── contact-form-modal.blade.php
-#компоненты для 2-х шаблонов
+│   │   ├── topbar.blade.php      # Шапка ЛК
+│   │   ├── sidebar.blade.php     # Боковое меню
+│   │   └── mobile-menu.blade.php # заглушка (навигация через sidebar)
 │   └── ...
+└── components/                   # Blade-компоненты (lk-breadcrumb, lk-placeholder-card, app/, guest/)
+    ├── app/
+    ├── guest/
+    └── ...

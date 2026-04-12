@@ -15,6 +15,46 @@
   --app-color-surface: #212220;
 }
 
+/* Выпадающий список автодополнения поиска справочников (не bg-white в тёмной теме) */
+#app-container .lk-dictionaries-search-dropdown {
+  background-color: #fff;
+  border-color: rgba(0, 0, 0, 0.125) !important;
+}
+#app-container.theme-dark .lk-dictionaries-search-dropdown {
+  background-color: var(--app-color-surface, #2a2c2a) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #e8e8e8;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.45) !important;
+}
+#app-container.theme-dark .lk-dictionaries-search-dropdown .list-group-item,
+#app-container.theme-dark .lk-dictionaries-search-dropdown .list-group-item-action {
+  background-color: transparent !important;
+  color: #e8e8e8 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+#app-container.theme-dark .lk-dictionaries-search-dropdown .list-group-item-action:hover,
+#app-container.theme-dark .lk-dictionaries-search-dropdown .list-group-item-action:focus {
+  background-color: rgba(197, 255, 65, 0.12) !important;
+  color: #fff !important;
+}
+#app-container.theme-dark .lk-dictionaries-search-dropdown .text-muted {
+  color: #a0a0a0 !important;
+}
+#app-container.theme-dark .lk-dictionaries-search-dropdown .list-group-item-action:hover .text-muted {
+  color: #c8c8c8 !important;
+}
+#app-container.theme-dark .lk-dictionaries-search-dropdown::-webkit-scrollbar {
+  width: 8px;
+}
+#app-container.theme-dark .lk-dictionaries-search-dropdown::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+}
+#app-container.theme-dark .lk-dictionaries-search-dropdown::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 4px;
+}
+
 /* ========== ЛК: минимальные переопределения поверх Dore (Dashboard.Default) ========== */
 #app-container {
   position: relative;
@@ -127,6 +167,63 @@
     width: 100% !important;
     max-width: 100% !important;
   }
+}
+
+/* Справочники: компактные строки и прокрутка длинных таблиц (элементы справочника) */
+#app-container .table.table-dictionaries-compact thead th {
+  padding: 0.4rem 0.5rem;
+  font-size: 0.8125rem;
+  vertical-align: middle;
+}
+#app-container .table.table-dictionaries-compact tbody td {
+  padding: 0.35rem 0.5rem;
+  font-size: 0.8125rem;
+  vertical-align: middle;
+}
+#app-container .table.table-dictionaries-compact .btn-sm {
+  padding: 0.2rem 0.45rem;
+  font-size: 0.75rem;
+}
+#app-container .dictionaries-table-responsive--scroll {
+  max-height: min(70vh, 560px);
+  overflow-y: auto;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+#app-container .dictionaries-table-responsive--scroll table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--app-color-surface, #f8f9fa);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+}
+
+/* Страница «Настройки»: сетка ссылок-разделов (явные поля — не зависят только от flex-gap) */
+#app-container .lk-admin-settings-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  /* компенсация полей кнопок, чтобы блок визуально совпадал с текстом карточки */
+  margin: -0.35rem -0.4rem;
+  row-gap: 0;
+  column-gap: 0;
+}
+#app-container .lk-admin-settings-actions > .btn {
+  flex: 0 1 auto;
+  margin: 0.35rem 0.4rem !important;
+  min-height: 2.25rem;
+  padding: 0.42rem 1rem;
+  border-radius: 50rem;
+  line-height: 1.35;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+#app-container .lk-admin-settings-actions > .btn:focus {
+  box-shadow: 0 0 0 0.2rem rgba(197, 255, 65, 0.35);
+}
+#app-container.theme-light .lk-admin-settings-actions > .btn:focus {
+  box-shadow: 0 0 0 0.2rem rgba(75, 123, 91, 0.35);
 }
 
 /* ========== Мобильная адаптация закрытой части (ЛК), формат как Ui.Components.Tables ========== */
@@ -344,12 +441,25 @@
   #app-container .table-mobile-stack tbody td[colspan]::before {
     display: none;
   }
-  /* Кнопка «Действия» (⋯) и dropdown в таблицах — компактно, не выходить за экран */
-  #app-container .table-actions-mobile .lk-actions-trigger {
-    min-width: 2rem;
-    padding: 0.25rem 0.5rem;
-    font-size: 1rem;
+  /* Кнопка «Действия» и dropdown в таблицах — компактно, не выходить за экран */
+  #app-container .table-actions-mobile .lk-actions-trigger,
+  #app-container .table-actions-mobile .btn.dropdown-toggle {
+    min-width: auto;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.8125rem;
     line-height: 1.2;
+    max-width: 100%;
+  }
+  #app-container .table-mobile-stack.table-dictionaries-compact tbody tr {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  #app-container .table-mobile-stack.table-dictionaries-compact tbody td {
+    padding: 0.2rem 0;
+  }
+  #app-container .table-mobile-stack.table-dictionaries-compact tbody td[data-label]::before {
+    font-size: 0.65rem;
+    margin-bottom: 0.08rem;
   }
   #app-container .table-actions-mobile .dropdown-menu {
     min-width: 10rem;
@@ -581,6 +691,30 @@
   vertical-align: middle !important;
 }
 
+/*
+ * Bootstrap .table-hover задаёт tr:hover { color: #212529 } — на тёмной теме Dore текст «пропадает»
+ * поверх тёмного фона. Сохраняем читаемый цвет и ссылки при наведении.
+ */
+#app-container.theme-dark main .table.table-hover tbody tr:hover,
+#app-container.theme-dark main .table.table-hover tbody tr:hover td,
+#app-container.theme-dark main .table.table-hover tbody tr:hover th {
+  color: #e8e8e8 !important;
+}
+#app-container.theme-dark main .table.table-hover tbody tr:hover td.text-muted,
+#app-container.theme-dark main .table.table-hover tbody tr:hover th.text-muted,
+#app-container.theme-dark main .table.table-hover tbody tr:hover .text-muted {
+  color: #b0b0b0 !important;
+}
+#app-container.theme-dark main .table.table-hover tbody tr:hover td a:not(.btn),
+#app-container.theme-dark main .table.table-hover tbody tr:hover th a:not(.btn) {
+  color: var(--app-color-primary, #c5ff41) !important;
+}
+#app-container.theme-dark main .table.table-hover tbody tr:hover td a:not(.btn):hover,
+#app-container.theme-dark main .table.table-hover tbody tr:hover th a:not(.btn):hover {
+  color: #dfff7a !important;
+  text-decoration: underline;
+}
+
 /* Переключатель в стиле внутренней темы */
 .app-switch {
   display: inline-flex;
@@ -678,15 +812,19 @@
   align-items: center;
 }
 /* SweetAlert2 — тема закрытой части (ЛК) */
-.swal2-popup.swal-lk-theme {
-  background: var(--app-color-dark);
-  color: var(--app-color-surface);
+/* Тёмная тема: явные цвета + !important — стили Swal из CDN идут после app.css и иначе дают тёмный текст на тёмном фоне */
+.swal2-popup.swal-lk-theme:not(.swal-lk-theme-light) {
+  background: #191919 !important;
+  color: #eceef2 !important;
 }
-.swal-lk-theme .swal2-title {
-  color: var(--app-color-surface);
+.swal2-popup.swal-lk-theme:not(.swal-lk-theme-light) .swal2-title {
+  color: #eceef2 !important;
 }
-.swal-lk-theme .swal2-html-container {
-  color: var(--app-color-surface);
+.swal2-popup.swal-lk-theme:not(.swal-lk-theme-light) .swal2-html-container {
+  color: #eceef2 !important;
+}
+.swal2-popup.swal-lk-theme:not(.swal-lk-theme-light) .swal2-content {
+  color: #eceef2 !important;
 }
 .swal-lk-theme .swal2-styled.swal2-confirm,
 .swal-lk-theme .swal-lk-btn-confirm {
@@ -709,4 +847,105 @@
 }
 .swal-lk-theme .swal2-timer-progress-bar {
   background: var(--app-color-primary);
+}
+
+/* SweetAlert2 — иконки в палитре темы (тёмная), без дефолтных «кислотных» цветов Swal */
+.swal2-popup.swal-lk-theme:not(.swal-lk-theme-light) .swal2-icon.swal2-error {
+  border-color: #f87171 !important;
+  color: #f87171 !important;
+}
+.swal2-popup.swal-lk-theme:not(.swal-lk-theme-light) .swal2-error [class^='swal2-x-mark-line'] {
+  background-color: #f87171 !important;
+}
+.swal2-popup.swal-lk-theme:not(.swal-lk-theme-light) .swal2-icon.swal2-warning {
+  border-color: #fbbf24 !important;
+  color: #fbbf24 !important;
+}
+.swal2-popup.swal-lk-theme:not(.swal-lk-theme-light) .swal2-icon.swal2-info {
+  border-color: #7dd3fc !important;
+  color: #7dd3fc !important;
+}
+.swal2-popup.swal-lk-theme:not(.swal-lk-theme-light) .swal2-icon.swal2-question {
+  border-color: var(--app-color-primary) !important;
+  color: var(--app-color-primary) !important;
+}
+.swal2-popup.swal-lk-theme:not(.swal-lk-theme-light) .swal2-success .swal2-success-ring {
+  border-color: rgba(197, 255, 65, 0.35) !important;
+}
+.swal2-popup.swal-lk-theme:not(.swal-lk-theme-light) .swal2-success [class^='swal2-success-line'] {
+  background-color: var(--app-color-primary) !important;
+}
+
+/* SweetAlert2 — светлая тема ЛК (попап рендерится в body; классы на .swal2-popup) */
+.swal2-popup.swal-lk-theme.swal-lk-theme-light {
+  background: #ffffff !important;
+  color: #1f2937 !important;
+  border: 1px solid #e5e5e0;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-title {
+  color: #1f2937 !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-html-container {
+  color: #1f2937 !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-styled.swal2-confirm,
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal-lk-btn-confirm {
+  background-color: #4b7b5b !important;
+  color: #ffffff !important;
+  border-color: #4b7b5b !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-styled.swal2-confirm:hover,
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal-lk-btn-confirm:hover {
+  background-color: #3d6349 !important;
+  border-color: #3d6349 !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-styled.swal2-cancel {
+  background-color: transparent !important;
+  color: #1f2937 !important;
+  border: 1px solid #e5e5e0 !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-styled.swal2-cancel:hover {
+  background-color: #e8f0ea !important;
+  border-color: #4b7b5b !important;
+  color: #3d6349 !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-timer-progress-bar {
+  background: #4b7b5b !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-icon.swal2-success {
+  border-color: #4b7b5b !important;
+  color: #4b7b5b !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-success [class^='swal2-success-line'] {
+  background-color: #4b7b5b !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-success .swal2-success-ring {
+  border-color: rgba(75, 123, 91, 0.35) !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-icon.swal2-error {
+  border-color: #b91c1c !important;
+  color: #b91c1c !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-error [class^='swal2-x-mark-line'] {
+  background-color: #b91c1c !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-icon.swal2-warning {
+  border-color: #b45309 !important;
+  color: #b45309 !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-warning {
+  border-color: #b45309 !important;
+  color: #b45309 !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-icon.swal2-info {
+  border-color: #1d4ed8 !important;
+  color: #1d4ed8 !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-info {
+  border-color: #1d4ed8 !important;
+  color: #1d4ed8 !important;
+}
+.swal2-popup.swal-lk-theme.swal-lk-theme-light .swal2-icon.swal2-question {
+  border-color: #4b7b5b !important;
+  color: #4b7b5b !important;
 }

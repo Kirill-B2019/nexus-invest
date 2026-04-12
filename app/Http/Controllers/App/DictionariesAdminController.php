@@ -6,180 +6,53 @@ use App\Http\Controllers\Controller;
 use App\Models\RefDictionary;
 use App\Models\RefDictionaryGroup;
 use App\Models\RefDictionaryItem;
+use App\Services\DictionaryAdminService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 /**
- * | KB 2026-03-07 Управление справочниками: группы, справочники, элементы (доступ по разрешению manage-dictionaries).
+ * Управление справочниками: группы, справочники, элементы (доступ по разрешению manage-dictionaries).
+ * Бизнес-логика — {@see DictionaryAdminService}.
  */
 class DictionariesAdminController extends Controller
 {
-    /**
-     * Список групп и справочников (поиск %like%, сортировка групп).
-     */
+    public function __construct(
+        private readonly DictionaryAdminService $dictionaryAdmin
+    ) {}
+
     public function index(Request $request): View
     {
-        $query = RefDictionaryGroup::with('dictionaries');
-
-        $q = $request->input('q', '');
-        if ($q !== '') {
-            $search = '%' . str_replace(['%', '_'], ['\\%', '\\_'], $q) . '%';
-            $query->where(function ($builder) use ($search) {
-                $builder->where('name', 'like', $search)
-                    ->orWhere('code', 'like', $search)
-                    ->orWhere('description', 'like', $search)
-                    ->orWhereHas('dictionaries', function ($d) use ($search) {
-                        $d->where('name', 'like', $search)->orWhere('code', 'like', $search);
-                    });
-            });
-        }
-
-        $sortBy = $request->input('sort', 'sort_order');
-        $sortDir = strtolower($request->input('dir', 'asc')) === 'desc' ? 'desc' : 'asc';
-        if (! in_array($sortBy, ['sort_order', 'name', 'code'], true)) {
-            $sortBy = 'sort_order';
-        }
-        $query->orderBy($sortBy, $sortDir)->orderBy('id');
-
-        $groups = $query->get();
-
-        if ($q !== '') {
-            $qLower = mb_strtolower($q);
-            foreach ($groups as $group) {
-                $group->setRelation('dictionaries', $group->dictionaries->filter(function ($d) use ($qLower) {
-                    return mb_strpos(mb_strtolower($d->name), $qLower) !== false
-                        || mb_strpos(mb_strtolower($d->code), $qLower) !== false;
-                })->values());
-            }
-        }
-
-        return view('app.pages.dictionaries-admin.index', [
-            'groups' => $groups,
-            'searchQuery' => $q,
-            'sortBy' => $sortBy,
-            'sortDir' => $sortDir,
-        ]);
+        return view('app.pages.dictionaries-admin.index', $this->dictionaryAdmin->buildIndexData($request));
     }
 
-    /**
-     * Поиск групп и справочников для интерактивного выпадающего списка на главной (JSON).
-     */
     public function searchIndex(Request $request): JsonResponse
     {
         $q = $request->input('q', '');
-        $q = mb_substr(trim($q), 0, 200);
-        if ($q === '') {
-            return response()->json(['items' => []]);
-        }
-        $search = '%' . str_replace(['%', '_'], ['\\%', '\\_'], $q) . '%';
-        $dictionaries = RefDictionary::with('group')
-            ->where(function ($builder) use ($search) {
-                $builder->where('name', 'like', $search)
-                    ->orWhere('code', 'like', $search)
-                    ->orWhereHas('group', function ($g) use ($search) {
-                        $g->where('name', 'like', $search)->orWhere('code', 'like', $search);
-                    });
-            })
-            ->orderBy('name')
-            ->limit(20)
-            ->get();
 
-        $result = $dictionaries->map(function (RefDictionary $d) {
-            return [
-                'name' => $d->name,
-                'code' => $d->code,
-                'group_name' => $d->group ? $d->group->name : '',
-                'url' => route('lk.admin.settings.dictionaries.show', $d),
-            ];
-        });
-
-        return response()->json(['items' => $result]);
+        return response()->json(['items' => $this->dictionaryAdmin->searchDictionariesForDropdown($q)]);
     }
 
-    /**
-     * Элементы выбранного справочника (поиск %like%, сортировка по колонкам).
-     */
     public function show(Request $request, RefDictionary $dictionary): View
     {
-        $dictionary->load('group');
-        $query = $dictionary->items();
-
-        $q = $request->input('q', '');
-        if ($q !== '') {
-            $search = '%' . str_replace(['%', '_'], ['\\%', '\\_'], $q) . '%';
-            $query->where(function ($builder) use ($search) {
-                $builder->where('code', 'like', $search)
-                    ->orWhere('name', 'like', $search)
-                    ->orWhere('description', 'like', $search)
-                    ->orWhere('item_type', 'like', $search)
-                    ->orWhere('country_code', 'like', $search)
-                    ->orWhere('map_code', 'like', $search);
-            });
-        }
-
-        $sortBy = $request->input('sort', 'sort_order');
-        $sortDir = strtolower($request->input('dir', 'asc')) === 'desc' ? 'desc' : 'asc';
-        $allowedSort = ['code', 'name', 'sort_order', 'is_active', 'is_ru', 'item_type', 'country_code', 'map_code'];
-        if (! in_array($sortBy, $allowedSort, true)) {
-            $sortBy = 'sort_order';
-        }
-        $query->orderBy($sortBy, $sortDir)->orderBy('id');
-
-        $items = $query->get();
+        $data = $this->dictionaryAdmin->buildShowData($dictionary, $request);
 
         return view('app.pages.dictionaries-admin.items', [
             'dictionary' => $dictionary,
-            'items' => $items,
-            'searchQuery' => $q,
-            'sortBy' => $sortBy,
-            'sortDir' => $sortDir,
+            'items' => $data['items'],
+            'searchQuery' => $data['searchQuery'],
+            'sortBy' => $data['sortBy'],
+            'sortDir' => $data['sortDir'],
         ]);
     }
 
-    /**
-     * Поиск элементов справочника для интерактивного выпадающего списка (JSON).
-     */
     public function searchItems(Request $request, RefDictionary $dictionary): JsonResponse
     {
         $q = $request->input('q', '');
-        $q = mb_substr(trim($q), 0, 200);
-        if ($q === '') {
-            return response()->json(['items' => []]);
-        }
-        $search = '%' . str_replace(['%', '_'], ['\\%', '\\_'], $q) . '%';
-        $items = $dictionary->items()
-            ->where(function ($builder) use ($search) {
-                $builder->where('code', 'like', $search)
-                    ->orWhere('name', 'like', $search)
-                    ->orWhere('description', 'like', $search)
-                    ->orWhere('item_type', 'like', $search)
-                    ->orWhere('country_code', 'like', $search)
-                    ->orWhere('map_code', 'like', $search);
-            })
-            ->orderBy('name')
-            ->limit(20)
-            ->get(['id', 'code', 'name']);
 
-        $dictId = (int) $dictionary->id;
-        $result = $items->map(function ($item) use ($dictId) {
-            $itemId = (int) ($item->id ?? 0);
-            $editUrl = $itemId > 0
-                ? url('/lk/admin/settings/dictionaries/' . $dictId . '/items/' . $itemId . '/edit')
-                : '#';
-            return [
-                'id' => $item->id,
-                'code' => $item->code,
-                'name' => $item->name,
-                'edit_url' => $editUrl,
-            ];
-        });
-
-        return response()->json(['items' => $result]);
+        return response()->json(['items' => $this->dictionaryAdmin->searchItemsForDropdown($dictionary, $q)]);
     }
-
-    // --- Группы ---
 
     public function createGroup(): View
     {
@@ -194,13 +67,11 @@ class DictionariesAdminController extends Controller
             'description' => 'nullable|string|max:2000',
             'sort_order' => 'nullable|integer|min:0',
         ]);
-        $data['sort_order'] = (int) ($data['sort_order'] ?? 0);
-
-        RefDictionaryGroup::create($data);
+        $group = $this->dictionaryAdmin->createGroup($data);
 
         return redirect()
             ->route('lk.admin.settings.dictionaries.index')
-            ->with('status', __('Группа «:name» создана.', ['name' => $data['name']]));
+            ->with('status', __('Группа «:name» создана.', ['name' => $group->name]));
     }
 
     public function editGroup(RefDictionaryGroup $group): View
@@ -211,14 +82,12 @@ class DictionariesAdminController extends Controller
     public function updateGroup(Request $request, RefDictionaryGroup $group): RedirectResponse
     {
         $data = $request->validate([
-            'code' => 'required|string|max:50|regex:/^[a-z0-9_-]+$/|unique:ref_dictionary_groups,code,' . $group->id,
+            'code' => 'required|string|max:50|regex:/^[a-z0-9_-]+$/|unique:ref_dictionary_groups,code,'.$group->id,
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:2000',
             'sort_order' => 'nullable|integer|min:0',
         ]);
-        $data['sort_order'] = (int) ($data['sort_order'] ?? 0);
-
-        $group->update($data);
+        $this->dictionaryAdmin->updateGroup($group, $data);
 
         return redirect()
             ->route('lk.admin.settings.dictionaries.index')
@@ -234,8 +103,6 @@ class DictionariesAdminController extends Controller
             ->route('lk.admin.settings.dictionaries.index')
             ->with('status', __('Группа «:name» удалена.', ['name' => $name]));
     }
-
-    // --- Справочники ---
 
     public function createDictionary(Request $request): View
     {
@@ -261,20 +128,16 @@ class DictionariesAdminController extends Controller
             'description' => 'nullable|string|max:2000',
             'sort_order' => 'nullable|integer|min:0',
         ]);
-        $data['sort_order'] = (int) ($data['sort_order'] ?? 0);
 
-        $exists = RefDictionary::where('ref_dictionary_group_id', $data['ref_dictionary_group_id'])
-            ->where('code', $data['code'])
-            ->exists();
-        if ($exists) {
+        if ($this->dictionaryAdmin->dictionaryCodeExistsInGroup((int) $data['ref_dictionary_group_id'], $data['code'])) {
             return back()->withErrors(['code' => __('В этой группе уже есть справочник с таким кодом.')])->withInput();
         }
 
-        RefDictionary::create($data);
+        $dict = $this->dictionaryAdmin->createDictionary($data);
 
         return redirect()
             ->route('lk.admin.settings.dictionaries.index')
-            ->with('status', __('Справочник «:name» создан.', ['name' => $data['name']]));
+            ->with('status', __('Справочник «:name» создан.', ['name' => $dict->name]));
     }
 
     public function editDictionary(RefDictionary $dictionary): View
@@ -298,17 +161,12 @@ class DictionariesAdminController extends Controller
             'description' => 'nullable|string|max:2000',
             'sort_order' => 'nullable|integer|min:0',
         ]);
-        $data['sort_order'] = (int) ($data['sort_order'] ?? 0);
 
-        $exists = RefDictionary::where('ref_dictionary_group_id', $data['ref_dictionary_group_id'])
-            ->where('code', $data['code'])
-            ->where('id', '!=', $dictionary->id)
-            ->exists();
-        if ($exists) {
+        if ($this->dictionaryAdmin->dictionaryCodeExistsInGroup((int) $data['ref_dictionary_group_id'], $data['code'], (int) $dictionary->id)) {
             return back()->withErrors(['code' => __('В этой группе уже есть справочник с таким кодом.')])->withInput();
         }
 
-        $dictionary->update($data);
+        $this->dictionaryAdmin->updateDictionary($dictionary, $data);
 
         return redirect()
             ->route('lk.admin.settings.dictionaries.index')
@@ -324,8 +182,6 @@ class DictionariesAdminController extends Controller
             ->route('lk.admin.settings.dictionaries.index')
             ->with('status', __('Справочник «:name» удалён.', ['name' => $name]));
     }
-
-    // --- Элементы справочника ---
 
     public function createItem(RefDictionary $dictionary): View
     {
@@ -353,23 +209,12 @@ class DictionariesAdminController extends Controller
             $rules['document_url'] = 'nullable|url|max:500';
         }
         $data = $request->validate($rules);
-        $data['ref_dictionary_id'] = $dictionary->id;
-        $data['sort_order'] = (int) ($data['sort_order'] ?? 0);
-        $data['is_active'] = $request->boolean('is_active', true);
-        $data['item_type'] = $request->input('item_type') ?: null;
-        $data['country_code'] = $request->input('country_code') ?: null;
-        $data['map_code'] = $request->input('map_code') ?: null;
-        if ($dictionary->code === 'regulatory_documents') {
-            $data['document_url'] = $request->input('document_url') ?: null;
-            $data['is_ru'] = $request->boolean('is_ru', false);
-        }
 
-        $exists = RefDictionaryItem::where('ref_dictionary_id', $dictionary->id)->where('code', $data['code'])->exists();
-        if ($exists) {
+        if ($this->dictionaryAdmin->itemCodeExistsInDictionary((int) $dictionary->id, $data['code'])) {
             return back()->withErrors(['code' => __('В этом справочнике уже есть элемент с таким кодом.')])->withInput();
         }
 
-        RefDictionaryItem::create($data);
+        $this->dictionaryAdmin->createItem($dictionary, $data, $request);
 
         return redirect()
             ->route('lk.admin.settings.dictionaries.show', $dictionary)
@@ -409,25 +254,12 @@ class DictionariesAdminController extends Controller
             $rules['document_url'] = 'nullable|url|max:500';
         }
         $data = $request->validate($rules);
-        $data['sort_order'] = (int) ($data['sort_order'] ?? 0);
-        $data['is_active'] = $request->boolean('is_active', true);
-        $data['item_type'] = $request->input('item_type') ?: null;
-        $data['country_code'] = $request->input('country_code') ?: null;
-        $data['map_code'] = $request->input('map_code') ?: null;
-        if ($dictionary->code === 'regulatory_documents') {
-            $data['document_url'] = $request->input('document_url') ?: null;
-            $data['is_ru'] = $request->boolean('is_ru', false);
-        }
 
-        $exists = RefDictionaryItem::where('ref_dictionary_id', $dictionary->id)
-            ->where('code', $data['code'])
-            ->where('id', '!=', $item->id)
-            ->exists();
-        if ($exists) {
+        if ($this->dictionaryAdmin->itemCodeExistsInDictionary((int) $dictionary->id, $data['code'], (int) $item->id)) {
             return back()->withErrors(['code' => __('В этом справочнике уже есть элемент с таким кодом.')])->withInput();
         }
 
-        $item->update($data);
+        $this->dictionaryAdmin->updateItem($dictionary, $item, $data, $request);
 
         return redirect()
             ->route('lk.admin.settings.dictionaries.show', $dictionary)

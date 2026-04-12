@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\RefDictionary;
+use App\Models\RefDictionaryGroup;
+use App\Models\RefDictionaryItem;
+use App\Observers\RefDictionaryCacheObserver;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -24,6 +28,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Carbon::setLocale(config('app.locale'));
+        RefDictionary::observe(RefDictionaryCacheObserver::class);
+        RefDictionaryItem::observe(RefDictionaryCacheObserver::class);
+        RefDictionaryGroup::observe(RefDictionaryCacheObserver::class);
 
         // Папка для картинок новостей (лента Дзен): создаётся при старте.
         if (! Storage::disk('public')->exists('news-feed')) {

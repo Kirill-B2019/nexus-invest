@@ -12,22 +12,22 @@ alwaysApply: false
 - Eloquent: использовать отношения, скоупы, аксессоры/мутаторы по необходимости; не дублировать запросы в циклах (N+1).
 - Конфиг и env: секреты и ключи только в `.env`; в коде — `config()` и `env()` с дефолтами в config.
 - Сообщения валидации и флеш — на русском.
-- публичная часть resources/views и public/assets
-- пользовательская часть (закрытая) resources/views/app и public/assets/app
+- публичная часть: `resources/views/` (welcome, `public-sections/`, гостевые layout’ы) и статика `public/assets/` (css/js)
+- ЛК (закрытая часть): `resources/views/app/` и статика `public/app/` (не смешивать с `public/assets/`)
 - части публичная и пользовательская имеют разные шаблоны
 - учитывать структуру баз данных (миграций, сидеров)  папка database
 - RBAC реализован через spatie/laravel-permission
 - компоненты выносить в app/View/Components для публичной части, app/View/Components/App для закрытой части
 - использовать blade компоненты и директивы для работы со страницами и шаблонами app, header footer и т.д.
-- все роуты в проекте работают на основании контроллеров
-- в контроллерах используются сервисы и описание на русском, описание начинается с "|KB" текущая дата и описание
+- маршруты объявлены в `routes/*.php` (агрегатор — `routes/web.php`); для ЛК см. `routes/lk.php`, для админ-поддерева — `routes/admin.php`
+- в контроллерах при необходимости — сервисы / Form Request; в docblock классов App-контроллеров принято начинать с `|KB` и даты (см. существующие файлы)
 - md файлы писать только когда есть в задании
 ## Пример: контроллер и маршрут
 
 ```php
-// routes/web.php
+// routes/lk.php (фрагмент: группа auth)
 Route::middleware('auth')->group(function () {
-    Route::get('/lk', ...)->middleware('verified')->name('lk');
+    Route::get('/lk', LkController::class)->middleware('verified', 'lk.access')->name('lk');
 });
 
 // Контроллер — тонкий, логика в сервисе/Form Request

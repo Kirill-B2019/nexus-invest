@@ -13,7 +13,6 @@
 - **Подключение:** в шаблоне через `@push('scripts')` и `asset('app/js/...')`.
 - **Конфигурация:** минимальные данные (URL, переводы) передавать через `window.*` или `data-*` атрибуты; один небольшой inline-скрипт для конфига допустим.
 
-## SweetAlert2 и тема
+## SweetAlert2 и тема (ЛК)
 
-- **Светлая тема:** если `#app-container` не имеет `body-theme-dark` — SweetAlert2 в светлых цветах (светлый фон, тёмный текст, акцент #4B7B5B).
-- **Тёмная тема:** если `#app-container` имеет `body-theme-dark` — SweetAlert2 в тёмных цветах (фон #191919, акцент #C5FF41).
+Тема задаётся классами на `#app-container` в `layouts/app/app.blade.php`: `theme-dark` или `theme-light`. Для новых вызовов Swal в ЛК использовать `sweetalert-flash-lk.js` / `window.swalLk.*` (см. `lk-access-sweetalert.mdc`), а не устаревшие проверки вроде `body-theme-dark`.

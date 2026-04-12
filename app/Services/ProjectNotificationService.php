@@ -11,6 +11,8 @@ use App\Notifications\LkNotification;
  */
 class ProjectNotificationService
 {
+    private const IDEMPOTENCY_HOURS = 24;
+
     /**
      * Уведомление модераторам о новом проекте на модерации.
      */
@@ -36,7 +38,7 @@ class ProjectNotificationService
         } catch (\Throwable) {
             // разрешение moderate-projects может отсутствовать
         }
-        $admins->each(fn (User $u) => $u->notify($notification));
+        $admins->each(fn (User $user) => $this->notifyOnce($user, $notification));
     }
 
     /**
@@ -53,7 +55,9 @@ class ProjectNotificationService
             importance: 'normal',
             expiresAt: now()->addDays(7),
         );
-        $project->user?->notify($notification);
+        if ($project->user) {
+            $this->notifyOnce($project->user, $notification);
+        }
     }
 
     /**
@@ -70,7 +74,9 @@ class ProjectNotificationService
             importance: 'high',
             expiresAt: now()->addDays(14),
         );
-        $project->user?->notify($notification);
+        if ($project->user) {
+            $this->notifyOnce($project->user, $notification);
+        }
     }
 
     /**
@@ -88,6 +94,22 @@ class ProjectNotificationService
             importance: 'high',
             expiresAt: now()->addDays(14),
         );
-        $project->user?->notify($notification);
+        if ($project->user) {
+            $this->notifyOnce($project->user, $notification);
+        }
+    }
+
+    private function notifyOnce(User $user, LkNotification $notification): void
+    {
+        $exists = $user->notifications()
+            ->where('type', LkNotification::class)
+            ->where('created_at', '>=', now()->subHours(self::IDEMPOTENCY_HOURS))
+            ->where('data->title', $notification->title)
+            ->where('data->link', $notification->link)
+            ->exists();
+
+        if (! $exists) {
+            $user->notify($notification);
+        }
     }
 }

@@ -7,101 +7,69 @@
 @endsection
 
 @section('content')
-    <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
-        <ol class="breadcrumb pt-0">
-            <li class="breadcrumb-item"><a href="{{ route('lk') }}">{{ __('Личный кабинет') }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ __('Настройки') }}</li>
-        </ol>
-    </nav>
-    <div class="separator mb-4"></div>
+    <x-lk-breadcrumb :items="[
+        ['label' => __('Личный кабинет'), 'url' => route('lk')],
+        ['label' => __('Настройки')],
+    ]" separator-margin="mb-4" />
+    @include('layouts.app.flash')
 
     <p class="text-muted mb-4">{{ __('Управление и настройки системы. Выберите раздел из списка ниже.') }}</p>
 
-    {{-- Общие --}}
-    <div class="card mb-4">
-        <div class="card-body">
-            <h2 class="h5 mb-3 text-uppercase text-muted">{{ __('Общие') }}</h2>
-            <ul class="list-unstyled mb-0">
-                @can('manage-dictionaries')
-                <li class="mb-2">
-                    <a href="{{ route('lk.admin.settings.dictionaries.index') }}">
-                        <i class="simple-icon-book-open mr-2"></i>{{ __('Справочники') }}
-                    </a>
-                </li>
-                @endcan
-                @if(!auth()->user()->can('manage-dictionaries'))
-                <li class="text-muted small">{{ __('Нет доступных разделов.') }}</li>
-                @endif
-            </ul>
+    <div class="row">
+        {{-- Общие --}}
+        <div class="col-12 col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="h6 mb-2 text-uppercase text-muted">{{ __('Общие') }}</h2>
+                    <p class="text-muted small mb-3">{{ __('Системные справочники, коды и классификаторы платформы.') }}</p>
+                    @can('manage-dictionaries')
+                        <a href="{{ route('lk.admin.settings.dictionaries.index') }}" class="btn btn-primary btn-sm">{{ __('Справочники') }}</a>
+                    @else
+                        <p class="text-muted small mb-0">{{ __('Нет доступных разделов.') }}</p>
+                    @endcan
+                </div>
+            </div>
         </div>
-    </div>
 
-    {{-- Системные --}}
-    <div class="card mb-4">
-        <div class="card-body">
-            <h2 class="h5 mb-3 text-uppercase text-muted">{{ __('Системные') }}</h2>
-            <ul class="list-unstyled mb-0">
-                @if(auth()->user()->hasRole('super-admin') || auth()->user()->hasRole('messenger-admin'))
-                <li class="mb-2">
-                    <a href="{{ route('lk.admin.messenger') }}">
-                        <i class="simple-icon-bubble mr-2"></i>{{ __('Мессенджер') }}
-                    </a>
-                </li>
-                @endif
-                @can('update-news-feed')
-                <li class="mb-2">
-                    <a href="{{ route('lk.admin.news-feed.index') }}">
-                        <i class="simple-icon-doc mr-2"></i>{{ __('Новости') }}
-                    </a>
-                </li>
-                @endcan
-                @if(auth()->user()->hasRole('super-admin') || auth()->user()->hasRole('roles-admin'))
-                <li class="mb-2">
-                    <a href="{{ route('lk.admin.roles.users') }}">
-                        <i class="simple-icon-people mr-2"></i>{{ __('Пользователи') }}
-                    </a>
-                </li>
-                <li class="mb-2">
-                    <a href="{{ route('lk.admin.roles.roles') }}">
-                        <i class="simple-icon-user-following mr-2"></i>{{ __('Роли') }}
-                    </a>
-                </li>
-                <li class="mb-2 pl-3">
-                    <a href="{{ route('lk.admin.roles.permissions') }}" class="text-muted">
-                        <i class="simple-icon-lock mr-2"></i>{{ __('Разрешения') }}
-                    </a>
-                </li>
-                @endif
-                @can('manage-notifications')
-                <li class="mb-2">
-                    <a href="{{ route('lk.admin.notifications.index') }}">
-                        <i class="simple-icon-bell mr-2"></i>{{ __('Уведомления') }}
-                    </a>
-                </li>
-                @endcan
-                @if(!auth()->user()->hasRole('super-admin') && !auth()->user()->hasRole('messenger-admin') && !auth()->user()->can('update-news-feed') && !auth()->user()->hasRole('roles-admin') && !auth()->user()->can('manage-notifications'))
-                <li class="text-muted small">{{ __('Нет доступных разделов.') }}</li>
-                @endif
-            </ul>
+        {{-- Системные --}}
+        <div class="col-12 col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="h6 mb-2 text-uppercase text-muted">{{ __('Системные') }}</h2>
+                    <p class="text-muted small mb-3">{{ __('Управление ролями, уведомлениями и инфраструктурными модулями.') }}</p>
+                    <div class="lk-admin-settings-actions" role="navigation" aria-label="{{ __('Системные разделы') }}">
+                        @if(auth()->user()->hasRole('super-admin') || auth()->user()->hasRole('messenger-admin'))
+                            <a href="{{ route('lk.admin.messenger') }}" class="btn btn-outline-primary btn-sm">{{ __('Мессенджер') }}</a>
+                        @endif
+                        @can('update-news-feed')
+                            <a href="{{ route('lk.admin.news-feed.index') }}" class="btn btn-outline-primary btn-sm">{{ __('Новости') }}</a>
+                        @endcan
+                        @if(auth()->user()->hasRole('super-admin') || auth()->user()->hasRole('roles-admin'))
+                            <a href="{{ route('lk.admin.roles.users') }}" class="btn btn-outline-primary btn-sm">{{ __('Пользователи') }}</a>
+                            <a href="{{ route('lk.admin.roles.roles') }}" class="btn btn-outline-primary btn-sm">{{ __('Роли') }}</a>
+                            <a href="{{ route('lk.admin.roles.permissions') }}" class="btn btn-outline-primary btn-sm">{{ __('Разрешения') }}</a>
+                        @endif
+                        @can('manage-notifications')
+                            <a href="{{ route('lk.admin.notifications.index') }}" class="btn btn-outline-primary btn-sm">{{ __('Уведомления') }}</a>
+                        @endcan
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
-    {{-- Модульные --}}
-    <div class="card mb-4">
-        <div class="card-body">
-            <h2 class="h5 mb-3 text-uppercase text-muted">{{ __('Модульные') }}</h2>
-            <ul class="list-unstyled mb-0">
-                @if(auth()->user()->hasRole('super-admin') || auth()->user()->can('moderate-projects'))
-                <li class="mb-2">
-                    <a href="{{ route('lk.admin.projects.moderation.index') }}">
-                        <i class="simple-icon-doc mr-2"></i>{{ __('Модерация проектов') }}
-                    </a>
-                </li>
-                @endif
-                @if(!auth()->user()->hasRole('super-admin') && !auth()->user()->can('moderate-projects'))
-                <li class="text-muted small mb-0">{{ __('Нет доступных разделов.') }}</li>
-                @endif
-            </ul>
+        {{-- Модульные --}}
+        <div class="col-12 col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="h6 mb-2 text-uppercase text-muted">{{ __('Модульные') }}</h2>
+                    <p class="text-muted small mb-3">{{ __('Доменные процессы: модерация проектов и связанный workflow.') }}</p>
+                    @if(auth()->user()->hasRole('super-admin') || auth()->user()->can('moderate-projects'))
+                        <a href="{{ route('lk.admin.projects.moderation.index') }}" class="btn btn-outline-primary btn-sm">{{ __('Модерация проектов') }}</a>
+                    @else
+                        <p class="text-muted small mb-0">{{ __('Нет доступных разделов.') }}</p>
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
 @endsection
