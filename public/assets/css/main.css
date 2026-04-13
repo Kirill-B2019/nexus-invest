@@ -982,6 +982,41 @@ div#onwer .card-testimonial-3:hover {
     border-color: rgba(255, 255, 255, 0.12) !important;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
+div#onwer .card-testimonial-3 .card-image {
+    min-width: 221px;
+    max-width: 221px;
+}
+div#onwer .card-testimonial-3 .card-info {
+    padding: 34px 32px;
+}
+div#onwer .card-testimonial-3 .card-info .text-md {
+    font-size: 15px;
+    line-height: 1.55;
+}
+div#onwer .card-testimonial-3 .card-info .card-author-review {
+    margin-top: 24px;
+}
+div#onwer .card-testimonial-3 .card-info .card-author-review .author-name {
+    font-size: 13px;
+    line-height: 15px;
+}
+div#onwer .card-testimonial-3 .card-info .card-author-review .author-tag {
+    font-size: 11px;
+    line-height: 13px;
+}
+div#onwer .card-testimonial-3 .card-rate img {
+    width: 14px;
+    height: 14px;
+}
+@media (max-width: 991px) {
+    div#onwer .card-testimonial-3 .card-image {
+        min-width: 100%;
+        max-width: 100%;
+    }
+    div#onwer .card-testimonial-3 .card-info {
+        padding: 18px 18px;
+    }
+}
 
 /* Cookie banner */
 .cookie-banner {
