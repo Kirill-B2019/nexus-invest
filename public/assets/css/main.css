@@ -985,13 +985,18 @@ div#onwer .card-testimonial-3:hover {
 div#onwer .card-testimonial-3 .card-image {
     min-width: 221px;
     max-width: 221px;
+    flex: 0 0 221px;
 }
 div#onwer .card-testimonial-3 .card-info {
     padding: 34px 32px;
+    width: auto;
+    flex: 1 1 auto;
+    min-width: 0;
 }
 div#onwer .card-testimonial-3 .card-info .text-md {
     font-size: 15px;
     line-height: 1.55;
+    overflow-wrap: anywhere;
 }
 div#onwer .card-testimonial-3 .card-info .card-author-review {
     margin-top: 24px;
