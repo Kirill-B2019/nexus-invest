@@ -76,7 +76,7 @@
                                         aria-live="polite"
                                         aria-atomic="true"
                                     >
-                                        <p class="public-launch-countdown__label">{{ __('Until public launch') }}</p>
+                                        <p class="public-launch-countdown__label">{{ __('до публичного запуска') }}</p>
                                         <div class="public-launch-countdown__segments">
                                             <div class="public-launch-countdown__segment">
                                                 <span class="public-launch-countdown__value display-1 text-semibold neutral-0 text-nowrap" data-unit="days">--</span>
