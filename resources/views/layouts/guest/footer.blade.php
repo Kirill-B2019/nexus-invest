@@ -1,7 +1,7 @@
 <footer class="footer footer-style-3 footer-style-5">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-6 col-sm-12 mb-30">
+            <div class="col-12 col-md-6 col-sm-12">
                 <a href="{{ route('welcome') }}">
                     <img alt="{{ config('app.name') }}" src="{{ asset('assets/imgs/template/logo.svg') }}" class="w-85">
                 </a>
@@ -9,7 +9,7 @@
                     <p class="text-md neutral-600 mb-10">{{ config('app.name') }}</p>
                 </div>
                 {{-- Подписаться на рассылку --}}
-                <div class="mb-20" id="newsletter-form">
+                <div id="newsletter-form">
                         <h5 class="text-18-semibold neutral-0">{{ __('Подписаться на рассылку') }}</h5>
                         <p class="text-sm neutral-600 mb-20">{{ __('Без рекламы. Без ограничений. Без обязательств') }}</p>
                         <div class="form-newsletter form-newsletter-2">
