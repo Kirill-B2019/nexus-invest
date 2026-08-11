@@ -471,11 +471,6 @@
 
 ---
 
-## Лицензия
-
-Информация о лицензировании программного кода, документации и отдельных компонентов проекта будет опубликована после утверждения модели распространения и правового статуса соответствующих материалов.
-
----
 
 ## Контакты
 
@@ -489,3 +484,6 @@
 `project-finance` `tokenization` `digital-assets` `investment-platform`  
 `portfolio-investing` `blockchain` `smart-contracts` `ESG` `impact-investing`  
 `digital-finance` `tokenomics` `KYC` `AML` `verification` `marketplace`
+
+
+- | KB @CerberRus00 - Nexus Invest Team
