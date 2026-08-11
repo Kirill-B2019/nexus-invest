@@ -43,12 +43,16 @@
                         <div class="box-banner-left">
                                 <a class="btn btn-brand-5-new" href="{{ url('https://main-node.gnd-net.com') }}" target="_blank" rel="noopener noreferrer"><span>{{ __('Работает на:') }}</span> {{ __('блокчейне ГАНИМЕД') }}</a>
                                 <p class="neutral-300 small pt-3 uppercase">{{ __('Новационная Единая Комплексная Система Управления Сделками') }}</p>
-                                <h6 class="display-6 neutral-200 text-semibold pt-3">{{ __('ПРОЕКТНОЕ ФИНАНСИРОВАНИЕ') }}</h6>
-                                <h1 class="display-1 neutral-0 text-semibold pt-3">{{ __('НЕКСУС') }}</h1>
-                                <p class="text-lg neutral-200 mb-55 display-4 pt-3 uppercase">
-                                    {{ __('Полнофункциональная платформа быстрого запуска и финансирования проектов через цифровые активы и токенизацию') }}<br />
-                                    {{ __('Постпроектное сопровождение, реализация результатов (маркетплейс)') }}</p>
-                                <a class="btn btn-brand-4-medium hover-up mb-4 hero-cta-primary" href="{{asset('doc/NexusWhitePaper.pdf') }}" target="_blank" rel="noopener noreferrer">
+                                {{--<h6 class="display-5 neutral-200 text-semibold pt-3">{{ __('ПРОЕКТНОЕ ФИНАНСИРОВАНИЕ') }}</h6>--}}
+                            <p class="text-lg neutral-200  mt-10 mb-10 display-4 uppercase">
+                            {{ __('Платформа полного цикла для токенизации инвестиционных проектов, распределения капитала и финансирования инициатив через цифровые активы.') }}
+                            </p>
+                            <h1 class="display-1 neutral-0 text-semibold mt-20 mb-20 ">{{ __('НЕКСУС') }}</h1>
+                            <p class="text-lg neutral-200  mt-10 mb-30 display-4 uppercase">
+                                {{ __('От запуска проекта и привлечения инвестиций до верификации результатов, постпроектного сопровождения и их реализации на цифровом маркетплейсе.') }}
+                            </p>
+                                {{--<h6 class="display-5 neutral-200 text-semibold pt-3 ">{{ __('ЦИФРОВЫЕ ИНВЕСТИЦИИ') }}</h6>--}}
+                                <<a class="btn btn-brand-4-medium hover-up mb-4 hero-cta-primary" href="{{asset('doc/NexusWhitePaper.pdf') }}" target="_blank" rel="noopener noreferrer">
                                     {{ __('WHITE PAPER НЕКСУС') }}
                                     <svg width="22" height="8" viewBox="0 0 22 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M22 4.00032L18.4791 0.479492V3.3074H0V4.69333H18.4791V7.52129L22 4.00032Z" fill=""></path>
@@ -71,7 +75,7 @@
                                     <div
                                         class="public-launch-countdown w-100"
                                         data-public-launch-countdown
-                                        data-deadline="2027-01-01T00:00:00+03:00"
+                                        data-deadline="2027-03-01T00:00:00+03:00"
                                         role="timer"
                                         aria-live="polite"
                                         aria-atomic="true"
@@ -104,7 +108,7 @@
                                         </div>
                                     </div>
                                     <noscript>
-                                        <p class="public-launch-countdown__noscript small neutral-300 mt-2 mb-0">{{ __('Public launch') }}: 01.01.2027</p>
+                                        <p class="public-launch-countdown__noscript small neutral-300 mt-2 mb-0">{{ __('Public launch') }}: 01.03.2027</p>
                                     </noscript>
                                 </div>
                                 </div>
@@ -136,7 +140,28 @@
                                     </div>
                                 </div>
 
+                                <div class="col-12 col-sm-6">
+                                    <div class="card-features-5">
+                                        <span class="card-badge card-badge-2">{{__('Запуск: СТАДИЯ II')}}</span>
+                                        <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/hero-repo.png')}}" alt="{{__('НЕКСУС')}}"></div>
+                                        <div class="card-info">
+                                            <h6>{{__('ЦИФРОВОЙ ДЕПОЗИТАРИЙ')}}</h6>
+                                            <p class="text-sm neutral-500">{{__('Учет и хранение цифровых прав на активы. Ведение реестра владельцев цифровых активов в соответствии с требованиями законодательства РФ')}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="blur-bg blur-move hero-5-cards-blur" aria-hidden="true"></div>
+                                    <div class="card-features-5 card-features-5-first">
+                                        <span class="card-badge card-badge-2">{{__('Запуск: СТАДИЯ III')}}</span>
 
+                                        <div class="card-info">
+                                            <h6 class="brand-4">{{__('НЕКСУС ЦИФРОВОЙ БАНК')}}</h6>
+                                            <p class="text-sm neutral-500">{{__('Специализированный расчётно‑кассовый и комплаенс‑контур внутри экосистемы НЕКСУС, который реализует банковские функции (счета, эскроу, платежи, распределения, отчётность) в форме смарт‑контрактов и ончейн‑реестров, юридически действует через банк‑оператор (партнёрскую кредитную организацию), уполномоченный на обслуживание специальных счетов платформы и операторов ЦФА.')}}</p>
+                                        </div>
+                                        <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/hero-bank.png') }}" alt="{{__('НЕКСУС ЦИФРОВОЙ БАНК')}}"></div>
+                                    </div>
+                                </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="card-features-5">
                                         <span class="card-badge card-badge-2">{{__('Запуск: СТАДИЯ II')}}</span>
@@ -147,16 +172,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-6">
-                                    <div class="card-features-5">
-                                        <span class="card-badge card-badge-2">{{__('Запуск: СТАДИЯ III')}}</span>
-                                        <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/hero-repo.png')}}" alt="{{__('НЕКСУС')}}"></div>
-                                        <div class="card-info">
-                                            <h6>{{__('ЦИФРОВОЙ ДЕПОЗИТАРИЙ')}}</h6>
-                                            <p class="text-sm neutral-500">{{__('Учет и хранение цифровых прав на активы. Ведение реестра владельцев цифровых активов в соответствии с требованиями законодательства РФ')}}</p>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="col-12 col-sm-6 ">
                                     <div class="blur-bg blur-move hero-5-cards-blur" aria-hidden="true"></div>
                                     <div class="card-features-5">
@@ -247,11 +263,11 @@
                         </svg>
                         &nbsp;{{ __(' СФОРДЕКС') }}</div>
                     <h2 class="heading-2 mb-20">{{ __('ЦЕЛЬ ЭКОСИСТЕМЫ') }}</h2>
-                    <p class="text-lg neutral-700">
-                        {{__('Создать единую цифровую инфраструктуру для привлечения капитала в реальные проекты (бизнес,девелопмент, инфраструктура, ГЧП).') }}
-                        <br>{{__('Обеспечить законный, технологичный и ликвидный рынок цифровых активов, доступный как для частных, так и для институциональных инвесторов.') }}
-                        <br>{{__('Предоставить возможность реализации продукции и услуг, запущенных через экосистему, проектов, возможность постпроектного сопровождения.') }}
-                    </p>
+
+                    <p class="text-lg neutral-700 mb-10">    {{__('Создать единую цифровую инфраструктуру для привлечения капитала в реальные проекты — бизнес, девелопмент, инфраструктуру и государственно-частное партнёрство, — а также обеспечить формирование законного, технологичного и ликвидного рынка цифровых активов, доступного для частных и институциональных инвесторов.') }}</p>
+                    <p class="text-lg neutral-700 mb-10">    {{__('Предоставить портфельным инвесторам инструменты цифрового структурирования инвестиций, формирования инвестиционных портфелей и распределения капитала между проектами в соответствии с заданной стратегией, параметрами риска, сроками реализации и целевыми финансовыми показателями.') }}</p>
+                    <p class="text-lg neutral-700 mb-10">    {{__('Обеспечить полный цикл сопровождения проектов — от привлечения финансирования и реализации инвестиционной стратегии до постпроектного мониторинга, продвижения и реализации продукции и услуг, созданных в рамках экосистемы, через специализированный цифровой маркетплейс.') }}</p>
+                    <p class="text-lg neutral-700 mb-10">    {{__('Создать систему дополнительного, специализированного токенизированного финансирования и независимой верификации экологических, гуманитарных и социальных инициатив с подтверждением целевого использования средств, оказанной помощи и достигнутых результатов.') }}</p>
                     <h3 class="heading-2 mb-20">{{ __('Для кого:') }}</h3>
                     <div class="row" id="forWho">
                         <div class="col-12 col-lg-6">
@@ -276,7 +292,7 @@
                         </div>
                         <div class="col-12 col-lg-6">
                             <div class="card-pricing card-pricing-style-2 card-pricing-style-3 card-for-who text-sm">
-                                <div class="card-title mb-3"><h6>{{ __('Инвесторов') }}</h6></div>
+                                <div class="card-title mb-3"><h6>{{ __('Проектных инвесторов') }}</h6></div>
                                 <div class="card-lists">
                                     <ul class="lists-our-features">
                                         <li class="pb-2"><x-icons.svg-check-circle />
@@ -290,6 +306,52 @@
                                     </ul>
                                     <p class="text-sm smaller neutral-500">{{ __('* Указанный диапазон — целевые показатели по историческим моделям. Фактическая доходность зависит от реализации проектов. Инвестирование сопряжено с риском потери вложенных средств.') }}</p>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card-pricing card-pricing-style-2 card-pricing-style-3 card-for-who card-for-who-with-image text-sm">
+                                <div class="card-for-who-content">
+                                    <h5 class="mb-3">{{__('Портфельных инвесторов')}}</h5>
+                                    <div class="card-lists">
+                                        <ul class="lists-our-features">
+                                            <li class="pb-2"><x-icons.svg-check-circle />
+                                                {{ __('Частные и институциональные инвесторы, заинтересованные в распределении капитала между несколькими проектами и цифровыми инвестиционными инструментами.') }}</li>
+                                            <li class="pb-2"><x-icons.svg-check-circle />
+                                                {{ __('Семейные офисы, инвестиционные клубы, фонды и профессиональные участники рынка.') }}</li>
+                                            <li class="pb-2"><x-icons.svg-check-circle />
+                                                {{ __('Участники, которым нужны цифровые инструменты распределения капитала, управления рисками и мониторинга портфеля.') }}</li>
+                                            <li class="pb-2"><x-icons.svg-check-circle />
+                                                {{ __('Инвесторы, выбирающие проекты по заданным параметрам: отрасль, доходность, риск, срок, ликвидность и объём вложений.') }}</li>
+                                            <li class="pb-2"><x-icons.svg-check-circle />
+                                                {{ __('Клиенты, заинтересованные в автоматизированном подборе проектов и стратегий с использованием аналитики, скоринга и ИИ‑инструментов платформы.') }}</li>
+                                        </ul>
+                                        <p class="text-sm smaller neutral-500">{{ __('Итоговый состав портфеля и доступные инструменты зависят от статуса инвестора, результатов идентификации и комплаенс‑процедур.') }}</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card-pricing card-pricing-style-2 card-pricing-style-3 card-for-who card-for-who-with-image text-sm">
+                                <div class="card-for-who-content">
+                                    <h5 class="mb-3">{{__('Специализированных инвесторов')}}</h5>
+                                    <div class="card-lists">
+                                        <ul class="lists-our-features">
+                                            <li class="pb-2"><x-icons.svg-check-circle />
+                                                {{ __('ESG‑инвесторы, impact‑фонды, благотворительные организации и корпоративные доноры.') }}</li>
+                                            <li class="pb-2"><x-icons.svg-check-circle />
+                                                {{ __('Частные и институциональные участники, заинтересованные в финансировании экологических, гуманитарных и социальных инициатив.') }}</li>
+                                            <li class="pb-2"><x-icons.svg-check-circle />
+                                                {{ __('Организации, которым необходимы специализированные токенизированные инструменты для прозрачного учёта и целевого контроля финансирования.') }}</li>
+                                            <li class="pb-2"><x-icons.svg-check-circle />
+                                                {{ __('Участники, заинтересованные в независимой верификации оказанной помощи, её получателей, объёма и достигнутого эффекта.') }}</li>
+                                            <li class="pb-2"><x-icons.svg-check-circle />
+                                                {{ __('Инвесторы и организации, использующие экологические токены для подтверждения природоохранных мероприятий, восстановления природных объектов и иных измеримых экологических результатов.') }}</li>
+                                        </ul>
+                                        <p class="text-sm smaller neutral-500">{{ __('Порядок выпуска, обращения и погашения специализированных токенов определяется отдельной документацией платформы.') }}</p>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                         <div class="col-12">
@@ -315,57 +377,59 @@
                             </div>
                         </div>
                     </div>
-                    {{-- Как это работает --}}
-                    <a class="btn btn-brand-4-sm" href="#">{{ __('Как это работает') }}</a>
-                    <h2 class="mt-15 mb-20">{{ __('Всего 3 простых шага к началу работы в системе') }}</h2>
-                    <p class="text-lg neutral-500 mb-55">{{ __('Простой старт и достижение ваших целей.') }}</p>
-                    <div class="row block-steps-badges">
-                        <div class="col-12 col-lg-4">
-                            <div class="box-border-rounded">
-                                <div class="card-casestudy">
-                                    <div class="card-title"><h6><span class="step-badge">1</span>{{ __('Регистрация в системе') }}</h6></div>
-                                    <div class="card-desc"><p>{{ __('Быстрая и простая регистрация даёт доступ сразу в индивидуальное рабочее пространство по выбранной цели на платформе (кабинет инициатора, инвестора, эксперта, аудитора, аналитика и т.д.).') }}</p></div>
-                                    <div class="card-image"><img class="wow fadeInUp" src="{{ asset('assets/imgs/page/homepage1/img-prepare.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-4">
-                            <div class="box-border-rounded">
-                                <div class="card-casestudy">
-                                    <div class="card-title"><h6><span class="step-badge">2</span>{{ __('Исследования и выбор') }}</h6></div>
-                                    <div class="card-desc">
-                                        <p>{{ __('Начало работы с проектом или формирование инвестиционного портфеля.') }}</p>
-                                        <p>{{ __('Совместно с экспертами и нашим ИИ подберем наилучшую стратегию привлечения или предложим наиболее интересные и доходные инструменты.') }}</p>
-                                    </div>
-                                    <div class="card-image"><img class="wow fadeInUp" src="{{ asset('assets/imgs/page/homepage1/img-prepare2.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-4">
-                            <div class="box-border-rounded">
-                                <div class="card-casestudy">
-                                    <div class="card-title"><h6><span class="step-badge">3</span>{{ __('Запуск и доход') }}</h6></div>
-                                    <div class="card-desc"><p>{{ __('Запуск проекта или активация выбранных инвестиционных инструментов. Экосистема автоматизирует ключевые процессы, обеспечивая прозрачность, контроль и стабильный поток привлечения или дохода в реальном времени.') }}</p></div>
-                                    <div class="card-image"><img class="wow fadeInUp" src="{{ asset('assets/imgs/page/homepage1/img-prepare3.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 text-start">
 
-                            <a class="btn btn-learmore-2" href="{{ url('/about') }}"><span>
-                            <x-icons.svg-arrow />
-                        </span>{{ __('Подробнее') }}</a>
-                            <p class="text-sm neutral-500">{{ __('Функциональность, операционная модель и т.д.') }}</p>
-
-                        </div>
-                    </div>
 
                 </div>
             </div>
         </div>
+        <div class="row align-items-lg-start align-items-center">
+            {{-- Как это работает --}}
 
+            <h2 class="mt-15 mb-20">{{ __('Всего 3 простых шага к началу работы в системе') }}</h2>
+            <p class="text-lg neutral-500 mb-55">{{ __('Простой старт и достижение ваших целей.') }}</p>
+            <div class="row block-steps-badges">
+                <div class="col-12 col-lg-4">
+                    <div class="box-border-rounded">
+                        <div class="card-casestudy">
+                            <div class="card-title"><h6><span class="step-badge">1</span>{{ __('Регистрация в системе') }}</h6></div>
+                            <div class="card-desc"><p>{{ __('Быстрая и простая регистрация даёт доступ сразу в индивидуальное рабочее пространство по выбранной цели на платформе (кабинет инициатора, инвестора, эксперта, аудитора, аналитика и т.д.).') }}</p></div>
+                            <div class="card-image"><img class="wow fadeInUp" src="{{ asset('assets/imgs/page/homepage1/img-prepare.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="box-border-rounded">
+                        <div class="card-casestudy">
+                            <div class="card-title"><h6><span class="step-badge">2</span>{{ __('Исследования и выбор') }}</h6></div>
+                            <div class="card-desc">
+                                <p>{{ __('Начало работы с проектом или формирование инвестиционного портфеля.') }}</p>
+                                <p>{{ __('Совместно с экспертами и нашим ИИ подберем наилучшую стратегию привлечения или предложим наиболее интересные и доходные инструменты.') }}</p>
+                            </div>
+                            <div class="card-image"><img class="wow fadeInUp" src="{{ asset('assets/imgs/page/homepage1/img-prepare2.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="box-border-rounded">
+                        <div class="card-casestudy">
+                            <div class="card-title"><h6><span class="step-badge">3</span>{{ __('Запуск и доход') }}</h6></div>
+                            <div class="card-desc"><p>{{ __('Запуск проекта или активация выбранных инвестиционных инструментов. Экосистема автоматизирует ключевые процессы, обеспечивая прозрачность, контроль и стабильный поток привлечения или дохода в реальном времени.') }}</p></div>
+                            <div class="card-image"><img class="wow fadeInUp" src="{{ asset('assets/imgs/page/homepage1/img-prepare3.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-start">
+
+                    <a class="btn btn-learmore-2" href="{{ url('/about') }}"><span>
+                            <x-icons.svg-arrow />
+                        </span>{{ __('Подробнее') }}</a>
+                    <p class="text-sm neutral-500">{{ __('Функциональность, операционная модель и т.д.') }}</p>
+
+                </div>
+            </div>
+        </div>
 
     </div>
 </section>
