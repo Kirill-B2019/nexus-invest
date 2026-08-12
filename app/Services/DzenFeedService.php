@@ -20,17 +20,21 @@ class DzenFeedService
     protected array $apiUrlFallbacks;
     /** @var string|null */
     protected $channelId;
+    /** @var array<string, mixed> */
+    protected array $apiQuery;
 
     public function __construct(
         ?string $apiUrl = null,
         ?string $channelUrl = null,
         ?string $channelId = null,
-        ?array $apiUrlFallbacks = null
+        ?array $apiUrlFallbacks = null,
+        ?array $apiQuery = null
     ) {
         $this->channelUrl = rtrim($channelUrl ?? config('dzen.channel_url', 'https://dzen.ru/digital_fintech'), '/');
-        $this->apiUrl = $apiUrl ?? config('dzen.api_url', 'https://dzen.ru/api/v3/launcher/more');
+        $this->apiUrl = $apiUrl ?? config('dzen.api_url', 'https://dzen.ru/api/v3/launcher/export');
         $this->channelId = $channelId ?? config('dzen.channel_id');
         $this->apiUrlFallbacks = $apiUrlFallbacks ?? config('dzen.api_url_fallbacks', []);
+        $this->apiQuery = $apiQuery ?? config('dzen.api_query', []);
     }
 
     public static function make(): self
@@ -78,10 +82,10 @@ class DzenFeedService
         $channelSlug = $this->getChannelSlug();
         $apiUrls = array_values(array_unique(array_merge([$this->apiUrl], $this->apiUrlFallbacks)));
 
-        // Варианты параметров запроса: channel_name (URL или slug) и при наличии — channel_id
+        // export принимает channel_name (slug); more — URL или slug; channel_id — запасной вариант
         $paramVariants = [
-            ['channel_name' => $this->channelUrl],
             ['channel_name' => $channelSlug],
+            ['channel_name' => $this->channelUrl],
         ];
         if ($this->channelId !== null && $this->channelId !== '') {
             $paramVariants[] = ['channel_id' => $this->channelId];
@@ -97,7 +101,7 @@ class DzenFeedService
                         'Accept' => 'application/json',
                         'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
                     ])
-                    ->get($apiUrl, $params);
+                    ->get($apiUrl, array_merge($this->apiQuery, $params));
 
                 $lastStatus = $response->status();
                 $lastBody = $response->body();

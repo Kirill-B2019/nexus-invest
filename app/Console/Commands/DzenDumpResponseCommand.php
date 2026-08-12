@@ -22,13 +22,14 @@ class DzenDumpResponseCommand extends Command
         $path = parse_url($channelUrl, PHP_URL_PATH);
         $channelSlug = $path ? trim($path, '/') : 'digital_fintech';
         $apiUrls = array_values(array_unique(array_merge(
-            [config('dzen.api_url', 'https://dzen.ru/api/v3/launcher/more')],
+            [config('dzen.api_url', 'https://dzen.ru/api/v3/launcher/export')],
             config('dzen.api_url_fallbacks', [])
         )));
+        $apiQuery = config('dzen.api_query', []);
 
         $paramVariants = [
-            ['channel_name' => $channelUrl],
             ['channel_name' => $channelSlug],
+            ['channel_name' => $channelUrl],
         ];
         if ($channelId) {
             $paramVariants[] = ['channel_id' => $channelId];
@@ -54,7 +55,7 @@ class DzenDumpResponseCommand extends Command
                         'Accept' => 'application/json',
                         'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
                     ])
-                    ->get($apiUrl, $params);
+                    ->get($apiUrl, array_merge($apiQuery, $params));
                 $status = $response->status();
                 $body = $response->body();
                 $data = $response->json();

@@ -10,23 +10,33 @@ return [
     'channel_url' => env('DZEN_CHANNEL_URL', 'https://dzen.ru/digital_fintech'),
 
     /*
-    | Опциональный ID канала (например 5a3287185f4967644f9226e4).
-    | Если dzen.ru возвращает 404/пустой items, укажите channel_id из zen.yandex.ru/id/CHANNEL_ID.
+    | ID канала (publisher_id). Для digital_fintech — 5c3757f470c93f00a9a95047.
+    | Используется как запасной параметр channel_id, если channel_name не сработал.
     */
-    'channel_id' => env('DZEN_CHANNEL_ID', null),
+    'channel_id' => env('DZEN_CHANNEL_ID', '5c3757f470c93f00a9a95047'),
 
     /*
-    | Базовый URL API (неофициальный). Используется первым; при пустом items пробуются другие хосты.
+    | Базовый URL API (неофициальный). export отдаёт ленту канала; more часто возвращает пустой items.
     */
-    'api_url' => env('DZEN_API_URL', 'https://dzen.ru/api/v3/launcher/more'),
+    'api_url' => env('DZEN_API_URL', 'https://dzen.ru/api/v3/launcher/export'),
 
     /*
     | Дополнительные URL API для перебора, если основной возвращает пустой items.
-    | По умолчанию пробуются zen.yandex.com и zen.yandex.ru.
     */
     'api_url_fallbacks' => [
-        'https://zen.yandex.com/api/v3/launcher/more',
+        'https://zen.yandex.ru/api/v3/launcher/export',
+        'https://zen.yandex.com/api/v3/launcher/export',
+        'https://dzen.ru/api/v3/launcher/more',
         'https://zen.yandex.ru/api/v3/launcher/more',
+    ],
+
+    /*
+    | Общие query-параметры для запросов к API Дзен.
+    */
+    'api_query' => [
+        'clid' => 1400,
+        'country_code' => 'ru',
+        'lang' => 'ru',
     ],
 
 ];
