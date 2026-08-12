@@ -649,7 +649,23 @@
         $newsPlaceholder = asset('assets/imgs/page/homepage1/img-news.png');
     @endphp
     <section class="section-box box-latest-news box-latest-news-2" id="news-feed-section">
-        <style>#news-feed-section .card-news .card-image,#news-feed-section .card-news .card-image img{background:#fff;border-radius:16px;}</style>
+        <style>
+            #news-feed-section .card-news .card-image{
+                background:#fff;
+                border-radius:16px;
+                overflow:hidden;
+                aspect-ratio:3/2;
+                border:1px solid #e8eaed;
+            }
+            #news-feed-section .card-news .card-image img{
+                background:#fff;
+                width:100%;
+                height:100%;
+                object-fit:cover;
+                display:block;
+                border-radius:16px;
+            }
+        </style>
         <div class="container">
             <div class="row align-items-end">
                 <div class="col-lg-8 mb-30">
@@ -671,7 +687,7 @@
                                 <div class="card-news">
                                     <div class="card-image">
                                         <a href="{{ $item->url }}" target="_blank" rel="noopener noreferrer">
-                                            <img src="{{ $item->image_url ?? $newsPlaceholder }}" alt="{{ e($item->title) }}" loading="lazy" onerror="this.onerror=null; this.src='{{ $newsPlaceholder }}';">
+                                            <img src="{{ $item->image_url ?? $newsPlaceholder }}" alt="{{ e($item->title) }}" loading="eager" decoding="async" onerror="this.onerror=null; this.src='{{ $newsPlaceholder }}';">
                                         </a>
                                     </div>
                                     <div class="card-info">
@@ -700,21 +716,23 @@
                 if (!el || typeof Swiper === 'undefined') return;
                 new Swiper('#news-feed-carousel', {
                     spaceBetween: 30,
-                    slidesPerView: 3,
+                    slidesPerView: 1,
                     slidesPerGroup: 1,
+                    initialSlide: 0,
                     loop: true,
-                    loopAdditionalSlides: 3,
-                    loopedSlides: 12,
+                    loopAdditionalSlides: 2,
+                    watchOverflow: true,
+                    observer: true,
+                    observeParents: true,
                     autoplay: { delay: 5000, disableOnInteraction: false },
                     navigation: {
                         nextEl: '#news-carousel-next',
                         prevEl: '#news-carousel-prev'
                     },
                     breakpoints: {
-                        1199: { slidesPerView: 3 },
-                        800: { slidesPerView: 2 },
                         400: { slidesPerView: 1 },
-                        250: { slidesPerView: 1 }
+                        800: { slidesPerView: 2 },
+                        1200: { slidesPerView: 3 }
                     }
                 });
             })();

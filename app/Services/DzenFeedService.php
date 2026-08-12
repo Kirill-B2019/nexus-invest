@@ -171,8 +171,11 @@ class DzenFeedService
                 'url' => Str::limit($url, 1000),
                 'description' => $description !== '' ? Str::limit($description, 2000) : null,
             ];
+            // Локальный файл предпочтителен; если скачать не удалось — внешний URL обложки с Дзен.
             if ($imageStoragePath !== null) {
                 $payload['image_url'] = $imageStoragePath;
+            } elseif ($externalImageUrl) {
+                $payload['image_url'] = Str::limit($externalImageUrl, 1000);
             }
 
             $existing = NewsFeedItem::where('external_id', $externalId)->where('source', 'dzen')->first();
