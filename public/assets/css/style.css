@@ -5869,30 +5869,39 @@ a.icon-socials:hover {
   border-radius: 16px;
   display: block;
 }
-/* Лента новостей: пропорции обложек; Chrome-safe compositing внутри Swiper */
+/* Лента новостей: обложки через absolute — иначе в Chrome height:100% + aspect-ratio = пустая рамка */
 #news-feed-section .card-news {
   overflow: visible;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
 }
 #news-feed-section .card-news .card-image {
+  position: relative;
   background: #fff;
   border-radius: 16px;
   overflow: hidden;
   aspect-ratio: 3 / 2;
   border: 1px solid #e8eaed;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  isolation: isolate;
+}
+#news-feed-section .card-news .card-image > a {
+  position: absolute;
+  inset: 0;
+  display: block;
 }
 #news-feed-section .card-news .card-image img {
-  background: #fff;
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  background: #fff;
+}
+#news-feed-section .card-news .card-info .heading-4 {
   display: block;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+  color: var(--color-dark, #191919);
+  -webkit-text-fill-color: var(--color-dark, #191919);
+}
+#news-feed-section .card-news .card-info .btn-learmore-2 {
+  display: inline-flex !important;
+  align-items: center;
+  color: var(--color-dark, #191919);
 }
 #news-feed-section .btn-learmore-2 span {
   display: inline-flex;

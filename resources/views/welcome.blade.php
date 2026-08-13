@@ -650,51 +650,66 @@
     @endphp
     <section class="section-box box-latest-news box-latest-news-2" id="news-feed-section">
         <style>
-            /* Chrome: overflow+transform у Swiper иначе «съедает» картинки/кнопки */
+            /*
+              Chrome: height:100% у img внутри aspect-ratio даёт высоту 0 → белая рамка без картинки.
+              Заголовок/кнопка тоже пропадают при лишних translateZ/isolation в связке со Swiper.
+            */
             #news-feed-section .card-news{
                 overflow:visible;
-                -webkit-transform:translateZ(0);
-                transform:translateZ(0);
             }
             #news-feed-section .card-news .card-image{
+                position:relative;
                 background:#fff;
                 border-radius:16px;
                 overflow:hidden;
                 aspect-ratio:3/2;
                 border:1px solid #e8eaed;
-                -webkit-transform:translateZ(0);
-                transform:translateZ(0);
-                isolation:isolate;
+            }
+            #news-feed-section .card-news .card-image > a{
+                position:absolute;
+                inset:0;
+                display:block;
             }
             #news-feed-section .card-news .card-image img{
-                background:#fff;
+                display:block;
                 width:100%;
                 height:100%;
                 object-fit:cover;
-                display:block;
                 border-radius:16px;
-                -webkit-backface-visibility:hidden;
-                backface-visibility:hidden;
+                background:#fff;
+            }
+            #news-feed-section .card-news .card-info .heading-4{
+                display:block;
+                color:var(--color-dark,#191919);
+                -webkit-text-fill-color:var(--color-dark,#191919);
+                opacity:1;
+                visibility:visible;
+            }
+            #news-feed-section .card-news .card-info .btn-learmore-2{
+                display:inline-flex !important;
+                align-items:center;
+                visibility:visible;
+                opacity:1;
+                color:var(--color-dark,#191919);
             }
             #news-feed-section .btn-learmore-2 span{
                 display:inline-flex;
                 align-items:center;
                 justify-content:center;
                 flex-shrink:0;
+                width:38px;
+                height:38px;
+                background-color:var(--color-primary,#C5FF55);
+                border-radius:50%;
             }
             #news-feed-section .btn-learmore-2 svg{
                 display:block;
-                color:var(--color-dark,#191919);
+                color:#191919;
                 fill:currentColor;
             }
-            #news-feed-section .swiper-slide{
-                -webkit-transform:translateZ(0);
-                transform:translateZ(0);
-                backface-visibility:hidden;
-            }
-            #news-feed-section .swiper-wrapper{
-                -webkit-transform-style:flat;
-                transform-style:flat;
+            #news-feed-section .swiper-button-prev svg path,
+            #news-feed-section .swiper-button-next svg path{
+                stroke:currentColor;
             }
         </style>
         <div class="container">
@@ -767,13 +782,6 @@
                         1200: { slidesPerView: 3 }
                     },
                     on: {
-                        init: function () {
-                            // принудительный слой GPU после init — иначе Chrome «теряет» отрисовку
-                            el.querySelectorAll('.card-news, .card-news img, .btn-learmore-2 span').forEach(function (node) {
-                                node.style.webkitTransform = 'translateZ(0)';
-                                node.style.transform = 'translateZ(0)';
-                            });
-                        },
                         reachEnd: function () {
                             // без loop: после последнего слайда возвращаемся к началу
                             var self = this;
@@ -781,7 +789,6 @@
                         }
                     }
                 });
-                // если слайдов мало для бесконечности — просто останавливаем autoplay у края через watchOverflow
                 void swiper;
             })();
         </script>
