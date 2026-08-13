@@ -687,9 +687,14 @@
                 color:var(--color-dark,#191919);
                 fill:currentColor;
             }
-            #news-feed-section .swiper-button-prev svg path,
-            #news-feed-section .swiper-button-next svg path{
-                stroke:currentColor;
+            #news-feed-section .swiper-slide{
+                -webkit-transform:translateZ(0);
+                transform:translateZ(0);
+                backface-visibility:hidden;
+            }
+            #news-feed-section .swiper-wrapper{
+                -webkit-transform-style:flat;
+                transform-style:flat;
             }
         </style>
         <div class="container">
@@ -740,17 +745,16 @@
             (function() {
                 var el = document.getElementById('news-feed-carousel');
                 if (!el || typeof Swiper === 'undefined') return;
-                new Swiper('#news-feed-carousel', {
+                var swiper = new Swiper('#news-feed-carousel', {
                     spaceBetween: 30,
                     slidesPerView: 1,
                     slidesPerGroup: 1,
                     initialSlide: 0,
-                    loop: true,
-                    loopAdditionalSlides: 2,
+                    // loop клонирует DOM и в Chrome после init/observer картинки и SVG-кнопки пропадают
+                    loop: false,
                     watchOverflow: true,
-                    observer: true,
-                    observeParents: true,
-                    // без CSS scroll-mode: в Chrome transform+overflow иначе прячет картинки
+                    observer: false,
+                    observeParents: false,
                     cssMode: false,
                     autoplay: { delay: 5000, disableOnInteraction: false },
                     navigation: {
@@ -761,8 +765,24 @@
                         400: { slidesPerView: 1 },
                         800: { slidesPerView: 2 },
                         1200: { slidesPerView: 3 }
+                    },
+                    on: {
+                        init: function () {
+                            // принудительный слой GPU после init — иначе Chrome «теряет» отрисовку
+                            el.querySelectorAll('.card-news, .card-news img, .btn-learmore-2 span').forEach(function (node) {
+                                node.style.webkitTransform = 'translateZ(0)';
+                                node.style.transform = 'translateZ(0)';
+                            });
+                        },
+                        reachEnd: function () {
+                            // без loop: после последнего слайда возвращаемся к началу
+                            var self = this;
+                            setTimeout(function () { self.slideTo(0); }, 5000);
+                        }
                     }
                 });
+                // если слайдов мало для бесконечности — просто останавливаем autoplay у края через watchOverflow
+                void swiper;
             })();
         </script>
     @endpush
