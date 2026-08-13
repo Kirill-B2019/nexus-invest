@@ -650,12 +650,21 @@
     @endphp
     <section class="section-box box-latest-news box-latest-news-2" id="news-feed-section">
         <style>
+            /* Chrome: overflow+transform у Swiper иначе «съедает» картинки/кнопки */
+            #news-feed-section .card-news{
+                overflow:visible;
+                -webkit-transform:translateZ(0);
+                transform:translateZ(0);
+            }
             #news-feed-section .card-news .card-image{
                 background:#fff;
                 border-radius:16px;
                 overflow:hidden;
                 aspect-ratio:3/2;
                 border:1px solid #e8eaed;
+                -webkit-transform:translateZ(0);
+                transform:translateZ(0);
+                isolation:isolate;
             }
             #news-feed-section .card-news .card-image img{
                 background:#fff;
@@ -664,6 +673,23 @@
                 object-fit:cover;
                 display:block;
                 border-radius:16px;
+                -webkit-backface-visibility:hidden;
+                backface-visibility:hidden;
+            }
+            #news-feed-section .btn-learmore-2 span{
+                display:inline-flex;
+                align-items:center;
+                justify-content:center;
+                flex-shrink:0;
+            }
+            #news-feed-section .btn-learmore-2 svg{
+                display:block;
+                color:var(--color-dark,#191919);
+                fill:currentColor;
+            }
+            #news-feed-section .swiper-button-prev svg path,
+            #news-feed-section .swiper-button-next svg path{
+                stroke:currentColor;
             }
         </style>
         <div class="container">
@@ -674,8 +700,8 @@
                 </div>
                 <div class="col-lg-4 mb-30">
                     <div class="box-button-slider box-button-slider-team justify-content-end">
-                        <button type="button" class="swiper-button-prev swiper-button-prev-testimonials swiper-button-prev-3" id="news-carousel-prev" aria-label="{{ __('Назад') }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.66667 3.33398L2 8.00065M2 8.00065L6.66667 12.6673M2 8.00065H14" stroke="" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
-                        <button type="button" class="swiper-button-next swiper-button-next-testimonials swiper-button-next-3" id="news-carousel-next" aria-label="{{ __('Вперёд') }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.33333 3.33398L14 8.00065M14 8.00065L9.33333 12.6673M14 8.00065H2" stroke="" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+                        <button type="button" class="swiper-button-prev swiper-button-prev-testimonials swiper-button-prev-3" id="news-carousel-prev" aria-label="{{ __('Назад') }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.66667 3.33398L2 8.00065M2 8.00065L6.66667 12.6673M2 8.00065H14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+                        <button type="button" class="swiper-button-next swiper-button-next-testimonials swiper-button-next-3" id="news-carousel-next" aria-label="{{ __('Вперёд') }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9.33333 3.33398L14 8.00065M14 8.00065L9.33333 12.6673M14 8.00065H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
                     </div>
                 </div>
             </div>
@@ -699,7 +725,7 @@
                                         @if($item->description)
                                             <p class="text-md neutral-700 mt-15 mb-35">{{ e(str()->limit($item->description, 160)) }}</p>
                                         @endif
-                                        <a class="btn btn-learmore-2" href="{{ $item->url }}" target="_blank" rel="noopener noreferrer"><span><svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_24_999)"><path d="M10.6557 3.81393L1.71996 12.7497L0.251953 11.2817L9.18664 2.34592H1.31195V0.269531H12.7321V11.6897H10.6557V3.81393Z" fill="#191919"></path></g><defs><clippath id="clip0_24_999"><rect width="13" height="13" fill="white"></rect></clippath></defs></svg></span>{{ __('Подробнее') }}</a>
+                                        <a class="btn btn-learmore-2" href="{{ $item->url }}" target="_blank" rel="noopener noreferrer"><span><svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10.6557 3.81393L1.71996 12.7497L0.251953 11.2817L9.18664 2.34592H1.31195V0.269531H12.7321V11.6897H10.6557V3.81393Z" fill="currentColor"></path></svg></span>{{ __('Подробнее') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -724,6 +750,8 @@
                     watchOverflow: true,
                     observer: true,
                     observeParents: true,
+                    // без CSS scroll-mode: в Chrome transform+overflow иначе прячет картинки
+                    cssMode: false,
                     autoplay: { delay: 5000, disableOnInteraction: false },
                     navigation: {
                         nextEl: '#news-carousel-next',

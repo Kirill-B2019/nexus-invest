@@ -5869,13 +5869,21 @@ a.icon-socials:hover {
   border-radius: 16px;
   display: block;
 }
-/* Лента новостей: фиксируем пропорции обложек, белый фон под светлыми иллюстрациями */
+/* Лента новостей: пропорции обложек; Chrome-safe compositing внутри Swiper */
+#news-feed-section .card-news {
+  overflow: visible;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
 #news-feed-section .card-news .card-image {
   background: #fff;
   border-radius: 16px;
   overflow: hidden;
   aspect-ratio: 3 / 2;
   border: 1px solid #e8eaed;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  isolation: isolate;
 }
 #news-feed-section .card-news .card-image img {
   background: #fff;
@@ -5883,6 +5891,19 @@ a.icon-socials:hover {
   height: 100%;
   object-fit: cover;
   display: block;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+#news-feed-section .btn-learmore-2 span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+#news-feed-section .btn-learmore-2 svg {
+  display: block;
+  color: var(--color-dark, #191919);
+  fill: currentColor;
 }
 .card-news .card-info * {
   color: var(--color-dark);

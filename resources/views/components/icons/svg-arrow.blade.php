@@ -11,19 +11,13 @@
     viewBox="0 0 39 38"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
 >
     <rect x="0.5" width="38" height="38" rx="19" fill="{{ $bg }}" />
-    <g clip-path="url(#clip0_1_376)">
-        <path
-            d="M24.1537 16.8139L15.218 25.7497L13.75 24.2817L22.6847 15.3459H14.81V13.2695H26.2301V24.6897H24.1537V16.8139Z"
-            fill="{{ $color }}"
-        />
-    </g>
-    <defs>
-        <clipPath id="clip0_1_376">
-            <rect width="13" height="13" fill="white" transform="translate(13.5 13)" />
-        </clipPath>
-    </defs>
+    <path
+        d="M24.1537 16.8139L15.218 25.7497L13.75 24.2817L22.6847 15.3459H14.81V13.2695H26.2301V24.6897H24.1537V16.8139Z"
+        fill="{{ $color }}"
+    />
 </svg>
 
 {{--
