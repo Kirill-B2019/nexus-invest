@@ -8458,6 +8458,14 @@ a.icon-socials:hover {
   padding: 0px 0px 0px 20px;
   margin-bottom: 12px;
 }
+.list-checked--team li {
+  margin-bottom: 22px;
+  padding-left: 24px;
+  background-position: left top 6px;
+}
+.list-checked--team li:last-child {
+  margin-bottom: 0;
+}
 
 .box-content-feature-2 {
   padding-bottom: 100px;
