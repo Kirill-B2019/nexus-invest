@@ -801,7 +801,7 @@
         <div class="row">
             <div class="col-lg-6 mb-30">
                 <div class="testimonial-img-animated align-content-center">
-                    <img src="{{ asset('assets/imgs/page/homepage1/img-testimonial.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async" class="w-70">
+                    <img src="{{ asset('assets/imgs/page/homepage1/img-testimonial.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async" class="w-75">
                 </div>
                 <ul class="list-checked list-checked--team">
                     <li>
