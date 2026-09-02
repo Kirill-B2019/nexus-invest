@@ -133,7 +133,7 @@ return [
     'recipients' => [
         'contact' => array_values(array_filter(array_map(
             'trim',
-            explode(',', (string) env('MAIL_CONTACT_RECIPIENTS', 'nexus@nexus-invest.fund'))
+            explode(',', (string) (env('MAIL_CONTACT_RECIPIENTS') ?: 'nexus@nexus-invest.fund'))
         ))),
     ],
 

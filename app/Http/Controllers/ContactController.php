@@ -2,20 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\ContactMessageSubmitted;
+use App\Mail\ContactMessageReceivedMail;
 use App\Models\ContactMessage;
 use App\Rules\MathCaptcha;
 use App\Services\CaptchaService;
+use App\Services\OutboundMailService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Throwable;
 
 /**
  * |KB 2025-02-18 Приём сообщений обратной связи. Валидация и капча через сервис.
  */
 class ContactController extends Controller
 {
-    public function store(Request $request, CaptchaService $captchaService): RedirectResponse
-    {
+    public function store(
+        Request $request,
+        CaptchaService $captchaService,
+        OutboundMailService $outboundMail,
+    ): RedirectResponse {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email'],
@@ -38,7 +44,20 @@ class ContactController extends Controller
             'ip' => $request->ip(),
         ]);
 
-        event(new ContactMessageSubmitted($message));
+        try {
+            $outboundMail->send(
+                route: 'contact',
+                mailable: new ContactMessageReceivedMail($message),
+                replyToEmail: $message->email,
+                replyToName: $message->name,
+            );
+        } catch (Throwable $e) {
+            Log::error('Не удалось отправить письмо обратной связи', [
+                'contact_message_id' => $message->id,
+                'email' => $message->email,
+                'error' => $e->getMessage(),
+            ]);
+        }
 
         return back()->with('alert_success', __('Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.'));
     }

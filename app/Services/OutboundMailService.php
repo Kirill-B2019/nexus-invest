@@ -43,8 +43,17 @@ class OutboundMailService
 
             if ($useQueue) {
                 Mail::to($address)->queue($instance);
+                Log::info('OutboundMailService: письмо поставлено в очередь', [
+                    'route' => $route,
+                    'to' => $address,
+                ]);
             } else {
                 Mail::to($address)->send($instance);
+                Log::info('OutboundMailService: письмо отправлено', [
+                    'route' => $route,
+                    'to' => $address,
+                    'mailer' => config('mail.default'),
+                ]);
             }
         }
     }
