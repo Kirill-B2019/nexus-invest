@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Mail\Mailable;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 /**
@@ -22,8 +23,12 @@ class OutboundMailService
         $recipients = config('mail.recipients.'.$route, []);
 
         if (! is_array($recipients) || $recipients === []) {
+            Log::warning('OutboundMailService: получатели не заданы', ['route' => $route]);
+
             return;
         }
+
+        $useQueue = (bool) config('mail.queue_outbound', false);
 
         foreach ($recipients as $address) {
             if (! is_string($address) || $address === '') {
@@ -36,7 +41,11 @@ class OutboundMailService
                 $instance->replyTo($replyToEmail, $replyToName);
             }
 
-            Mail::to($address)->queue($instance);
+            if ($useQueue) {
+                Mail::to($address)->queue($instance);
+            } else {
+                Mail::to($address)->send($instance);
+            }
         }
     }
 }

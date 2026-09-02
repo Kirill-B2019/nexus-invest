@@ -13,9 +13,12 @@ class ContactFormTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_contact_form_stores_message_and_queues_notification_mail(): void
+    public function test_contact_form_stores_message_and_sends_notification_mail(): void
     {
-        config(['mail.recipients.contact' => ['nexus@nexus-invest.fund']]);
+        config([
+            'mail.recipients.contact' => ['nexus@nexus-invest.fund'],
+            'mail.queue_outbound' => false,
+        ]);
         Mail::fake();
 
         /** @var CaptchaService $captchaService */
@@ -47,7 +50,7 @@ class ContactFormTest extends TestCase
         $message = ContactMessage::where('email', 'test@example.com')->first();
         $this->assertNotNull($message);
 
-        Mail::assertQueued(ContactMessageReceivedMail::class, function (ContactMessageReceivedMail $mail) use ($message) {
+        Mail::assertSent(ContactMessageReceivedMail::class, function (ContactMessageReceivedMail $mail) use ($message) {
             return $mail->hasTo('nexus@nexus-invest.fund')
                 && $mail->contactMessage->is($message);
         });
