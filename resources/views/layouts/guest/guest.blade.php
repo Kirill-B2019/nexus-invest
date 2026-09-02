@@ -69,6 +69,7 @@
     @include('layouts.guest.footer')
 
     <x-guest.contact-form-modal />
+    <x-guest.project-metrics-modal />
 
     @if ($errors->hasAny(['name', 'email', 'message', 'captcha_answer']) && old('_form') === 'contact')
     <script>
