@@ -40,52 +40,13 @@
                     <li class="mb-2">{{ __('Дисконтированная окупаемость 5 лет') }}</li>
                     <li>{{ __('Остаточная стоимость 0 ₽ — консервативное допущение') }}</li>
                 </ul>
-                <div class="d-flex flex-wrap gap-2">
-                    <button
-                        type="button"
-                        class="btn btn-sm btn-border-brand-7 small uppercase"
-                        id="projectMetricsContactBtn"
-                        data-contact-subject="{{ __('Запрос обратной связи по показателям') }}"
-                    >{{ __('Связаться с нами') }}</button>
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">{{ __('Закрыть') }}</button>
-                </div>
+                <button
+                    type="button"
+                    class="btn btn-sm btn-border-brand-7 small uppercase"
+                    id="projectMetricsContactBtn"
+                    data-contact-subject="{{ __('Запрос обратной связи по показателям') }}"
+                >{{ __('Связаться с нами') }}</button>
             </div>
         </div>
     </div>
 </div>
-
-@push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var metricsBtn = document.getElementById('projectMetricsContactBtn');
-        if (!metricsBtn || typeof bootstrap === 'undefined') {
-            return;
-        }
-
-        metricsBtn.addEventListener('click', function () {
-            var metricsEl = document.getElementById('projectMetricsModal');
-            var contactEl = document.getElementById('contactFormModal');
-            var subjectInput = document.getElementById('contact-subject');
-            var subject = metricsBtn.getAttribute('data-contact-subject') || '';
-
-            if (!metricsEl || !contactEl) {
-                return;
-            }
-
-            var openContact = function () {
-                if (subjectInput) {
-                    subjectInput.value = subject;
-                }
-                bootstrap.Modal.getOrCreateInstance(contactEl).show();
-            };
-
-            if (metricsEl.classList.contains('show')) {
-                metricsEl.addEventListener('hidden.bs.modal', openContact, { once: true });
-                bootstrap.Modal.getOrCreateInstance(metricsEl).hide();
-            } else {
-                openContact();
-            }
-        });
-    });
-</script>
-@endpush

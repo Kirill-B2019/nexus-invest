@@ -111,6 +111,45 @@
     </script>
     <script src="{{ asset('assets/js/sweetalert-flash.js') }}?v={{ $styleVer }}"></script>
     <script src="{{ asset('assets/js/ganimed-status.js') }}?v={{ $styleVer }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var metricsBtn = document.getElementById('projectMetricsContactBtn');
+            if (!metricsBtn || typeof bootstrap === 'undefined') {
+                return;
+            }
+
+            function getModal(el) {
+                return bootstrap.Modal.getInstance(el) || new bootstrap.Modal(el);
+            }
+
+            metricsBtn.addEventListener('click', function () {
+                var metricsEl = document.getElementById('projectMetricsModal');
+                var contactEl = document.getElementById('contactFormModal');
+                var subjectInput = document.getElementById('contact-subject');
+                var subject = metricsBtn.getAttribute('data-contact-subject') || '';
+
+                if (!metricsEl || !contactEl) {
+                    return;
+                }
+
+                var openContact = function () {
+                    if (subjectInput) {
+                        subjectInput.value = subject;
+                    }
+                    getModal(contactEl).show();
+                };
+
+                if (metricsEl.classList.contains('show')) {
+                    metricsEl.addEventListener('hidden.bs.modal', function () {
+                        openContact();
+                    }, { once: true });
+                    getModal(metricsEl).hide();
+                } else {
+                    openContact();
+                }
+            });
+        });
+    </script>
     @stack('scripts')
 </body>
 </html>
