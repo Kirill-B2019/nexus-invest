@@ -42,7 +42,7 @@
                     <div class="col-12 col-lg-6 order-1 order-lg-1">
                         <div class="box-banner-left">
                                 <a class="btn btn-brand-5-new" href="{{ url('https://main-node.gnd-net.com') }}" target="_blank" rel="noopener noreferrer"><span>{{ __('Работает на:') }}</span> {{ __('блокчейне ГАНИМЕД') }}</a>
-                                <p class="neutral-300 small pt-3 uppercase">{{ __('Новационная Единая Комплексная Система Управления Сделками') }}</p>
+                                <p class="neutral-300 small pt-3 uppercase">{{ __('Новационная Единая ') }} <span class="neutral-100"> {{ __('Комплексная Система Управления ') }} </span>{{ __('Сделками') }}</p>
                                 {{--<h6 class="display-5 neutral-200 text-semibold pt-3">{{ __('ПРОЕКТНОЕ ФИНАНСИРОВАНИЕ') }}</h6>--}}
                             <p class="text-lg neutral-200  mt-10 mb-10 display-4 uppercase">
                             {{ __('Платформа полного цикла для токенизации инвестиционных проектов, распределения капитала и финансирования инициатив через цифровые активы.') }}
