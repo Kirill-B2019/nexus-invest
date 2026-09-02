@@ -39,7 +39,11 @@ return [
 
         'smtp' => [
             'transport' => 'smtp',
-            'scheme' => env('MAIL_SCHEME'),
+            // Laravel 12 / Symfony Mailer: smtps (порт 465), smtp (порт 587). Значение ssl из .env приводится к smtps.
+            'scheme' => match (env('MAIL_SCHEME')) {
+                'ssl' => 'smtps',
+                default => env('MAIL_SCHEME'),
+            },
             'url' => env('MAIL_URL'),
             'host' => env('MAIL_HOST', '127.0.0.1'),
             'port' => env('MAIL_PORT', 2525),
