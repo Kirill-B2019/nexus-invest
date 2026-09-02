@@ -11,3 +11,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/api/ganimed/health', GanimedHealthController::class)->name('api.ganimed.health');
 Route::get('/api/ganimed/block', [GanimedBlockController::class, '__invoke'])->name('api.ganimed.block');
 Route::middleware('throttle:10,1')->post('/api/captcha/new', [CaptchaController::class, 'new'])->name('api.captcha.new');
+Route::middleware('throttle:60,1')->get('/api/csrf-token', function () {
+    return response()->json(['token' => csrf_token()]);
+})->name('api.csrf-token');

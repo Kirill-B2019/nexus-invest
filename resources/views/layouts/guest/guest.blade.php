@@ -95,6 +95,8 @@
     <script src="{{ asset('assets/js/plugins/scrollup.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/wow.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}?v={{ $styleVer }}"></script>
+    <script src="{{ asset('assets/js/math-captcha.js') }}?v={{ $styleVer }}"></script>
+    <script src="{{ asset('assets/js/contact-form.js') }}?v={{ $styleVer }}"></script>
     <script src="{{ asset('assets/js/cookie-banner.js') }}?v={{ $styleVer }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     @php
