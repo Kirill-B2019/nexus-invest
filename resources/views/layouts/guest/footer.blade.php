@@ -3,7 +3,8 @@
         <div class="row">
             <div class="col-12 col-md-6 col-sm-12">
                 <a href="{{ route('welcome') }}">
-                    <img alt="{{ config('app.name') }}" src="{{ asset('assets/imgs/template/logo.svg') }}" class="w-85">
+                    {{--<img alt="{{ config('app.name') }}" src="{{ asset('assets/imgs/template/logo.svg') }}" class="w-85">--}}
+                    <img alt="{{ config('app.name') }}" src="{{ asset('assets/imgs/template/16.svg') }}" class="w-85">
                 </a>
                 <div class="mb-20">
                     <p class="text-md neutral-600 mb-10">{{ config('app.name') }}</p>
