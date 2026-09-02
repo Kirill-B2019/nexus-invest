@@ -122,4 +122,19 @@ return [
     */
     'support_address' => env('MAIL_SUPPORT_ADDRESS', env('MAIL_FROM_ADDRESS', 'hello@example.com')),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Получатели исходящих писем по сценариям (OutboundMailService)
+    |--------------------------------------------------------------------------
+    |
+    | Ключ — имя маршрута; значение — список email (через запятую в .env).
+    |
+    */
+    'recipients' => [
+        'contact' => array_values(array_filter(array_map(
+            'trim',
+            explode(',', (string) env('MAIL_CONTACT_RECIPIENTS', 'nexus@nexus-invest.fund'))
+        ))),
+    ],
+
 ];

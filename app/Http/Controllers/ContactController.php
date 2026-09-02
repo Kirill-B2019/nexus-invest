@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ContactMessageSubmitted;
 use App\Models\ContactMessage;
 use App\Rules\MathCaptcha;
 use App\Services\CaptchaService;
@@ -29,13 +30,15 @@ class ContactController extends Controller
             'message.required' => __('Введите сообщение.'),
         ]);
 
-        ContactMessage::create([
+        $message = ContactMessage::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'subject' => $validated['subject'] ?? null,
             'message' => $validated['message'],
             'ip' => $request->ip(),
         ]);
+
+        event(new ContactMessageSubmitted($message));
 
         return back()->with('alert_success', __('Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.'));
     }
