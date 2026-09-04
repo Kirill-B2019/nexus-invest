@@ -174,22 +174,47 @@
         });
 
         var bars = quarters
-            .map(function (q) {
+            .map(function (q, i) {
                 var hRwa = Math.round(((q.rwa_deposits_b || 0) / maxVal) * 100);
                 var hDefi = Math.round(((q.defi_deposits_b || 0) / maxVal) * 100);
+                var prev = i > 0 ? quarters[i - 1] : null;
+                var dRwa =
+                    prev && prev.rwa_deposits_b != null && q.rwa_deposits_b != null
+                        ? q.rwa_deposits_b - prev.rwa_deposits_b
+                        : null;
+                var dDefi =
+                    prev && prev.defi_deposits_b != null && q.defi_deposits_b != null
+                        ? q.defi_deposits_b - prev.defi_deposits_b
+                        : null;
                 return (
-                    '<div class="ind-bars__group">' +
+                    '<div class="ind-bars__group" tabindex="0" data-bar-idx="' +
+                    i +
+                    '" data-quarter="' +
+                    esc(q.quarter) +
+                    '" data-rwa="' +
+                    esc(num(q.rwa_deposits_b, 1)) +
+                    '" data-defi="' +
+                    esc(num(q.defi_deposits_b, 1)) +
+                    '" data-share="' +
+                    esc(pct(q.rwa_deposit_share, 1)) +
+                    '" data-drwa="' +
+                    (dRwa == null ? "" : esc(num(dRwa, 1))) +
+                    '" data-ddefi="' +
+                    (dDefi == null ? "" : esc(num(dDefi, 1))) +
+                    '" aria-label="' +
+                    esc(q.quarter) +
+                    ": RWA $" +
+                    esc(num(q.rwa_deposits_b, 1)) +
+                    " млрд, DeFi $" +
+                    esc(num(q.defi_deposits_b, 1)) +
+                    ' млрд">' +
                     '<div class="ind-bars__cols">' +
                     '<div class="ind-bars__col ind-bars__col--rwa" style="height:' +
                     hRwa +
-                    '%" title="RWA: $' +
-                    esc(num(q.rwa_deposits_b, 1)) +
-                    ' млрд"></div>' +
+                    '%"></div>' +
                     '<div class="ind-bars__col ind-bars__col--defi" style="height:' +
                     hDefi +
-                    '%" title="DeFi: $' +
-                    esc(num(q.defi_deposits_b, 1)) +
-                    ' млрд"></div>' +
+                    '%"></div>' +
                     "</div>" +
                     '<div class="ind-bars__label">' +
                     esc(q.quarter) +
@@ -205,12 +230,15 @@
         var dexYoy = data.dex_total_volume_yoy_pct;
 
         widget.querySelector('[data-role="body"]').innerHTML =
+            '<div class="ind-bars-wrap">' +
             '<div class="ind-legend">' +
             '<span class="ind-legend__rwa">Депозиты RWA</span>' +
             '<span class="ind-legend__defi">Депозиты DeFi</span>' +
             "</div>" +
             '<div class="ind-bars" role="img" aria-label="Сравнение депозитов RWA и DeFi по кварталам">' +
             bars +
+            "</div>" +
+            '<div class="ind-bars__tooltip" hidden data-role="bars-tooltip"></div>' +
             "</div>" +
             '<div class="ind-stat-row mt-3">' +
             '<div class="ind-stat-card">' +
@@ -230,6 +258,89 @@
             "</div>";
 
         setMeta(widget, data);
+        bindRwaBarsTooltip(widget);
+    }
+
+    function bindRwaBarsTooltip(widget) {
+        var wrap = widget.querySelector(".ind-bars-wrap");
+        var tip = widget.querySelector('[data-role="bars-tooltip"]');
+        if (!wrap || !tip) return;
+
+        function fmtDelta(raw) {
+            if (raw === "" || raw == null) return "—";
+            var n = Number(String(raw).replace(",", "."));
+            if (isNaN(n)) return "—";
+            var sign = n > 0 ? "+" : "";
+            return sign + raw + " млрд";
+        }
+
+        function showTip(group, clientX, clientY) {
+            var quarter = group.getAttribute("data-quarter") || "";
+            var rwa = group.getAttribute("data-rwa") || "—";
+            var defi = group.getAttribute("data-defi") || "—";
+            var share = group.getAttribute("data-share") || "—";
+            var dRwa = group.getAttribute("data-drwa");
+            var dDefi = group.getAttribute("data-ddefi");
+
+            tip.hidden = false;
+            tip.innerHTML =
+                "<strong>" +
+                esc(quarter) +
+                "</strong>" +
+                '<div class="ind-bars__tooltip-row"><span class="ind-bars__tooltip-dot is-rwa"></span>RWA <b>$' +
+                esc(rwa) +
+                " млрд</b></div>" +
+                '<div class="ind-bars__tooltip-row"><span class="ind-bars__tooltip-dot is-defi"></span>DeFi <b>$' +
+                esc(defi) +
+                " млрд</b></div>" +
+                '<div class="ind-bars__tooltip-share">доля RWA ' +
+                esc(share) +
+                "</div>" +
+                '<div class="ind-bars__tooltip-dyn">динамика к пред. периоду<br>' +
+                '<span class="ind-bars__tooltip-dyn-item">RWA ' +
+                esc(fmtDelta(dRwa)) +
+                '</span> · <span class="ind-bars__tooltip-dyn-item">DeFi ' +
+                esc(fmtDelta(dDefi)) +
+                "</span></div>";
+
+            var rect = wrap.getBoundingClientRect();
+            var x = clientX - rect.left + 12;
+            var y = clientY - rect.top + 12;
+            var maxX = rect.width - tip.offsetWidth - 8;
+            var maxY = rect.height - tip.offsetHeight - 8;
+            tip.style.left = Math.max(8, Math.min(x, Math.max(8, maxX))) + "px";
+            tip.style.top = Math.max(8, Math.min(y, Math.max(8, maxY))) + "px";
+
+            wrap.querySelectorAll(".ind-bars__group").forEach(function (el) {
+                el.classList.toggle("is-active", el === group);
+            });
+        }
+
+        function hideTip() {
+            tip.hidden = true;
+            wrap.querySelectorAll(".ind-bars__group.is-active").forEach(function (el) {
+                el.classList.remove("is-active");
+            });
+        }
+
+        wrap.querySelectorAll(".ind-bars__group").forEach(function (group) {
+            group.addEventListener("mouseenter", function (e) {
+                showTip(group, e.clientX, e.clientY);
+            });
+            group.addEventListener("mousemove", function (e) {
+                showTip(group, e.clientX, e.clientY);
+            });
+            group.addEventListener("mouseleave", hideTip);
+            group.addEventListener("focus", function () {
+                var box = group.getBoundingClientRect();
+                showTip(group, box.left + box.width / 2, box.top);
+            });
+            group.addEventListener("blur", hideTip);
+            group.addEventListener("click", function (e) {
+                var box = group.getBoundingClientRect();
+                showTip(group, e.clientX || box.left + box.width / 2, e.clientY || box.top);
+            });
+        });
     }
 
     function renderLiquidity(widget, data) {

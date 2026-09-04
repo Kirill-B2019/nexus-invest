@@ -1029,6 +1029,10 @@
 }
 
 /* --- Барчарт RWA/DeFi --- */
+.ind-bars-wrap {
+  position: relative;
+}
+
 .ind-bars {
   display: flex;
   align-items: flex-end;
@@ -1040,6 +1044,16 @@
 .ind-bars__group {
   flex: 1;
   text-align: center;
+  cursor: pointer;
+  outline: none;
+  border-radius: 10px;
+  transition: background-color 0.15s ease;
+}
+
+.ind-bars__group:hover,
+.ind-bars__group.is-active,
+.ind-bars__group:focus-visible {
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .ind-bars__cols {
@@ -1054,7 +1068,12 @@
   width: 18px;
   border-radius: 6px 6px 2px 2px;
   min-height: 4px;
-  transition: height 0.6s ease;
+  transition: height 0.6s ease, transform 0.15s ease, opacity 0.15s ease;
+}
+
+.ind-bars__group:hover .ind-bars__col,
+.ind-bars__group.is-active .ind-bars__col {
+  transform: translateY(-2px);
 }
 
 .ind-bars__col--rwa {
@@ -1074,6 +1093,75 @@
   margin-top: 8px;
   font-size: 0.75rem;
   color: var(--color-text-muted-2, #898a8a);
+}
+
+.ind-bars__tooltip {
+  position: absolute;
+  z-index: 6;
+  min-width: 180px;
+  max-width: 240px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--color-text-muted-8, #434445);
+  background: rgba(30, 30, 30, 0.96);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+  color: #fff;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.ind-bars__tooltip strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.ind-bars__tooltip-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  color: var(--color-text-muted-4, #b1b2b8);
+}
+
+.ind-bars__tooltip-row b {
+  color: #fff;
+  font-weight: 600;
+}
+
+.ind-bars__tooltip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.ind-bars__tooltip-dot.is-rwa {
+  background: var(--color-primary, #c5ff41);
+}
+
+.ind-bars__tooltip-dot.is-defi {
+  background: var(--color-text-muted-3, #9b9c9f);
+}
+
+.ind-bars__tooltip-share {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--color-text-muted-2, #898a8a);
+  font-size: 0.75rem;
+}
+
+.ind-bars__tooltip-dyn {
+  margin-top: 6px;
+  color: var(--color-text-muted-3, #9b9c9f);
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+.ind-bars__tooltip-dyn-item {
+  color: var(--color-text-muted-4, #b1b2b8);
 }
 
 .ind-legend {

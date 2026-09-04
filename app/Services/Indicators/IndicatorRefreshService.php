@@ -310,13 +310,8 @@ class IndicatorRefreshService
         ]);
 
         if (! $row->exists && $prev) {
+            // Месячный трекер: без депозитов RWA/DeFi (они только в квартальном rwa-vs-defi)
             $row->fill($prev->only([
-                'rwa_deposits_b',
-                'defi_deposits_b',
-                'rwa_deposits_yoy_pct',
-                'defi_deposits_yoy_pct',
-                'rwa_spot_volume_yoy_pct',
-                'dex_total_volume_yoy_pct',
                 'rwa_distributed_value_b',
                 'rwa_holders_m',
                 'daily_transfer_volume_b',
@@ -338,6 +333,15 @@ class IndicatorRefreshService
                 $row->rwa_distributed_value_b = $hint;
             }
         }
+
+        // Не дублировать столбцы графика RWA vs DeFi на месячных снимках
+        $row->rwa_deposits_b = null;
+        $row->defi_deposits_b = null;
+        $row->rwa_deposits_yoy_pct = null;
+        $row->defi_deposits_yoy_pct = null;
+        $row->rwa_deposit_share = null;
+        $row->growth_spread_pct = null;
+        $row->rwa_momentum_pct = null;
 
         $row->fetch_id = $this->latestOkFetchId(['rwa_xyz']);
         $row->meta = [
