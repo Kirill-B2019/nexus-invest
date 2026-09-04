@@ -91,13 +91,15 @@ class IndustryIndicatorsService
      */
     public function rwaVsDefi(): array
     {
-        // Только квартальные снимки (не месячные 2026-09 из rwa-global)
+        // Только квартальные снимки; месячные (2026-09) из rwa-global исключаем
         $rows = RwaGlobal::query()
             ->whereNotNull('rwa_deposits_b')
             ->whereNotNull('defi_deposits_b')
-            ->where('period_label', 'like', '%-Q%')
             ->orderBy('snapshot_date')
-            ->get();
+            ->get()
+            ->filter(fn (RwaGlobal $r) => (bool) preg_match('/^\d{4}-Q[1-4]$/', (string) $r->period_label))
+            ->unique('period_label')
+            ->values();
 
         if ($rows->isEmpty()) {
             return $this->unavailable('rwa-vs-defi');

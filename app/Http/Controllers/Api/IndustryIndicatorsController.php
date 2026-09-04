@@ -68,7 +68,7 @@ class IndustryIndicatorsController extends Controller
      */
     private function cached(string $key, callable $resolver): JsonResponse
     {
-        $cacheKey = 'indicators.'.$key;
+        $cacheKey = 'indicators.v2.'.$key;
         $ttl = config('indicators.cache_ttl', 300);
 
         if (request()->boolean('refresh')) {

@@ -167,7 +167,16 @@
     }
 
     function renderRwaVsDefi(widget, data) {
-        var quarters = data.quarters || [];
+        // Только кварталы YYYY-Qn (месячные 2026-09 отсекаем на клиенте)
+        var quarters = (data.quarters || []).filter(function (q) {
+            return q && /^\d{4}-Q[1-4]$/.test(String(q.quarter || ""));
+        });
+        var seen = {};
+        quarters = quarters.filter(function (q) {
+            if (seen[q.quarter]) return false;
+            seen[q.quarter] = true;
+            return true;
+        });
         var maxVal = 1;
         quarters.forEach(function (q) {
             maxVal = Math.max(maxVal, q.rwa_deposits_b || 0, q.defi_deposits_b || 0);
