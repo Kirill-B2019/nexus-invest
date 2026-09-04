@@ -256,10 +256,25 @@
 {{-- 7. Не чат-бот --}}
 <section class="section-box wow fadeIn box-pricing-2 nexus-ai-section" id="nexus-ai-not-chatbot">
     <div class="container">
-        <div class="nexus-ai-callout">
-            <h2 class="heading-2 mb-20">{{ __('НЕКСУС ИИ — это не обычный чат‑бот') }}</h2>
-            <p class="text-lg neutral-700 mb-15">{{ __('НЕКСУС ИИ не является универсальным публичным помощником. Это специализированная система для задач проектного финансирования, токенизации, управления рисками и комплаенса.') }}</p>
-            <p class="text-md neutral-700 mb-0">{{ __('Она работает с данными и правилами экосистемы, формирует аналитические выводы и рекомендации, но не принимает юридически значимые решения самостоятельно. Чат‑интерфейс — лишь один из способов взаимодействия с системой.') }}</p>
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6 mb-40 order-1">
+                <div class="nexus-ai-callout nexus-ai-callout--compact">
+                    <h2 class="heading-2 mb-20">{{ __('НЕКСУС ИИ — это не обычный чат‑бот') }}</h2>
+                    <p class="text-lg neutral-700 mb-15">{{ __('НЕКСУС ИИ не является универсальным публичным помощником. Это специализированная система для задач проектного финансирования, токенизации, управления рисками и комплаенса.') }}</p>
+                    <p class="text-md neutral-700 mb-0">{{ __('Она работает с данными и правилами экосистемы, формирует аналитические выводы и рекомендации, но не принимает юридически значимые решения самостоятельно. Чат‑интерфейс — лишь один из способов взаимодействия с системой.') }}</p>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 mb-40 order-2">
+                <div class="nexus-ai-not-chatbot-visual text-center">
+                    <img
+                        src="{{ asset('assets/imgs/page/homepage1/nexus-ai-not-chatbot.png') }}"
+                        alt="{{ __('НЕКСУС ИИ — специализированная аналитическая система, а не обычный чат‑бот') }}"
+                        class="img-fluid nexus-ai-not-chatbot-img"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                </div>
+            </div>
         </div>
     </div>
 </section>

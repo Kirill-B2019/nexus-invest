@@ -1052,6 +1052,22 @@
     border: 1px solid rgba(var(--color-primary-rgb, 197, 255, 65), 0.35);
     background: rgba(var(--color-primary-rgb, 197, 255, 65), 0.06);
 }
+.nexus-ai-callout--compact {
+    max-width: none;
+    height: 100%;
+}
+.nexus-ai-not-chatbot-visual {
+    border-radius: 14px;
+    overflow: visible;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+.nexus-ai-not-chatbot-img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
 .nexus-ai-disclaimer {
     background: rgba(255, 255, 255, 0.92);
 }
