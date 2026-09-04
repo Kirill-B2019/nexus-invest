@@ -15,7 +15,7 @@
         <div class="nexus-ai-hero__content text-center">
             <a class="btn btn-brand-5" href="#nexus-ai-about">{{ __('Интеллектуальный контур') }}</a>
             <h1 class="display-1 neutral-0 text-semibold pt-3">{{ __('НЕКСУС ИИ') }}</h1>
-            <h2 class="mb-25 mt-15 neutral-0">{{ __('интеллектуальный контур экосистемы') }} <br class="d-none d-lg-block">{{ __('НЕКСУС‑ИНВЕСТ ФОНД') }}</h2>
+            <h2 class="mb-25 mt-15 neutral-0">{{ __('интеллектуальный контур экосистемы') }} <br class="d-none d-lg-block">{{ __('НЕКСУС') }}</h2>
             <p class="text-lg neutral-200 mb-20 nexus-ai-hero__lead">{{ __('Собственная обучаемая модель для анализа проектов, оценки рисков, комплаенса и поддержки участников платформы.') }}</p>
             <p class="text-md neutral-300 mb-35 nexus-ai-hero__lead">{{ __('НЕКСУС ИИ объединяет данные экосистемы и помогает принимать более обоснованные решения по проектам, токенизации и инвестиционному портфелю.') }}</p>
 
