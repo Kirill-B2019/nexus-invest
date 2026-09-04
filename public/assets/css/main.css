@@ -721,15 +721,14 @@
     }
 }
 
-/* Секция hero страницы ГАНИМЕД — фон по центру, по ширине, без повтора + лёгкое приближение/удаление */
-.ganimed-hero,
-#ganimed-hero.ganimed-hero {
+/* Секция hero страницы ГАНИМЕД — фон по центру + лёгкое приближение/удаление */
+.ganimed-hero {
     position: relative;
     overflow: hidden;
     padding: 100px 0 140px 0;
     background-color: var(--color-dark, #0E0E0E);
 }
-#ganimed-hero.ganimed-hero::before {
+.ganimed-hero::before {
     content: "";
     position: absolute;
     left: 0;
@@ -744,7 +743,7 @@
     background-size: 100% auto;
     animation: ganimed-bg-zoom 18s ease-in-out infinite;
 }
-#ganimed-hero .container {
+.ganimed-hero > .container {
     position: relative;
     z-index: 1;
 }
@@ -754,15 +753,11 @@
 }
 
 /* Карточки секции ganimed-hero — одна высота, эффект стекла, покачивание */
-#ganimed-hero .row > [class*="col-"] {
+.ganimed-hero .row > [class*="col-"] {
     display: flex;
     margin-bottom: 28px;
 }
-/* У последней строки карточек отступ снизу не нужен (3 кол. на desktop = 4,5,6) */
-#ganimed-hero .row > [class*="col-"]:nth-child(n+4) {
-    margin-bottom: 0;
-}
-#ganimed-hero .card-features-5 {
+.ganimed-hero .card-features-5 {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -776,25 +771,26 @@
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
     animation: ganimed-card-sway 3s ease-in-out infinite alternate;
 }
-#ganimed-hero .card-features-5 .card-info {
+.ganimed-hero .card-features-5 .card-info {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
-#ganimed-hero .card-features-5 .card-info p {
+.ganimed-hero .card-features-5 .card-info p {
     flex: 1;
 }
-#ganimed-hero .card-features-5:hover {
+.ganimed-hero .card-features-5:hover {
     background: rgba(40, 40, 40, 0.55);
     border-color: rgba(255, 255, 255, 0.12);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
-#ganimed-hero .row > [class*="col-"]:nth-child(1) .card-features-5 { animation-delay: 0s; }
-#ganimed-hero .row > [class*="col-"]:nth-child(2) .card-features-5 { animation-delay: 0.2s; }
-#ganimed-hero .row > [class*="col-"]:nth-child(3) .card-features-5 { animation-delay: 0.4s; }
-#ganimed-hero .row > [class*="col-"]:nth-child(4) .card-features-5 { animation-delay: 0.6s; }
-#ganimed-hero .row > [class*="col-"]:nth-child(5) .card-features-5 { animation-delay: 0.8s; }
-#ganimed-hero .row > [class*="col-"]:nth-child(6) .card-features-5 { animation-delay: 1s; }
+.ganimed-hero .row > [class*="col-"]:nth-child(1) .card-features-5 { animation-delay: 0s; }
+.ganimed-hero .row > [class*="col-"]:nth-child(2) .card-features-5 { animation-delay: 0.2s; }
+.ganimed-hero .row > [class*="col-"]:nth-child(3) .card-features-5 { animation-delay: 0.4s; }
+.ganimed-hero .row > [class*="col-"]:nth-child(4) .card-features-5 { animation-delay: 0.6s; }
+.ganimed-hero .row > [class*="col-"]:nth-child(5) .card-features-5 { animation-delay: 0.8s; }
+.ganimed-hero .row > [class*="col-"]:nth-child(6) .card-features-5 { animation-delay: 1s; }
+.ganimed-hero .row > [class*="col-"]:nth-child(7) .card-features-5 { animation-delay: 1.2s; }
 @keyframes ganimed-card-sway {
     0% { transform: translateY(-8px); }
     100% { transform: translateY(4px); }
@@ -804,50 +800,44 @@
     100% { transform: translateY(2px); }
 }
 
-/* ganimed-hero: мобильные — фон скрыт, ровные отступы карточек, слабее анимация */
+/* ganimed-hero: мобильные */
 @media (max-width: 991.98px) {
-    #ganimed-hero.ganimed-hero::before {
+    .ganimed-hero::before {
         display: none;
     }
-    #ganimed-hero.ganimed-hero {
+    .ganimed-hero {
         padding: 60px 0 80px 0;
     }
-    #ganimed-hero .row > [class*="col-"] {
+    .ganimed-hero .row > [class*="col-"] {
         margin-bottom: 24px;
     }
-    #ganimed-hero .row > [class*="col-"]:nth-child(n+4) {
-        margin-bottom: 24px;
-    }
-    #ganimed-hero .card-features-5 {
+    .ganimed-hero .card-features-5 {
         animation-name: ganimed-card-sway-mobile;
     }
-    #ganimed-hero .text-center .mb-55 {
+    .ganimed-hero .text-center .mb-55 {
         margin-bottom: 2rem !important;
     }
 }
 @media (max-width: 575.98px) {
-    #ganimed-hero.ganimed-hero {
+    .ganimed-hero {
         padding: 40px 0 60px 0;
     }
-    #ganimed-hero .row > [class*="col-"] {
+    .ganimed-hero .row > [class*="col-"] {
         margin-bottom: 20px;
     }
-    #ganimed-hero .row > [class*="col-"]:nth-child(n+4) {
-        margin-bottom: 20px;
-    }
-    #ganimed-hero .card-features-5 {
+    .ganimed-hero .card-features-5 {
         padding: 24px 20px;
     }
-    #ganimed-hero .card-features-5 .card-image {
+    .ganimed-hero .card-features-5 .card-image {
         margin-bottom: 12px;
     }
-    #ganimed-hero .card-features-5 .card-info h6 {
+    .ganimed-hero .card-features-5 .card-info h6 {
         margin-bottom: 10px;
         font-size: 1rem;
     }
 }
 
-/* #ganimed-features: .card-image с анимацией как в hero (покачивание) */
+/* #ganimed-features: .card-image с анимацией как в hero */
 #ganimed-features .card-design .card-image,
 #ganimed-features .card-design-style2 .card-image,
 #ganimed-features .card-design-style3 .card-image,
@@ -869,6 +859,214 @@
         animation-name: ganimed-card-sway-mobile;
     }
 }
+
+/* ========== НЕКСУС ИИ — индивидуальный дизайн страницы ========== */
+.nexus-ai-hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 78vh;
+    display: flex;
+    align-items: center;
+    padding: 140px 0 120px;
+    background-color: var(--color-dark, #0E0E0E);
+}
+.nexus-ai-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-color: var(--color-dark, #0E0E0E);
+    background-image: url(../imgs/page/homepage1/nexus-ai-bg.png);
+    background-repeat: no-repeat;
+    background-position: center 58%;
+    background-size: 92% auto;
+    animation: ganimed-bg-zoom 18s ease-in-out infinite;
+    opacity: 0.92;
+}
+.nexus-ai-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(14, 14, 14, 0.55) 0%,
+        rgba(14, 14, 14, 0.25) 40%,
+        rgba(14, 14, 14, 0.7) 100%
+    );
+    pointer-events: none;
+}
+.nexus-ai-hero > .container {
+    position: relative;
+    z-index: 1;
+}
+.nexus-ai-hero__content {
+    max-width: 820px;
+    margin: 0 auto;
+}
+.nexus-ai-hero__lead {
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#nexus-ai-principles .card-features-5 {
+    height: 100%;
+    background: var(--color-surface-dark, #1E1E1E);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+#nexus-ai-principles .nexus-ai-disclaimer {
+    background: rgba(255, 255, 255, 0.92);
+}
+
+#nexus-ai-domains .nexus-ai-domain-card {
+    position: relative;
+    height: 100%;
+    padding: 28px 24px 24px;
+    background: rgba(30, 30, 30, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+#nexus-ai-domains .nexus-ai-domain-card:hover {
+    border-color: rgba(var(--color-primary-rgb, 197, 255, 65), 0.45);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+    transform: translateY(-3px);
+}
+#nexus-ai-domains .nexus-ai-domain-num {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--color-primary, #C5FF41);
+    opacity: 0.9;
+}
+#nexus-ai-domains .nexus-ai-domain-icon {
+    margin-bottom: 14px;
+    font-size: 1.6rem;
+    line-height: 1;
+}
+#nexus-ai-domains .nexus-ai-domain-card h3 {
+    margin-bottom: 10px;
+    color: var(--color-white, #fff);
+}
+#nexus-ai-domains .nexus-ai-domain-card p {
+    color: var(--color-text-muted-4, #B1B2B8);
+}
+
+#nexus-ai-flow .nexus-ai-flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: 12px 8px;
+}
+#nexus-ai-flow .nexus-ai-flow__step {
+    flex: 1 1 140px;
+    max-width: 180px;
+    padding: 22px 16px;
+    text-align: center;
+    background: var(--color-surface-dark, #1E1E1E);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+}
+#nexus-ai-flow .nexus-ai-flow__num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    margin-bottom: 12px;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-dark, #191919);
+    background: var(--color-primary, #C5FF41);
+}
+#nexus-ai-flow .nexus-ai-flow__step h3 {
+    margin-bottom: 8px;
+    color: var(--color-white, #fff);
+    font-size: 1.05rem;
+}
+#nexus-ai-flow .nexus-ai-flow__step p {
+    color: var(--color-text-muted-4, #B1B2B8);
+}
+#nexus-ai-flow .nexus-ai-flow__arrow {
+    display: flex;
+    align-items: center;
+    color: var(--color-primary, #C5FF41);
+    font-size: 1.1rem;
+    padding: 0 2px;
+}
+
+#nexus-ai-risks .nexus-ai-risk-card {
+    height: 100%;
+    padding: 24px 20px;
+    background: var(--color-surface-dark, #1E1E1E);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    border-top: 2px solid var(--color-primary, #C5FF41);
+}
+#nexus-ai-risks .nexus-ai-risk-card h3 {
+    margin-bottom: 10px;
+    color: var(--color-white, #fff);
+}
+#nexus-ai-risks .nexus-ai-risk-card p {
+    color: var(--color-text-muted-4, #B1B2B8);
+}
+
+@media (max-width: 991.98px) {
+    .nexus-ai-hero {
+        min-height: auto;
+        padding: 100px 0 70px;
+    }
+    .nexus-ai-hero::before {
+        display: none;
+    }
+    .nexus-ai-hero::after {
+        display: none;
+    }
+    #nexus-ai-flow .nexus-ai-flow {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    #nexus-ai-flow .nexus-ai-flow__step {
+        max-width: none;
+        text-align: left;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        column-gap: 14px;
+        align-items: start;
+    }
+    #nexus-ai-flow .nexus-ai-flow__num {
+        grid-row: 1 / span 2;
+        margin-bottom: 0;
+        margin-top: 2px;
+    }
+    #nexus-ai-flow .nexus-ai-flow__arrow {
+        justify-content: center;
+        transform: rotate(90deg);
+        padding: 4px 0;
+    }
+}
+@media (max-width: 575.98px) {
+    .nexus-ai-hero {
+        padding: 80px 0 56px;
+    }
+    .nexus-ai-hero .display-1 {
+        font-size: 2.4rem;
+    }
+}
+
+#nexus-ai-training {
+    background-color: var(--color-dark, #0E0E0E);
+    padding: 100px 0 90px;
+}
+/* ========== /НЕКСУС ИИ ========== */
+
 
 /* Секция «Пошаговая схема iGND» — как дорожная карта: отступы и фон */
 #ignd-steps {
