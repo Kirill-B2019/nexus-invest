@@ -187,32 +187,32 @@
                 </ul>
             </div>
         </div>
-        <div class="nexus-ai-flow" role="list" id="nexus-ai-flow">
-            <div class="nexus-ai-flow__step" role="listitem">
+        <div class="nexus-ai-flow nexus-ai-flow--animated" role="list" id="nexus-ai-flow" aria-label="{{ __('Процесс: от данных к интерфейсам') }}">
+            <div class="nexus-ai-flow__step" role="listitem" data-step="1">
                 <span class="nexus-ai-flow__num">1</span>
                 <h3 class="text-22-bold">{{ __('Данные') }}</h3>
                 <p class="text-sm mb-0">{{ __('Источники экосистемы и внешние реестры') }}</p>
             </div>
             <div class="nexus-ai-flow__arrow" aria-hidden="true"><i class="fi-rr-arrow-right"></i></div>
-            <div class="nexus-ai-flow__step" role="listitem">
+            <div class="nexus-ai-flow__step" role="listitem" data-step="2">
                 <span class="nexus-ai-flow__num">2</span>
                 <h3 class="text-22-bold">{{ __('Признаки') }}</h3>
                 <p class="text-sm mb-0">{{ __('Единое хранилище признаков для анализа') }}</p>
             </div>
             <div class="nexus-ai-flow__arrow" aria-hidden="true"><i class="fi-rr-arrow-right"></i></div>
-            <div class="nexus-ai-flow__step" role="listitem">
+            <div class="nexus-ai-flow__step" role="listitem" data-step="3">
                 <span class="nexus-ai-flow__num">3</span>
                 <h3 class="text-22-bold">{{ __('Модели') }}</h3>
                 <p class="text-sm mb-0">{{ __('Скоринг, риск, правила, LLM с RAG') }}</p>
             </div>
             <div class="nexus-ai-flow__arrow" aria-hidden="true"><i class="fi-rr-arrow-right"></i></div>
-            <div class="nexus-ai-flow__step" role="listitem">
+            <div class="nexus-ai-flow__step" role="listitem" data-step="4">
                 <span class="nexus-ai-flow__num">4</span>
                 <h3 class="text-22-bold">{{ __('Сервисы') }}</h3>
                 <p class="text-sm mb-0">{{ __('API и события блокчейна') }}</p>
             </div>
             <div class="nexus-ai-flow__arrow" aria-hidden="true"><i class="fi-rr-arrow-right"></i></div>
-            <div class="nexus-ai-flow__step" role="listitem">
+            <div class="nexus-ai-flow__step" role="listitem" data-step="5">
                 <span class="nexus-ai-flow__num">5</span>
                 <h3 class="text-22-bold">{{ __('Интерфейсы') }}</h3>
                 <p class="text-sm mb-0">{{ __('Кабинеты, дашборды, алерты') }}</p>
