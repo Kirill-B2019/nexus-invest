@@ -9,6 +9,8 @@
     @endphp
     <link rel="preload" href="{{ asset('assets/css/roadmap.css') }}?v={{ $styleVerRoadmap }}" as="style">
     <link href="{{ asset('assets/css/roadmap.css') }}?v={{ $styleVerRoadmap }}" rel="stylesheet" media="all">
+    <link rel="preload" href="{{ asset('assets/css/industry-indicators.css') }}?v={{ $styleVerRoadmap }}" as="style">
+    <link href="{{ asset('assets/css/industry-indicators.css') }}?v={{ $styleVerRoadmap }}" rel="stylesheet" media="all">
 @endpush
 
 @push('scripts-vendor')
@@ -795,11 +797,13 @@
     @endpush
 @endif
 
+{{-- ОТРАСЛЕВЫЕ ИНДИКАТОРЫ — после блока «Руководители команды» --}}
+@include('partials.industry-indicators-board', ['indicatorsBoardId' => 'home-indicators-board'])
 {{-- КОМАНДА --}}
-<section class="section-box wow fadeIn box-testimonials-3">
+<section class="section-box wow box-why-trusted-black">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 mb-30">
+            <div class="col-lg-6 mb-30 order-2 order-lg-1">
                 <div class="testimonial-img-animated text-center">
                     <img src="{{ asset('assets/imgs/page/homepage1/img-testimonial.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async" class="w-75">
                 </div>
@@ -826,7 +830,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-lg-6 mb-30">
+            <div class="col-lg-6 mb-30 order-1 order-lg-2">
                 <div class="mb-50"><a class="btn btn-brand-4-sm" href="#">{{ __('Руководители команды и проекта') }}</a>
                     <h3 class="mt-20 neutral-0">{{ __('Команда, которая строит новый стандарт проектного запуска') }}</h3>
                 </div>
@@ -866,6 +870,9 @@
         </div>
     </div>
 </section>
+
+
+
 @endsection
 
 @push('scripts')
@@ -876,4 +883,5 @@
         }
     @endphp
     <script src="{{ asset('assets/js/public-launch-countdown.js') }}?v={{ $vCount }}"></script>
+    <script src="{{ asset('assets/js/industry-indicators.js') }}?v={{ $vCount }}" defer></script>
 @endpush

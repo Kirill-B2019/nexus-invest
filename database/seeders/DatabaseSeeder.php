@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             RefDictionaryGroupsSeeder::class,
             RefDictionariesSeeder::class,
             RefDictionariesSyncSeeder::class,
+            IndustryIndicatorsSeeder::class,
         ]);
 
         User::factory()->create([

@@ -15,6 +15,26 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
+    ->withSchedule(function (\Illuminate\Console\Scheduling\Schedule $schedule): void {
+        // Ежемесячно: температура ЦФА, глобальный RWA-трекер
+        $schedule->command('indicators:refresh --frequency=monthly --force')
+            ->monthlyOn(3, '04:00')
+            ->withoutOverlapping()
+            ->name('indicators-monthly');
+
+        // Ежеквартально: ликвидность, RWA vs DeFi, SME
+        $schedule->command('indicators:refresh --frequency=quarterly --force')
+            ->quarterly()
+            ->at('05:00')
+            ->withoutOverlapping()
+            ->name('indicators-quarterly');
+
+        // Раз в полгода: риск-ландшафт ЦФА
+        $schedule->command('indicators:refresh --frequency=semiannual --force')
+            ->cron('0 6 1 1,7 *')
+            ->withoutOverlapping()
+            ->name('indicators-semiannual');
+    })
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->trustProxies(at: '*');
 

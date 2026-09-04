@@ -7617,6 +7617,10 @@ a.icon-socials:hover {
   background-repeat: no-repeat;
 }
 
+.box-testimonials-3-noimg {
+    background-color: var(--color-dark);
+}
+
 .box-latest-news-2 {
   padding: 140px 0px;
 }

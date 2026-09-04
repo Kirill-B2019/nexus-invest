@@ -1391,12 +1391,23 @@ div#onwer .card-testimonial-3 .card-rate img {
     height: 14px;
 }
 @media (max-width: 991px) {
+    div#onwer .card-testimonial-3 {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
     div#onwer .card-testimonial-3 .card-image {
         min-width: 100%;
         max-width: 100%;
+        flex: 0 0 auto;
+    }
+    div#onwer .card-testimonial-3 .card-image img {
+        width: 100%;
+        height: auto;
+        display: block;
     }
     div#onwer .card-testimonial-3 .card-info {
         padding: 18px 18px;
+        order: 0;
     }
 }
 
