@@ -5,18 +5,16 @@
             <a href="{{ route('welcome') }}">{{ __('Главная') }}</a>
         </li>
         @endif
-        <li class="has-children"><a class="active" href="#">{{ __('Нексус') }}</a>
+        <li class="has-children"><a class="{{ request()->routeIs('features', 'compliance', 'ignd') ? 'active' : '' }}" href="#">{{ __('Нексус') }}</a>
             <ul class="sub-menu">
                 <li><a href="{{ route('features') }}">{{ __('Особенности') }}</a></li>
                 <li><a href="{{ route('compliance') }}">{{ __('Комплаенс') }}</a></li>
+                <li><a href="{{ route('ignd') }}" class="{{ request()->routeIs('ignd') ? 'active' : '' }}">{{ __('Система iGND') }}</a></li>
             </ul>
 
         </li>
         <li>
             <a href="{{ route('ganimed') }}" class="{{ request()->routeIs('ganimed') ? 'active' : '' }}">{{ __('Ганимед') }}</a>
-        </li>
-        <li>
-            <a href="{{ route('ignd') }}" class="{{ request()->routeIs('ignd') ? 'active' : '' }}">{{ __('Система iGND') }}</a>
         </li>
         <li>
             <a href="{{ route('nexus-ai') }}" class="{{ request()->routeIs('nexus-ai') ? 'active' : '' }}">{{ __('НЕКСУС ИИ') }}</a>

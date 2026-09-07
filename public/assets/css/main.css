@@ -159,114 +159,49 @@
   }
 }
 
-/* Верхнее меню десктоп — влезает в экран (не обрезать «Ваш кабинет») */
-.header .container {
-  max-width: 100%;
-}
-.header .main-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-}
-.header .main-header .header-left {
-  display: flex;
-  align-items: center;
-  flex: 1 1 auto;
-  width: auto;
-  min-width: 0;
-  justify-content: flex-start;
-  gap: 0.25rem;
-}
-.header .main-header .header-left .header-logo {
-  flex: 0 0 auto;
-  margin-right: 0.75rem;
-}
-.header .main-header .header-left .header-nav {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-.header .main-header .header-right {
-  flex: 0 0 auto;
-  display: flex;
-  width: auto;
-  min-width: 0;
-  max-width: none;
-}
-.header .nav-main-menu {
-  width: auto;
-  max-width: 100%;
-}
+/* Верхнее меню десктоп — одна строка, адаптация под ширину экрана */
 @media (min-width: 1200px) {
   .header .nav-main-menu .main-menu {
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    list-style: none;
   }
   .header .main-menu li {
     float: none;
-    flex: 0 1 auto;
-    padding: 0 6px;
+    flex: 0 0 auto;
   }
   .header .main-menu li a {
     white-space: nowrap;
-    font-size: 16px;
-    line-height: 1.2;
-    padding: 28px 8px;
-  }
-  .header .header-right .btn.btn-cabinet {
-    white-space: nowrap;
-    flex-shrink: 0;
-    padding-left: 16px;
-    padding-right: 16px;
   }
 }
 @media (max-width: 1399.98px) and (min-width: 1200px) {
-  .header .main-header .header-left .header-logo {
-    margin-right: 0.5rem;
-  }
   .header .main-menu li {
-    padding: 0 4px;
+    padding: 0 12px;
   }
   .header .main-menu li a {
-    font-size: 14px;
-    line-height: 1.2;
-    padding: 26px 5px;
-  }
-  .header .header-right .btn.btn-cabinet {
-    padding: 10px 12px;
-    font-size: 14px;
-  }
-  .header .header-right .btn.btn-cabinet .btn-cabinet-icon-desk {
-    width: 16px;
-    height: 16px;
-    margin-left: 4px;
+    font-size: 17px;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
 @media (max-width: 1299.98px) and (min-width: 1200px) {
   .header .main-menu li {
-    padding: 0 2px;
+    padding: 0 8px;
   }
   .header .main-menu li a {
-    font-size: 13px;
-    line-height: 1.15;
-    padding: 24px 4px;
+    font-size: 15px;
+    line-height: 18px;
+    padding: 37px 8px;
   }
 }
 @media (max-width: 1249.98px) and (min-width: 1200px) {
   .header .main-menu li {
-    padding: 0 1px;
+    padding: 0 5px;
   }
   .header .main-menu li a {
-    font-size: 12px;
-    padding: 22px 3px;
+    font-size: 13px;
+    line-height: 18px;
+    padding: 37px 5px;
   }
 }
 
