@@ -29,7 +29,7 @@
                         <span class="btn-cabinet-icon-mobile"><i class="fi-rr-user" aria-hidden="true"></i></span>
                     </a>
                 @endauth
-                <div class="burger-icon burger-icon-white">
+                <div class="burger-icon burger-icon-white" role="button" tabindex="0" aria-label="{{ __('Открыть меню') }}" aria-controls="mobile-menu" aria-expanded="false">
                     <span class="burger-icon-top"></span>
                     <span class="burger-icon-mid"></span>
                     <span class="burger-icon-bottom"></span>

@@ -21,6 +21,7 @@ class AdminSettingsController extends Controller
             || $user->can('manage-dictionaries')
             || $user->hasRole('roles-admin')
             || $user->can('update-news-feed')
+            || $user->can('manage-news')
             || $user->can('manage-notifications')
             || $user->hasRole('messenger-admin')
             || $user->can('moderate-projects');

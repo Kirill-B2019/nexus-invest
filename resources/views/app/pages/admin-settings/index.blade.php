@@ -41,9 +41,9 @@
                         @if(auth()->user()->hasRole('super-admin') || auth()->user()->hasRole('messenger-admin'))
                             <a href="{{ route('lk.admin.messenger') }}" class="btn btn-outline-primary btn-sm">{{ __('Мессенджер') }}</a>
                         @endif
-                        @can('update-news-feed')
+                        @if(auth()->user()->hasRole('super-admin') || auth()->user()->can('update-news-feed') || auth()->user()->can('manage-news'))
                             <a href="{{ route('lk.admin.news-feed.index') }}" class="btn btn-outline-primary btn-sm">{{ __('Новости') }}</a>
-                        @endcan
+                        @endif
                         @if(auth()->user()->hasRole('super-admin') || auth()->user()->hasRole('roles-admin'))
                             <a href="{{ route('lk.admin.roles.users') }}" class="btn btn-outline-primary btn-sm">{{ __('Пользователи') }}</a>
                             <a href="{{ route('lk.admin.roles.roles') }}" class="btn btn-outline-primary btn-sm">{{ __('Роли') }}</a>

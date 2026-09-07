@@ -1,6 +1,6 @@
 <div class="mobile-header-active mobile-header-wrapper-style perfect-scrollbar">
     <div class="mobile-header-wrapper-inner">
-        <div class="burger-icon burger-icon-white">
+        <div class="burger-icon burger-icon-white mobile-menu-close" role="button" tabindex="0" aria-label="{{ __('Закрыть меню') }}">
             <span class="burger-icon-top"></span>
             <span class="burger-icon-mid"></span>
             <span class="burger-icon-bottom"></span>
@@ -49,6 +49,9 @@
                             </li>
                             <li>
                                 <a href="{{ route('nexus-ai') }}" class="{{ request()->routeIs('nexus-ai') ? 'active' : '' }}">{{ __('НЕКСУС ИИ') }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('news.index') }}" class="{{ request()->routeIs('news.*') ? 'active' : '' }}">{{ __('Новости') }}</a>
                             </li>
                             <li>
                                 <a href="{{ route('documentation') }}" class="{{ request()->routeIs('documentation') ? 'active' : '' }}">{{ __('Документация') }}</a>

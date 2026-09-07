@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Contracts\NewsSourceSync;
 use App\Models\NewsFeedItem;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -12,7 +13,7 @@ use Illuminate\Support\Str;
  * Загрузка ленты новостей из канала Дзен (https://dzen.ru/digital_fintech).
  * Использует неофициальный API. Обновление запускается администратором по кнопке.
  */
-class DzenFeedService
+class DzenFeedService implements NewsSourceSync
 {
     protected string $apiUrl;
     protected string $channelUrl;
@@ -42,6 +43,11 @@ class DzenFeedService
         return new self();
     }
 
+    public function key(): string
+    {
+        return NewsFeedItem::SOURCE_DZEN;
+    }
+
     /**
      * Для записей с внешним URL картинки — скачать в storage и обновить путь в БД.
      * Возвращает количество обновлённых записей.
@@ -49,12 +55,12 @@ class DzenFeedService
     public function refreshImagesForExistingItems(): int
     {
         $updated = 0;
-        foreach (NewsFeedItem::all() as $model) {
+        foreach (NewsFeedItem::query()->where('source', NewsFeedItem::SOURCE_DZEN)->get() as $model) {
             $raw = $model->getRawOriginal('image_url');
             if (empty($raw) || ! Str::startsWith($raw, 'http')) {
                 continue;
             }
-            $path = $this->downloadImageToStorage($raw, $model->external_id);
+            $path = $this->downloadImageToStorage($raw, (string) $model->external_id);
             if ($path !== null) {
                 $model->update(['image_url' => $path]);
                 $updated++;
@@ -178,7 +184,12 @@ class DzenFeedService
                 $payload['image_url'] = Str::limit($externalImageUrl, 1000);
             }
 
-            $existing = NewsFeedItem::where('external_id', $externalId)->where('source', 'dzen')->first();
+            $existing = NewsFeedItem::where('external_id', $externalId)->where('source', NewsFeedItem::SOURCE_DZEN)->first();
+            // Скрытые вручную записи не «воскрешаем» и не обновляем при sync.
+            if ($existing !== null && $existing->status === NewsFeedItem::STATUS_HIDDEN) {
+                continue;
+            }
+
             // published_at: устанавливать только при создании или если у записи его нет.
             // API Дзен возвращает относительные даты («9 часов назад»), при каждом обновлении
             // они пересчитываются в «сейчас минус N» — это искажает реальную дату публикации.
@@ -188,21 +199,27 @@ class DzenFeedService
 
             // id — автоинкремент, задаётся только БД; при update не трогать id (Query Builder)
             $payload = array_intersect_key($payload, array_flip((new NewsFeedItem)->getFillable()));
-            unset($payload['id']);
+            unset($payload['id'], $payload['source'], $payload['status'], $payload['slug'], $payload['body'], $payload['author_id']);
 
             if ($existing !== null) {
-                NewsFeedItem::where('external_id', $externalId)->where('source', 'dzen')->update($payload);
+                NewsFeedItem::where('external_id', $externalId)->where('source', NewsFeedItem::SOURCE_DZEN)->update($payload);
             } else {
                 NewsFeedItem::create(array_merge(
-                    ['external_id' => $externalId, 'source' => 'dzen'],
+                    [
+                        'external_id' => $externalId,
+                        'source' => NewsFeedItem::SOURCE_DZEN,
+                        'status' => NewsFeedItem::STATUS_PUBLISHED,
+                    ],
                     $payload
                 ));
             }
             $saved++;
         }
 
-        // Заполнить published_at из created_at для записей без даты публикации
-        NewsFeedItem::whereNull('published_at')->update(['published_at' => DB::raw('created_at')]);
+        // Заполнить published_at из created_at для записей Дзен без даты публикации
+        NewsFeedItem::where('source', NewsFeedItem::SOURCE_DZEN)
+            ->whereNull('published_at')
+            ->update(['published_at' => DB::raw('created_at')]);
 
         return $saved;
     }

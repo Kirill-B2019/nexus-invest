@@ -66,6 +66,7 @@ class LkRoleSwitchService
             return $user->can('manage-dictionaries')
                 || $user->hasRole('roles-admin')
                 || $user->can('update-news-feed')
+                || $user->can('manage-news')
                 || $user->can('manage-notifications')
                 || $user->hasRole('messenger-admin');
         }

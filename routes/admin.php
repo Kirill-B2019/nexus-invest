@@ -48,9 +48,15 @@ Route::middleware('auth')->group(function () {
         Route::post('/', [NotificationsAdminController::class, 'store'])->name('store');
     });
 
-    Route::middleware('verified', 'lk.access', 'role_or_permission:super-admin|update-news-feed')->prefix('lk/admin/news-feed')->name('lk.admin.news-feed.')->group(function () {
+    Route::middleware('verified', 'lk.access', 'role_or_permission:super-admin|update-news-feed|manage-news')->prefix('lk/admin/news-feed')->name('lk.admin.news-feed.')->group(function () {
         Route::get('/', [NewsFeedAdminController::class, 'index'])->name('index');
-        Route::post('/update', [NewsFeedAdminController::class, 'update'])->name('update');
+        Route::post('/update', [NewsFeedAdminController::class, 'syncDzen'])->name('update');
+        Route::post('/agency-sync', [NewsFeedAdminController::class, 'syncAgency'])->name('agency-sync');
+        Route::get('/create', [NewsFeedAdminController::class, 'create'])->name('create');
+        Route::post('/', [NewsFeedAdminController::class, 'store'])->name('store');
+        Route::get('/{newsFeedItem}/edit', [NewsFeedAdminController::class, 'edit'])->name('edit');
+        Route::put('/{newsFeedItem}', [NewsFeedAdminController::class, 'update'])->name('item.update');
+        Route::patch('/{newsFeedItem}/hide', [NewsFeedAdminController::class, 'hide'])->name('hide');
         Route::delete('/{newsFeedItem}', [NewsFeedAdminController::class, 'destroy'])->name('destroy');
     });
 

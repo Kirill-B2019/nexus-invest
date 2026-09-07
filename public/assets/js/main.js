@@ -100,25 +100,70 @@
     sidebarSearch();
     /*====== Sidebar menu Active ======*/
     function mobileHeaderActive() {
-        var navbarTrigger = $(".burger-icon"),
-            endTrigger = $(".mobile-menu-close"),
+        var openTrigger = $(".header .burger-icon"),
+            closeTrigger = $(".mobile-header-active .burger-icon, .mobile-menu-close"),
             container = $(".mobile-header-active"),
-            wrapper4 = $("body");
-        wrapper4.prepend('<div class="body-overlay-1"></div>');
-        navbarTrigger.on("click", function (e) {
-            navbarTrigger.toggleClass("burger-close");
+            wrapper4 = $("body"),
+            allBurgers = $(".burger-icon"),
+            lockUntil = 0;
+
+        if (!$(".body-overlay-1").length) {
+            wrapper4.prepend('<div class="body-overlay-1"></div>');
+        }
+
+        function isLocked() {
+            return Date.now() < lockUntil;
+        }
+
+        function lockBriefly() {
+            // Защита от двойного срабатывания touch+click на мобильных
+            lockUntil = Date.now() + 400;
+        }
+
+        function openMenu() {
+            allBurgers.addClass("burger-close");
+            container.addClass("sidebar-visible");
+            wrapper4.addClass("mobile-menu-active");
+            openTrigger.attr("aria-expanded", "true");
+        }
+
+        function closeMenu() {
+            allBurgers.removeClass("burger-close");
+            container.removeClass("sidebar-visible");
+            wrapper4.removeClass("mobile-menu-active");
+            openTrigger.attr("aria-expanded", "false");
+        }
+
+        openTrigger.off("click.mobileMenu").on("click.mobileMenu", function (e) {
             e.preventDefault();
-            container.toggleClass("sidebar-visible");
-            wrapper4.toggleClass("mobile-menu-active");
+            e.stopPropagation();
+            if (isLocked()) {
+                return;
+            }
+            lockBriefly();
+            if (wrapper4.hasClass("mobile-menu-active")) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
         });
-        endTrigger.on("click", function () {
-            container.removeClass("sidebar-visible");
-            wrapper4.removeClass("mobile-menu-active");
+
+        closeTrigger.off("click.mobileMenu").on("click.mobileMenu", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (isLocked()) {
+                return;
+            }
+            lockBriefly();
+            closeMenu();
         });
-        $(".body-overlay-1").on("click", function () {
-            container.removeClass("sidebar-visible");
-            wrapper4.removeClass("mobile-menu-active");
-            navbarTrigger.removeClass("burger-close");
+
+        $(".body-overlay-1").off("click.mobileMenu").on("click.mobileMenu", function () {
+            if (isLocked()) {
+                return;
+            }
+            lockBriefly();
+            closeMenu();
         });
     }
     mobileHeaderActive();

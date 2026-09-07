@@ -14,7 +14,10 @@ class WelcomeController extends Controller
 {
     public function __invoke()
     {
-        NewsFeedItem::whereNull('published_at')->update(['published_at' => DB::raw('created_at')]);
+        // Заполнить published_at только у внешних записей без даты (не трогаем черновики редакции).
+        NewsFeedItem::whereNull('published_at')
+            ->whereIn('source', [NewsFeedItem::SOURCE_DZEN, NewsFeedItem::SOURCE_AGENCY])
+            ->update(['published_at' => DB::raw('created_at')]);
 
         $newsFeedItems = NewsFeedItem::forFeed(12)->get();
 

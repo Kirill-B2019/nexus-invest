@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NewsFeedItem;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Route;
 
 /**
  * XML-карта сайта для поисковых систем (публичные HTML-страницы).
@@ -19,11 +21,12 @@ class SitemapController extends Controller
             ['route' => 'ganimed', 'changefreq' => 'monthly', 'priority' => '0.9'],
             ['route' => 'ignd', 'changefreq' => 'monthly', 'priority' => '0.8'],
             ['route' => 'nexus-ai', 'changefreq' => 'monthly', 'priority' => '0.8'],
+            ['route' => 'news.index', 'changefreq' => 'daily', 'priority' => '0.7'],
         ];
 
         $urls = [];
         foreach ($pages as $page) {
-            if (! \Illuminate\Support\Facades\Route::has($page['route'])) {
+            if (! Route::has($page['route'])) {
                 continue;
             }
 
@@ -32,6 +35,22 @@ class SitemapController extends Controller
                 'changefreq' => $page['changefreq'],
                 'priority' => $page['priority'],
                 'lastmod' => now()->toAtomString(),
+            ];
+        }
+
+        $articles = NewsFeedItem::query()
+            ->published()
+            ->where('source', NewsFeedItem::SOURCE_EDITORIAL)
+            ->whereNotNull('slug')
+            ->orderedForFeed()
+            ->get(['slug', 'updated_at', 'published_at']);
+
+        foreach ($articles as $article) {
+            $urls[] = [
+                'loc' => route('news.show', $article->slug),
+                'changefreq' => 'monthly',
+                'priority' => '0.6',
+                'lastmod' => optional($article->updated_at ?? $article->published_at)->toAtomString() ?? now()->toAtomString(),
             ];
         }
 

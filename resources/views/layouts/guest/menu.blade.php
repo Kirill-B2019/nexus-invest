@@ -21,6 +21,9 @@
         <li>
             <a href="{{ route('nexus-ai') }}" class="{{ request()->routeIs('nexus-ai') ? 'active' : '' }}">{{ __('НЕКСУС ИИ') }}</a>
         </li>
+        <li>
+            <a href="{{ route('news.index') }}" class="{{ request()->routeIs('news.*') ? 'active' : '' }}">{{ __('Новости') }}</a>
+        </li>
         <li><a href="{{ route('documentation') }}">{{ __('Документация') }}</a></li>
         {{--<li class="mega-li has-children">
             <a href="#">{{ __('Документы') }}</a>
