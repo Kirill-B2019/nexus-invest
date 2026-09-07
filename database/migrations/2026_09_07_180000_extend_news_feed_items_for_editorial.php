@@ -89,14 +89,38 @@ return new class extends Migration
         if ($driver === 'mysql') {
             DB::statement('ALTER TABLE news_feed_items MODIFY external_id VARCHAR(255) NULL');
             DB::statement('ALTER TABLE news_feed_items MODIFY url VARCHAR(1000) NULL');
-            // Явно выравниваем тип под users.id (bigint unsigned)
-            DB::statement('ALTER TABLE news_feed_items MODIFY author_id BIGINT UNSIGNED NULL');
+            $this->alignAuthorIdColumnType();
         } elseif ($driver === 'pgsql') {
             DB::statement('ALTER TABLE news_feed_items ALTER COLUMN external_id DROP NOT NULL');
             DB::statement('ALTER TABLE news_feed_items ALTER COLUMN url DROP NOT NULL');
         }
 
         $this->ensureAuthorForeignKey();
+    }
+
+    /**
+     * Подгоняем author_id под фактический тип users.id (на Beget иногда int, не bigint).
+     */
+    private function alignAuthorIdColumnType(): void
+    {
+        if (! Schema::hasColumn('news_feed_items', 'author_id')) {
+            return;
+        }
+
+        $usersId = DB::selectOne(
+            'SELECT COLUMN_TYPE, IS_NULLABLE
+             FROM information_schema.COLUMNS
+             WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? AND COLUMN_NAME = ?',
+            ['users', 'id']
+        );
+
+        if ($usersId === null || empty($usersId->COLUMN_TYPE)) {
+            return;
+        }
+
+        $columnType = strtolower((string) $usersId->COLUMN_TYPE);
+        // users.id NOT NULL, author_id должен быть NULLABLE
+        DB::statement("ALTER TABLE news_feed_items MODIFY author_id {$columnType} NULL");
     }
 
     private function ensureAuthorForeignKey(): void
@@ -109,19 +133,57 @@ return new class extends Migration
             return;
         }
 
-        // Убираем «битые» ссылки до создания FK
-        $userIds = DB::table('users')->pluck('id');
-        DB::table('news_feed_items')
-            ->whereNotNull('author_id')
-            ->whereNotIn('author_id', $userIds)
-            ->update(['author_id' => null]);
+        // Индекс с тем же именем мог остаться после прошлого FAIL без самого FK
+        if ($this->indexExists('news_feed_items', 'news_feed_items_author_id_foreign')) {
+            try {
+                DB::statement('ALTER TABLE news_feed_items DROP INDEX news_feed_items_author_id_foreign');
+            } catch (\Throwable) {
+                // ignore
+            }
+        }
 
-        Schema::table('news_feed_items', function (Blueprint $table) {
-            $table->foreign('author_id')
-                ->references('id')
-                ->on('users')
-                ->nullOnDelete();
-        });
+        if (Schema::getConnection()->getDriverName() === 'mysql') {
+            $this->alignAuthorIdColumnType();
+
+            // На shared-хостинге таблицы иногда MyISAM
+            try {
+                DB::statement('ALTER TABLE users ENGINE=InnoDB');
+            } catch (\Throwable) {
+                // ignore
+            }
+            try {
+                DB::statement('ALTER TABLE news_feed_items ENGINE=InnoDB');
+            } catch (\Throwable) {
+                // ignore
+            }
+        }
+
+        DB::table('news_feed_items')->where('author_id', 0)->update(['author_id' => null]);
+
+        $userIds = DB::table('users')->pluck('id');
+        if ($userIds->isEmpty()) {
+            DB::table('news_feed_items')->whereNotNull('author_id')->update(['author_id' => null]);
+        } else {
+            DB::table('news_feed_items')
+                ->whereNotNull('author_id')
+                ->whereNotIn('author_id', $userIds)
+                ->update(['author_id' => null]);
+        }
+
+        try {
+            Schema::table('news_feed_items', function (Blueprint $table) {
+                $table->foreign('author_id')
+                    ->references('id')
+                    ->on('users')
+                    ->nullOnDelete();
+            });
+        } catch (\Throwable $e) {
+            // Не блокируем деплой: колонка author_id уже есть, FK на Beget иногда нельзя создать
+            // (права/движок/расхождение типов). Приложение работает и без constraint.
+            if (! str_contains($e->getMessage(), '1215') && ! str_contains($e->getMessage(), 'foreign key')) {
+                throw $e;
+            }
+        }
     }
 
     private function foreignKeyExists(string $table, string $name): bool
