@@ -35,24 +35,24 @@
                             </li>
                             @endif
                             <li class="has-children">
-                                <a href="#" class="{{ request()->routeIs('welcome', 'features', 'compliance', 'ignd') ? 'active' : '' }}">{{ __('Нексус') }}</a>
+                                <a href="#" class="{{ request()->routeIs('welcome', 'features', 'compliance', 'ignd', 'documentation') ? 'active' : '' }}">{{ __('Нексус') }}</a>
                                 <ul class="sub-menu">
+                                    <li class="mobile-menu-label"><span>{{ __('Продукт') }}</span></li>
                                     <li><a href="{{ route('features') }}" class="{{ request()->routeIs('features') ? 'active' : '' }}">{{ __('Особенности') }}</a></li>
-                                    <li><a href="{{ route('compliance') }}" class="{{ request()->routeIs('compliance') ? 'active' : '' }}">{{ __('Комплаенс') }}</a></li>
                                     <li><a href="{{ route('ignd') }}" class="{{ request()->routeIs('ignd') ? 'active' : '' }}">{{ __('Система iGND') }}</a></li>
+                                    <li class="mobile-menu-label"><span>{{ __('Регуляторика') }}</span></li>
+                                    <li><a href="{{ route('compliance') }}" class="{{ request()->routeIs('compliance') ? 'active' : '' }}">{{ __('Комплаенс') }}</a></li>
+                                    <li><a href="{{ route('documentation') }}" class="{{ request()->routeIs('documentation') ? 'active' : '' }}">{{ __('Документация') }}</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="{{ route('ganimed') }}" class="{{ request()->routeIs('ganimed') ? 'active' : '' }}">{{ __('Ганимед') }}</a>
                             </li>
                             <li>
-                                <a href="{{ route('nexus-ai') }}" class="{{ request()->routeIs('nexus-ai') ? 'active' : '' }}">{{ __('НЕКСУС ИИ') }}</a>
+                                <a href="{{ route('nexus-ai') }}" class="{{ request()->routeIs('nexus-ai') ? 'active' : '' }}">{{ __('ИИ') }}</a>
                             </li>
                             <li>
                                 <a href="{{ route('news.index') }}" class="{{ request()->routeIs('news.*') ? 'active' : '' }}">{{ __('Новости') }}</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('documentation') }}" class="{{ request()->routeIs('documentation') ? 'active' : '' }}">{{ __('Документация') }}</a>
                             </li>
                         </ul>
                     </nav>

@@ -205,6 +205,77 @@
   }
 }
 
+/* Concept C — мега-меню Нексус */
+.header .main-menu li.mega-li {
+  position: relative;
+}
+.header .main-menu li.mega-li.has-children > a.active {
+  color: var(--color-primary, #C5FF41);
+}
+.header .main-menu li.mega-li .mega-menu.mega-menu-nexus .mega-menu-inner {
+  max-width: 640px;
+  margin: 0;
+  padding: 28px 32px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: #151515;
+  background-image: none;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
+}
+.header .main-menu li.mega-li .mega-menu.mega-menu-nexus {
+  left: 0;
+  right: auto;
+  width: auto;
+  min-width: 520px;
+  padding-top: 4px;
+}
+.header .main-menu li.mega-li .mega-menu-title {
+  margin: 0 0 14px;
+  font-family: "Urbanist", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-primary, #C5FF41) !important;
+}
+.header .main-menu li.mega-li .mega-menu.mega-menu-nexus .mega-menu-inner ul {
+  margin-top: 0;
+}
+.header .main-menu li.mega-li .mega-menu.mega-menu-nexus .mega-menu-inner ul li {
+  margin-bottom: 4px;
+}
+.header .main-menu li.mega-li .mega-menu.mega-menu-nexus .mega-menu-inner ul li a {
+  display: block;
+  padding: 10px 12px !important;
+  border-radius: 10px;
+  font-size: 16px;
+  color: #f0f0f0;
+  min-width: 0;
+}
+.header .main-menu li.mega-li .mega-menu.mega-menu-nexus .mega-menu-inner ul li a:hover,
+.header .main-menu li.mega-li .mega-menu.mega-menu-nexus .mega-menu-inner ul li a.active {
+  color: var(--color-primary, #C5FF41);
+  background: rgba(197, 255, 65, 0.1);
+}
+.header .main-menu li.mega-li .mega-menu.mega-menu-nexus .mega-menu-inner ul li a::after {
+  display: none;
+}
+
+.mobile-menu .mobile-menu-label {
+  list-style: none;
+  pointer-events: none;
+  padding: 12px 0 4px;
+}
+.mobile-menu .mobile-menu-label span {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-primary, #C5FF41);
+  opacity: 0.9;
+}
+
 /* Welcome hero-5: фон box-banner-left */
 .hero-5 .box-banner-left {
     background-image: url('../imgs/page/homepage1/welcome-hero.png');
