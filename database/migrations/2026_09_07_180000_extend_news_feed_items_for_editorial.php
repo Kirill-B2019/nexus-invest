@@ -17,22 +17,7 @@ return new class extends Migration
         if ($driver === 'sqlite') {
             $this->rebuildSqliteTable();
         } else {
-            Schema::table('news_feed_items', function (Blueprint $table) {
-                $table->string('slug')->nullable()->unique()->after('title');
-                $table->longText('body')->nullable()->after('description');
-                $table->string('status', 32)->default('published')->after('source');
-                $table->foreignId('author_id')->nullable()->after('status')->constrained('users')->nullOnDelete();
-                $table->json('source_meta')->nullable()->after('author_id');
-                $table->index(['status', 'published_at']);
-            });
-
-            if ($driver === 'mysql') {
-                DB::statement('ALTER TABLE news_feed_items MODIFY external_id VARCHAR(255) NULL');
-                DB::statement('ALTER TABLE news_feed_items MODIFY url VARCHAR(1000) NULL');
-            } elseif ($driver === 'pgsql') {
-                DB::statement('ALTER TABLE news_feed_items ALTER COLUMN external_id DROP NOT NULL');
-                DB::statement('ALTER TABLE news_feed_items ALTER COLUMN url DROP NOT NULL');
-            }
+            $this->extendRelationalTable($driver);
         }
 
         DB::table('news_feed_items')->whereNull('status')->orWhere('status', '')->update(['status' => 'published']);
@@ -45,11 +30,123 @@ return new class extends Migration
         }
 
         Schema::table('news_feed_items', function (Blueprint $table) {
-            $table->dropIndex(['status', 'published_at']);
-            $table->dropConstrainedForeignId('author_id');
-            $table->dropUnique(['slug']);
-            $table->dropColumn(['slug', 'body', 'status', 'source_meta']);
+            if ($this->foreignKeyExists('news_feed_items', 'news_feed_items_author_id_foreign')) {
+                $table->dropForeign(['author_id']);
+            }
+            if ($this->indexExists('news_feed_items', 'news_feed_items_status_published_at_index')) {
+                $table->dropIndex(['status', 'published_at']);
+            }
+            if ($this->indexExists('news_feed_items', 'news_feed_items_slug_unique')) {
+                $table->dropUnique(['slug']);
+            }
+
+            $drop = [];
+            foreach (['slug', 'body', 'status', 'author_id', 'source_meta'] as $column) {
+                if (Schema::hasColumn('news_feed_items', $column)) {
+                    $drop[] = $column;
+                }
+            }
+            if ($drop !== []) {
+                $table->dropColumn($drop);
+            }
         });
+    }
+
+    private function extendRelationalTable(string $driver): void
+    {
+        Schema::table('news_feed_items', function (Blueprint $table) {
+            if (! Schema::hasColumn('news_feed_items', 'slug')) {
+                $table->string('slug')->nullable()->after('title');
+            }
+            if (! Schema::hasColumn('news_feed_items', 'body')) {
+                $table->longText('body')->nullable()->after('description');
+            }
+            if (! Schema::hasColumn('news_feed_items', 'status')) {
+                $table->string('status', 32)->default('published')->after('source');
+            }
+            // Без constrained(): FK добавляем отдельным шагом — иначе на MySQL/MariaDB часто 1215
+            // при совмещении ADD COLUMN + FOREIGN KEY в одном ALTER.
+            if (! Schema::hasColumn('news_feed_items', 'author_id')) {
+                $table->unsignedBigInteger('author_id')->nullable()->after('status');
+            }
+            if (! Schema::hasColumn('news_feed_items', 'source_meta')) {
+                $table->json('source_meta')->nullable()->after('author_id');
+            }
+        });
+
+        if (! $this->indexExists('news_feed_items', 'news_feed_items_slug_unique') && Schema::hasColumn('news_feed_items', 'slug')) {
+            Schema::table('news_feed_items', function (Blueprint $table) {
+                $table->unique('slug');
+            });
+        }
+
+        if (! $this->indexExists('news_feed_items', 'news_feed_items_status_published_at_index') && Schema::hasColumn('news_feed_items', 'status')) {
+            Schema::table('news_feed_items', function (Blueprint $table) {
+                $table->index(['status', 'published_at']);
+            });
+        }
+
+        if ($driver === 'mysql') {
+            DB::statement('ALTER TABLE news_feed_items MODIFY external_id VARCHAR(255) NULL');
+            DB::statement('ALTER TABLE news_feed_items MODIFY url VARCHAR(1000) NULL');
+            // Явно выравниваем тип под users.id (bigint unsigned)
+            DB::statement('ALTER TABLE news_feed_items MODIFY author_id BIGINT UNSIGNED NULL');
+        } elseif ($driver === 'pgsql') {
+            DB::statement('ALTER TABLE news_feed_items ALTER COLUMN external_id DROP NOT NULL');
+            DB::statement('ALTER TABLE news_feed_items ALTER COLUMN url DROP NOT NULL');
+        }
+
+        $this->ensureAuthorForeignKey();
+    }
+
+    private function ensureAuthorForeignKey(): void
+    {
+        if (! Schema::hasColumn('news_feed_items', 'author_id')) {
+            return;
+        }
+
+        if ($this->foreignKeyExists('news_feed_items', 'news_feed_items_author_id_foreign')) {
+            return;
+        }
+
+        // Убираем «битые» ссылки до создания FK
+        $userIds = DB::table('users')->pluck('id');
+        DB::table('news_feed_items')
+            ->whereNotNull('author_id')
+            ->whereNotIn('author_id', $userIds)
+            ->update(['author_id' => null]);
+
+        Schema::table('news_feed_items', function (Blueprint $table) {
+            $table->foreign('author_id')
+                ->references('id')
+                ->on('users')
+                ->nullOnDelete();
+        });
+    }
+
+    private function foreignKeyExists(string $table, string $name): bool
+    {
+        $database = Schema::getConnection()->getDatabaseName();
+        $row = DB::selectOne(
+            'SELECT CONSTRAINT_NAME FROM information_schema.TABLE_CONSTRAINTS
+             WHERE CONSTRAINT_SCHEMA = ? AND TABLE_NAME = ? AND CONSTRAINT_NAME = ? AND CONSTRAINT_TYPE = ?',
+            [$database, $table, $name, 'FOREIGN KEY']
+        );
+
+        return $row !== null;
+    }
+
+    private function indexExists(string $table, string $name): bool
+    {
+        $database = Schema::getConnection()->getDatabaseName();
+        $row = DB::selectOne(
+            'SELECT INDEX_NAME FROM information_schema.STATISTICS
+             WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ? AND INDEX_NAME = ?
+             LIMIT 1',
+            [$database, $table, $name]
+        );
+
+        return $row !== null;
     }
 
     /**
