@@ -5,7 +5,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="description" content="{{ __('Служебная страница авторизации экосистемы НЕКСУС. Вход, регистрация и восстановление доступа к личному кабинету.') }}">
+        <link rel="canonical" href="{{ url()->current() }}">
+        <title>{{ !empty($title) ? $title . ' - ' . config('app.name') : config('app.name') }}</title>
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=manrope:400,500,600,700&display=swap" rel="stylesheet" />
         <link href="{{ asset('assets/css/style.css') }}?v=1.0.0" rel="stylesheet">
@@ -38,7 +41,7 @@
                     <img src="{{ asset('assets/imgs/template/logo-head.svg') }}" alt="{{ config('app.name') }}" class="auth-logo">
                 </a>
             </div>
-            <h4 class="display-6 neutral-300 pt-0">{{ __('ПРОЕКТНОЕ ФИНАНСИРОВАНИЕ') }}</h4>
+            <h1 class="display-6 neutral-300 pt-0">{{ !empty($title) ? $title : __('ПРОЕКТНОЕ ФИНАНСИРОВАНИЕ') }}</h1>
             <div class="auth-card">
                 {{ $slot }}
             </div>

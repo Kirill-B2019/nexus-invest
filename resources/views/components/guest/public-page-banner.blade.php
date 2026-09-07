@@ -3,6 +3,42 @@
   Пропсы: pageTitle (заголовок H1 и последний элемент хлебных крошек), bannerDescription (подзаголовок),
   breadcrumbParents (массив [['label' => ..., 'url' => ...], ...] — опциональные родители перед pageTitle).
 --}}
+@php
+    $breadcrumbList = [
+        [
+            '@type' => 'ListItem',
+            'position' => 1,
+            'name' => __('Главная'),
+            'item' => route('welcome'),
+        ],
+    ];
+    $position = 2;
+    if (!empty($breadcrumbParents)) {
+        foreach ($breadcrumbParents as $parent) {
+            $breadcrumbList[] = [
+                '@type' => 'ListItem',
+                'position' => $position,
+                'name' => $parent['label'],
+                'item' => $parent['url'],
+            ];
+            $position++;
+        }
+    }
+    $breadcrumbList[] = [
+        '@type' => 'ListItem',
+        'position' => $position,
+        'name' => $pageTitle,
+        'item' => url()->current(),
+    ];
+    $breadcrumbSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => $breadcrumbList,
+    ];
+@endphp
+@push('seo-jsonld')
+<script type="application/ld+json">{!! json_encode($breadcrumbSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
+@endpush
 <section class="section-box">
     <div class="banner-hero hero-4">
         <div class="banner-inner">

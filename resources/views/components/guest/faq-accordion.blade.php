@@ -1,4 +1,30 @@
 @props(['items' => [], 'accordionId' => 'accordionFAQS'])
+@php
+    $faqEntities = [];
+    foreach ($items as $item) {
+        $answerText = is_array($item['answer'] ?? null)
+            ? implode(' ', array_map(static fn ($p) => (string) __($p), $item['answer']))
+            : (string) __($item['answer'] ?? '');
+        $faqEntities[] = [
+            '@type' => 'Question',
+            'name' => (string) __($item['question'] ?? ''),
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => $answerText,
+            ],
+        ];
+    }
+    $faqSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'FAQPage',
+        'mainEntity' => $faqEntities,
+    ];
+@endphp
+@if (count($faqEntities) > 0)
+@push('seo-jsonld')
+<script type="application/ld+json">{!! json_encode($faqSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
+@endpush
+@endif
 <div class="accordion accordion-flush accordion-style-2" id="{{ $accordionId }}">
     @foreach ($items as $index => $item)
         @php

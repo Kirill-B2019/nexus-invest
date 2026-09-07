@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout :title="__('Вход')">
 
     <x-slot name="channels">
 

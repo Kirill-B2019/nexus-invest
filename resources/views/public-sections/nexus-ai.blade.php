@@ -8,6 +8,10 @@
 {{ __('НЕКСУС ИИ, анализ проектов, скоринг, KYC AML, риск‑менеджмент, токенизация, интеллектуальный контур, экосистема НЕКСУС') }}
 @endsection
 
+@section('ogImage')
+{{ asset('assets/imgs/page/homepage1/nexus-ai-concept-a.png') }}
+@endsection
+
 @section('content')
 {{-- 1. Первый экран --}}
 <section class="section-box wow animate__animated animate__fadeIn nexus-ai-hero animated pt-130" style="visibility: visible;" id="nexus-ai-hero">

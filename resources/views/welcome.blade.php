@@ -54,7 +54,7 @@
                                 {{ __('От запуска проекта и привлечения инвестиций до верификации результатов, постпроектного сопровождения и их реализации на цифровом маркетплейсе.') }}
                             </p>
                                 {{--<h6 class="display-5 neutral-200 text-semibold pt-3 ">{{ __('ЦИФРОВЫЕ ИНВЕСТИЦИИ') }}</h6>--}}
-                                <<a class="btn btn-brand-4-medium hover-up mb-4 hero-cta-primary" href="{{asset('doc/NexusWhitePaper.pdf') }}" target="_blank" rel="noopener noreferrer">
+                                <a class="btn btn-brand-4-medium hover-up mb-4 hero-cta-primary" href="{{asset('doc/NexusWhitePaper.pdf') }}" target="_blank" rel="noopener noreferrer">
                                     {{ __('WHITE PAPER НЕКСУС') }}
                                     <svg width="22" height="8" viewBox="0 0 22 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M22 4.00032L18.4791 0.479492V3.3074H0V4.69333H18.4791V7.52129L22 4.00032Z" fill=""></path>
@@ -375,7 +375,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="card-for-who-image"><img class="wow fadeInUp" src="{{ asset('assets/imgs/page/homepage1/forwho.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
+                                <div class="card-for-who-image"><img class="wow fadeInUp" src="{{ asset('assets/imgs/page/homepage1/forwho.png') }}" alt="{{ __('Для кого предназначена платформа НЕКСУС') }}" loading="lazy" decoding="async"></div>
                             </div>
                         </div>
                     </div>
@@ -462,7 +462,7 @@
             <div class="col-12 col-lg-4 mb-40">
                 <div class="box-border-image">
                     <div class="box-image-line-1">
-                        <div class="wow fadeInDown" data-wow-delay="0"><img src="{{ asset('assets/imgs/page/homepage1/ai-strategy.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
+                        <div class="wow fadeInDown" data-wow-delay="0"><img src="{{ asset('assets/imgs/page/homepage1/ai-strategy.png') }}" alt="{{ __('НЕКСУС ИИ — интеллектуальный контур платформы') }}" loading="lazy" decoding="async"></div>
                     </div>
                 </div>
             </div>
@@ -472,7 +472,7 @@
             <div class="col-12 col-lg-4 text-center mb-40 order-2 order-lg-1">
                 <div class="box-border-image">
                     <div class="box-image-line-1">
-                        <div class="wow fadeInDown" data-wow-delay="0"><img src="{{ asset('assets/imgs/page/homepage1/sheld-ignd.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
+                        <div class="wow fadeInDown" data-wow-delay="0"><img src="{{ asset('assets/imgs/page/homepage1/sheld-ignd.png') }}" alt="{{ __('Система смягчения инвестиционных рисков iGND') }}" loading="lazy" decoding="async"></div>
                     </div>
                 </div>
             </div>

@@ -8,6 +8,10 @@
 {{ __('iGND, смягчение рисков, риск-профиль инвестора, НЕКСУС, токенизация, GNDst-1, инвестиционные риски') }}
 @endsection
 
+@section('ogImage')
+{{ asset('assets/imgs/page/homepage1/sheld-ignd.png') }}
+@endsection
+
 @section('content')
 <x-guest.public-page-banner
     :pageTitle="$title"
@@ -42,28 +46,28 @@
             <div class="col-12 col-lg-8">
                 <div class="box-list mt-55">
                     <div class="card-feature-2">
-                        <div class="card-image card-image-no-bg"><img src="{{asset('assets/imgs/page/homepage1/ignd-list/1.png')}}" loading="lazy" decoding="async" alt=""></div>
+                        <div class="card-image card-image-no-bg"><img src="{{asset('assets/imgs/page/homepage1/ignd-list/1.png')}}" loading="lazy" decoding="async" alt="{{ __('Персональный риск-профиль инвестора') }}"></div>
                         <div class="card-info"><a href="#">
                                 <h3 class="text-22-bold neutral-0">{{__('Персональный риск‑профиль инвестора')}}</h3></a>
                             <p class="text-md neutral-200">{{__('допустимый уровень риска и служит базой для рекомендаций по структуре портфеля и ограничениям по отдельным сделкам в системе смягчения рисков.')}}</p>
                         </div>
                     </div>
                     <div class="card-feature-2">
-                        <div class="card-image card-image-no-bg"><img src="{{asset('assets/imgs/page/homepage1/ignd-list/2.png')}}" loading="lazy" decoding="async" alt=""></div>
+                        <div class="card-image card-image-no-bg"><img src="{{asset('assets/imgs/page/homepage1/ignd-list/2.png')}}" loading="lazy" decoding="async" alt="{{ __('Индекс диверсификации портфеля') }}"></div>
                         <div class="card-info"><a href="#">
                                 <h3 class="text-22-bold neutral-0">{{__('Индекс диверсификации портфеля')}}</h3></a>
                             <p class="text-md neutral-200">{{__('степень распределения вложений между разными проектами и отраслями и мотивирует инвестора поддерживать структуру портфеля, снижающую концентрацию риска.')}}</p>
                         </div>
                     </div>
                     <div class="card-feature-2">
-                        <div class="card-image card-image-no-bg"><img src="{{asset('assets/imgs/page/homepage1/ignd-list/3.png')}}" loading="lazy" decoding="async" alt=""></div>
+                        <div class="card-image card-image-no-bg"><img src="{{asset('assets/imgs/page/homepage1/ignd-list/3.png')}}" loading="lazy" decoding="async" alt="{{ __('Пулы смягчения рисков на базе iGND') }}"></div>
                         <div class="card-info"><a href="#">
                                 <h3 class="text-22-bold neutral-0">{{__('Пулы смягчения рисков на базе iGND')}}</h3></a>
                             <p class="text-md neutral-200">{{__('аккумулируют ресурсы в экосистеме и позволяют при наступлении риск‑событий частично компенсировать их последствия через начисление iGND по выбранным планам участия.')}}</p>
                         </div>
                     </div>
                     <div class="card-feature-2">
-                        <div class="card-image card-image-no-bg"><img src="{{asset('assets/imgs/page/homepage1/ignd-list/4.png')}}" loading="lazy" decoding="async" alt=""></div>
+                        <div class="card-image card-image-no-bg"><img src="{{asset('assets/imgs/page/homepage1/ignd-list/4.png')}}" loading="lazy" decoding="async" alt="{{ __('Алгоритмический AI-скоринг проектов') }}"></div>
                         <div class="card-info"><a href="{{ route('nexus-ai') }}">
                                 <h3 class="text-22-bold neutral-0">{{__('Алгоритмический AI‑скоринг проектов')}}</h3></a>
                             <p class="text-md neutral-200">{{__('анализирует множество факторов по каждому проекту, присваивает риск‑оценку и помогает системе ограничивать избыточные риски и формировать более взвешенные рекомендации для инвесторов.')}}</p>

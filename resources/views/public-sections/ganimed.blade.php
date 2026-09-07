@@ -8,6 +8,10 @@
 {{ __('ГАНИМЕД, блокчейн, ГОСТ-криптография, GNDst-1, PoSA, токенизация RWA, комплаенс, НЕКСУС, смарт-контракты') }}
 @endsection
 
+@section('ogImage')
+{{ asset('assets/imgs/page/homepage1/gndgani.png') }}
+@endsection
+
 @section('content')
 @php
     $pageTitle = __('ГАНИМЕД');
@@ -125,7 +129,7 @@
             </div>
             <div class="col-12 col-lg-4">
                 <div class="card-design card-design-style3">
-                    <div class="card-image"><img alt="{{__('Прозрачные правила')}}" src="{{__('assets/imgs/page/homepage6/fast.png')}}" loading="lazy" decoding="async"></div>
+                    <div class="card-image"><img alt="{{__('Прозрачные правила')}}" src="{{ asset('assets/imgs/page/homepage6/fast.png') }}" loading="lazy" decoding="async"></div>
                     <div class="card-info">
                         <p class=" text-xl mb-30">{{__('Прозрачные правила')}}</p>
                         <p class="text-lg card-desc">{{__('Условия выпуска токенов, ограничения, права и роли участников, данные системы смягчения заранее зашиваются в протокол и смарт‑контракты, поэтому участники видят правила и могут им доверять, а не полагаться на чьи‑то обещания.')}}</p>
@@ -264,9 +268,8 @@
                         <div class="col-12 col-lg-4">
                             <div class="box-border-rounded">
                                 <div class="card-casestudy">
-                                    <div class="card-title d-flex align-items-center justify-content-between flex-wrap gap-2">
+                                    <div class="card-title">
                                             <h6 class="mb-0">{{ __('Двухтокеновая модель GND + GANI') }}</h6>
-                                            <a href="{{ route('ganimed.tokens') }}" class="btn btn-sm btn-brand-4-medium">{{ __('Подробнее') }}</a>
                                         </div>
                                     <div class="card-desc">
                                         <div class="card-title"><h6><span class="number">1</span>{{ __('Токен GND (утилитарный)') }}</h6></div>
@@ -315,7 +318,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-lg-4">
-                            <img class="wow fadeInUp w-80" src="{{ asset('assets/imgs/page/homepage1/gndgani.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async">
+                            <img class="wow fadeInUp w-80" src="{{ asset('assets/imgs/page/homepage1/gndgani.png') }}" alt="{{ __('Токены GND и GANI') }}" loading="lazy" decoding="async">
                         </div>
                     </div>
 

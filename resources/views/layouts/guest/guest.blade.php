@@ -6,15 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="msapplication-TileColor" content="#0E0E0E">
     <meta name="template-color" content="#0E0E0E">
-    @php
-        $defaultMetaDescription = __('Платформа проектного финансирования и токенизации активов. НЕКСУС — экосистема для запуска проектов через ЦФА, RWA и блокчейн ГАНИМЕД. Соответствие 259-ФЗ, 289-ФЗ.');
-        $defaultMetaKeywords = __('проектное финансирование, токенизация, ЦФА, RWA, блокчейн ГАНИМЕД, НЕКСУС, инвестиции, цифровые активы, 259-ФЗ');
-    @endphp
-    <meta name="description" content="@yield('metaDescription', $defaultMetaDescription)">
-    <meta name="keywords" content="@yield('metaKeywords', $defaultMetaKeywords)">
     <meta name="author" content="KB @CerberRus00 - Nexus Invest Team">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="zen-verification" content="K0H1Zjtz1fcqho7Y4wnB9NRcmHMocHkVIoMVPeC9m3QozrwKF7vzm4xrqgVJHPwy" />
+    @include('partials.seo-head')
     @php
     $faviconPath = file_exists(public_path('favicon.ico'))
         ? 'favicon.ico'
@@ -47,7 +42,6 @@
             font-family: "Manrope", "Urbanist", system-ui, sans-serif !important;
         }
     </style>
-    <title>{{ isset($title) ? $title . ' - ' . config('app.name') : config('app.name') }}</title>
     @stack('styles')
 </head>
 <body>
@@ -153,5 +147,6 @@
         });
     </script>
     @stack('scripts')
+    @stack('seo-jsonld')
 </body>
 </html>
