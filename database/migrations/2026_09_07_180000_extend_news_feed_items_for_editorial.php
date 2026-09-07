@@ -33,6 +33,9 @@ return new class extends Migration
             if ($this->foreignKeyExists('news_feed_items', 'news_feed_items_author_id_foreign')) {
                 $table->dropForeign(['author_id']);
             }
+            if ($this->indexExists('news_feed_items', 'news_feed_items_author_id_index')) {
+                $table->dropIndex(['author_id']);
+            }
             if ($this->indexExists('news_feed_items', 'news_feed_items_status_published_at_index')) {
                 $table->dropIndex(['status', 'published_at']);
             }
@@ -95,7 +98,9 @@ return new class extends Migration
             DB::statement('ALTER TABLE news_feed_items ALTER COLUMN url DROP NOT NULL');
         }
 
-        $this->ensureAuthorForeignKey();
+        // FK на Beget/MariaDB даёт 1215 — оставляем только колонку + индекс.
+        // Связь author() в Eloquent работает без constraint в БД.
+        $this->ensureAuthorIdIndex();
     }
 
     /**
@@ -108,7 +113,7 @@ return new class extends Migration
         }
 
         $usersId = DB::selectOne(
-            'SELECT COLUMN_TYPE, IS_NULLABLE
+            'SELECT COLUMN_TYPE
              FROM information_schema.COLUMNS
              WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? AND COLUMN_NAME = ?',
             ['users', 'id']
@@ -119,21 +124,26 @@ return new class extends Migration
         }
 
         $columnType = strtolower((string) $usersId->COLUMN_TYPE);
-        // users.id NOT NULL, author_id должен быть NULLABLE
         DB::statement("ALTER TABLE news_feed_items MODIFY author_id {$columnType} NULL");
     }
 
-    private function ensureAuthorForeignKey(): void
+    private function ensureAuthorIdIndex(): void
     {
         if (! Schema::hasColumn('news_feed_items', 'author_id')) {
             return;
         }
 
+        // Старый индекс/остаток от неудачного FK
         if ($this->foreignKeyExists('news_feed_items', 'news_feed_items_author_id_foreign')) {
-            return;
+            try {
+                Schema::table('news_feed_items', function (Blueprint $table) {
+                    $table->dropForeign(['author_id']);
+                });
+            } catch (\Throwable) {
+                // ignore
+            }
         }
 
-        // Индекс с тем же именем мог остаться после прошлого FAIL без самого FK
         if ($this->indexExists('news_feed_items', 'news_feed_items_author_id_foreign')) {
             try {
                 DB::statement('ALTER TABLE news_feed_items DROP INDEX news_feed_items_author_id_foreign');
@@ -142,47 +152,10 @@ return new class extends Migration
             }
         }
 
-        if (Schema::getConnection()->getDriverName() === 'mysql') {
-            $this->alignAuthorIdColumnType();
-
-            // На shared-хостинге таблицы иногда MyISAM
-            try {
-                DB::statement('ALTER TABLE users ENGINE=InnoDB');
-            } catch (\Throwable) {
-                // ignore
-            }
-            try {
-                DB::statement('ALTER TABLE news_feed_items ENGINE=InnoDB');
-            } catch (\Throwable) {
-                // ignore
-            }
-        }
-
-        DB::table('news_feed_items')->where('author_id', 0)->update(['author_id' => null]);
-
-        $userIds = DB::table('users')->pluck('id');
-        if ($userIds->isEmpty()) {
-            DB::table('news_feed_items')->whereNotNull('author_id')->update(['author_id' => null]);
-        } else {
-            DB::table('news_feed_items')
-                ->whereNotNull('author_id')
-                ->whereNotIn('author_id', $userIds)
-                ->update(['author_id' => null]);
-        }
-
-        try {
+        if (! $this->indexExists('news_feed_items', 'news_feed_items_author_id_index')) {
             Schema::table('news_feed_items', function (Blueprint $table) {
-                $table->foreign('author_id')
-                    ->references('id')
-                    ->on('users')
-                    ->nullOnDelete();
+                $table->index('author_id');
             });
-        } catch (\Throwable $e) {
-            // Не блокируем деплой: колонка author_id уже есть, FK на Beget иногда нельзя создать
-            // (права/движок/расхождение типов). Приложение работает и без constraint.
-            if (! str_contains($e->getMessage(), '1215') && ! str_contains($e->getMessage(), 'foreign key')) {
-                throw $e;
-            }
         }
     }
 
