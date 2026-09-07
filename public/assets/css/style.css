@@ -3129,15 +3129,19 @@ label {
 .header .main-header .header-left {
   display: flex;
   align-items: center;
-  width: 100%;
-  justify-content: space-between;
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 0;
+  justify-content: flex-start;
 }
 .header .main-header .header-left .header-logo {
-  margin-right: 50px;
+  margin-right: 24px;
+  flex: 0 0 auto;
 }
 .header .main-header .header-right {
-  width: 30%;
-  min-width: 245px;
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 0;
   text-align: right;
   display: flex;
   align-items: center;
@@ -10131,9 +10135,10 @@ a.icon-socials:hover {
   }
 }
 /*OTHER SCREEN*/
+/* Было: .header-right { display: none } на 1200–1440 — обрезало «Ваш кабинет». Не скрываем. */
 @media screen and (min-width: 1200px) and (max-width: 1440px) {
-  .header-right {
-    display: none;
+  .header .main-header .header-right {
+    display: flex;
   }
 }/*# sourceMappingURL=style.css.map */
 
