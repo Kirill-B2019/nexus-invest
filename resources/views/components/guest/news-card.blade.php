@@ -15,7 +15,7 @@
 <article class="news-card">
     <div class="news-card__media">
         <a class="news-card__media-link" href="{{ $href }}" @if($isExternal) target="_blank" rel="noopener noreferrer" @endif>
-            <img src="{{ $cover }}" alt="{{ e($item->title) }}" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='{{ $placeholder }}';">
+            <img src="{{ $cover }}" alt="{{ e($item->title) }}" loading="eager" decoding="async" onerror="this.onerror=null; this.src='{{ $placeholder }}';">
         </a>
     </div>
     <div class="news-card__content">

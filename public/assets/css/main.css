@@ -2822,6 +2822,7 @@ input.ganimed-status-checkbox:checked {
     border: 1px solid #e8eaed;
     box-shadow: 0 1px 2px rgba(25, 25, 25, 0.04);
 }
+/* Chrome: height:100% у img внутри aspect-ratio/flex даёт 0 — обложка через absolute */
 .news-card__media {
     position: relative;
     flex: 0 0 auto;
@@ -2832,15 +2833,16 @@ input.ganimed-status-checkbox:checked {
     order: 1;
 }
 .news-card__media-link {
+    position: absolute;
+    inset: 0;
     display: block;
-    width: 100%;
-    height: 100%;
 }
 .news-card__media img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
+    background: #f3f4f6;
 }
 .news-card__content {
     display: flex;
@@ -2890,11 +2892,13 @@ input.ganimed-status-checkbox:checked {
     font-weight: 700;
     line-height: 1.35;
     color: #0e0e0e;
+    -webkit-text-fill-color: #0e0e0e;
     text-decoration: none;
     overflow-wrap: anywhere;
 }
 .news-card__title:hover {
     color: #0e0e0e;
+    -webkit-text-fill-color: #0e0e0e;
     opacity: 0.8;
 }
 .news-card__excerpt {
@@ -2908,6 +2912,7 @@ input.ganimed-status-checkbox:checked {
     font-size: 0.9375rem;
     line-height: 1.5;
     color: #4b5563;
+    -webkit-text-fill-color: #4b5563;
     overflow-wrap: anywhere;
 }
 .news-card__footer {
@@ -2916,9 +2921,30 @@ input.ganimed-status-checkbox:checked {
     padding: 0.85rem 1.1rem 1.15rem;
     margin-top: auto;
 }
-.news-card__cta {
+.news-card__cta.btn.btn-learmore-2 {
+    display: inline-flex !important;
+    align-items: center;
+    visibility: visible;
+    opacity: 1;
+    color: var(--color-dark, #191919);
+    -webkit-text-fill-color: var(--color-dark, #191919);
+}
+.news-card__cta.btn.btn-learmore-2 span {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: var(--color-primary, #c5ff41);
+    line-height: 1;
+}
+.news-card__cta.btn.btn-learmore-2 svg {
+    display: block;
+    color: #191919;
+    fill: currentColor;
 }
 
 /* Вид «список» */
