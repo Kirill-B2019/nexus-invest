@@ -5914,6 +5914,56 @@ a.icon-socials:hover {
   color: var(--color-dark, #191919);
   fill: currentColor;
 }
+/* Новая разметка карусели: без height:100% у img (Chrome рисует пустую рамку) */
+#news-feed-section .news-home-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0 0 30px;
+}
+#news-feed-section .news-home-card__media {
+  display: block;
+  margin-bottom: 1rem;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #e8eaed;
+  background: #eef0f3;
+  line-height: 0;
+}
+#news-feed-section .news-home-card__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border: 0;
+}
+#news-feed-section .news-home-card__title {
+  color: #191919 !important;
+  -webkit-text-fill-color: #191919 !important;
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+#news-feed-section .news-home-card__cta {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: auto;
+  color: #191919 !important;
+  -webkit-text-fill-color: #191919 !important;
+  text-decoration: none;
+}
+#news-feed-section .news-home-card__cta-icon {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--color-primary, #c5ff41);
+  color: #191919;
+}
 .card-news .card-info * {
   color: var(--color-dark);
 }
@@ -6635,14 +6685,24 @@ a.icon-socials:hover {
   width: 42px;
   background-color: #ffffff;
   border-radius: 50%;
+  color: var(--color-dark);
 }
 .swiper-button-prev-testimonials svg, .swiper-button-next-testimonials svg {
+  stroke: var(--color-dark);
+  color: var(--color-dark);
+}
+.swiper-button-prev-testimonials svg path, .swiper-button-next-testimonials svg path {
   stroke: var(--color-dark);
 }
 .swiper-button-prev-testimonials:hover, .swiper-button-next-testimonials:hover {
   background-color: var(--color-dark);
+  color: var(--color-primary);
 }
 .swiper-button-prev-testimonials:hover svg, .swiper-button-next-testimonials:hover svg {
+  stroke: var(--color-primary);
+  color: var(--color-primary);
+}
+.swiper-button-prev-testimonials:hover svg path, .swiper-button-next-testimonials:hover svg path {
   stroke: var(--color-primary);
 }
 

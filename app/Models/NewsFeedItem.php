@@ -60,7 +60,8 @@ class NewsFeedItem extends Model
             return $value;
         }
 
-        return asset('storage/' . ltrim($value, '/'));
+        // Корневой путь /storage/... — не зависит от APP_URL (localhost vs домен).
+        return '/storage/' . ltrim($value, '/');
     }
 
     public function getCoverUrlAttribute(): ?string

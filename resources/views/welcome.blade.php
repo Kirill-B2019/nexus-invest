@@ -651,69 +651,6 @@
         $newsPlaceholder = asset('assets/imgs/page/homepage1/img-news.png');
     @endphp
     <section class="section-box box-latest-news box-latest-news-2" id="news-feed-section">
-        <style>
-            /*
-              Chrome: height:100% у img внутри aspect-ratio даёт высоту 0 → белая рамка без картинки.
-              Заголовок/кнопка тоже пропадают при лишних translateZ/isolation в связке со Swiper.
-            */
-            #news-feed-section .card-news{
-                overflow:visible;
-            }
-            #news-feed-section .card-news .card-image{
-                position:relative;
-                background:#fff;
-                border-radius:16px;
-                overflow:hidden;
-                aspect-ratio:3/2;
-                border:1px solid #e8eaed;
-            }
-            #news-feed-section .card-news .card-image > a{
-                position:absolute;
-                inset:0;
-                display:block;
-            }
-            #news-feed-section .card-news .card-image img{
-                display:block;
-                width:100%;
-                height:100%;
-                object-fit:cover;
-                border-radius:16px;
-                background:#fff;
-            }
-            #news-feed-section .card-news .card-info .heading-4{
-                display:block;
-                color:var(--color-dark,#191919);
-                -webkit-text-fill-color:var(--color-dark,#191919);
-                opacity:1;
-                visibility:visible;
-            }
-            #news-feed-section .card-news .card-info .btn-learmore-2{
-                display:inline-flex !important;
-                align-items:center;
-                visibility:visible;
-                opacity:1;
-                color:var(--color-dark,#191919);
-            }
-            #news-feed-section .btn-learmore-2 span{
-                display:inline-flex;
-                align-items:center;
-                justify-content:center;
-                flex-shrink:0;
-                width:38px;
-                height:38px;
-                background-color:var(--color-primary,#C5FF55);
-                border-radius:50%;
-            }
-            #news-feed-section .btn-learmore-2 svg{
-                display:block;
-                color:#191919;
-                fill:currentColor;
-            }
-            #news-feed-section .swiper-button-prev svg path,
-            #news-feed-section .swiper-button-next svg path{
-                stroke:currentColor;
-            }
-        </style>
         <div class="container">
             <div class="row align-items-end">
                 <div class="col-lg-8 mb-30">
@@ -734,25 +671,43 @@
                 <div class="swiper-container swiper-group-3" id="news-feed-carousel">
                     <div class="swiper-wrapper">
                         @foreach($newsFeedItems as $item)
+                            @php
+                                $cover = $item->cover_url ?: $newsPlaceholder;
+                                $itemDate = $item->published_at ?? $item->created_at;
+                                $href = $item->permalink ?: ($item->url ?: '#');
+                            @endphp
                             <div class="swiper-slide">
-                                <div class="card-news">
-                                    <div class="card-image">
-                                        <a href="{{ $item->url }}" target="_blank" rel="noopener noreferrer">
-                                            <img src="{{ $item->image_url ?? $newsPlaceholder }}" alt="{{ e($item->title) }}" loading="eager" decoding="async" onerror="this.onerror=null; this.src='{{ $newsPlaceholder }}';">
-                                        </a>
-                                    </div>
-                                    <div class="card-info">
-                                        @php $itemDate = $item->published_at ?? $item->created_at; @endphp
+                                <article class="news-home-card">
+                                    <a class="news-home-card__media" href="{{ $href }}" @if($item->is_external) target="_blank" rel="noopener noreferrer" @endif>
+                                        <img
+                                            class="news-home-card__img"
+                                            src="{{ $cover }}"
+                                            alt="{{ e($item->title) }}"
+                                            width="600"
+                                            height="400"
+                                            loading="eager"
+                                            decoding="async"
+                                            onerror="this.onerror=null;this.src='{{ $newsPlaceholder }}';"
+                                        >
+                                    </a>
+                                    <div class="news-home-card__body">
                                         @if($itemDate)
-                                            <p class="text-muted small mb-1">{{ $itemDate->translatedFormat('d F Y') }}</p>
+                                            <time class="news-home-card__date" datetime="{{ $itemDate->toDateString() }}">{{ $itemDate->translatedFormat('d F Y') }}</time>
                                         @endif
-                                        <a class="heading-4" href="{{ $item->url }}" target="_blank" rel="noopener noreferrer">{{ e($item->title) }}</a>
+                                        <a class="news-home-card__title" href="{{ $href }}" @if($item->is_external) target="_blank" rel="noopener noreferrer" @endif>{{ e($item->title) }}</a>
                                         @if($item->description)
-                                            <p class="text-md neutral-700 mt-15 mb-35">{{ e(str()->limit($item->description, 160)) }}</p>
+                                            <p class="news-home-card__excerpt">{{ e(str()->limit($item->description, 160)) }}</p>
                                         @endif
-                                        <a class="btn btn-learmore-2" href="{{ $item->url }}" target="_blank" rel="noopener noreferrer"><span><svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10.6557 3.81393L1.71996 12.7497L0.251953 11.2817L9.18664 2.34592H1.31195V0.269531H12.7321V11.6897H10.6557V3.81393Z" fill="currentColor"></path></svg></span>{{ __('Подробнее') }}</a>
                                     </div>
-                                </div>
+                                    <a class="news-home-card__cta" href="{{ $href }}" @if($item->is_external) target="_blank" rel="noopener noreferrer" @endif>
+                                        <span class="news-home-card__cta-icon" aria-hidden="true">
+                                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10.6557 3.81393L1.71996 12.7497L0.251953 11.2817L9.18664 2.34592H1.31195V0.269531H12.7321V11.6897H10.6557V3.81393Z" fill="currentColor"></path>
+                                            </svg>
+                                        </span>
+                                        {{ __('Подробнее') }}
+                                    </a>
+                                </article>
                             </div>
                         @endforeach
                     </div>
@@ -770,7 +725,6 @@
                     slidesPerView: 1,
                     slidesPerGroup: 1,
                     initialSlide: 0,
-                    // loop клонирует DOM и в Chrome после init/observer картинки и SVG-кнопки пропадают
                     loop: false,
                     watchOverflow: true,
                     observer: false,
@@ -788,7 +742,6 @@
                     },
                     on: {
                         reachEnd: function () {
-                            // без loop: после последнего слайда возвращаемся к началу
                             var self = this;
                             setTimeout(function () { self.slideTo(0); }, 5000);
                         }

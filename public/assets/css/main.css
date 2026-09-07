@@ -3166,17 +3166,152 @@ input.ganimed-status-checkbox:checked {
         width: 100%;
         justify-content: flex-end;
     }
-    #news-feed-section .card-news {
-        display: flex;
-        flex-direction: column;
-    }
-    #news-feed-section .card-news .card-info {
+    /* Mobile главной: текст → картинка → CTA */
+    #news-feed-section .news-home-card__body {
         order: 1;
     }
-    #news-feed-section .card-news .card-image {
+    #news-feed-section .news-home-card__media {
         order: 2;
         margin-bottom: 0;
         margin-top: 1rem;
     }
+    #news-feed-section .news-home-card__cta {
+        order: 3;
+    }
+}
+
+/* ---- Карусель новостей на главной (#news-feed-section) ---- */
+#news-feed-section .news-home-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0 0 30px;
+    background: transparent;
+}
+#news-feed-section .swiper-slide {
+    height: auto;
+    display: flex;
+}
+#news-feed-section .swiper-slide > .news-home-card {
+    width: 100%;
+    flex: 1 1 auto;
+}
+#news-feed-section .news-home-card__media {
+    display: block;
+    margin-bottom: 1rem;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e8eaed;
+    background: #eef0f3;
+    line-height: 0;
+}
+#news-feed-section .news-home-card__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border: 0;
+}
+#news-feed-section .news-home-card__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+#news-feed-section .news-home-card__date {
+    display: block;
+    margin: 0 0 0.35rem;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: #6b7280;
+    -webkit-text-fill-color: #6b7280;
+}
+#news-feed-section .news-home-card__title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+    margin: 0 0 0.75rem;
+    font-family: "Urbanist", sans-serif;
+    font-size: 1.375rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #191919 !important;
+    -webkit-text-fill-color: #191919 !important;
+    background: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    text-decoration: none;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+#news-feed-section .news-home-card__title:hover {
+    color: #191919 !important;
+    -webkit-text-fill-color: #191919 !important;
+    opacity: 0.85 !important;
+}
+#news-feed-section .news-home-card__excerpt {
+    margin: 0 0 1.25rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #4b5563;
+    -webkit-text-fill-color: #4b5563;
+}
+#news-feed-section .news-home-card__cta {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.65rem;
+    margin-top: auto;
+    font-family: "Urbanist", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #191919 !important;
+    -webkit-text-fill-color: #191919 !important;
+    text-decoration: none;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+#news-feed-section .news-home-card__cta-icon {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: var(--color-primary, #c5ff41);
+    color: #191919;
+}
+#news-feed-section .news-home-card__cta-icon svg {
+    display: block;
+    color: #191919;
+    fill: currentColor;
+}
+#news-feed-section .swiper-button-prev-testimonials,
+#news-feed-section .swiper-button-next-testimonials {
+    color: var(--color-dark, #191919);
+    border-color: var(--color-dark, #191919);
+    background-color: #ffffff;
+}
+#news-feed-section .swiper-button-prev-testimonials svg,
+#news-feed-section .swiper-button-next-testimonials svg {
+    color: inherit;
+}
+#news-feed-section .swiper-button-prev-testimonials svg path,
+#news-feed-section .swiper-button-next-testimonials svg path {
+    stroke: var(--color-dark, #191919);
+}
+#news-feed-section .swiper-button-prev-testimonials:hover,
+#news-feed-section .swiper-button-next-testimonials:hover {
+    background-color: var(--color-dark, #191919);
+    color: var(--color-primary, #c5ff41);
+    border-color: var(--color-dark, #191919);
+}
+#news-feed-section .swiper-button-prev-testimonials:hover svg path,
+#news-feed-section .swiper-button-next-testimonials:hover svg path {
+    stroke: var(--color-primary, #c5ff41);
 }
 
