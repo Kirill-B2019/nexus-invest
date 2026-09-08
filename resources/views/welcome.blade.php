@@ -81,36 +81,37 @@
                                         role="timer"
                                         aria-live="polite"
                                         aria-atomic="true"
+                                        aria-label="{{ __('До полной готовности платформы') }}: 01.03.2027"
                                     >
-                                        <p class="public-launch-countdown__label">{{ __('до публичного запуска') }}</p>
+                                        <div class="public-launch-countdown__info">
+                                            <p class="public-launch-countdown__label">{{ __('До полной готовности платформы') }}</p>
+                                            <p class="public-launch-countdown__date">01.03.2027</p>
+                                        </div>
+                                        <div class="public-launch-countdown__divider" aria-hidden="true"></div>
                                         <div class="public-launch-countdown__segments">
                                             <div class="public-launch-countdown__segment">
-                                                <span class="public-launch-countdown__value display-1 text-semibold neutral-0 text-nowrap" data-unit="days">--</span>
+                                                <span class="public-launch-countdown__value" data-unit="days">--</span>
                                                 <span class="public-launch-countdown__unit">{{ __('countdown unit days') }}</span>
                                             </div>
                                             <span class="public-launch-countdown__sep" aria-hidden="true">:</span>
                                             <div class="public-launch-countdown__segment">
-                                                <span class="public-launch-countdown__value display-1 text-semibold neutral-0 text-nowrap" data-unit="hours">--</span>
+                                                <span class="public-launch-countdown__value" data-unit="hours">--</span>
                                                 <span class="public-launch-countdown__unit">{{ __('countdown unit hours') }}</span>
                                             </div>
                                             <span class="public-launch-countdown__sep" aria-hidden="true">:</span>
                                             <div class="public-launch-countdown__segment">
-                                                <span class="public-launch-countdown__value display-1 text-semibold neutral-0 text-nowrap" data-unit="minutes">--</span>
+                                                <span class="public-launch-countdown__value" data-unit="minutes">--</span>
                                                 <span class="public-launch-countdown__unit">{{ __('countdown unit minutes') }}</span>
                                             </div>
                                             <span class="public-launch-countdown__sep" aria-hidden="true">:</span>
                                             <div class="public-launch-countdown__segment">
-                                                <span class="public-launch-countdown__value display-1 text-semibold neutral-0 text-nowrap" data-unit="seconds">--</span>
+                                                <span class="public-launch-countdown__value" data-unit="seconds">--</span>
                                                 <span class="public-launch-countdown__unit">{{ __('countdown unit seconds') }}</span>
                                             </div>
                                         </div>
-                                        <div class="public-launch-countdown__decor" aria-hidden="true">
-                                            <span class="public-launch-countdown__orbit"></span>
-                                            <span class="public-launch-countdown__nodes"></span>
-                                        </div>
                                     </div>
                                     <noscript>
-                                        <p class="public-launch-countdown__noscript small neutral-300 mt-2 mb-0">{{ __('Public launch') }}: 01.03.2027</p>
+                                        <p class="public-launch-countdown__noscript small neutral-300 mt-2 mb-0">{{ __('До полной готовности платформы') }}: 01.03.2027</p>
                                     </noscript>
                                 </div>
                                 </div>

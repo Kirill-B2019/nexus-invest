@@ -33,11 +33,16 @@
         return String(n).padStart(2, '0');
     }
 
+    function padDays(n) {
+        // Не меньше 2 символов; до 99 без ведущего нуля в сотнях — ширина держится CSS
+        return n < 100 ? String(n).padStart(2, '0') : String(n);
+    }
+
     function tick() {
         var ms = deadline.getTime() - Date.now();
         if (ms <= 0) {
             if (els.days) {
-                els.days.textContent = '0';
+                els.days.textContent = padDays(0);
             }
             if (els.hours) {
                 els.hours.textContent = '00';
@@ -60,7 +65,7 @@
         var seconds = rem % 60;
 
         if (els.days) {
-            els.days.textContent = String(days);
+            els.days.textContent = days > 999 ? String(days) : padDays(days);
         }
         if (els.hours) {
             els.hours.textContent = pad2(hours);

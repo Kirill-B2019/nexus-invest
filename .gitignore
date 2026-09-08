@@ -26,3 +26,9 @@ Thumbs.db
 public_html
 /work_folder/
 /resources/src/careers.html
+/.superdesign/init/components.md
+/.superdesign/init/extractable-components.md
+/.superdesign/init/theme.md
+/.superdesign/init/routes.md
+/.superdesign/init/pages.md
+/.superdesign/init/layouts.md
