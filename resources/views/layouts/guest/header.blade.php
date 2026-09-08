@@ -1,15 +1,13 @@
 <header class="header sticky-bar">
     <div class="container">
         <div class="main-header">
-            <div class="header-left">
-                <div class="header-logo">
-                    <a class="d-flex" href="{{ route('welcome') }}">
-                        <img class="logo-head" alt="{{ config('app.name') }}" src="{{ asset('assets/imgs/template/logo-head.svg') }}">
-                    </a>
-                </div>
-                <div class="header-nav">
-                    @include('layouts.guest.menu')
-                </div>
+            <div class="header-logo">
+                <a class="d-flex" href="{{ route('welcome') }}">
+                    <img class="logo-head" alt="{{ config('app.name') }}" src="{{ asset('assets/imgs/template/logo-head.svg') }}">
+                </a>
+            </div>
+            <div class="header-nav">
+                @include('layouts.guest.menu')
             </div>
             <div class="header-right">
                 @auth
