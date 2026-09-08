@@ -1864,11 +1864,11 @@ div#onwer .card-testimonial-3 .card-rate img {
 .public-launch-countdown__segments {
     position: relative;
     z-index: 1;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 0.65rem 0.85rem;
+    display: grid;
+    grid-template-columns: 3.6em auto 2.5em auto 2.5em auto 2.5em;
+    align-items: start;
+    justify-content: end;
+    column-gap: 0.55rem;
     flex: 0 0 auto;
     min-width: max-content;
     max-width: 100%;
@@ -1879,16 +1879,20 @@ div#onwer .card-testimonial-3 .card-rate img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 0.2rem;
-    min-width: 2.75em;
-    flex: 0 0 auto;
-}
-.public-launch-countdown__segment:first-child {
-    min-width: 3.5em;
+    justify-content: flex-start;
+    gap: 0.25rem;
+    width: 100%;
+    min-width: 0;
+    flex: none;
 }
 .public-launch-countdown__value {
-    font-family: "Urbanist", "Manrope", ui-monospace, monospace, sans-serif;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "SFMono-Regular", Menlo, Consolas, monospace;
     font-weight: 700;
     font-size: clamp(1.75rem, 4.5vw, 2.75rem);
     line-height: 1;
@@ -1896,23 +1900,31 @@ div#onwer .card-testimonial-3 .card-rate img {
     font-variant-numeric: tabular-nums;
     font-feature-settings: "tnum" 1, "lnum" 1;
     color: #ffffff;
-    display: block;
-    width: 100%;
-    min-width: 0;
-    text-align: center;
     font-optical-sizing: none;
-    overflow: hidden;
+}
+.public-launch-countdown__digit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 1ch;
+    width: 1ch;
+    min-width: 1ch;
+    max-width: 1ch;
+    text-align: center;
+    font: inherit;
+    line-height: 1;
+}
+.public-launch-countdown__digit.is-pad {
+    visibility: hidden;
 }
 .public-launch-countdown__sep {
-    display: inline-flex;
+    display: flex;
     align-items: flex-start;
     justify-content: center;
-    width: 1ch;
-    flex: 0 0 1ch;
-    padding-top: 0.15em;
-    padding-bottom: 1.1rem;
-    font-family: "Urbanist", ui-monospace, monospace, sans-serif;
-    font-weight: 600;
+    width: 0.7em;
+    padding-top: 0.12em;
+    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", Menlo, Consolas, monospace;
+    font-weight: 700;
     font-size: clamp(1.25rem, 3vw, 2rem);
     line-height: 1;
     color: #ffffff;
@@ -1948,11 +1960,9 @@ div#onwer .card-testimonial-3 .card-rate img {
         margin-right: 0.25rem;
     }
     .public-launch-countdown__segments {
-        justify-content: flex-start;
         margin-left: auto;
-        gap: 0.85rem 1.1rem;
-        flex: 0 0 auto;
-        min-width: max-content;
+        column-gap: 0.75rem;
+        grid-template-columns: 3.75em auto 2.6em auto 2.6em auto 2.6em;
     }
 }
 @media (max-width: 575.98px) {
@@ -1962,11 +1972,11 @@ div#onwer .card-testimonial-3 .card-rate img {
     }
     .public-launch-countdown__segments {
         width: 100%;
-        justify-content: space-between;
-        gap: 0.35rem;
+        justify-content: stretch;
+        column-gap: 0.35rem;
+        grid-template-columns: minmax(2.8em, 1fr) auto minmax(2.2em, 1fr) auto minmax(2.2em, 1fr) auto minmax(2.2em, 1fr);
     }
     .public-launch-countdown__sep {
-        padding-bottom: 0.95rem;
         padding-top: 0.1em;
     }
 }

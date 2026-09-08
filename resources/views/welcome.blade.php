@@ -89,23 +89,31 @@
                                         </div>
                                         <div class="public-launch-countdown__divider" aria-hidden="true"></div>
                                         <div class="public-launch-countdown__segments">
-                                            <div class="public-launch-countdown__segment">
-                                                <span class="public-launch-countdown__value" data-unit="days">--</span>
+                                            <div class="public-launch-countdown__segment public-launch-countdown__segment--days">
+                                                <span class="public-launch-countdown__value" data-unit="days" aria-label="--">
+                                                    <span class="public-launch-countdown__digit">-</span><span class="public-launch-countdown__digit">-</span><span class="public-launch-countdown__digit">-</span>
+                                                </span>
                                                 <span class="public-launch-countdown__unit">{{ __('countdown unit days') }}</span>
                                             </div>
                                             <span class="public-launch-countdown__sep" aria-hidden="true">:</span>
                                             <div class="public-launch-countdown__segment">
-                                                <span class="public-launch-countdown__value" data-unit="hours">--</span>
+                                                <span class="public-launch-countdown__value" data-unit="hours" aria-label="--">
+                                                    <span class="public-launch-countdown__digit">-</span><span class="public-launch-countdown__digit">-</span>
+                                                </span>
                                                 <span class="public-launch-countdown__unit">{{ __('countdown unit hours') }}</span>
                                             </div>
                                             <span class="public-launch-countdown__sep" aria-hidden="true">:</span>
                                             <div class="public-launch-countdown__segment">
-                                                <span class="public-launch-countdown__value" data-unit="minutes">--</span>
+                                                <span class="public-launch-countdown__value" data-unit="minutes" aria-label="--">
+                                                    <span class="public-launch-countdown__digit">-</span><span class="public-launch-countdown__digit">-</span>
+                                                </span>
                                                 <span class="public-launch-countdown__unit">{{ __('countdown unit minutes') }}</span>
                                             </div>
                                             <span class="public-launch-countdown__sep" aria-hidden="true">:</span>
                                             <div class="public-launch-countdown__segment">
-                                                <span class="public-launch-countdown__value" data-unit="seconds">--</span>
+                                                <span class="public-launch-countdown__value" data-unit="seconds" aria-label="--">
+                                                    <span class="public-launch-countdown__digit">-</span><span class="public-launch-countdown__digit">-</span>
+                                                </span>
                                                 <span class="public-launch-countdown__unit">{{ __('countdown unit seconds') }}</span>
                                             </div>
                                         </div>

@@ -1,6 +1,7 @@
 /**
  * Обратный отсчёт до публичного запуска (главная, блок hero).
  * Целевая дата: data-deadline (ISO-8601).
+ * Цифры рендерятся по слотам фиксированной ширины — без смещения вёрстки.
  */
 (function () {
     'use strict';
@@ -20,39 +21,65 @@
         return;
     }
 
-    var units = ['days', 'hours', 'minutes', 'seconds'];
+    var places = {
+        days: 3,
+        hours: 2,
+        minutes: 2,
+        seconds: 2
+    };
+
     var els = {};
-    units.forEach(function (u) {
+    Object.keys(places).forEach(function (u) {
         var el = root.querySelector('[data-unit="' + u + '"]');
         if (el) {
             els[u] = el;
         }
     });
 
-    function pad2(n) {
-        return String(n).padStart(2, '0');
-    }
+    function renderUnit(el, value, size, hideLeadingZeros) {
+        var n = Math.max(0, value | 0);
+        var s = String(n);
+        if (s.length < size) {
+            s = s.padStart(size, '0');
+        }
+        if (s.length > size) {
+            s = s.slice(s.length - size);
+        }
 
-    function padDays(n) {
-        // Не меньше 2 символов; до 99 без ведущего нуля в сотнях — ширина держится CSS
-        return n < 100 ? String(n).padStart(2, '0') : String(n);
+        var digits = el.querySelectorAll('.public-launch-countdown__digit');
+        if (digits.length !== size) {
+            var html = '';
+            for (var i = 0; i < size; i++) {
+                html += '<span class="public-launch-countdown__digit">' + s.charAt(i) + '</span>';
+            }
+            el.innerHTML = html;
+            digits = el.querySelectorAll('.public-launch-countdown__digit');
+        }
+
+        var seen = !hideLeadingZeros;
+        for (var j = 0; j < size; j++) {
+            var ch = s.charAt(j);
+            var isPad = false;
+            if (hideLeadingZeros && !seen) {
+                if (ch === '0' && j < size - 1) {
+                    isPad = true;
+                } else {
+                    seen = true;
+                }
+            }
+            digits[j].textContent = ch;
+            digits[j].classList.toggle('is-pad', isPad);
+        }
+        el.setAttribute('aria-label', String(n));
     }
 
     function tick() {
         var ms = deadline.getTime() - Date.now();
         if (ms <= 0) {
-            if (els.days) {
-                els.days.textContent = padDays(0);
-            }
-            if (els.hours) {
-                els.hours.textContent = '00';
-            }
-            if (els.minutes) {
-                els.minutes.textContent = '00';
-            }
-            if (els.seconds) {
-                els.seconds.textContent = '00';
-            }
+            renderUnit(els.days, 0, places.days, true);
+            renderUnit(els.hours, 0, places.hours, false);
+            renderUnit(els.minutes, 0, places.minutes, false);
+            renderUnit(els.seconds, 0, places.seconds, false);
             return;
         }
 
@@ -65,16 +92,16 @@
         var seconds = rem % 60;
 
         if (els.days) {
-            els.days.textContent = days > 999 ? String(days) : padDays(days);
+            renderUnit(els.days, days, places.days, true);
         }
         if (els.hours) {
-            els.hours.textContent = pad2(hours);
+            renderUnit(els.hours, hours, places.hours, false);
         }
         if (els.minutes) {
-            els.minutes.textContent = pad2(minutes);
+            renderUnit(els.minutes, minutes, places.minutes, false);
         }
         if (els.seconds) {
-            els.seconds.textContent = pad2(seconds);
+            renderUnit(els.seconds, seconds, places.seconds, false);
         }
     }
 
