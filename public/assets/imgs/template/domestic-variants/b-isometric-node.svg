@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img">
+  <title>Variant B isometric node</title>
+  <g stroke-linejoin="round" stroke-linecap="round">
+    <path d="M60 28 L92 46 L60 64 L28 46 Z" fill="#2B2C2D" stroke="#898A8A" stroke-width="1.2"/>
+    <path d="M28 46 V66 L60 84 V64 Z" fill="#1E1E1E" stroke="#727373" stroke-width="1.2"/>
+    <path d="M92 46 V66 L60 84 V64 Z" fill="#191919" stroke="#5A5B5B" stroke-width="1.2"/>
+    <g transform="translate(44 40) skewX(-26) scale(1 0.58)">
+      <rect width="36" height="24" fill="#FFFFFF"/>
+      <rect y="8" width="36" height="8" fill="#0039A6"/>
+      <rect y="16" width="36" height="8" fill="#D52B1E"/>
+    </g>
+    <path d="M60 28 L92 46 L60 64" fill="none" stroke="#C5FF41" stroke-width="1" opacity="0.55"/>
+  </g>
+  <text x="60" y="108" text-anchor="middle" fill="#B1B2B8" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="600" letter-spacing="1.2">RF DATA</text>
+</svg>
