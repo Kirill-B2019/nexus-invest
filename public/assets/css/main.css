@@ -483,103 +483,313 @@
   }
 }
 
-/* Welcome hero-5: фон box-banner-left */
-.hero-5 .box-banner-left {
-    background-image: url('../imgs/page/homepage1/welcome-hero.png');
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-/* Hero-5: первая карточка — col-12, картинка слева, текст справа */
-.hero-5-col-cards .card-features-5-first {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 30px;
-}
-.hero-5-col-cards .card-features-5-first .card-image {
-    flex-shrink: 0;
-    width: 220px;
-    min-width: 220px;
-    margin-bottom: 0;
-}
-.hero-5-col-cards .card-features-5-first .card-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-.hero-5-col-cards .card-features-5-first .card-info {
-    flex: 1;
-    min-width: 0;
-}
-
-/* Hero-5: единообразный размер картинок во всех карточках */
-.hero-5-col-cards .card-features-5 .card-image {
-    display: flex;
-    align-items: center;
-}
-.hero-5-col-cards .card-features-5 .card-image img {
-    max-height: 120px;
-    max-width: 220px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-}
-
-@media (max-width: 575.98px) {
-    .hero-5-col-cards .card-features-5-first {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-    }
-    .hero-5-col-cards .card-features-5-first .card-image {
-        width: 180px;
-        min-width: 180px;
-    }
-}
-
-/* Hero-5: blur за карточками (blur-bg blur-move) */
+/* Hero-5: сетка экосистемы 2×3 по макету */
 .hero-5-col-cards {
   position: relative;
   overflow: visible;
-  padding-top: 20px; /* Место для анимации карточек */
-}
-.hero-5-col-cards .hero-5-cards-blur {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: url(../imgs/page/homepage1/blur.svg) no-repeat center;
-  background-size: auto 30%;
-  opacity: 0.6;
-  pointer-events: none;
-
+  padding-top: 8px;
 }
 .hero-5-col-cards .box-banner-right {
   position: relative;
   z-index: 1;
 }
-
-/* Анимация карточек hero-5 (shape-1 эффект) */
-.hero-5-col-cards .card-features-5 {
+.hero-5-col-cards .hero-5-cards-blur {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url(../imgs/page/homepage1/blur.svg) no-repeat center;
+  background-size: auto 40%;
+  opacity: 0.45;
+  pointer-events: none;
+}
+.hero-eco-grid {
   position: relative;
-  animation: hero-thumb-animation 2s ease-in-out infinite alternate;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  width: 100%;
+}
+.hero-eco-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 100%;
+  padding: 18px 14px 16px;
+  background: rgba(12, 12, 12, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  box-sizing: border-box;
+  transform: translate3d(0, 0, 0);
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    background-color 0.35s ease,
+    box-shadow 0.35s ease;
+  animation: hero-eco-card-float 3.2s ease-in-out infinite alternate;
+  will-change: transform;
+}
+.hero-eco-grid > .hero-eco-card:nth-child(1) { animation-delay: 0s; }
+.hero-eco-grid > .hero-eco-card:nth-child(2) { animation-delay: 0.35s; }
+.hero-eco-grid > .hero-eco-card:nth-child(3) { animation-delay: 0.7s; }
+.hero-eco-grid > .hero-eco-card:nth-child(4) { animation-delay: 0.2s; }
+.hero-eco-grid > .hero-eco-card:nth-child(5) { animation-delay: 0.55s; }
+.hero-eco-grid > .hero-eco-card:nth-child(6) { animation-delay: 0.9s; }
+.hero-eco-card__title {
+  margin: 0 0 12px;
+  font-family: "Urbanist", sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+.hero-eco-card__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 88px;
+  margin: 0 0 12px;
+}
+.hero-eco-card__media img {
+  display: block;
+  max-width: 100%;
+  max-height: 88px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+.hero-eco-card__desc {
+  margin: 0 0 12px;
+  font-family: "Manrope", "Urbanist", system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #9a9a9a;
+  flex: 1 1 auto;
+}
+.hero-eco-card__stage {
+  margin: auto 0 0;
+  font-family: "Urbanist", sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-primary, #C5FF41);
+  transition: color 0.3s ease;
+}
+.hero-eco-card:hover {
+  animation-play-state: paused;
+  transform: translate3d(0, -8px, 0) scale(1.02);
+  border-color: rgba(197, 255, 65, 0.55);
+  background: rgba(18, 18, 18, 0.92);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(197, 255, 65, 0.12);
+  z-index: 2;
+}
+.hero-eco-card:hover .hero-eco-card__media img {
+  transform: translateY(-4px) scale(1.06);
+}
+.hero-eco-card:hover .hero-eco-card__title {
+  color: #ffffff;
+}
+.hero-eco-card:hover .hero-eco-card__stage {
+  color: var(--color-primary, #C5FF41);
+}
+@keyframes hero-eco-card-float {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, -6px, 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-eco-card,
+  .hero-eco-card__media img {
+    animation: none !important;
+    transition: none !important;
+  }
+  .hero-eco-card:hover {
+    transform: none;
+  }
+}
+@media (max-width: 991.98px) {
+  .hero-eco-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+@media (max-width: 575.98px) {
+  .hero-eco-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .hero-eco-card {
+    /* мобилка: текст → картинка → статус */
+    padding: 16px 14px;
+    animation-duration: 4s;
+  }
+  .hero-eco-card:hover {
+    transform: translate3d(0, -4px, 0) scale(1.01);
+  }
+  .hero-eco-card__title {
+    order: 1;
+  }
+  .hero-eco-card__desc {
+    order: 2;
+  }
+  .hero-eco-card__media {
+    order: 3;
+    margin-top: 4px;
+    margin-bottom: 12px;
+  }
+  .hero-eco-card__stage {
+    order: 4;
+    margin-top: 0;
+  }
 }
 
-/* Бейджи карточек hero-5 */
-.hero-5-col-cards .card-features-5 .card-badge {
+/* Глоссарий TOKEN / RWA под сеткой экосистемы */
+.hero-glossary {
+  position: relative;
+  padding: 1.35rem 1.35rem 1.35rem 1.5rem;
+  background: linear-gradient(135deg, rgba(18, 18, 18, 0.95) 0%, rgba(10, 10, 10, 0.88) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  overflow: hidden;
+  animation: hero-glossary-in 0.7s ease both;
+}
+.hero-glossary::before {
+  content: "";
   position: absolute;
-  top: -10px;
-  right: 15px;
-  padding: 4px 10px;
-  font-size: 10px;
-  font-weight: 600;
+  left: 0;
+  top: 14px;
+  bottom: 14px;
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, var(--color-primary, #C5FF41) 0%, rgba(197, 255, 65, 0.15) 100%);
+  transition: width 0.3s ease, box-shadow 0.3s ease;
+}
+.hero-glossary:hover::before {
+  width: 4px;
+  box-shadow: 0 0 16px rgba(197, 255, 65, 0.45);
+}
+.hero-glossary__quote {
+  position: absolute;
+  top: 8px;
+  right: 18px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 3.5rem;
   line-height: 1;
-  color: var(--color-primary);
-  background-color: var(--color-badge-bg);
-  border: 1px solid var(--color-primary);
-  border-radius: 20px;
-  white-space: nowrap;
-  z-index: 2;
+  color: rgba(197, 255, 65, 0.18);
+  pointer-events: none;
+  user-select: none;
+  transition: color 0.3s ease, transform 0.35s ease;
+}
+.hero-glossary:hover .hero-glossary__quote {
+  color: rgba(197, 255, 65, 0.35);
+  transform: translateY(-2px);
+}
+.hero-glossary__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  z-index: 1;
+}
+.hero-glossary__item {
+  padding: 0.85rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+  animation: hero-glossary-item-in 0.55s ease both;
+}
+.hero-glossary__item:nth-child(1) { animation-delay: 0.12s; }
+.hero-glossary__item:nth-child(2) { animation-delay: 0.24s; }
+.hero-glossary__item:hover {
+  background: rgba(197, 255, 65, 0.05);
+  border-color: rgba(197, 255, 65, 0.18);
+  transform: translateX(4px);
+}
+.hero-glossary__term {
+  display: inline-block;
+  margin: 0 0 0.4rem;
+  padding: 0.15rem 0.45rem;
+  font-family: "Urbanist", sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: #0e0e0e;
+  background: var(--color-primary, #C5FF41);
+  border-radius: 6px;
+}
+.hero-glossary__text {
+  margin: 0;
+  font-family: "Manrope", "Urbanist", system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #9a9a9a;
+}
+@keyframes hero-glossary-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes hero-glossary-item-in {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-glossary,
+  .hero-glossary__item {
+    animation: none !important;
+  }
+  .hero-glossary__item:hover {
+    transform: none;
+  }
+}
+@media (max-width: 575.98px) {
+  .hero-glossary {
+    padding: 1.1rem 1rem 1.1rem 1.15rem;
+  }
+  .hero-glossary__quote {
+    font-size: 2.75rem;
+    right: 12px;
+  }
+  .hero-glossary__text {
+    font-size: 0.6875rem;
+  }
+}
+
+/* Welcome hero-5: фон box-banner-left */
+.hero-5 .box-banner-left {
+    background-image: url('../imgs/page/homepage1/welcome-hero.png');
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .card-badge-2 {
     color: var(--color-text-muted-7) !important;
@@ -1993,6 +2203,89 @@ div#onwer .card-testimonial-3 .card-rate img {
 .hero-cta-primary:focus-visible {
     outline-width: 3px;
     outline-offset: 3px;
+}
+
+/* Правовая основа — чипы вместо сплошного абзаца */
+.hero-legal {
+    width: 100%;
+    max-width: 100%;
+}
+.hero-legal__title {
+    margin: 0 0 0.85rem;
+    font-family: "Urbanist", sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+    text-transform: uppercase;
+    color: rgba(236, 238, 242, 0.88);
+}
+.hero-legal__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.hero-legal-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    max-width: 100%;
+    padding: 0.45rem 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(236, 238, 242, 0.92);
+    transition:
+        border-color 0.25s ease,
+        background-color 0.25s ease,
+        transform 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+.hero-legal-chip__code {
+    font-family: "Urbanist", sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+.hero-legal-chip__hint {
+    font-family: "Manrope", "Urbanist", system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.2;
+    color: rgba(180, 184, 190, 0.85);
+    white-space: nowrap;
+}
+.hero-legal-chip:hover {
+    border-color: rgba(197, 255, 65, 0.55);
+    background: rgba(197, 255, 65, 0.08);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+}
+.hero-legal-chip:hover .hero-legal-chip__hint {
+    color: rgba(220, 224, 230, 0.95);
+}
+@media (max-width: 575.98px) {
+    .hero-legal-chip {
+        padding: 0.4rem 0.65rem;
+    }
+    .hero-legal-chip__hint {
+        white-space: normal;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .hero-legal-chip {
+        transition: none;
+    }
+    .hero-legal-chip:hover {
+        transform: none;
+    }
 }
 
 /* Модальное окно обратной связи — расширение темы */

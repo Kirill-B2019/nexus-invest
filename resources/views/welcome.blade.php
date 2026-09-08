@@ -41,7 +41,7 @@
         <div class="banner-inner-top">
             <div class="container">
                 <div class="row align-items-start">
-                    <div class="col-12 col-lg-6 order-1 order-lg-1">
+                    <div class="col-12 col-lg-4 order-1 order-lg-1">
                         <div class="box-banner-left">
                                 <a class="btn btn-brand-5-new" href="{{ url('https://main-node.gnd-net.com') }}" target="_blank" rel="noopener noreferrer"><span>{{ __('Работает на:') }}</span> {{ __('блокчейне ГАНИМЕД') }}</a>
                                 <p class="neutral-300 small pt-3 uppercase">{{ __('Новационная Единая ') }} <br><span class="display-6 uppercase"> {{ __('Комплексная Система Управления ') }} </span><br>{{ __('Сделками') }}</p>
@@ -61,142 +61,177 @@
                                     </svg>
                                 </a>
 
-                                <p class="neutral-300 small pt-3">{{ __('полное соответствие законодательству РФ: 259-ФЗ о ЦФА, 289-ФЗ о платформенной экономике, 39-ФЗ об инвестиционной деятельности, 187‑ФЗ о безопасности, 115-ФЗ о ПОД/ФТ, 152-ФЗ о персональных данных, ГОСТы 34.10, 34.11, 34.12') }}</p>
-
-                                <div class="d-flex mb-60 align-items-start gap-3 flex-wrap">
-                                <div class="neutral-400 mt-40 sidebar-border-left border-secondary d-none d-md-block flex-grow-1 min-w-0">
-                                        <i class="fi-rr-quote-right"></i>
-                                        <p class="smaller">
-                                            <span class="text-semibold">{{ __(' ТОКЕН') }}</span>{{ __(' - единица учёта, не являющаяся криптовалютой, предназначенная для представления цифрового баланса в некотором активе, иными словами, выполняющая функцию «заменителя ценных бумаг» в цифровом мире. Токены представляют собой запись в регистре, распределённую вблокчейн-цепочке.') }}
-                                        </p>
-                                        <p class="smaller">
-                                            <span class="text-semibold">{{ __('RWA (Real World Assets)') }}</span> {{ __(' — это любые материальные активы, которые переносят в цифровой формат на блокчейне: например,золото, недвижимость, ценные бумаги, произведения искусства') }}
-                                        </p>
+                                <div class="hero-legal mt-3 mb-2">
+                                    <p class="hero-legal__title">{{ __('Правовая и регуляторная основа') }}</p>
+                                    <ul class="hero-legal__list" role="list">
+                                        <li>
+                                            <span class="hero-legal-chip" title="{{ __('259-ФЗ о ЦФА') }}">
+                                                <span class="hero-legal-chip__code">259-ФЗ</span>
+                                                <span class="hero-legal-chip__hint">{{ __('о ЦФА') }}</span>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="hero-legal-chip" title="{{ __('289-ФЗ о платформенной экономике') }}">
+                                                <span class="hero-legal-chip__code">289-ФЗ</span>
+                                                <span class="hero-legal-chip__hint">{{ __('о платформенной экономике') }}</span>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="hero-legal-chip" title="{{ __('39-ФЗ об инвестиционной деятельности') }}">
+                                                <span class="hero-legal-chip__code">39-ФЗ</span>
+                                                <span class="hero-legal-chip__hint">{{ __('об инвестиционной деятельности') }}</span>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="hero-legal-chip" title="{{ __('187-ФЗ о безопасности') }}">
+                                                <span class="hero-legal-chip__code">187-ФЗ</span>
+                                                <span class="hero-legal-chip__hint">{{ __('о безопасности') }}</span>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="hero-legal-chip" title="{{ __('115-ФЗ о ПОД/ФТ') }}">
+                                                <span class="hero-legal-chip__code">115-ФЗ</span>
+                                                <span class="hero-legal-chip__hint">{{ __('о ПОД/ФТ') }}</span>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="hero-legal-chip" title="{{ __('152-ФЗ о персональных данных') }}">
+                                                <span class="hero-legal-chip__code">152-ФЗ</span>
+                                                <span class="hero-legal-chip__hint">{{ __('о персональных данных') }}</span>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="hero-legal-chip" title="{{ __('ГОСТы 34.10, 34.11, 34.12') }}">
+                                                <span class="hero-legal-chip__code">{{ __('ГОСТ') }}</span>
+                                                <span class="hero-legal-chip__hint">34.10 · 34.11 · 34.12</span>
+                                            </span>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div class="w-100 mt-40">
-                                    <div
-                                        class="public-launch-countdown w-100"
-                                        data-public-launch-countdown
-                                        data-deadline="2027-03-01T00:00:00+03:00"
-                                        role="timer"
-                                        aria-live="polite"
-                                        aria-atomic="true"
-                                        aria-label="{{ __('До полной готовности платформы') }}: 01.03.2027"
-                                    >
-                                        <div class="public-launch-countdown__info">
-                                            <p class="public-launch-countdown__label">{{ __('До полной готовности платформы') }}</p>
-                                            <p class="public-launch-countdown__date">01.03.2027</p>
-                                        </div>
-                                        <div class="public-launch-countdown__divider" aria-hidden="true"></div>
-                                        <div class="public-launch-countdown__segments">
-                                            <div class="public-launch-countdown__segment public-launch-countdown__segment--days">
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-8 order-2 order-lg-2 hero-5-col-cards">
+                        <div class="box-banner-right">
+                            <div class="blur-bg blur-move hero-5-cards-blur" aria-hidden="true"></div>
+                            <div class="hero-eco-grid">
+                                <article class="hero-eco-card">
+                                    <h6 class="hero-eco-card__title">{{ __('НЕКСУС') }}</h6>
+                                    <div class="hero-eco-card__media">
+                                        <img src="{{ asset('assets/imgs/page/homepage1/hero-nexus.png') }}" alt="{{ __('НЕКСУС') }}" loading="eager" decoding="async" width="220" height="140">
+                                    </div>
+                                    <p class="hero-eco-card__desc">{{ __('Платформа токенизации проектов и управления') }}</p>
+                                    <p class="hero-eco-card__stage">{{ __('Запуск: СТАДИЯ I') }}</p>
+                                </article>
+                                <article class="hero-eco-card">
+                                    <h6 class="hero-eco-card__title">{{ __('ГАНИМЕД') }}</h6>
+                                    <div class="hero-eco-card__media">
+                                        <img src="{{ asset('assets/imgs/page/homepage1/hero-ganimed.png') }}" alt="{{ __('ГАНИМЕД') }}" loading="lazy" decoding="async" width="220" height="140">
+                                    </div>
+                                    <p class="hero-eco-card__desc">{{ __('Блокчейн ГАНИМЕД — основа экосистемы') }}</p>
+                                    <p class="hero-eco-card__stage">{{ __('Запуск: СТАДИЯ II') }}</p>
+                                </article>
+                                <article class="hero-eco-card">
+                                    <h6 class="hero-eco-card__title">{{ __('ЦИФРОВОЙ ДЕПОЗИТАРИЙ') }}</h6>
+                                    <div class="hero-eco-card__media">
+                                        <img src="{{ asset('assets/imgs/page/homepage1/hero-repo.png') }}" alt="{{ __('ЦИФРОВОЙ ДЕПОЗИТАРИЙ') }}" loading="lazy" decoding="async" width="220" height="140">
+                                    </div>
+                                    <p class="hero-eco-card__desc">{{ __('Хранение и учёт цифровых активов и прав') }}</p>
+                                    <p class="hero-eco-card__stage">{{ __('Запуск: СТАДИЯ III') }}</p>
+                                </article>
+                                <article class="hero-eco-card">
+                                    <h6 class="hero-eco-card__title">{{ __('НЕКСУС ЦИФРОВОЙ БАНК') }}</h6>
+                                    <div class="hero-eco-card__media">
+                                        <img src="{{ asset('assets/imgs/page/homepage1/hero-bank.png') }}" alt="{{ __('НЕКСУС ЦИФРОВОЙ БАНК') }}" loading="lazy" decoding="async" width="220" height="140">
+                                    </div>
+                                    <p class="hero-eco-card__desc">{{ __('Финансовые сервисы для токенизированных активов') }}</p>
+                                    <p class="hero-eco-card__stage">{{ __('Запуск: СТАДИЯ III') }}</p>
+                                </article>
+                                <article class="hero-eco-card">
+                                    <h6 class="hero-eco-card__title">{{ __('СФОРДЭКС') }}</h6>
+                                    <div class="hero-eco-card__media">
+                                        <img src="{{ asset('assets/imgs/page/homepage1/hero-sfodex.png') }}" alt="{{ __('СФОРДЭКС') }}" loading="lazy" decoding="async" width="220" height="140">
+                                    </div>
+                                    <p class="hero-eco-card__desc">{{ __('Система фондирования и распределения средств') }}</p>
+                                    <p class="hero-eco-card__stage">{{ __('Запуск: СТАДИЯ II') }}</p>
+                                </article>
+                                <article class="hero-eco-card">
+                                    <h6 class="hero-eco-card__title">{{ __('МАРКЕТПЛЕЙС') }}</h6>
+                                    <div class="hero-eco-card__media">
+                                        <img src="{{ asset('assets/imgs/page/homepage1/hero-market.png') }}" alt="{{ __('МАРКЕТПЛЕЙС') }}" loading="lazy" decoding="async" width="220" height="140">
+                                    </div>
+                                    <p class="hero-eco-card__desc">{{ __('Витрина рынков цифровых активов и продуктов') }}</p>
+                                    <p class="hero-eco-card__stage">{{ __('Запуск: СТАДИЯ IV') }}</p>
+                                </article>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-60 align-items-start gap-3 flex-wrap">
+
+                            <div class="w-100 mt-40">
+                                <div
+                                    class="public-launch-countdown w-100"
+                                    data-public-launch-countdown
+                                    data-deadline="2027-03-01T00:00:00+03:00"
+                                    role="timer"
+                                    aria-live="polite"
+                                    aria-atomic="true"
+                                    aria-label="{{ __('До полной готовности Стадии I') }}: 01.03.2027"
+                                >
+                                    <div class="public-launch-countdown__info">
+                                        <p class="public-launch-countdown__label">{{ __('До полной готовности Стадии I') }}</p>
+                                        <p class="public-launch-countdown__date">01.03.2027</p>
+                                    </div>
+                                    <div class="public-launch-countdown__divider" aria-hidden="true"></div>
+                                    <div class="public-launch-countdown__segments">
+                                        <div class="public-launch-countdown__segment public-launch-countdown__segment--days">
                                                 <span class="public-launch-countdown__value" data-unit="days" aria-label="--">
                                                     <span class="public-launch-countdown__digit">-</span><span class="public-launch-countdown__digit">-</span><span class="public-launch-countdown__digit">-</span>
                                                 </span>
-                                                <span class="public-launch-countdown__unit">{{ __('countdown unit days') }}</span>
-                                            </div>
-                                            <span class="public-launch-countdown__sep" aria-hidden="true">:</span>
-                                            <div class="public-launch-countdown__segment">
+                                            <span class="public-launch-countdown__unit">{{ __('countdown unit days') }}</span>
+                                        </div>
+                                        <span class="public-launch-countdown__sep" aria-hidden="true">:</span>
+                                        <div class="public-launch-countdown__segment">
                                                 <span class="public-launch-countdown__value" data-unit="hours" aria-label="--">
                                                     <span class="public-launch-countdown__digit">-</span><span class="public-launch-countdown__digit">-</span>
                                                 </span>
-                                                <span class="public-launch-countdown__unit">{{ __('countdown unit hours') }}</span>
-                                            </div>
-                                            <span class="public-launch-countdown__sep" aria-hidden="true">:</span>
-                                            <div class="public-launch-countdown__segment">
+                                            <span class="public-launch-countdown__unit">{{ __('countdown unit hours') }}</span>
+                                        </div>
+                                        <span class="public-launch-countdown__sep" aria-hidden="true">:</span>
+                                        <div class="public-launch-countdown__segment">
                                                 <span class="public-launch-countdown__value" data-unit="minutes" aria-label="--">
                                                     <span class="public-launch-countdown__digit">-</span><span class="public-launch-countdown__digit">-</span>
                                                 </span>
-                                                <span class="public-launch-countdown__unit">{{ __('countdown unit minutes') }}</span>
-                                            </div>
-                                            <span class="public-launch-countdown__sep" aria-hidden="true">:</span>
-                                            <div class="public-launch-countdown__segment">
+                                            <span class="public-launch-countdown__unit">{{ __('countdown unit minutes') }}</span>
+                                        </div>
+                                        <span class="public-launch-countdown__sep" aria-hidden="true">:</span>
+                                        <div class="public-launch-countdown__segment">
                                                 <span class="public-launch-countdown__value" data-unit="seconds" aria-label="--">
                                                     <span class="public-launch-countdown__digit">-</span><span class="public-launch-countdown__digit">-</span>
                                                 </span>
-                                                <span class="public-launch-countdown__unit">{{ __('countdown unit seconds') }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <noscript>
-                                        <p class="public-launch-countdown__noscript small neutral-300 mt-2 mb-0">{{ __('До полной готовности платформы') }}: 01.03.2027</p>
-                                    </noscript>
-                                </div>
-                                </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 order-2 order-lg-2 hero-5-col-cards">
-
-                        <div class="box-banner-right">
-                            <div class="row ">
-                                <div class="col-12">
-                                    <div class="blur-bg blur-move hero-5-cards-blur" aria-hidden="true"></div>
-                                    <div class="card-features-5 card-features-5-first">
-                                        <span class="card-badge">{{__('Запуск: СТАДИЯ I')}}</span>
-                                        <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/hero-nexus.png') }}" alt="{{__('НЕКСУС')}}"></div>
-                                        <div class="card-info">
-                                            <h6>{{__('НЕКСУС')}}</h6>
-                                            <p class="text-sm neutral-500">{{__('Цифровая платформа проектного финансирования. Запуск инвестпроектов через выпуск токенизированных цифровых активов по 259-ФЗ, с обеспечением их первичного размещения и вторичного обращения. Полный цикл: KYC, комплаенс и управление сделками.')}}</p>
+                                            <span class="public-launch-countdown__unit">{{ __('countdown unit seconds') }}</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-6">
-                                    <div class="card-features-5">
-                                        <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/hero-ganimed.png')}}" alt="{{__('ГАНИМЕД')}}"></div>
-                                        <span class="card-badge">{{__('Запуск: СТАДИЯ I')}}</span>
-                                        <div class="card-info">
-                                            <h6>{{__('ГАНИМЕД')}}</h6>
-                                            <p class="text-sm neutral-500">{{__('Высокопроизводительный блокчейн инфраструктурного уровня, оптимизированный под требования законодательства РФ и работу с цифровыми финансовыми активами')}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-sm-6">
-                                    <div class="card-features-5">
-                                        <span class="card-badge card-badge-2">{{__('Запуск: СТАДИЯ II')}}</span>
-                                        <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/hero-repo.png')}}" alt="{{__('НЕКСУС')}}"></div>
-                                        <div class="card-info">
-                                            <h6>{{__('ЦИФРОВОЙ ДЕПОЗИТАРИЙ')}}</h6>
-                                            <p class="text-sm neutral-500">{{__('Учет и хранение цифровых прав на активы. Ведение реестра владельцев цифровых активов в соответствии с требованиями законодательства РФ')}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="blur-bg blur-move hero-5-cards-blur" aria-hidden="true"></div>
-                                    <div class="card-features-5 card-features-5-first">
-                                        <span class="card-badge card-badge-2">{{__('Запуск: СТАДИЯ III')}}</span>
-
-                                        <div class="card-info">
-                                            <h6 class="brand-4">{{__('НЕКСУС ЦИФРОВОЙ БАНК')}}</h6>
-                                            <p class="text-sm neutral-500">{{__('Специализированный расчётно‑кассовый и комплаенс‑контур внутри экосистемы НЕКСУС, который реализует банковские функции (счета, эскроу, платежи, распределения, отчётность) в форме смарт‑контрактов и ончейн‑реестров. Юридически действует через банк‑оператор (партнёрскую кредитную организацию), уполномоченный на обслуживание специальных счетов платформы и операторов ЦФА.')}}</p>
-                                        </div>
-                                        <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/hero-bank.png') }}" alt="{{__('НЕКСУС ЦИФРОВОЙ БАНК')}}"></div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <div class="card-features-5">
-                                        <span class="card-badge card-badge-2">{{__('Запуск: СТАДИЯ II')}}</span>
-                                        <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/hero-sfodex.png')}}" alt="{{__('СФОРДЭКС')}}"></div>
-                                        <div class="card-info">
-                                            <h6>{{__('СФОРДЭКС')}}</h6>
-                                            <p class="text-sm neutral-500">{{__('Площадка вторичного рынка активов экосистемы с круглосуточной торговлей токенами и автоматическим маркет‑мейкингом для обеспечения ликвидности проектных инвестиций')}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-sm-6 ">
-                                    <div class="blur-bg blur-move hero-5-cards-blur" aria-hidden="true"></div>
-                                    <div class="card-features-5">
-                                        <span class="card-badge card-badge-2">{{__('Запуск: СТАДИЯ IV')}}</span>
-                                        <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/hero-market.png') }}" alt="{{__('НЕКСУС маркетплейс')}}"></div>
-                                        <div class="card-info">
-                                            <h6>{{__('МАРКЕТПЛЕЙС')}}</h6>
-                                            <p class="text-sm neutral-500">{{__('Маркетплейс реализации товаров и услуг проектов, запущенных на цифровой платформе.')}}</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <noscript>
+                                    <p class="public-launch-countdown__noscript small neutral-300 mt-2 mb-0">{{ __('До полной готовности платформы') }}: 01.03.2027</p>
+                                </noscript>
                             </div>
                         </div>
+                        <aside class="hero-glossary mt-40" aria-label="{{ __('Ключевые понятия') }}">
+                            <span class="hero-glossary__quote" aria-hidden="true">”</span>
+                            <div class="hero-glossary__list">
+                                <article class="hero-glossary__item">
+                                    <h3 class="hero-glossary__term">{{ __('ТОКЕН') }}</h3>
+                                    <p class="hero-glossary__text">{{ __('единица учёта, не являющаяся криптовалютой, предназначенная для представления цифрового баланса в некотором активе, иными словами, выполняющая функцию «заменителя ценных бумаг» в цифровом мире. Токены представляют собой запись в регистре, распределённую в блокчейн-цепочке.') }}</p>
+                                </article>
+                                <article class="hero-glossary__item">
+                                    <h3 class="hero-glossary__term">{{ __('RWA (Real World Assets)') }}</h3>
+                                    <p class="hero-glossary__text">{{ __('любые материальные активы, которые переносят в цифровой формат на блокчейне: например, золото, недвижимость, ценные бумаги, произведения искусства.') }}</p>
+                                </article>
+                            </div>
+                        </aside>
                     </div>
                 </div>
             </div>
