@@ -10155,6 +10155,24 @@ a.icon-socials:hover {
     background-color: var(--color-surface-dark);
     border-color: var(--color-surface-dark-2); }
 
+/* Блок «Отечественное ПО» в футере */
+.footer-domestic-software__badge {
+    width: 88px;
+    height: 88px;
+    display: block;
+    object-fit: contain;
+}
+
+.footer-compliance-badges {
+    width: 100%;
+}
+
+@media (max-width: 991.98px) {
+    .footer-compliance-badges {
+        align-items: center !important;
+    }
+}
+
 a.href-white:hover,
 a.href-white:active,
 a.href-white:hover span,

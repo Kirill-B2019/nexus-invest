@@ -40,8 +40,8 @@
                     <div class="col-12 col-sm-6 mb-30">
                         <h5 class="neutral-0 mb-10 text-18-semibold">{{ __('Поддержка') }}</h5>
                         <ul class="menu-footer">
-                            <li><a href="#" class="btn btn-sm btn-border-brand-7 small uppercase" data-bs-toggle="modal" data-bs-target="#contactFormModal">{{ __('Связаться с нами') }}</a></li>
-
+                            <li class="mb-10"><a href="#" class="btn btn-sm btn-border-brand-7 small uppercase" data-bs-toggle="modal" data-bs-target="#contactFormModal">{{ __('Связаться с нами') }}</a></li>
+                            <li><a href="#" class="btn btn-sm btn-border-brand-7 small uppercase" data-bs-toggle="modal" data-bs-target="#projectMetricsModal">{{ __('Финансовые показатели') }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -191,7 +191,7 @@
             </div>
             <div class="row align-items-start mb-20 pb-3" style="border-bottom: 1px solid rgba(255,255,255,0.08);">
                 {{-- РАЗГРАНИЧЕНИЕ ПРАВОВОГО СТАТУСА: ГАНИМЕД И ПЛАТФОРМА НЕКСУС --}}
-                <div class="col-12 col-md-9 mb-15 mb-md-0 text-center text-sm-start">
+                <div class="col-12 col-lg-8 mb-15 mb-lg-0 text-center text-sm-start">
                     <p class="neutral-300 uppercase text-md">{{ __('РАЗГРАНИЧЕНИЕ ПРАВОВОГО СТАТУСА: ГАНИМЕД И ПЛАТФОРМА НЕКСУС') }}</p>
                     <p class="neutral-600 mb-0 small">
                         {{ __('ГАНИМЕД предоставляет технологическую инфраструктуру, которую
@@ -213,8 +213,27 @@
                                осуществляются выпуск, обращение и учёт ЦФА.') }}
                     </p>
                 </div>
-                <div class="col-12 col-md-3 d-flex justify-content-center justify-content-md-end align-items-start">
-                    <a href="#" class="btn btn-sm btn-border-brand-7 small uppercase" data-bs-toggle="modal" data-bs-target="#projectMetricsModal">{{ __('Показатели') }}</a>
+                <div class="col-12 col-lg-4">
+                    <div class="footer-compliance-badges d-flex flex-column align-items-center align-items-lg-end gap-3">
+                        {{-- Отечественное ПО: оригинальный знак без госсимволики и без знака реестра --}}
+                        <div class="footer-domestic-software d-flex flex-column flex-lg-row align-items-center gap-3 text-center text-lg-start">
+                            <div class="order-1 order-lg-2">
+                                <p class="neutral-0 mb-5 text-sm fw-semibold">{{ __('Отечественное программное обеспечение') }}</p>
+                                <p class="neutral-600 mb-0 small" style="line-height: 1.45;">
+                                    {{ __('Ключевые программные компоненты платформы разработаны в Российской Федерации. Персональные данные граждан РФ обрабатываются в соответствии с 152‑ФЗ. Базы данных, используемые для записи, хранения и извлечения таких данных, находятся на территории Российской Федерации.') }}
+                                </p>
+                            </div>
+                            <img
+                                src="{{ asset('assets/imgs/template/domestic-software-badge.svg') }}?v=7"
+                                alt="{{ __('Отечественное программное обеспечение — разработано в РФ') }}"
+                                class="footer-domestic-software__badge order-2 order-lg-1 flex-shrink-0"
+                                width="88"
+                                height="88"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row align-items-center mb-20 pb-3" style="border-bottom: 1px solid rgba(255,255,255,0.08);">
