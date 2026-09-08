@@ -223,15 +223,19 @@
                                     {{ __('Ключевые программные компоненты платформы разработаны в Российской Федерации. Персональные данные граждан РФ обрабатываются в соответствии с 152‑ФЗ. Базы данных, используемые для записи, хранения и извлечения таких данных, находятся на территории Российской Федерации.') }}
                                 </p>
                             </div>
-                            <img
-                                src="{{ asset('assets/imgs/template/domestic-software-badge.svg') }}?v=7"
-                                alt="{{ __('Отечественное программное обеспечение — разработано в РФ') }}"
-                                class="footer-domestic-software__badge order-2 order-lg-1 flex-shrink-0"
-                                width="88"
-                                height="88"
-                                loading="lazy"
-                                decoding="async"
-                            >
+                            <span class="footer-domestic-software__badge order-2 order-lg-1 flex-shrink-0" role="img" aria-label="{{ __('Отечественное программное обеспечение — разработано в РФ') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="88" height="88" focusable="false" aria-hidden="true">
+                                    <path d="M60 14 C78 18 94 22 98 24 V58 C98 78 82 94 60 106 C38 94 22 78 22 58 V24 C26 22 42 18 60 14Z" fill="#2B2C2D" stroke="#9AA3AB" stroke-width="2"/>
+                                    <path d="M60 22 C74 25 88 28 91 30 V56 C91 72 78 86 60 96 C42 86 29 72 29 56 V30 C32 28 46 25 60 22Z" fill="#1E1E1E" stroke="#6E777F" stroke-width="1"/>
+                                    <g transform="translate(42 32)">
+                                        <rect width="36" height="22" fill="#D5D8DC"/>
+                                        <rect y="7.3333" width="36" height="7.3333" fill="#5A6E84"/>
+                                        <rect y="14.6667" width="36" height="7.3333" fill="#8A5A5A"/>
+                                        <rect width="36" height="22" fill="none" stroke="#9AA3AB" stroke-width="0.8" opacity="0.85"/>
+                                    </g>
+                                    <path d="M48 78 L56 86 L74 68" fill="none" stroke="#A8AFB6" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </span>
                         </div>
                     </div>
                 </div>
