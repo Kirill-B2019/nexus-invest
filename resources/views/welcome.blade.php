@@ -976,7 +976,7 @@
                         <img src="{{ asset('assets/imgs/page/homepage1/img-review-k.png') }}" alt="{{ __('КИРИЛЛ БОЯРИНОВ') }}" loading="lazy" decoding="async" width="420" height="420">
                     </div>
                     <h3 class="team-leader__name">{{ __('КИРИЛЛ БОЯРИНОВ') }}</h3>
-                    <p class="team-leader__role">{{ __('Автор, системный архитектор - соучредитель') }}</p>
+                    <p class="team-leader__role">{{ __('Автор платформы, системный архитектор - соучредитель') }}</p>
                     <p class="team-leader__quote">{{ __('Я проектирую платформу как целостный механизм, в котором архитектура, код и каждый технический узел связаны в одну логику — превратить сложную финансовую “машину” в управляемую, безопасную и предсказуемую среду роста для проектов и инвесторов.') }}</p>
                     <div class="team-leader__stars" aria-hidden="true">
                         <img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt="">
