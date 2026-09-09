@@ -625,7 +625,7 @@
                 <article class="roadmap-card">
                     <div class="roadmap-card__meta">
                         <span class="roadmap-card__badge">{{ __('Стадия I') }}</span>
-                        <span class="roadmap-card__version">V1.0.0 · Q4 2026</span>
+                        <span class="roadmap-card__version">V1.0.0 · Q1 2027</span>
                         <span class="roadmap-card__icon" aria-hidden="true">
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2.5 20.5 7v10L12 21.5 3.5 17V7L12 2.5Z" stroke="currentColor" stroke-width="1.5"/><path d="M12 12v9.5M12 12 3.5 7M12 12l8.5-5" stroke="currentColor" stroke-width="1.5"/></svg>
                         </span>
