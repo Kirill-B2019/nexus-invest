@@ -548,84 +548,118 @@
         </div>
     </div>
 </section>
-{{-- Road — горизонтальная дорожная карта --}}
+{{-- Дорожная карта платформы --}}
 <section class="section-box wow fadeIn box-imazing-features animated" id="Road">
     <div class="container">
-        <div class="text-center mb-60">
-            <h2 class="neutral-0 mb-20">{{ __('Дорожная карта') }}</h2>
-            <p class="text-lg neutral-500">{{ __('Ключевые этапы развития экосистемы НЕКСУС') }}</p>
-        </div>
-        <div class="roadmap-horizontal">
-            <div class="list-change-log roadmap-list">
-                <div class="item-log">
-                    <div class="date-log">
-                        <span class="btn btn-brand-4-sm">{{ __('Стадия I (Q4 2026)') }}</span>
-                        <div class="roadmap-stage1-progress mt-3">
-                            <span class="roadmap-progress-label text-sm neutral-400">{{ __('Прогресс') }}</span>
-                            <div class="progress roadmap-progress-bar">
-                                <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <span class="roadmap-progress-value text-sm neutral-400">70%</span>
-                        </div>
-                    </div>
-                    <div class="line-log"></div>
-                    <div class="info-log">
-                        <h4 class="neutral-400 text-sm">{{ __('V 1.0.0') }}</h4>
-                        <p class="text-md neutral-0 uppercase">{{ __('MVP запуск проектной платформы НЕКСУС и блокчейна ГАНИМЕД') }}</p>
-                        <ul class="roadmap-stage1-checklist text-sm">
-                            <li class="roadmap-item-done">{{ __('Архитектура блокчейна ГАНИМЕД — готова (MVP)') }}</li>
-                            <li class="roadmap-item-done">{{ __('Мастер-нода запущена') }}</li>
-                            <li class="roadmap-item-progress">{{ __('Платформа НЕКСУС — в разработке (70%)') }}</li>
-                            <li class="roadmap-item-progress">{{ __('Регистрация ОИС НЕКСУС в ЦБ РФ — документы готовятся') }}</li>
-                        </ul>
-                    </div>
+        <div class="roadmap-head">
+            <h2 class="roadmap-head__title">{{ __('Дорожная карта платформы') }}</h2>
+            <div class="roadmap-head__progress" aria-label="{{ __('Прогресс реализации MVP НЕКСУС') }}">
+                <span class="roadmap-head__progress-label">{{ __('Прогресс реализации MVP НЕКСУС') }}</span>
+                <div class="roadmap-head__progress-track">
+                    <div class="roadmap-head__progress-fill" style="width: 47%"></div>
                 </div>
-                <div class="item-log">
-                    <div class="date-log"><span class="btn btn-brand-4-sm">{{__('Стадия II: 2 кв. 2027')}}</span></div>
-                    <div class="line-log"></div>
-                    <div class="info-log">
-                        <h4 class="neutral-400 text-sm">{{ __('V 2.0.0') }}</h4>
-                        <p class="text-md neutral-0 uppercase">{{ __('MVP запуск площадки СФОРДЕКС и регистрация ОИС') }}</p>
-                        <ul class="list-check-black text-sm">
-                            <li>{{ __('Статус ОИС получен') }}</li>
-                            <li>{{ __('Площадка СФОРДЕКС интегрирована с ГАНИМЕД и НЕКСУС') }}</li>
-                            <li>{{ __('Торги активны 24/7') }}</li>
-                            <li>{{ __('Расширенный функционал НЕКСУС реализован')}}</li>
-                            <li>{{ __('ГАНИМЕД прошел лицензирование и аудит')}}</li>
-                         </ul>
-                    </div>
-                </div>
-                <div class="item-log">
-                    <div class="date-log"><span class="btn btn-brand-4-sm">{{__('Стадия III: 1 кв. 2028')}}</span></div>
-                    <div class="line-log"></div>
-                    <div class="info-log">
-                        <h4 class="neutral-400 text-sm">{{ __('V 3.0.0') }}</h4>
-                        <p class="text-md neutral-0 uppercase">{{ __('MVP запуск ЦИФРОВОГО ДЕПОЗИТАРИЯ И РЕГИСТРАЦИЯ ДЕПОЗИТАРНОЙ ЛИЦЕНЗИИ') }}</p>
-                        <ul class="list-check-black text-sm">
-                            <li>{{ __('Юридическое лицо депозитария создано и включено в периметр экосистемы НЕКСУС') }}</li>
-                            <li>{{ __('Требования ЦБ РФ по 39‑ФЗ и 259‑ФЗ выполнены') }}</li>
-                            <li>{{ __('MVP‑функционал: открытие счетов депо, учет прав, корпоративные действия, отчётность и API запущены') }}</li>
-                            <li>{{ __('ИБ‑аудит и стресс‑тесты, подтвержден уровень отказоустойчивости и соответствие требованиям по защите информации проведены') }}</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="item-log">
-                    <div class="date-log"><span class="btn btn-brand-4-sm">{{__('Стадия 4: 2028+')}}</span></div>
-                    <div class="line-log"></div>
-                    <div class="info-log">
-                        <h4 class="neutral-400 text-sm">{{ __('V 4.0.0') }}</h4>
-                        <p class="text-md neutral-0 uppercase">{{ __('MVP запуск МАРКЕТПЛЕЙСА ПРОДУКЦИИ И УСЛУГ ПРОИНВЕСТИРОВАННЫХ ПРОЕКТОВ ПОДГОТОВКА IPO') }}</p>
-                        <ul class="list-check-black text-sm">
-                            <li>{{ __('Маркетплейс интегрирован с экосистемой: данные по проектам, статусам и лимитам подтягиваются автоматически') }}</li>
-                            <li>{{ __('Запущен витринный каталог товаров и услуг проинвестированных проектов с онлайн-оплатой и базовой логистикой') }}</li>
-                            <li>{{ __('Реализована связка покупок на маркетплейсе с инвестиционными метриками проектов (выручка, LTV, выполнение KPI)') }}</li>
-                            <li>{{ __('Доступен личный кабинет инвестора с аналитикой продаж портфельных компаний на маркетплейсе') }}</li>
-                            <li>{{ __('Внедрены базовые инструменты промо: промокоды для инвесторов, кэшбэк/скидки, витрины специальных предложений от портфельных компаний') }}</li>
-                            <li>{{ __('Маркетплейс и витрина портфельных проектов используются как витрина роста перед подготовкой к IPO платформы в 2030–2031 гг.') }}</li>
-                        </ul>
-                    </div>
-                </div>
+                <span class="roadmap-head__progress-value">47%</span>
             </div>
+        </div>
+
+        <div class="roadmap-board">
+            <article class="roadmap-card">
+                <div class="roadmap-card__meta">
+                    <span class="roadmap-card__badge">{{ __('Стадия I') }}</span>
+                    <span class="roadmap-card__version">V1.0.0 · Q4 2026</span>
+                    <span class="roadmap-card__icon" aria-hidden="true">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2.5 20.5 7v10L12 21.5 3.5 17V7L12 2.5Z" stroke="currentColor" stroke-width="1.5"/><path d="M12 12v9.5M12 12 3.5 7M12 12l8.5-5" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </span>
+                </div>
+                <h3 class="roadmap-card__title">{{ __('MVP запуск платформы НЕКСУС и блокчейна ГАНИМЕД') }}</h3>
+                <ul class="roadmap-card__list">
+                    <li>{{ __('Архитектура блокчейна ГАНИМЕД — готова (MVP)') }}</li>
+                    <li>{{ __('Мастер-нода запущена') }}</li>
+                    <li>{{ __('Платформа НЕКСУС — в разработке (70%)') }}</li>
+                    <li>{{ __('Регистрация ОИС НЕКСУС в ЦБ РФ — документы готовятся') }}</li>
+                    <li>{{ __('Обучение НЕКСУС ИИ') }}</li>
+                </ul>
+                <div class="roadmap-card__status">
+                    <div class="roadmap-card__status-row">
+                        <span>{{ __('70% готово') }}</span>
+                    </div>
+                    <div class="roadmap-card__bar"><span style="width: 70%"></span></div>
+                </div>
+            </article>
+
+            <article class="roadmap-card">
+                <div class="roadmap-card__meta">
+                    <span class="roadmap-card__badge">{{ __('Стадия II') }}</span>
+                    <span class="roadmap-card__version">V2.0.0 · Q2 2027</span>
+                    <span class="roadmap-card__icon" aria-hidden="true">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 20h16M6 20V10l6-5 6 5v10M10 20v-5h4v5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 12h.01M15 12h.01M12 9h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </span>
+                </div>
+                <h3 class="roadmap-card__title">{{ __('MVP запуск площадки СФОРДЕКС и регистрация ОИС') }}</h3>
+                <ul class="roadmap-card__list">
+                    <li>{{ __('Статус ОИС получен') }}</li>
+                    <li>{{ __('Площадка СФОРДЕКС интегрирована с ГАНИМЕД и НЕКСУС') }}</li>
+                    <li>{{ __('Торги активны 24/7') }}</li>
+                    <li>{{ __('Расширенный функционал НЕКСУС реализован') }}</li>
+                    <li>{{ __('ГАНИМЕД прошел лицензирование и аудит') }}</li>
+                </ul>
+                <div class="roadmap-card__status">
+                    <div class="roadmap-card__status-row">
+                        <span>{{ __('В разработке') }}</span>
+                    </div>
+                    <div class="roadmap-card__bar"><span style="width: 28%"></span></div>
+                </div>
+            </article>
+
+            <article class="roadmap-card">
+                <div class="roadmap-card__meta">
+                    <span class="roadmap-card__badge">{{ __('Стадия III') }}</span>
+                    <span class="roadmap-card__version">V3.0.0 · Q1 2028</span>
+                    <span class="roadmap-card__icon" aria-hidden="true">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.2" stroke="currentColor" stroke-width="1.5"/><circle cx="5" cy="7" r="1.8" stroke="currentColor" stroke-width="1.5"/><circle cx="19" cy="7" r="1.8" stroke="currentColor" stroke-width="1.5"/><circle cx="5" cy="17" r="1.8" stroke="currentColor" stroke-width="1.5"/><circle cx="19" cy="17" r="1.8" stroke="currentColor" stroke-width="1.5"/><path d="M6.6 8.2 10.2 10.8M13.8 10.8l3.6-2.6M6.6 15.8l3.6-2.6M13.8 13.2l3.6 2.6" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </span>
+                </div>
+                <h3 class="roadmap-card__title">{{ __('MVP запуск ЦИФРОВОГО ДЕПОЗИТАРИЯ И РЕГИСТРАЦИЯ ДЕПОЗИТАРНОЙ ЛИЦЕНЗИИ') }}</h3>
+                <ul class="roadmap-card__list">
+                    <li>{{ __('Юридическое лицо депозитария создано и включено в периметр экосистемы НЕКСУС') }}</li>
+                    <li>{{ __('Требования ЦБ РФ по 39‑ФЗ и 259‑ФЗ выполнены') }}</li>
+                    <li>{{ __('MVP‑функционал: открытие счетов депо, учет прав, корпоративные действия, отчётность и API запущены') }}</li>
+                    <li>{{ __('Расчётно‑клиринговая инфраструктура') }}</li>
+                    <li>{{ __('ИБ‑аудит и стресс‑тесты, подтвержден уровень отказоустойчивости и соответствие требованиям по защите информации проведены') }}</li>
+                </ul>
+                <div class="roadmap-card__status">
+                    <div class="roadmap-card__status-row">
+                        <span>{{ __('Запланировано') }}</span>
+                    </div>
+                    <div class="roadmap-card__bar"><span style="width: 8%"></span></div>
+                </div>
+            </article>
+
+            <article class="roadmap-card">
+                <div class="roadmap-card__meta">
+                    <span class="roadmap-card__badge">{{ __('Стадия IV') }}</span>
+                    <span class="roadmap-card__version">V4.0.0 · 2028+</span>
+                    <span class="roadmap-card__icon" aria-hidden="true">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M3 5h2l2.2 9.2a2 2 0 0 0 2 1.5h7.6a2 2 0 0 0 2-1.6L20 8H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="19" r="1.5" stroke="currentColor" stroke-width="1.5"/><circle cx="17" cy="19" r="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </span>
+                </div>
+                <h3 class="roadmap-card__title">{{ __('Маркетплейс, ЦИФРОВОЙ БАНКОВСКИЙ КОНТУР + IPO') }}</h3>
+                <ul class="roadmap-card__list">
+                    <li>{{ __('Маркетплейс интегрирован с экосистемой: данные по проектам, статусам и лимитам подтягиваются автоматически') }}</li>
+                    <li>{{ __('Реализована связка покупок на маркетплейсе с инвестиционными метриками проектов (выручка, LTV, выполнение KPI)') }}</li>
+                    <li>{{ __('Платформа интегрирована с банком-оператором') }}</li>
+                    <li>{{ __('Запуск маркетплейса') }}</li>
+                    <li>{{ __('Запуск цифрового банковского контура') }}</li>
+                    <li>{{ __('Подготовка к IPO НЕКСУС') }}</li>
+
+                </ul>
+                <div class="roadmap-card__status">
+                    <div class="roadmap-card__status-row">
+                        <span>{{ __('Запланировано') }}</span>
+                    </div>
+                    <div class="roadmap-card__bar"><span style="width: 8%"></span></div>
+                </div>
+            </article>
         </div>
     </div>
 </section>
