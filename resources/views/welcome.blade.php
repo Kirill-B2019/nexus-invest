@@ -937,75 +937,98 @@
 
 {{-- ОТРАСЛЕВЫЕ ИНДИКАТОРЫ — после блока «Руководители команды» --}}
 @include('partials.industry-indicators-board', ['indicatorsBoardId' => 'home-indicators-board'])
-{{-- КОМАНДА --}}
-<section class="section-box wow box-why-trusted-black">
+{{-- КОМАНДА — галерея руководителей + полоса контуров --}}
+<section class="section-box wow box-why-trusted-black team-section" id="team">
     <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 mb-30 order-2 order-lg-1">
-                        <div class="testimonial-img-animated text-center">
-                            <img src="{{ asset('assets/imgs/page/homepage1/img-testimonial.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async" class="w-75">
-                        </div>
-                        <ul class="list-checked list-checked--team">
-                            <li>
-                                <span class="d-block fw-semibold neutral-0 mb-5">{{ __('Инженерный контур') }}</span>
-                                <span class="text-sm neutral-500">{{ __('Backend, frontend, mobile, DevOps и QA — собирают клиентский слой цифрового банка, личные кабинеты, API‑шлюз к ОИС НЕКСУС и технологический слой ГАНИМЕД в единую управляемую среду.') }}</span>
-                            </li>
-                            <li>
-                                <span class="d-block fw-semibold neutral-0 mb-5">{{ __('Методологи проектного цикла') }}</span>
-                                <span class="text-sm neutral-500">{{ __('Описывают, как проект проходит путь от заявки инициатора до выпуска ЦФА, размещения, контроля траншей и выплат: структуры финансирования, KPI, ковенанты и регламенты, которые затем становятся правилами ОИС и сценариями в экосистеме.') }}</span>
-                            </li>
-                            <li>
-                                <span class="d-block fw-semibold neutral-0 mb-5">{{ __('Аналитики и риск‑менеджеры') }}</span>
-                                <span class="text-sm neutral-500">{{ __('Следят за концентрацией портфелей, отклонениями plan/fact, просрочками и событиями по выпускам; формируют сигналы для инвесторов в кабинете и для операционного контура ОИС — до того, как риск превращается в регуляторный или репутационный инцидент.') }}</span>
-                            </li>
-                            <li>
-                                <span class="d-block fw-semibold neutral-0 mb-5">{{ __('Специалисты комплаенс и правового блока') }}</span>
-                                <span class="text-sm neutral-500">{{ __('Выстраивают допуск участников и проектов под 259‑ФЗ, 115‑ФЗ и требования Банка России к ОИС: KYC/KYB, раскрытие, договорная модель выпуска, взаимодействие с депозитарным и расчётным контуром — отдельно от маркетингового бренда цифрового банка.') }}</span>
-                            </li>
-                            <li>
-                                <span class="d-block fw-semibold neutral-0 mb-5"><a href="{{ route('nexus-ai') }}" class="neutral-0">{{ __('Операторы скоринга, ML и оптимизации (НЕКСУС ИИ)') }}</a></span>
-                                <span class="text-sm neutral-500">{{ __('Обучают и разрабатывают модели предварительного скоринга проектов, подбора инструментов для инвестора и раннего выявления аномалий, контроль параметров допуска и мониторинг обязательств без подмены юридического решения алгоритмом.') }}</span>
-                            </li>
-                        </ul>
+        <div class="team-block">
+            <div class="team-block__head">
+                <a class="btn btn-brand-4-sm" href="#onwer">{{ __('Руководители команды и проекта') }}</a>
+                <h2 class="team-block__title">{{ __('Команда, которая строит новый стандарт проектного запуска') }}</h2>
+            </div>
+
+            <div class="team-leaders" id="onwer">
+                <article class="team-leader">
+                    <div class="team-leader__photo">
+                        <img src="{{ asset('assets/imgs/page/homepage1/img-review.png') }}" alt="{{ __('ЮРИЙ ХЕ') }}" loading="lazy" decoding="async" width="420" height="420">
                     </div>
-                    <div class="col-lg-6 mb-30 order-1 order-lg-2">
-                        <div class="mb-50"><a class="btn btn-brand-4-sm" href="#">{{ __('Руководители команды и проекта') }}</a>
-                            <h3 class="mt-20 neutral-0">{{ __('Команда, которая строит новый стандарт проектного запуска') }}</h3>
-                        </div>
-                        <div class="testimonials-stack mt-30" id="onwer">
-                            <div class="card-testimonial-3 mb-30 ">
-                                <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/img-review.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
-                                <div class="card-info">
-                                    <p class="text-md neutral-500"><i class="fi-rr-quote-right"></i>&nbsp;{{ __('Мы создаём не просто бизнес‑платформу для инвестиций, а новую инфраструктуру рынка, где цифровые инструменты становятся понятным, прозрачным и эффективно работающим каналом капитала в реальную экономику.') }}"</p>
-                                    <div class="card-author-review">
-                                        <div class="card-author-info"><span class="author-name">{{__('ЮРИЙ ХЕ')}}</span><span class="author-tag">{{__('Генеральный директор - соучредитель')}}</span></div>
-                                    </div>
-                                    <div class="card-rate"><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""></div>
-                                </div>
-                            </div>
-                            <div class="card-testimonial-3 mb-30">
-                                <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/img-review-finance.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
-                                <div class="card-info">
-                                    <p class="text-md neutral-500"><i class="fi-rr-quote-right"></i>&nbsp;{{ __('Финансовая архитектура платформы выстроена так, чтобы обеспечивать прозрачную структуру капитала, контролируемую доходность инструментов и устойчивость модели роста на каждом этапе проектного цикла.') }}"</p>
-                                    <div class="card-author-review">
-                                        <div class="card-author-info"><span class="author-name">{{__('АДЫЛ НУРМАНБЕТОВ')}}</span><span class="author-tag">{{__('Финансовый директор - соучредитель')}}</span></div>
-                                    </div>
-                                    <div class="card-rate"><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""></div>
-                                </div>
-                            </div>
-                            <div class="card-testimonial-3">
-                                <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/img-review-k.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
-                                <div class="card-info">
-                                    <p class="text-md neutral-500"><i class="fi-rr-quote-right"></i>&nbsp;{{ __('Я проектирую платформу как целостный механизм, в котором архитектура, код и каждый технический узел связаны в одну логику — превратить сложную финансовую “машину” в управляемую, безопасную и предсказуемую среду роста для проектов и инвесторов.') }}"</p>
-                                    <div class="card-author-review">
-                                        <div class="card-author-info"><span class="author-name">{{__('КИРИЛЛ БОЯРИНОВ')}}</span><span class="author-tag">{{__('Автор, системный архитектор - соучредитель')}}</span></div>
-                                    </div>
-                                    <div class="card-rate"><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""></div>
-                                </div>
-                            </div>
-                        </div>
+                    <h3 class="team-leader__name">{{ __('ЮРИЙ ХЕ') }}</h3>
+                    <p class="team-leader__role">{{ __('Генеральный директор - соучредитель') }}</p>
+                    <p class="team-leader__quote">{{ __('Мы создаём не просто бизнес‑платформу для инвестиций, а новую инфраструктуру рынка, где цифровые инструменты становятся понятным, прозрачным и эффективно работающим каналом капитала в реальную экономику.') }}</p>
+                    <div class="team-leader__stars" aria-hidden="true">
+                        <img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt="">
                     </div>
-                </div>
+                </article>
+
+                <article class="team-leader">
+                    <div class="team-leader__photo">
+                        <img src="{{ asset('assets/imgs/page/homepage1/img-review-finance.png') }}" alt="{{ __('АДЫЛ НУРМАНБЕТОВ') }}" loading="lazy" decoding="async" width="420" height="420">
+                    </div>
+                    <h3 class="team-leader__name">{{ __('АДЫЛ НУРМАНБЕТОВ') }}</h3>
+                    <p class="team-leader__role">{{ __('Финансовый директор - соучредитель') }}</p>
+                    <p class="team-leader__quote">{{ __('Финансовая архитектура платформы выстроена так, чтобы обеспечивать прозрачную структуру капитала, контролируемую доходность инструментов и устойчивость модели роста на каждом этапе проектного цикла.') }}</p>
+                    <div class="team-leader__stars" aria-hidden="true">
+                        <img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt="">
+                    </div>
+                </article>
+
+                <article class="team-leader">
+                    <div class="team-leader__photo">
+                        <img src="{{ asset('assets/imgs/page/homepage1/img-review-k.png') }}" alt="{{ __('КИРИЛЛ БОЯРИНОВ') }}" loading="lazy" decoding="async" width="420" height="420">
+                    </div>
+                    <h3 class="team-leader__name">{{ __('КИРИЛЛ БОЯРИНОВ') }}</h3>
+                    <p class="team-leader__role">{{ __('Автор, системный архитектор - соучредитель') }}</p>
+                    <p class="team-leader__quote">{{ __('Я проектирую платформу как целостный механизм, в котором архитектура, код и каждый технический узел связаны в одну логику — превратить сложную финансовую “машину” в управляемую, безопасную и предсказуемую среду роста для проектов и инвесторов.') }}</p>
+                    <div class="team-leader__stars" aria-hidden="true">
+                        <img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt="">
+                    </div>
+                </article>
+            </div>
+
+            <div class="team-contours" id="team-contours">
+                <article class="team-contours__tile">
+                    <div class="team-contours__media" aria-hidden="true">
+                        <img src="{{ asset('assets/imgs/page/homepage1/team-contour-1.png') }}" alt="" loading="lazy" decoding="async" width="640" height="480">
+                    </div>
+                    <span class="team-contours__check" aria-hidden="true"></span>
+                    <h3 class="team-contours__title">{{ __('Инженерный контур') }}</h3>
+                    <p class="team-contours__text">{{ __('Backend, frontend, mobile, DevOps и QA — собирают клиентский слой цифрового банка, личные кабинеты, API‑шлюз к ОИС НЕКСУС и технологический слой ГАНИМЕД в единую управляемую среду.') }}</p>
+                </article>
+                <article class="team-contours__tile">
+                    <div class="team-contours__media" aria-hidden="true">
+                        <img src="{{ asset('assets/imgs/page/homepage1/team-contour-2.png') }}" alt="" loading="lazy" decoding="async" width="640" height="480">
+                    </div>
+                    <span class="team-contours__check" aria-hidden="true"></span>
+                    <h3 class="team-contours__title">{{ __('Методологи проектного цикла') }}</h3>
+                    <p class="team-contours__text">{{ __('Описывают, как проект проходит путь от заявки инициатора до выпуска ЦФА, размещения, контроля траншей и выплат: структуры финансирования, KPI, ковенанты и регламенты, которые затем становятся правилами ОИС и сценариями в экосистеме.') }}</p>
+                </article>
+                <article class="team-contours__tile">
+                    <div class="team-contours__media" aria-hidden="true">
+                        <img src="{{ asset('assets/imgs/page/homepage1/team-contour-3.png') }}" alt="" loading="lazy" decoding="async" width="640" height="480">
+                    </div>
+                    <span class="team-contours__check" aria-hidden="true"></span>
+                    <h3 class="team-contours__title">{{ __('Аналитики и риск‑менеджеры') }}</h3>
+                    <p class="team-contours__text">{{ __('Следят за концентрацией портфелей, отклонениями plan/fact, просрочками и событиями по выпускам; формируют сигналы для инвесторов в кабинете и для операционного контура ОИС — до того, как риск превращается в регуляторный или репутационный инцидент.') }}</p>
+                </article>
+                <article class="team-contours__tile">
+                    <div class="team-contours__media" aria-hidden="true">
+                        <img src="{{ asset('assets/imgs/page/homepage1/team-contour-4.png') }}" alt="" loading="lazy" decoding="async" width="640" height="480">
+                    </div>
+                    <span class="team-contours__check" aria-hidden="true"></span>
+                    <h3 class="team-contours__title">{{ __('Специалисты комплаенс и правового блока') }}</h3>
+                    <p class="team-contours__text">{{ __('Выстраивают допуск участников и проектов под 259‑ФЗ, 115‑ФЗ и требования Банка России к ОИС: KYC/KYB, раскрытие, договорная модель выпуска, взаимодействие с депозитарным и расчётным контуром — отдельно от маркетингового бренда цифрового банка.') }}</p>
+                </article>
+                <article class="team-contours__tile">
+                    <div class="team-contours__media" aria-hidden="true">
+                        <img src="{{ asset('assets/imgs/page/homepage1/team-contour-5.png') }}" alt="" loading="lazy" decoding="async" width="640" height="480">
+                    </div>
+                    <span class="team-contours__check" aria-hidden="true"></span>
+                    <h3 class="team-contours__title">
+                        <a href="{{ route('nexus-ai') }}">{{ __('Операторы скоринга, ML и оптимизации (НЕКСУС ИИ)') }}</a>
+                    </h3>
+                    <p class="team-contours__text">{{ __('Обучают и разрабатывают модели предварительного скоринга проектов, подбора инструментов для инвестора и раннего выявления аномалий, контроль параметров допуска и мониторинг обязательств без подмены юридического решения алгоритмом.') }}</p>
+                </article>
+            </div>
+        </div>
     </div>
 </section>
 
