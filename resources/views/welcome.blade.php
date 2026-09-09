@@ -943,7 +943,7 @@
         <div class="team-block">
             <div class="team-block__head">
                 <a class="btn btn-brand-4-sm" href="#onwer">{{ __('Руководители команды и проекта') }}</a>
-                <h2 class="team-block__title">{{ __('Команда, которая строит новый стандарт проектного запуска') }}</h2>
+                <h2 class="team-block__title">{{ __('Команда, которая строит новый стандарт проектного запуска и цифровых инвестиций') }}</h2>
             </div>
 
             <div class="team-leaders" id="onwer">
