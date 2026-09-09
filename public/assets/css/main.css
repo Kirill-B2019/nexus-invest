@@ -3175,36 +3175,26 @@ body.swal2-height-auto {
     text-transform: uppercase;
 }
 .steps-promo__lead {
-    margin: 0 0 18px;
+    margin: 0;
     color: rgba(255, 255, 255, 0.62);
     font-size: 14px;
     line-height: 1.45;
     font-weight: 500;
 }
-.steps-promo__cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
-}
-.steps-promo__note {
-    margin: 0;
-    color: rgba(255, 255, 255, 0.45);
-    font-size: 12px;
-    line-height: 1.4;
-}
 .steps-promo__step {
+    position: relative;
     min-width: 0;
+    min-height: 200px;
     display: flex;
     flex-direction: column;
     gap: 12px;
-}
-.steps-promo__step-top {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    padding: 8px 8px 12px;
+    isolation: isolate;
+    overflow: hidden;
 }
 .steps-promo__badge {
+    position: relative;
+    z-index: 1;
     flex-shrink: 0;
     width: 36px;
     height: 36px;
@@ -3220,31 +3210,40 @@ body.swal2-height-auto {
     animation: steps-promo-badge-pulse 2.8s ease-in-out infinite;
 }
 .steps-promo__media {
-    width: 84px;
-    height: 84px;
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     border-radius: var(--radius-sm, 8px);
-    background: var(--color-elevated, #2B2C2D);
-    border: 1px solid rgba(236, 238, 242, 0.12);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    padding: 8px;
+    pointer-events: none;
+    opacity: 0.32;
+    transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;
 }
 .steps-promo__media img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: contain;
+    object-position: center bottom;
     transition: transform 0.35s ease, filter 0.35s ease;
 }
-.steps-promo__media img:hover,
-.box-our-track-2 .steps-promo__media img:hover {
+.steps-promo__step:hover .steps-promo__media,
+.box-our-track-2 .steps-promo__step:hover .steps-promo__media {
+    opacity: 0.55;
     transform: scale(1.04);
     filter: drop-shadow(0 0 18px rgba(var(--color-primary-rgb, 197, 255, 65), 0.35));
+    pointer-events: auto;
+}
+.steps-promo__step:hover .steps-promo__media img,
+.box-our-track-2 .steps-promo__step:hover .steps-promo__media img {
+    transform: none;
+    filter: none;
     box-shadow: none;
 }
 .steps-promo__step-title {
+    position: relative;
+    z-index: 1;
     margin: 0;
     color: #fff;
     font-size: 15px;
@@ -3252,13 +3251,17 @@ body.swal2-height-auto {
     letter-spacing: 0.04em;
     text-transform: uppercase;
     line-height: 1.25;
+    text-shadow: 0 1px 10px rgba(14, 14, 14, 0.85);
 }
 .steps-promo__step-text {
+    position: relative;
+    z-index: 1;
     margin: 0;
-    color: rgba(255, 255, 255, 0.62);
+    color: rgba(255, 255, 255, 0.72);
     font-size: 13px;
     line-height: 1.45;
     font-weight: 500;
+    text-shadow: 0 1px 8px rgba(14, 14, 14, 0.8);
 }
 .steps-promo__arrow {
     align-self: center;
@@ -3266,7 +3269,7 @@ body.swal2-height-auto {
     color: var(--color-lime, #C5FF41);
     display: flex;
     align-items: center;
-    margin-top: 36px;
+    margin-top: 0;
     animation: steps-promo-arrow-nudge 2.4s ease-in-out infinite;
 }
 
@@ -3288,10 +3291,6 @@ body.swal2-height-auto {
         grid-template-columns: minmax(180px, 0.9fr) minmax(0, 1fr) 20px minmax(0, 1fr) 20px minmax(0, 1fr);
         gap: 12px 8px;
     }
-    .steps-promo__media {
-        width: 72px;
-        height: 72px;
-    }
     .steps-promo__step-text {
         font-size: 12.5px;
     }
@@ -3312,22 +3311,12 @@ body.swal2-height-auto {
     .steps-promo__arrow {
         display: none;
     }
-    /* мобилка: текст сверху, картинка ниже */
     .steps-promo__step {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+        min-height: 220px;
+        padding-bottom: 24px;
     }
-    .steps-promo__step-top {
-        display: contents;
-    }
-    .steps-promo__badge { order: 1; }
-    .steps-promo__step-title { order: 2; }
-    .steps-promo__step-text { order: 3; }
     .steps-promo__media {
-        order: 4;
-        width: min(100%, 160px);
-        height: 160px;
+        opacity: 0.28;
     }
 }
 
@@ -3337,9 +3326,9 @@ body.swal2-height-auto {
     .steps-promo__arrow {
         animation: none;
     }
-    .steps-promo__media img,
-    .steps-promo__media img:hover,
-    .box-our-track-2 .steps-promo__media img:hover {
+    .steps-promo__media,
+    .steps-promo__step:hover .steps-promo__media,
+    .box-our-track-2 .steps-promo__step:hover .steps-promo__media {
         transition: none;
         transform: none;
         filter: none;

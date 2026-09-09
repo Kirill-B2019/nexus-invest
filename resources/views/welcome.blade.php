@@ -440,20 +440,13 @@
                 <div class="steps-promo__intro">
                     <h2 class="steps-promo__title">{{ __('Всего 3 простых шага к началу работы в системе') }}</h2>
                     <p class="steps-promo__lead">{{ __('Простой старт и достижение ваших целей.') }}</p>
-                    <a class="btn btn-brand-4 steps-promo__cta" href="{{ url('/about') }}">
-                        {{ __('Подробнее') }}
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </a>
-                    <p class="steps-promo__note">{{ __('Функциональность, операционная модель и т.д.') }}</p>
                 </div>
 
                 <article class="steps-promo__step">
-                    <div class="steps-promo__step-top">
-                        <span class="steps-promo__badge" aria-hidden="true">1</span>
-                        <div class="steps-promo__media">
-                            <img src="{{ asset('assets/imgs/page/homepage1/img-prepare.png') }}" alt="{{ __('Регистрация в системе') }}" loading="lazy" decoding="async" width="160" height="160">
-                        </div>
+                    <div class="steps-promo__media" aria-hidden="true">
+                        <img src="{{ asset('assets/imgs/page/homepage1/img-prepare.png') }}" alt="" loading="lazy" decoding="async" width="240" height="240">
                     </div>
+                    <span class="steps-promo__badge" aria-hidden="true">1</span>
                     <h3 class="steps-promo__step-title">{{ __('Регистрация в системе') }}</h3>
                     <p class="steps-promo__step-text">{{ __('Быстрая и простая регистрация даёт доступ сразу в индивидуальное рабочее пространство по выбранной цели на платформе (кабинет инициатора, инвестора, эксперта, аудитора, аналитика и т.д.).') }}</p>
                 </article>
@@ -463,12 +456,10 @@
                 </div>
 
                 <article class="steps-promo__step">
-                    <div class="steps-promo__step-top">
-                        <span class="steps-promo__badge" aria-hidden="true">2</span>
-                        <div class="steps-promo__media">
-                            <img src="{{ asset('assets/imgs/page/homepage1/img-prepare2.png') }}" alt="{{ __('Исследования и выбор') }}" loading="lazy" decoding="async" width="160" height="160">
-                        </div>
+                    <div class="steps-promo__media" aria-hidden="true">
+                        <img src="{{ asset('assets/imgs/page/homepage1/img-prepare2.png') }}" alt="" loading="lazy" decoding="async" width="240" height="240">
                     </div>
+                    <span class="steps-promo__badge" aria-hidden="true">2</span>
                     <h3 class="steps-promo__step-title">{{ __('Исследования и выбор') }}</h3>
                     <p class="steps-promo__step-text">{{ __('Начало работы с проектом или формирование инвестиционного портфеля. Совместно с экспертами и нашим ИИ подберем наилучшую стратегию привлечения или предложим наиболее интересные и доходные инструменты.') }}</p>
                 </article>
@@ -478,12 +469,10 @@
                 </div>
 
                 <article class="steps-promo__step">
-                    <div class="steps-promo__step-top">
-                        <span class="steps-promo__badge" aria-hidden="true">3</span>
-                        <div class="steps-promo__media">
-                            <img src="{{ asset('assets/imgs/page/homepage1/img-prepare3.png') }}" alt="{{ __('Запуск и доход') }}" loading="lazy" decoding="async" width="160" height="160">
-                        </div>
+                    <div class="steps-promo__media" aria-hidden="true">
+                        <img src="{{ asset('assets/imgs/page/homepage1/img-prepare3.png') }}" alt="" loading="lazy" decoding="async" width="240" height="240">
                     </div>
+                    <span class="steps-promo__badge" aria-hidden="true">3</span>
                     <h3 class="steps-promo__step-title">{{ __('Запуск и доход') }}</h3>
                     <p class="steps-promo__step-text">{{ __('Запуск проекта или активация выбранных инвестиционных инструментов. Экосистема автоматизирует ключевые процессы, обеспечивая прозрачность, контроль и стабильный поток привлечения или дохода в реальном времени.') }}</p>
                 </article>
