@@ -131,7 +131,7 @@
                                         <img src="{{ asset('assets/imgs/page/homepage1/hero-ganimed.png') }}" alt="{{ __('ГАНИМЕД') }}" loading="lazy" decoding="async" width="220" height="140">
                                     </div>
                                     <p class="hero-eco-card__desc">{{ __('Блокчейн ГАНИМЕД — основа экосистемы') }}</p>
-                                    <p class="hero-eco-card__stage">{{ __('Запуск: СТАДИЯ II') }}</p>
+                                    <p class="hero-eco-card__stage">{{ __('Запуск: СТАДИЯ I') }}</p>
                                 </article>
                                 <article class="hero-eco-card">
                                     <h6 class="hero-eco-card__title">{{ __('ЦИФРОВОЙ ДЕПОЗИТАРИЙ') }}</h6>
