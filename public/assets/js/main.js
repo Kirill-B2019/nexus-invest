@@ -117,7 +117,7 @@
 
         function lockBriefly() {
             // Защита от двойного срабатывания touch+click на мобильных
-            lockUntil = Date.now() + 400;
+            lockUntil = Date.now() + 350;
         }
 
         function openMenu() {
@@ -165,6 +165,18 @@
             lockBriefly();
             closeMenu();
         });
+
+        // Реальные ссылки: переход с первого тапа, меню закрываем сразу
+        container.off("click.mobileNav").on("click.mobileNav", ".mobile-menu a[href]", function (e) {
+            var href = ($(this).attr("href") || "").trim();
+            if (!href || href === "#" || href.charAt(0) === "#") {
+                return;
+            }
+            // Не блокируем переход; только закрываем панель
+            closeMenu();
+        });
+
+        return { closeMenu: closeMenu };
     }
     mobileHeaderActive();
     /*---------------------
@@ -173,27 +185,27 @@
     var $offCanvasNav = $(".mobile-menu"),
         $offCanvasNavSubMenu = $offCanvasNav.find(".sub-menu");
     /*Add Toggle Button With Off Canvas Sub Menu*/
-    $offCanvasNavSubMenu.parent().prepend('<span class="menu-expand"><i class="fi-rr-angle-small-down"></i></span>');
+    $offCanvasNavSubMenu.parent().prepend('<span class="menu-expand" role="button" tabindex="0" aria-label="Развернуть"><i class="fi-rr-angle-small-down"></i></span>');
     /*Submenus expanded by default*/
-    $offCanvasNavSubMenu.slideDown();
+    $offCanvasNavSubMenu.slideDown(0);
     $offCanvasNavSubMenu.parent().addClass("active");
-    /*Category Sub Menu Toggle*/
-    $offCanvasNav.on("click", "li a, li .menu-expand", function (e) {
+    /*Category Sub Menu Toggle — только по стрелке, не по пунктам с реальным URL*/
+    $offCanvasNav.off("click.mobileSub").on("click.mobileSub", "li .menu-expand, li.has-children > a[href='#']", function (e) {
         var $this = $(this);
-        if (
-            ($this.parent().attr("class") || "").match(/\b(menu-item-has-children|has-children|has-sub-menu)\b/) &&
-            ($this.attr("href") === "#" || $this.hasClass("menu-expand"))
-        ) {
-            e.preventDefault();
-            if ($this.siblings("ul:visible").length) {
-                $this.parent("li").removeClass("active");
-                $this.siblings("ul").slideUp();
-            } else {
-                $this.parent("li").addClass("active");
-                $this.closest("li").siblings("li").removeClass("active").find("li").removeClass("active");
-                $this.closest("li").siblings("li").find("ul:visible").slideUp();
-                $this.siblings("ul").slideDown();
-            }
+        var $li = $this.closest("li.has-children");
+        if (!$li.length) {
+            return;
+        }
+        e.preventDefault();
+        e.stopPropagation();
+        var $sub = $li.children(".sub-menu, ul").first();
+        if ($sub.length && $sub.is(":visible")) {
+            $li.removeClass("active");
+            $sub.slideUp(200);
+        } else {
+            $li.addClass("active");
+            $li.siblings("li.has-children").removeClass("active").children(".sub-menu, ul").slideUp(200);
+            $sub.slideDown(200);
         }
     });
     /*--- language currency active ----*/

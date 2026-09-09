@@ -556,9 +556,9 @@
             <div class="roadmap-head__progress" aria-label="{{ __('Прогресс реализации MVP НЕКСУС') }}">
                 <span class="roadmap-head__progress-label">{{ __('Прогресс реализации MVP НЕКСУС') }}</span>
                 <div class="roadmap-head__progress-track">
-                    <div class="roadmap-head__progress-fill" style="width: 47%"></div>
+                    <div class="roadmap-head__progress-fill" style="width: 37%"></div>
                 </div>
-                <span class="roadmap-head__progress-value">47%</span>
+                <span class="roadmap-head__progress-value">37%</span>
             </div>
         </div>
 

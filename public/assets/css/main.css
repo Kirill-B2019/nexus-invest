@@ -946,7 +946,34 @@
   box-sizing: border-box;
 }
 .mobile-header-wrapper-style .mobile-header-wrapper-inner .mobile-header-content-area .mobile-menu-wrap nav .mobile-menu li.has-children .menu-expand {
-  pointer-events: none;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+}
+/* Мобильное меню: без sticky :hover (первый тап не должен «съедаться» сдвигом padding) */
+.mobile-header-wrapper-style .mobile-header-wrapper-inner .mobile-header-content-area .mobile-menu-wrap nav .mobile-menu li a,
+.mobile-header-wrapper-style .mobile-header-wrapper-inner .mobile-header-content-area .mobile-menu-wrap nav .mobile-menu li ul li a {
+  transition: color 0.2s ease;
+  -webkit-tap-highlight-color: rgba(197, 255, 65, 0.15);
+  touch-action: manipulation;
+}
+.mobile-header-wrapper-style .mobile-header-wrapper-inner .mobile-header-content-area .mobile-menu-wrap nav .mobile-menu li:hover > a,
+.mobile-header-wrapper-style .mobile-header-wrapper-inner .mobile-header-content-area .mobile-menu-wrap nav .mobile-menu li ul li:hover a {
+  padding-left: inherit;
+}
+.mobile-header-wrapper-style .mobile-header-wrapper-inner .mobile-header-content-area .mobile-menu-wrap nav .mobile-menu li ul li a {
+  padding-left: 15px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .mobile-header-wrapper-style .mobile-header-wrapper-inner .mobile-header-content-area .mobile-menu-wrap nav .mobile-menu li:hover > a {
+    color: var(--color-accent-purple-3);
+    padding-left: 3px;
+  }
+  .mobile-header-wrapper-style .mobile-header-wrapper-inner .mobile-header-content-area .mobile-menu-wrap nav .mobile-menu li ul li:hover a {
+    padding-left: 13px;
+  }
+  .mobile-header-wrapper-style .mobile-header-wrapper-inner .mobile-header-content-area .mobile-menu-wrap nav .mobile-menu li ul li:hover a::before {
+    opacity: 1;
+  }
 }
 .box-banner-feature-2 {
     position: relative;
