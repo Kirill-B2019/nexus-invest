@@ -19,23 +19,34 @@
 }
 
 :root {
-  /* Основной акцент */
-  --color-primary: #C5FF41;
+  /* === NEXUS DESIGN SYSTEM – NODE === */
+  --color-ink: #0E0E0E;
+  --color-charcoal: #191919;
+  --color-surface: #1E1E1E;
+  --color-elevated: #2B2C2D;
+  --color-mist: #ECEEF2;
+  --color-lime: #C5FF41;
+  --color-olive: #3B4725;
+  --color-teal: #52B8AA;
+
+  /* Основной акцент (Lime) */
+  --color-primary: var(--color-lime);
   --color-primary-rgb: 197, 255, 65;
   --color-primary-hover: #d4ff6b;
-  /* Тёмные фоны и текст */
-  --color-dark: #191919;
-  --color-surface-dark: #1E1E1E;
-  --color-surface-dark-2: #2B2C2D;
-  /* Светлые фоны и текст на тёмном */
-  --color-surface-light: #ECEEF2;
-  /* Бейджи */
-  --color-badge-bg: #3B4725;
-  /* Доп. акценты */
-  --color-accent-teal: #52B8AA;
+
+  /* Алиасы под существующие стили проекта */
+  --color-dark: var(--color-charcoal);
+  --color-surface-dark: var(--color-surface);
+  --color-surface-dark-2: var(--color-elevated);
+  --color-surface-light: var(--color-mist);
+  --color-badge-bg: var(--color-olive);
+  --color-accent-teal: var(--color-teal);
+
+  /* Доп. акценты (вне основного кита — оставляем для совместимости) */
   --color-accent-purple: #967DFF;
   --color-accent-purple-2: #9761DC;
   --color-accent-purple-3: #D280E5;
+
   /* Нейтральные */
   --color-white: #ffffff;
   --color-text-muted: #727373;
@@ -46,6 +57,71 @@
   --color-text-muted-6: #C9CBCC;
   --color-text-muted-7: #5A5B5B;
   --color-text-muted-8: #434445;
+
+  /* Радиусы кита */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  /* Единая ширина контента сайта (= .container при ≥1400px) */
+  --site-content-max: 1503px;
+  --site-gutter: 15px;
+
+  /* Типографика кита */
+  --font-sans: "Manrope", "Urbanist", system-ui, sans-serif;
+  --type-display: 56px;
+  --type-display-lh: 60px;
+  --type-title: 28px;
+  --type-title-lh: 36px;
+  --type-body: 16px;
+  --type-body-lh: 24px;
+  --type-caption: 13px;
+  --type-caption-lh: 20px;
+}
+
+/* Единая ширина контента: container + framed-секции */
+.container {
+  width: 100%;
+  padding-left: var(--site-gutter);
+  padding-right: var(--site-gutter);
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+@media (min-width: 1400px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl,
+  .container-xxl {
+    max-width: var(--site-content-max) !important;
+  }
+}
+.site-content-width {
+  width: 100%;
+  max-width: var(--site-content-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--site-gutter);
+  padding-right: var(--site-gutter);
+  box-sizing: border-box;
+}
+
+/* Общая ширина рамок: НЕКСУС ИИ / iGND / Road */
+.ai-strategy-promo__frame,
+.ignd-promo__frame,
+#Road .roadmap-shell__frame {
+  width: 100%;
+  max-width: var(--site-content-max);
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+/* Базовый шрифт кита на публичной части */
+body {
+  font-family: var(--font-sans);
 }
 .color-green
 {
@@ -3049,6 +3125,466 @@ body.swal2-height-auto {
     .card-feature-2-mobile-text-first .card-image {
         order: 2;
         margin-right: 0;
+    }
+}
+
+/* Тёмная связка: НЕКСУС ИИ → iGND → Road */
+.box-our-track-2--dark-stack,
+.box-our-track-2:has(.ignd-promo) {
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: visible;
+    background-color: var(--color-dark, #191919);
+    background-image: none;
+}
+
+/* Промо НЕКСУС ИИ — 3 колонки (утверждённый концепт) */
+.ai-strategy-promo {
+    position: relative;
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding: 48px var(--site-gutter, 15px) 28px;
+    background-color: var(--color-dark, #191919);
+    box-sizing: border-box;
+}
+.ai-strategy-promo__frame {
+    padding: 36px 36px 28px;
+    border: 1px solid rgba(236, 238, 242, 0.18);
+    border-radius: var(--radius-md, 16px);
+    background:
+        radial-gradient(ellipse 50% 55% at 82% 42%, rgba(var(--color-primary-rgb, 197, 255, 65), 0.07), transparent 68%),
+        var(--color-dark, #191919);
+    animation: ai-strategy-frame-in 0.7s ease both;
+}
+.ai-strategy-promo__grid {
+    display: grid;
+    grid-template-columns: minmax(160px, 0.55fr) minmax(0, 2.15fr) minmax(240px, 0.85fr);
+    gap: 22px 18px;
+    align-items: start;
+}
+.ai-strategy-promo__logo {
+    display: block;
+    width: min(100%, 300px);
+    height: auto;
+    margin: 0 0 18px;
+}
+.ai-strategy-promo__lead {
+    margin: 0 0 10px;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 15px;
+    line-height: 1.45;
+    font-weight: 500;
+}
+.ai-strategy-promo__sub {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.52);
+    font-size: 13px;
+    line-height: 1.45;
+    font-weight: 500;
+}
+.ai-strategy-promo__console {
+    min-width: 0;
+    padding: 22px 24px;
+    border: 1px solid rgba(236, 238, 242, 0.18);
+    border-radius: var(--radius-md, 16px);
+    background: rgba(255, 255, 255, 0.02);
+}
+.ai-strategy-promo__console-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(236, 238, 242, 0.18);
+}
+.ai-strategy-promo__console-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.ai-strategy-promo__console-icon svg {
+    width: 40px;
+    height: 40px;
+}
+.ai-strategy-promo__console-label {
+    margin: 0;
+    color: var(--color-lime, #C5FF41);
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+.ai-strategy-promo__console-title {
+    margin: 0 0 14px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+.ai-strategy-promo__console-title a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.ai-strategy-promo__console-title a:hover {
+    color: var(--color-lime, #C5FF41);
+}
+.ai-strategy-promo__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+.ai-strategy-promo__list li {
+    position: relative;
+    padding-left: 14px;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 14.5px;
+    line-height: 1.55;
+    font-weight: 500;
+}
+.ai-strategy-promo__list li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: rgba(255, 255, 255, 0.4);
+}
+.ai-strategy-promo__visual {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+.ai-strategy-promo__media {
+    width: 100%;
+    max-width: 460px;
+}
+.ai-strategy-promo__media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    /* анимация как у .ignd-promo__shield img */
+    transition: transform 0.35s ease, filter 0.35s ease;
+}
+.ai-strategy-promo__media img:hover,
+.box-our-track-2 .ai-strategy-promo__media img:hover {
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 18px rgba(var(--color-primary-rgb, 197, 255, 65), 0.35));
+    box-shadow: none;
+}
+.ai-strategy-promo__cta {
+    align-self: flex-end;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+@keyframes ai-strategy-frame-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1199.98px) {
+    .ai-strategy-promo__grid {
+        grid-template-columns: minmax(140px, 0.7fr) minmax(0, 1.6fr) minmax(200px, 0.9fr);
+        gap: 18px 14px;
+    }
+    .ai-strategy-promo__logo {
+        width: min(100%, 240px);
+    }
+    .ai-strategy-promo__console {
+        padding: 18px 16px;
+    }
+    .ai-strategy-promo__list li {
+        font-size: 13.5px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .ai-strategy-promo {
+        padding-top: 32px;
+        padding-bottom: 20px;
+    }
+    .ai-strategy-promo__frame {
+        padding: 24px 16px 20px;
+    }
+    .ai-strategy-promo__grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    /* мобилка: бренд → консоль → картинка */
+    .ai-strategy-promo__brand { order: 1; }
+    .ai-strategy-promo__console { order: 2; }
+    .ai-strategy-promo__visual { order: 3; }
+    .ai-strategy-promo__cta {
+        align-self: stretch;
+        justify-content: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ai-strategy-promo__frame {
+        animation: none;
+    }
+    .ai-strategy-promo__media img,
+    .ai-strategy-promo__media img:hover,
+    .box-our-track-2 .ai-strategy-promo__media img:hover {
+        transition: none;
+        transform: none;
+        filter: none;
+    }
+}
+
+/* Промо-блок iGND — full-bleed тёмный фон на всю ширину экрана */
+.ignd-promo {
+    position: relative;
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    margin-top: 0;
+    padding: 28px var(--site-gutter, 15px) 32px;
+    border: none;
+    border-radius: 0;
+    background-color: var(--color-dark, #191919);
+    box-sizing: border-box;
+}
+.ignd-promo__frame {
+    padding: 36px 36px 28px;
+    border: 1px solid rgba(236, 238, 242, 0.18);
+    border-radius: var(--radius-md, 16px);
+    background:
+        radial-gradient(ellipse 50% 55% at 75% 45%, rgba(var(--color-primary-rgb, 197, 255, 65), 0.07), transparent 68%),
+        var(--color-dark, #191919);
+}
+/* Стык с дорожной картой без светлого зазора */
+.box-our-track-2:has(.ignd-promo) + #Road.box-imazing-features {
+    padding-top: 20px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: var(--color-dark, #191919);
+    background-image: none;
+}
+.ignd-promo__shield img {
+    transition: transform 0.35s ease, filter 0.35s ease;
+    border-radius: 0;
+    box-shadow: none;
+}
+.ignd-promo__shield img:hover {
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 18px rgba(var(--color-primary-rgb, 197, 255, 65), 0.35));
+    box-shadow: none;
+}
+/* Не наследовать анимацию box-our-track-2 img:hover (teal offset) */
+.box-our-track-2 .ignd-promo img:hover {
+    transform: scale(1.04);
+    box-shadow: none;
+}
+.ignd-promo__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 36px 28px;
+    align-items: center;
+}
+.ignd-promo__eyebrow {
+    margin: 0 0 10px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+.ignd-promo__title {
+    margin: 0 0 12px;
+    color: #fff;
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 700;
+    line-height: 1.2;
+}
+.ignd-promo__lead {
+    margin: 0 0 12px;
+    color: var(--color-primary, #C5FF41);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+.ignd-promo__text {
+    margin: 0 0 18px;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 14px;
+    line-height: 1.55;
+}
+.ignd-promo__list {
+    list-style: none;
+    margin: 0 0 22px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.ignd-promo__list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 13px;
+    line-height: 1.45;
+}
+.ignd-promo__list li::before {
+    content: "";
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    border-radius: 50%;
+    background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Ccircle cx='8' cy='8' r='7' fill='%233B4725' stroke='%23C5FF41' stroke-width='1.4'/%3E%3Cpath d='M4.8 8.2l2.1 2.1 4.3-4.4' stroke='%23C5FF41' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+        center / contain no-repeat;
+}
+.ignd-promo__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+.ignd-promo__note {
+    margin: 0 0 16px;
+    max-width: 36rem;
+    color: var(--color-text-muted-3);
+    font-size: 12px;
+    line-height: 1.45;
+}
+.ignd-promo__pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+.ignd-promo__visual {
+    position: relative;
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.ignd-promo__shield {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 360px);
+}
+.ignd-promo__shield img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.ignd-promo__tagline {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 18px 0 0;
+    padding: 10px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+}
+.ignd-promo__orbit {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    max-width: 96px;
+    text-align: center;
+}
+.ignd-promo__orbit-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    background: rgba(0, 0, 0, 0.85);
+    color: var(--color-primary, #C5FF41);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.ignd-promo__orbit-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+.ignd-promo__orbit--tl { top: 8%; left: 4%; }
+.ignd-promo__orbit--tr { top: 8%; right: 4%; }
+.ignd-promo__orbit--bl { bottom: 18%; left: 2%; }
+.ignd-promo__orbit--br { bottom: 18%; right: 2%; }
+
+@media (max-width: 991.98px) {
+    .ignd-promo {
+        margin-top: 32px;
+        padding-top: 28px;
+        padding-bottom: 24px;
+    }
+    .ignd-promo__frame {
+        padding: 24px 16px 20px;
+        border-radius: var(--radius-md, 16px);
+    }
+    .box-our-track-2:has(.ignd-promo) + #Road.box-imazing-features {
+        padding-top: 12px;
+    }
+    .ignd-promo__grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+    /* Мобилка: сначала текст, затем картинка */
+    .ignd-promo__content { order: 1; }
+    .ignd-promo__visual { order: 2; min-height: 300px; }
+    .ignd-promo__orbit--tl { top: 0; left: 8%; }
+    .ignd-promo__orbit--tr { top: 0; right: 8%; }
+    .ignd-promo__orbit--bl { bottom: 14%; left: 6%; }
+    .ignd-promo__orbit--br { bottom: 14%; right: 6%; }
+}
+@media (max-width: 575.98px) {
+    .ignd-promo__orbit {
+        max-width: 72px;
+    }
+    .ignd-promo__orbit-icon {
+        width: 40px;
+        height: 40px;
+    }
+    .ignd-promo__orbit-label {
+        font-size: 10px;
+    }
+    .ignd-promo__visual {
+        min-height: 260px;
+    }
+    .ignd-promo__tagline {
+        font-size: 10px;
+        padding: 8px 12px;
     }
 }
 

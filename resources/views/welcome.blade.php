@@ -479,187 +479,292 @@
 
     </div>
 </section>
-{{-- Стратегии, которые работают' --}}
-<section class="section-box wow fadeIn box-our-track-2">
-    <div class="container">
-        {{-- Управление инвестиционной стратегией и прогресс привлечения с НЕКСУС ИИ --}}
-        <div class="row align-items-center">
-            <div class="col-12 col-lg-8 mb-40">
-                <div class="strate-icon"><span></span> {{ __('Стратегии, которые работают и управление инвестиционными рисками') }}</div>
-                <h2 class="heading-2 mb-20">{{ __('Управление инвестиционной стратегией и прогресс привлечения с НЕКСУС ИИ') }}</h2>
-                <p class="text-lg neutral-700">{{__('ИИ платформы помогает выстраивать стратегию, контролировать динамику привлечения капитала и качество портфеля в режиме реального времени') }}</p>
-                <div class="row mt-50">
-                    <div class="col-12">
-                        <div class="card-feature-2">
-                            <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/ai-brain.svg') }}" alt="{{ __('Интеграция ИИ') }}" loading="lazy" decoding="async"></div>
-                            <div class="card-info"><a href="{{ route('nexus-ai') }}"><h3 class="text-22-bold">{{ __('Глубокая интеграция ИИ расширяет базовые возможности') }}</h3></a>
-                                <p class="text-md neutral-800">{{ __('- Автоматизация проектного скоринга с вынесением индекса инвестиционной привлекательности и решения об алгоритме токенизации, прогнозы по капитализации после завершения проекта.') }}</p>
-                                <p class="text-md neutral-800">{{ __('- ИИ анализирует потоки заявок, конверсии и выплаты, подсвечивая сильные и слабые сегменты портфеля.') }}</p>
-                                <p class="text-md neutral-800">{{ __('- Стратегические дашборды показывают план/факт по привлечению, срокам и доходности для разных групп инвесторов и проектов.') }}</p>
-                                <p class="text-md neutral-800">{{ __('- Встроенный риск‑анализ и комплаенс‑фильтры помогают снижать долю проблемных кейсов и спекулятивных историй.') }}</p>
-                                <p class="text-md neutral-800">{{ __('- Гибкие сценарии стратегии позволяют моделировать доходность и ликвидность портфеля на горизонте 3–5 лет.') }}</p>
-                            </div>
-                        </div>
-                    </div>
+{{-- Стратегии / НЕКСУС ИИ + iGND — непрерывная тёмная полоса --}}
+<section class="section-box wow fadeIn box-our-track-2 box-our-track-2--dark-stack">
+    {{-- Управление инвестиционной стратегией и прогресс привлечения с НЕКСУС ИИ --}}
+    <div class="ai-strategy-promo" id="nexus-ai-strategy">
+        <div class="ai-strategy-promo__frame">
+            <div class="ai-strategy-promo__grid">
+                <div class="ai-strategy-promo__brand">
+                    <img
+                        class="ai-strategy-promo__logo"
+                        src="{{ asset('assets/imgs/template/16.svg') }}"
+                        alt="{{ __('НЕКСУС ИИ') }}"
+                        width="300"
+                        height="88"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                    <p class="ai-strategy-promo__lead">{{ __('Аналитика, операторы и управление проектами на основе искусственного интеллекта.') }}</p>
+                    <p class="ai-strategy-promo__sub">{{ __('Управление инвестиционной стратегией и прогресс привлечения') }}</p>
                 </div>
-            </div>
-            <div class="col-12 col-lg-4 mb-40">
-                <div class="box-border-image">
-                    <div class="box-image-line-1">
-                        <div class="wow fadeInDown" data-wow-delay="0"><img src="{{ asset('assets/imgs/page/homepage1/ai-strategy.png') }}" alt="{{ __('НЕКСУС ИИ — интеллектуальный контур платформы') }}" loading="lazy" decoding="async"></div>
+
+                <div class="ai-strategy-promo__console">
+                    <div class="ai-strategy-promo__console-head">
+                        <span class="ai-strategy-promo__console-icon" aria-hidden="true">
+                            <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
+                                <rect x="14" y="14" width="20" height="20" rx="3" stroke="currentColor" stroke-width="1.6"/>
+                                <circle cx="24" cy="24" r="4" stroke="currentColor" stroke-width="1.6"/>
+                                <path d="M24 8v4M24 36v4M8 24h4M36 24h4M12 12l3 3M33 33l3 3M12 36l3-3M33 15l3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                                <path d="M10 22c-4-6-2-12 2-14M38 26c4 6 2 12-2 14M18 40c-7 2-12-2-13-7M30 8c7-2 12 2 13 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                            </svg>
+                        </span>
+                        <p class="ai-strategy-promo__console-label">{{ __('Оператор консоль') }}</p>
                     </div>
+                    <h2 class="ai-strategy-promo__console-title">
+                        <a href="{{ route('nexus-ai') }}">{{ __('Глубокая интеграция ИИ расширяет базовые возможности') }}</a>
+                    </h2>
+                    <ul class="ai-strategy-promo__list">
+                        <li>{{ __('Автоматизация проектного скоринга с вынесением индекса инвестиционной привлекательности и решения об алгоритме токенизации, прогнозы по капитализации после завершения проекта.') }}</li>
+                        <li>{{ __('ИИ анализирует потоки заявок, конверсии и выплаты, подсвечивая сильные и слабые сегменты портфеля.') }}</li>
+                        <li>{{ __('Стратегические дашборды показывают план/факт по привлечению, срокам и доходности для разных групп инвесторов и проектов.') }}</li>
+                        <li>{{ __('Встроенный риск‑анализ и комплаенс‑фильтры помогают снижать долю проблемных кейсов и спекулятивных историй.') }}</li>
+                        <li>{{ __('Гибкие сценарии стратегии позволяют моделировать доходность и ликвидность портфеля на горизонте 3–5 лет.') }}</li>
+                    </ul>
+                </div>
+
+                <div class="ai-strategy-promo__visual">
+                    <div class="ai-strategy-promo__media">
+                        <img
+                            src="{{ asset('assets/imgs/page/homepage1/ai-strategy.png') }}"
+                            alt="{{ __('НЕКСУС ИИ — интеллектуальный контур платформы') }}"
+                            loading="lazy"
+                            decoding="async"
+                            width="440"
+                            height="440"
+                        >
+                    </div>
+                    <a class="btn btn-brand-4 ai-strategy-promo__cta" href="{{ route('nexus-ai') }}">
+                        {{ __('Подробнее') }}
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
                 </div>
             </div>
         </div>
-        {{-- Система смягчения инвестиционных и проектных рисков --}}
-        <div class="row align-items-center">
-            <div class="col-12 col-lg-4 text-center mb-40 order-2 order-lg-1">
-                <div class="box-border-image">
-                    <div class="box-image-line-1">
-                        <div class="wow fadeInDown" data-wow-delay="0"><img src="{{ asset('assets/imgs/page/homepage1/sheld-ignd.png') }}" alt="{{ __('Система смягчения инвестиционных рисков iGND') }}" loading="lazy" decoding="async"></div>
+    </div>
+
+    {{-- Система iGND — full-bleed тёмный фон на всю ширину --}}
+    <div class="ignd-promo">
+        <div class="ignd-promo__frame">
+            <div class="ignd-promo__grid">
+                <div class="ignd-promo__content">
+                    <p class="ignd-promo__eyebrow">{{ __('Система iGND') }}</p>
+                    <h2 class="ignd-promo__title">{{ __('В случае реализации инвестиционных рисков') }}</h2>
+                    <p class="ignd-promo__lead">{{ __('Система смягчения инвестиционных и проектных рисков') }}</p>
+                    <p class="ignd-promo__text">
+                        {{ __('Автоматизированная система смягчения рисков (смарт-контракт платформы, нативный внутренний токен iGND) для инвесторов и инициаторов проектов') }}
+                    </p>
+                    <ul class="ignd-promo__list">
+                        <li>{{ __('Участникам системы смягчения рисков, в случае реализации инвестиционных рисков по отдельным проектам, начисляются дополнительные специализированные внутренние токены системы.') }}</li>
+                        <li>{{ __('Начисление и обращение токенов iGND реализуется через смарт‑контракты блокчейна экосистемы') }}</li>
+                        <li>{{ __('Пулы смягчения рисков на базе iGND аккумулируют ресурсы и позволяют при наступлении риск‑событий частично компенсировать их последствия по выбранным планам участия.') }}</li>
+                        <li>{{ __('Полученные токены предоставляют право на участие в отобранных инвестиционных возможностях на специальных условиях в пределах, установленных документацией платформы.') }}</li>
+                        <li>{{ __('Функционал системы направлен на частичное сглаживание последствий неблагоприятного исхода отдельных проектов') }}</li>
+                    </ul>
+                    <a class="btn btn-brand-4 ignd-promo__cta" href="{{ route('ignd') }}">
+                        {{ __('Подробнее') }}
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                    <p class="ignd-promo__note">
+                        {{ __('не является гарантией сохранения капитала или доходности.') }}
+                        {{ __('не исключает риск потери инвестированных средств.') }}
+                    </p>
+                    <span class="ignd-promo__pill">{{ __('смарт-контракт') }} · {{ __('токен iGND') }}</span>
+                </div>
+
+                <div class="ignd-promo__visual">
+                    <div class="ignd-promo__orbit ignd-promo__orbit--tl">
+                        <span class="ignd-promo__orbit-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                        </span>
+                        <span class="ignd-promo__orbit-label">{{ __('Доверие') }}</span>
                     </div>
+                    <div class="ignd-promo__orbit ignd-promo__orbit--tr">
+                        <span class="ignd-promo__orbit-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3 5 6v5c0 5 3.2 8.4 7 9.8 3.8-1.4 7-4.8 7-9.8V6l-7-3Z" stroke="currentColor" stroke-width="1.6"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        <span class="ignd-promo__orbit-label">{{ __('Защита') }}</span>
+                    </div>
+                    <div class="ignd-promo__orbit ignd-promo__orbit--bl">
+                        <span class="ignd-promo__orbit-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/></svg>
+                        </span>
+                        <span class="ignd-promo__orbit-label">{{ __('Прозрачность') }}</span>
+                    </div>
+                    <div class="ignd-promo__orbit ignd-promo__orbit--br">
+                        <span class="ignd-promo__orbit-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 19V5M4 19h16M8 16V9M12 16v-5M16 16V7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                        </span>
+                        <span class="ignd-promo__orbit-label">{{ __('Стабильность') }}</span>
+                    </div>
+
+                    <div class="ignd-promo__shield">
+                        <img src="{{ asset('assets/imgs/page/homepage1/sheld-ignd.png') }}" alt="{{ __('Система смягчения инвестиционных рисков iGND') }}" loading="lazy" decoding="async" width="420" height="420">
+                    </div>
+                    <p class="ignd-promo__tagline">{{ __('Система смягчения инвестиционных и проектных рисков') }}</p>
                 </div>
             </div>
-
-            <div class="col-12 col-lg-8 mb-40 order-1 order-lg-2">
-                <h2 class="heading-2 mb-20">{{ __('В случае реализации инвестиционных рисков') }}</h2>
-                <p class="text-lg neutral-700">{{__('Система смягчения инвестиционных и проектных рисков') }}</p>
-                <div class="row mt-50">
-                     <div class="col-lg-12">
-                        <div class="card-feature-2 card-feature-2-mobile-text-first">
-                            <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/sheld-risk.svg') }}" alt="{{ __('Система смягчения рисков') }}" loading="lazy" decoding="async"></div>
-                            <div class="card-info"><a href="#"><h3 class="text-22-bold">{{ __('Автоматизированная система смягчения рисков (смарт-контракт платформы, нативный внутренний токен iGND) для инвесторов и инициаторов проектов') }}</h3></a>
-                                <p class="text-md neutral-700">{{ __('Участникам системы смягчения рисков, в случае реализации инвестиционных рисков по отдельным проектам, начисляются дополнительные специализированные внутренние токены системы.') }}</p>
-                                <p class="text-md neutral-700">{{ __('- Начисление и обращение токенов iGND реализуется через смарт‑контракты блокчейна экосистемы и ') }} <span class="neutral-1000">{{ __('не является гарантией сохранения капитала или доходности.') }}</span></p>
-                                <p class="text-md neutral-700">{{__('- Полученные токены предоставляют право на участие в отобранных инвестиционных возможностях на специальных условиях в пределах, установленных документацией платформы.')}}</p>
-                                <p class="text-md neutral-700 mt-3">{{__('Функционал системы направлен на частичное сглаживание последствий неблагоприятного исхода отдельных проектов за счёт участия в последующих раундах и иных проектах, но ')}}<span class="neutral-1000">{{ __('не исключает риск потери инвестированных средств.') }}</span></p>
-                            </div>
-                        </div>
-                         <div class="box-buttons-feature-4">
-                             <a class="btn btn-learmore-2" href="{{ route('ignd') }}"><span>
-                            <x-icons.svg-arrow />
-                        </span>{{ __('Подробнее') }}</a>
-                         </div>
-                    </div>
-                </div>
-
-            </div>
-
         </div>
     </div>
 </section>
 {{-- Дорожная карта платформы --}}
 <section class="section-box wow fadeIn box-imazing-features animated" id="Road">
-    <div class="container">
-        <div class="roadmap-head">
-            <h2 class="roadmap-head__title">{{ __('Дорожная карта платформы') }}</h2>
-            <div class="roadmap-head__progress" aria-label="{{ __('Прогресс реализации MVP НЕКСУС') }}">
-                <span class="roadmap-head__progress-label">{{ __('Прогресс реализации MVP НЕКСУС') }}</span>
-                <div class="roadmap-head__progress-track">
-                    <div class="roadmap-head__progress-fill" style="width: 37%"></div>
+    <div class="roadmap-shell">
+        <div class="roadmap-shell__frame">
+            <div class="roadmap-head">
+                <h2 class="roadmap-head__title">{{ __('Дорожная карта платформы') }}</h2>
+                <div class="roadmap-head__progress" aria-label="{{ __('Прогресс реализации MVP НЕКСУС') }}">
+                    <span class="roadmap-head__progress-label">{{ __('Прогресс реализации MVP НЕКСУС') }}</span>
+                    <div class="roadmap-head__progress-track">
+                        <div class="roadmap-head__progress-fill" style="width: 47%"></div>
+                    </div>
+                    <span class="roadmap-head__progress-value">47%</span>
                 </div>
-                <span class="roadmap-head__progress-value">37%</span>
             </div>
-        </div>
 
-        <div class="roadmap-board">
-            <article class="roadmap-card">
-                <div class="roadmap-card__meta">
-                    <span class="roadmap-card__badge">{{ __('Стадия I') }}</span>
-                    <span class="roadmap-card__version">V1.0.0 · Q4 2026</span>
-                    <span class="roadmap-card__icon" aria-hidden="true">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2.5 20.5 7v10L12 21.5 3.5 17V7L12 2.5Z" stroke="currentColor" stroke-width="1.5"/><path d="M12 12v9.5M12 12 3.5 7M12 12l8.5-5" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </span>
-                </div>
-                <h3 class="roadmap-card__title">{{ __('MVP запуск платформы НЕКСУС и блокчейна ГАНИМЕД') }}</h3>
-                <ul class="roadmap-card__list">
-                    <li>{{ __('Архитектура блокчейна ГАНИМЕД — готова (MVP)') }}</li>
-                    <li>{{ __('Мастер-нода запущена') }}</li>
-                    <li>{{ __('Платформа НЕКСУС — в разработке (70%)') }}</li>
-                    <li>{{ __('Регистрация ОИС НЕКСУС в ЦБ РФ — документы готовятся') }}</li>
-                    <li>{{ __('Обучение НЕКСУС ИИ') }}</li>
-                </ul>
-                <div class="roadmap-card__status">
-                    <div class="roadmap-card__status-row">
-                        <span>{{ __('70% готово') }}</span>
+            <div class="roadmap-board">
+                <article class="roadmap-card">
+                    <div class="roadmap-card__meta">
+                        <span class="roadmap-card__badge">{{ __('Стадия I') }}</span>
+                        <span class="roadmap-card__version">V1.0.0 · Q4 2026</span>
+                        <span class="roadmap-card__icon" aria-hidden="true">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2.5 20.5 7v10L12 21.5 3.5 17V7L12 2.5Z" stroke="currentColor" stroke-width="1.5"/><path d="M12 12v9.5M12 12 3.5 7M12 12l8.5-5" stroke="currentColor" stroke-width="1.5"/></svg>
+                        </span>
                     </div>
-                    <div class="roadmap-card__bar"><span style="width: 70%"></span></div>
-                </div>
-            </article>
-
-            <article class="roadmap-card">
-                <div class="roadmap-card__meta">
-                    <span class="roadmap-card__badge">{{ __('Стадия II') }}</span>
-                    <span class="roadmap-card__version">V2.0.0 · Q2 2027</span>
-                    <span class="roadmap-card__icon" aria-hidden="true">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 20h16M6 20V10l6-5 6 5v10M10 20v-5h4v5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 12h.01M15 12h.01M12 9h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                    </span>
-                </div>
-                <h3 class="roadmap-card__title">{{ __('MVP запуск площадки СФОРДЕКС и регистрация ОИС') }}</h3>
-                <ul class="roadmap-card__list">
-                    <li>{{ __('Статус ОИС получен') }}</li>
-                    <li>{{ __('Площадка СФОРДЕКС интегрирована с ГАНИМЕД и НЕКСУС') }}</li>
-                    <li>{{ __('Торги активны 24/7') }}</li>
-                    <li>{{ __('Расширенный функционал НЕКСУС реализован') }}</li>
-                    <li>{{ __('ГАНИМЕД прошел лицензирование и аудит') }}</li>
-                </ul>
-                <div class="roadmap-card__status">
-                    <div class="roadmap-card__status-row">
-                        <span>{{ __('В разработке') }}</span>
+                    <h3 class="roadmap-card__title">{{ __('MVP запуск платформы НЕКСУС и блокчейна ГАНИМЕД') }}</h3>
+                    <ul class="roadmap-card__list">
+                        <li>{{ __('Архитектура блокчейна ГАНИМЕД — готова (MVP)') }}</li>
+                        <li>{{ __('Мастер-нода запущена') }}</li>
+                        <li>{{ __('Платформа НЕКСУС — в разработке (70%)') }}</li>
+                        <li>{{ __('Регистрация ОИС НЕКСУС в ЦБ РФ — документы готовятся') }}</li>
+                        <li>{{ __('Обучение НЕКСУС ИИ') }}</li>
+                    </ul>
+                    <div class="roadmap-card__status">
+                        <div class="roadmap-card__status-row">
+                            <span>{{ __('70% готово') }}</span>
+                        </div>
+                        <div class="roadmap-card__bar"><span style="width: 70%"></span></div>
                     </div>
-                    <div class="roadmap-card__bar"><span style="width: 28%"></span></div>
-                </div>
-            </article>
+                </article>
 
-            <article class="roadmap-card">
-                <div class="roadmap-card__meta">
-                    <span class="roadmap-card__badge">{{ __('Стадия III') }}</span>
-                    <span class="roadmap-card__version">V3.0.0 · Q1 2028</span>
-                    <span class="roadmap-card__icon" aria-hidden="true">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.2" stroke="currentColor" stroke-width="1.5"/><circle cx="5" cy="7" r="1.8" stroke="currentColor" stroke-width="1.5"/><circle cx="19" cy="7" r="1.8" stroke="currentColor" stroke-width="1.5"/><circle cx="5" cy="17" r="1.8" stroke="currentColor" stroke-width="1.5"/><circle cx="19" cy="17" r="1.8" stroke="currentColor" stroke-width="1.5"/><path d="M6.6 8.2 10.2 10.8M13.8 10.8l3.6-2.6M6.6 15.8l3.6-2.6M13.8 13.2l3.6 2.6" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </span>
-                </div>
-                <h3 class="roadmap-card__title">{{ __('MVP запуск ЦИФРОВОГО ДЕПОЗИТАРИЯ И РЕГИСТРАЦИЯ ДЕПОЗИТАРНОЙ ЛИЦЕНЗИИ') }}</h3>
-                <ul class="roadmap-card__list">
-                    <li>{{ __('Юридическое лицо депозитария создано и включено в периметр экосистемы НЕКСУС') }}</li>
-                    <li>{{ __('Требования ЦБ РФ по 39‑ФЗ и 259‑ФЗ выполнены') }}</li>
-                    <li>{{ __('MVP‑функционал: открытие счетов депо, учет прав, корпоративные действия, отчётность и API запущены') }}</li>
-                    <li>{{ __('Расчётно‑клиринговая инфраструктура') }}</li>
-                    <li>{{ __('ИБ‑аудит и стресс‑тесты, подтвержден уровень отказоустойчивости и соответствие требованиям по защите информации проведены') }}</li>
-                </ul>
-                <div class="roadmap-card__status">
-                    <div class="roadmap-card__status-row">
-                        <span>{{ __('Запланировано') }}</span>
+                <article class="roadmap-card">
+                    <div class="roadmap-card__meta">
+                        <span class="roadmap-card__badge">{{ __('Стадия II') }}</span>
+                        <span class="roadmap-card__version">V2.0.0 · Q2 2027</span>
+                        <span class="roadmap-card__icon" aria-hidden="true">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 20h16M6 20V10l6-5 6 5v10M10 20v-5h4v5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 12h.01M15 12h.01M12 9h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                        </span>
                     </div>
-                    <div class="roadmap-card__bar"><span style="width: 8%"></span></div>
-                </div>
-            </article>
-
-            <article class="roadmap-card">
-                <div class="roadmap-card__meta">
-                    <span class="roadmap-card__badge">{{ __('Стадия IV') }}</span>
-                    <span class="roadmap-card__version">V4.0.0 · 2028+</span>
-                    <span class="roadmap-card__icon" aria-hidden="true">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M3 5h2l2.2 9.2a2 2 0 0 0 2 1.5h7.6a2 2 0 0 0 2-1.6L20 8H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="19" r="1.5" stroke="currentColor" stroke-width="1.5"/><circle cx="17" cy="19" r="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </span>
-                </div>
-                <h3 class="roadmap-card__title">{{ __('Маркетплейс, ЦИФРОВОЙ БАНКОВСКИЙ КОНТУР + IPO') }}</h3>
-                <ul class="roadmap-card__list">
-                    <li>{{ __('Маркетплейс интегрирован с экосистемой: данные по проектам, статусам и лимитам подтягиваются автоматически') }}</li>
-                    <li>{{ __('Реализована связка покупок на маркетплейсе с инвестиционными метриками проектов (выручка, LTV, выполнение KPI)') }}</li>
-                    <li>{{ __('Платформа интегрирована с банком-оператором') }}</li>
-                    <li>{{ __('Запуск маркетплейса') }}</li>
-                    <li>{{ __('Запуск цифрового банковского контура') }}</li>
-                    <li>{{ __('Подготовка к IPO НЕКСУС') }}</li>
-
-                </ul>
-                <div class="roadmap-card__status">
-                    <div class="roadmap-card__status-row">
-                        <span>{{ __('Запланировано') }}</span>
+                    <h3 class="roadmap-card__title">{{ __('MVP запуск площадки СФОРДЕКС и регистрация ОИС') }}</h3>
+                    <ul class="roadmap-card__list">
+                        <li>{{ __('Статус ОИС получен') }}</li>
+                        <li>{{ __('Площадка СФОРДЕКС интегрирована с ГАНИМЕД и НЕКСУС') }}</li>
+                        <li>{{ __('Торги активны 24/7') }}</li>
+                        <li>{{ __('Расширенный функционал НЕКСУС реализован') }}</li>
+                        <li>{{ __('ГАНИМЕД прошел лицензирование и аудит') }}</li>
+                    </ul>
+                    <div class="roadmap-card__status">
+                        <div class="roadmap-card__status-row">
+                            <span>{{ __('В разработке') }}</span>
+                        </div>
+                        <div class="roadmap-card__bar"><span style="width: 28%"></span></div>
                     </div>
-                    <div class="roadmap-card__bar"><span style="width: 8%"></span></div>
+                </article>
+
+                <article class="roadmap-card">
+                    <div class="roadmap-card__meta">
+                        <span class="roadmap-card__badge">{{ __('Стадия III') }}</span>
+                        <span class="roadmap-card__version">V3.0.0 · Q1 2028</span>
+                        <span class="roadmap-card__icon" aria-hidden="true">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.2" stroke="currentColor" stroke-width="1.5"/><circle cx="5" cy="7" r="1.8" stroke="currentColor" stroke-width="1.5"/><circle cx="19" cy="7" r="1.8" stroke="currentColor" stroke-width="1.5"/><circle cx="5" cy="17" r="1.8" stroke="currentColor" stroke-width="1.5"/><circle cx="19" cy="17" r="1.8" stroke="currentColor" stroke-width="1.5"/><path d="M6.6 8.2 10.2 10.8M13.8 10.8l3.6-2.6M6.6 15.8l3.6-2.6M13.8 13.2l3.6 2.6" stroke="currentColor" stroke-width="1.5"/></svg>
+                        </span>
+                    </div>
+                    <h3 class="roadmap-card__title">{{ __('MVP запуск ЦИФРОВОГО ДЕПОЗИТАРИЯ И РЕГИСТРАЦИЯ ДЕПОЗИТАРНОЙ ЛИЦЕНЗИИ') }}</h3>
+                    <ul class="roadmap-card__list">
+                        <li>{{ __('Юридическое лицо депозитария создано и включено в периметр экосистемы НЕКСУС') }}</li>
+                        <li>{{ __('Требования ЦБ РФ по 39‑ФЗ и 259‑ФЗ выполнены') }}</li>
+                        <li>{{ __('MVP‑функционал: открытие счетов депо, учет прав, корпоративные действия, отчётность и API запущены') }}</li>
+                        <li>{{ __('Расчётно‑клиринговая инфраструктура') }}</li>
+                        <li>{{ __('ИБ‑аудит и стресс‑тесты, подтвержден уровень отказоустойчивости и соответствие требованиям по защите информации проведены') }}</li>
+                    </ul>
+                    <div class="roadmap-card__status">
+                        <div class="roadmap-card__status-row">
+                            <span>{{ __('Запланировано') }}</span>
+                        </div>
+                        <div class="roadmap-card__bar"><span style="width: 8%"></span></div>
+                    </div>
+                </article>
+
+                <article class="roadmap-card">
+                    <div class="roadmap-card__meta">
+                        <span class="roadmap-card__badge">{{ __('Стадия IV') }}</span>
+                        <span class="roadmap-card__version">V4.0.0 · 2028+</span>
+                        <span class="roadmap-card__icon" aria-hidden="true">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M3 5h2l2.2 9.2a2 2 0 0 0 2 1.5h7.6a2 2 0 0 0 2-1.6L20 8H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="19" r="1.5" stroke="currentColor" stroke-width="1.5"/><circle cx="17" cy="19" r="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+                        </span>
+                    </div>
+                    <h3 class="roadmap-card__title">{{ __('Маркетплейс, ЦИФРОВОЙ БАНКОВСКИЙ КОНТУР + IPO') }}</h3>
+                    <ul class="roadmap-card__list">
+                        <li>{{ __('Маркетплейс интегрирован с экосистемой: данные по проектам, статусам и лимитам подтягиваются автоматически') }}</li>
+                        <li>{{ __('Реализована связка покупок на маркетплейсе с инвестиционными метриками проектов (выручка, LTV, другие KPI)') }}</li>
+                        <li>{{ __('Платформа интегрирована с банком-оператором') }}</li>
+                        <li>{{ __('Запуск маркетплейса') }}</li>
+                        <li>{{ __('Запуск цифрового банковского контура') }}</li>
+                        <li>{{ __('Подготовка к IPO НЕКСУС') }}</li>
+                    </ul>
+                    <div class="roadmap-card__status">
+                        <div class="roadmap-card__status-row">
+                            <span>{{ __('Запланировано') }}</span>
+                        </div>
+                        <div class="roadmap-card__bar"><span style="width: 8%"></span></div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="roadmap-foot">
+                <div class="roadmap-foot__metrics">
+                    <div class="roadmap-metric">
+                        <span class="roadmap-metric__icon" aria-hidden="true">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 20V10l8-6 8 6v10H4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 20v-6h4v6" stroke="currentColor" stroke-width="1.6"/></svg>
+                        </span>
+                        <div class="roadmap-metric__text">
+                            <strong>350 {{ __('тыс.+') }}</strong>
+                            <span>{{ __('Проектов') }}</span>
+                        </div>
+                    </div>
+                    <div class="roadmap-metric">
+                        <span class="roadmap-metric__icon" aria-hidden="true">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><circle cx="16" cy="9" r="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.6-3 2.8-4.5 5.5-4.5S14 16 14.5 19M14 14.6c1.7.2 3.3 1.2 4 3.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                        </span>
+                        <div class="roadmap-metric__text">
+                            <strong>7 {{ __('млн.+') }}</strong>
+                            <span>{{ __('Клиентов') }}</span>
+                        </div>
+                    </div>
+                    <div class="roadmap-metric">
+                        <span class="roadmap-metric__icon" aria-hidden="true">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 7h10M7 12h10M7 17h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><rect x="3.5" y="3.5" width="17" height="17" rx="3" stroke="currentColor" stroke-width="1.6"/></svg>
+                        </span>
+                        <div class="roadmap-metric__text">
+                            <strong>700 {{ __('тыс.+') }}</strong>
+                            <span>{{ __('Сделок в год') }}</span>
+                        </div>
+                    </div>
+                    <div class="roadmap-metric">
+                        <span class="roadmap-metric__icon" aria-hidden="true">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M16.5 7.5c0-1.7-2-3-4.5-3s-4.5 1.3-4.5 3 2 3 4.5 3 4.5 1.3 4.5 3-2 3-4.5 3-4.5-1.3-4.5-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                        </span>
+                        <div class="roadmap-metric__text">
+                            <strong>7 {{ __('млрд.₽+') }}</strong>
+                            <span>{{ __('Оборот в год') }}</span>
+                        </div>
+                    </div>
                 </div>
-            </article>
+                <a class="roadmap-foot__cta" href="#forWho">
+                    <span>{{ __('Цель экосистемы к 2031 году') }}</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+            </div>
         </div>
     </div>
 </section>
@@ -836,72 +941,72 @@
 {{-- КОМАНДА --}}
 <section class="section-box wow box-why-trusted-black">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6 mb-30 order-2 order-lg-1">
-                <div class="testimonial-img-animated text-center">
-                    <img src="{{ asset('assets/imgs/page/homepage1/img-testimonial.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async" class="w-75">
-                </div>
-                <ul class="list-checked list-checked--team">
-                    <li>
-                        <span class="d-block fw-semibold neutral-0 mb-5">{{ __('Инженерный контур') }}</span>
-                        <span class="text-sm neutral-500">{{ __('Backend, frontend, mobile, DevOps и QA — собирают клиентский слой цифрового банка, личные кабинеты, API‑шлюз к ОИС НЕКСУС и технологический слой ГАНИМЕД в единую управляемую среду.') }}</span>
-                    </li>
-                    <li>
-                        <span class="d-block fw-semibold neutral-0 mb-5">{{ __('Методологи проектного цикла') }}</span>
-                        <span class="text-sm neutral-500">{{ __('Описывают, как проект проходит путь от заявки инициатора до выпуска ЦФА, размещения, контроля траншей и выплат: структуры финансирования, KPI, ковенанты и регламенты, которые затем становятся правилами ОИС и сценариями в экосистеме.') }}</span>
-                    </li>
-                    <li>
-                        <span class="d-block fw-semibold neutral-0 mb-5">{{ __('Аналитики и риск‑менеджеры') }}</span>
-                        <span class="text-sm neutral-500">{{ __('Следят за концентрацией портфелей, отклонениями plan/fact, просрочками и событиями по выпускам; формируют сигналы для инвесторов в кабинете и для операционного контура ОИС — до того, как риск превращается в регуляторный или репутационный инцидент.') }}</span>
-                    </li>
-                    <li>
-                        <span class="d-block fw-semibold neutral-0 mb-5">{{ __('Специалисты комплаенс и правового блока') }}</span>
-                        <span class="text-sm neutral-500">{{ __('Выстраивают допуск участников и проектов под 259‑ФЗ, 115‑ФЗ и требования Банка России к ОИС: KYC/KYB, раскрытие, договорная модель выпуска, взаимодействие с депозитарным и расчётным контуром — отдельно от маркетингового бренда цифрового банка.') }}</span>
-                    </li>
-                    <li>
-                        <span class="d-block fw-semibold neutral-0 mb-5"><a href="{{ route('nexus-ai') }}" class="neutral-0">{{ __('Операторы скоринга, ML и оптимизации (НЕКСУС ИИ)') }}</a></span>
-                        <span class="text-sm neutral-500">{{ __('Обучают и разрабатывают модели предварительного скоринга проектов, подбора инструментов для инвестора и раннего выявления аномалий, контроль параметров допуска и мониторинг обязательств без подмены юридического решения алгоритмом.') }}</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-lg-6 mb-30 order-1 order-lg-2">
-                <div class="mb-50"><a class="btn btn-brand-4-sm" href="#">{{ __('Руководители команды и проекта') }}</a>
-                    <h3 class="mt-20 neutral-0">{{ __('Команда, которая строит новый стандарт проектного запуска') }}</h3>
-                </div>
-                <div class="testimonials-stack mt-30" id="onwer">
-                    <div class="card-testimonial-3 mb-30 ">
-                        <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/img-review.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
-                        <div class="card-info">
-                            <p class="text-md neutral-500"><i class="fi-rr-quote-right"></i>&nbsp;{{ __('Мы создаём не просто бизнес‑платформу для инвестиций, а новую инфраструктуру рынка, где цифровые инструменты становятся понятным, прозрачным и эффективно работающим каналом капитала в реальную экономику.') }}"</p>
-                            <div class="card-author-review">
-                                <div class="card-author-info"><span class="author-name">{{__('ЮРИЙ ХЕ')}}</span><span class="author-tag">{{__('Генеральный директор - соучредитель')}}</span></div>
+                <div class="row">
+                    <div class="col-lg-6 mb-30 order-2 order-lg-1">
+                        <div class="testimonial-img-animated text-center">
+                            <img src="{{ asset('assets/imgs/page/homepage1/img-testimonial.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async" class="w-75">
+                        </div>
+                        <ul class="list-checked list-checked--team">
+                            <li>
+                                <span class="d-block fw-semibold neutral-0 mb-5">{{ __('Инженерный контур') }}</span>
+                                <span class="text-sm neutral-500">{{ __('Backend, frontend, mobile, DevOps и QA — собирают клиентский слой цифрового банка, личные кабинеты, API‑шлюз к ОИС НЕКСУС и технологический слой ГАНИМЕД в единую управляемую среду.') }}</span>
+                            </li>
+                            <li>
+                                <span class="d-block fw-semibold neutral-0 mb-5">{{ __('Методологи проектного цикла') }}</span>
+                                <span class="text-sm neutral-500">{{ __('Описывают, как проект проходит путь от заявки инициатора до выпуска ЦФА, размещения, контроля траншей и выплат: структуры финансирования, KPI, ковенанты и регламенты, которые затем становятся правилами ОИС и сценариями в экосистеме.') }}</span>
+                            </li>
+                            <li>
+                                <span class="d-block fw-semibold neutral-0 mb-5">{{ __('Аналитики и риск‑менеджеры') }}</span>
+                                <span class="text-sm neutral-500">{{ __('Следят за концентрацией портфелей, отклонениями plan/fact, просрочками и событиями по выпускам; формируют сигналы для инвесторов в кабинете и для операционного контура ОИС — до того, как риск превращается в регуляторный или репутационный инцидент.') }}</span>
+                            </li>
+                            <li>
+                                <span class="d-block fw-semibold neutral-0 mb-5">{{ __('Специалисты комплаенс и правового блока') }}</span>
+                                <span class="text-sm neutral-500">{{ __('Выстраивают допуск участников и проектов под 259‑ФЗ, 115‑ФЗ и требования Банка России к ОИС: KYC/KYB, раскрытие, договорная модель выпуска, взаимодействие с депозитарным и расчётным контуром — отдельно от маркетингового бренда цифрового банка.') }}</span>
+                            </li>
+                            <li>
+                                <span class="d-block fw-semibold neutral-0 mb-5"><a href="{{ route('nexus-ai') }}" class="neutral-0">{{ __('Операторы скоринга, ML и оптимизации (НЕКСУС ИИ)') }}</a></span>
+                                <span class="text-sm neutral-500">{{ __('Обучают и разрабатывают модели предварительного скоринга проектов, подбора инструментов для инвестора и раннего выявления аномалий, контроль параметров допуска и мониторинг обязательств без подмены юридического решения алгоритмом.') }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 mb-30 order-1 order-lg-2">
+                        <div class="mb-50"><a class="btn btn-brand-4-sm" href="#">{{ __('Руководители команды и проекта') }}</a>
+                            <h3 class="mt-20 neutral-0">{{ __('Команда, которая строит новый стандарт проектного запуска') }}</h3>
+                        </div>
+                        <div class="testimonials-stack mt-30" id="onwer">
+                            <div class="card-testimonial-3 mb-30 ">
+                                <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/img-review.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
+                                <div class="card-info">
+                                    <p class="text-md neutral-500"><i class="fi-rr-quote-right"></i>&nbsp;{{ __('Мы создаём не просто бизнес‑платформу для инвестиций, а новую инфраструктуру рынка, где цифровые инструменты становятся понятным, прозрачным и эффективно работающим каналом капитала в реальную экономику.') }}"</p>
+                                    <div class="card-author-review">
+                                        <div class="card-author-info"><span class="author-name">{{__('ЮРИЙ ХЕ')}}</span><span class="author-tag">{{__('Генеральный директор - соучредитель')}}</span></div>
+                                    </div>
+                                    <div class="card-rate"><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""></div>
+                                </div>
                             </div>
-                            <div class="card-rate"><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""></div>
+                            <div class="card-testimonial-3 mb-30">
+                                <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/img-review-finance.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
+                                <div class="card-info">
+                                    <p class="text-md neutral-500"><i class="fi-rr-quote-right"></i>&nbsp;{{ __('Финансовая архитектура платформы выстроена так, чтобы обеспечивать прозрачную структуру капитала, контролируемую доходность инструментов и устойчивость модели роста на каждом этапе проектного цикла.') }}"</p>
+                                    <div class="card-author-review">
+                                        <div class="card-author-info"><span class="author-name">{{__('АДЫЛ НУРМАНБЕТОВ')}}</span><span class="author-tag">{{__('Финансовый директор - соучредитель')}}</span></div>
+                                    </div>
+                                    <div class="card-rate"><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""></div>
+                                </div>
+                            </div>
+                            <div class="card-testimonial-3">
+                                <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/img-review-k.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
+                                <div class="card-info">
+                                    <p class="text-md neutral-500"><i class="fi-rr-quote-right"></i>&nbsp;{{ __('Я проектирую платформу как целостный механизм, в котором архитектура, код и каждый технический узел связаны в одну логику — превратить сложную финансовую “машину” в управляемую, безопасную и предсказуемую среду роста для проектов и инвесторов.') }}"</p>
+                                    <div class="card-author-review">
+                                        <div class="card-author-info"><span class="author-name">{{__('КИРИЛЛ БОЯРИНОВ')}}</span><span class="author-tag">{{__('Автор, системный архитектор - соучредитель')}}</span></div>
+                                    </div>
+                                    <div class="card-rate"><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-testimonial-3 mb-30">
-                        <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/img-review-finance.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
-                        <div class="card-info">
-                            <p class="text-md neutral-500"><i class="fi-rr-quote-right"></i>&nbsp;{{ __('Финансовая архитектура платформы выстроена так, чтобы обеспечивать прозрачную структуру капитала, контролируемую доходность инструментов и устойчивость модели роста на каждом этапе проектного цикла.') }}"</p>
-                            <div class="card-author-review">
-                                <div class="card-author-info"><span class="author-name">{{__('АДЫЛ НУРМАНБЕТОВ')}}</span><span class="author-tag">{{__('Финансовый директор - соучредитель')}}</span></div>
-                            </div>
-                            <div class="card-rate"><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="card-testimonial-3">
-                        <div class="card-image"><img src="{{ asset('assets/imgs/page/homepage1/img-review-k.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
-                        <div class="card-info">
-                            <p class="text-md neutral-500"><i class="fi-rr-quote-right"></i>&nbsp;{{ __('Я проектирую платформу как целостный механизм, в котором архитектура, код и каждый технический узел связаны в одну логику — превратить сложную финансовую “машину” в управляемую, безопасную и предсказуемую среду роста для проектов и инвесторов.') }}"</p>
-                            <div class="card-author-review">
-                                <div class="card-author-info"><span class="author-name">{{__('КИРИЛЛ БОЯРИНОВ')}}</span><span class="author-tag">{{__('Автор, системный архитектор - соучредитель')}}</span></div>
-                            </div>
-                            <div class="card-rate"><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""><img src="{{ asset('assets/imgs/page/homepage1/star.svg') }}" alt=""></div>
-                        </div>
-                    </div>
                 </div>
-            </div>
-        </div>
     </div>
 </section>
 

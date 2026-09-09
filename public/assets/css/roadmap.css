@@ -11,19 +11,39 @@
   }
 }
 
+/* Full-bleed тёмный фон + рамка той же ширины, что у iGND */
+#Road.box-imazing-features {
+  padding: 20px 0 28px;
+  background-color: var(--color-dark, #191919);
+  background-image: none;
+}
+#Road .roadmap-shell {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 20px var(--site-gutter, 15px) 12px;
+  box-sizing: border-box;
+}
+#Road .roadmap-shell__frame {
+  padding: 36px 36px 28px;
+  border: 1px solid rgba(236, 238, 242, 0.18);
+  border-radius: var(--radius-md, 16px);
+  background: var(--color-dark, #191919);
+}
+
 /* ——— Шапка секции ——— */
 #Road .roadmap-head {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 20px 32px;
-  margin-bottom: 36px;
+  gap: 18px 28px;
+  margin-bottom: 28px;
 }
 #Road .roadmap-head__title {
   margin: 0;
   color: #fff;
-  font-size: clamp(28px, 3.2vw, 40px);
+  font-size: clamp(26px, 3vw, 36px);
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: 0.02em;
@@ -33,9 +53,9 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  min-width: min(100%, 340px);
-  flex: 1 1 280px;
-  max-width: 420px;
+  min-width: min(100%, 360px);
+  flex: 1 1 300px;
+  max-width: 460px;
 }
 #Road .roadmap-head__progress-label {
   flex-shrink: 0;
@@ -45,11 +65,11 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
   line-height: 1.3;
-  max-width: 140px;
+  max-width: 148px;
 }
 #Road .roadmap-head__progress-track {
   flex: 1 1 auto;
-  height: 6px;
+  height: 5px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.12);
   overflow: hidden;
@@ -70,7 +90,7 @@
 #Road .roadmap-board {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
+  gap: 20px;
   align-items: stretch;
 }
 #Road .roadmap-card {
@@ -79,9 +99,9 @@
   flex-direction: column;
   min-height: 100%;
   padding: 22px 20px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 14px;
-  background: rgba(20, 20, 20, 0.85);
+  background: rgba(12, 12, 12, 0.95);
   animation: roadmap-card-float 2.4s ease-in-out infinite alternate;
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
@@ -97,12 +117,12 @@
   content: "";
   position: absolute;
   top: 50%;
-  right: -14px;
-  width: 12px;
-  height: 12px;
-  margin-top: -6px;
-  border-top: 2px solid #e8c547;
-  border-right: 2px solid #e8c547;
+  right: -16px;
+  width: 10px;
+  height: 10px;
+  margin-top: -5px;
+  border-top: 2px solid var(--color-primary, #C5FF41);
+  border-right: 2px solid var(--color-primary, #C5FF41);
   transform: rotate(45deg);
   z-index: 2;
   pointer-events: none;
@@ -144,7 +164,7 @@
 #Road .roadmap-card__title {
   margin: 0 0 14px;
   color: #fff;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   line-height: 1.25;
   text-transform: uppercase;
@@ -195,7 +215,7 @@
   text-transform: uppercase;
 }
 #Road .roadmap-card__bar {
-  height: 6px;
+  height: 5px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.12);
   overflow: hidden;
@@ -207,20 +227,121 @@
   background: var(--color-primary, #C5FF41);
 }
 
+/* ——— Нижний ряд метрик + CTA ——— */
+#Road .roadmap-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 28px;
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+#Road .roadmap-foot__metrics {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px 36px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+#Road .roadmap-metric {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+#Road .roadmap-metric__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--color-primary-rgb, 197, 255, 65), 0.55);
+  color: var(--color-primary, #C5FF41);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+#Road .roadmap-metric__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+#Road .roadmap-metric__text strong {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+#Road .roadmap-metric__text span {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+#Road .roadmap-foot__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-shrink: 0;
+  padding: 14px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 12px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+#Road .roadmap-foot__cta:hover {
+  border-color: var(--color-primary, #C5FF41);
+  color: var(--color-primary, #C5FF41);
+  background: rgba(var(--color-primary-rgb, 197, 255, 65), 0.06);
+}
+
+@media (max-width: 1399.98px) {
+  #Road .roadmap-foot__metrics {
+    gap: 16px 24px;
+  }
+  #Road .roadmap-metric__text strong {
+    font-size: 18px;
+  }
+}
 @media (max-width: 1199.98px) {
   #Road .roadmap-board {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
+    gap: 18px;
   }
   #Road .roadmap-card:not(:last-child)::after {
     display: none;
+  }
+  #Road .roadmap-foot {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  #Road .roadmap-foot__cta {
+    width: 100%;
+  }
+}
+@media (max-width: 991.98px) {
+  #Road.box-imazing-features {
+    padding: 12px 0 24px;
+  }
+  #Road .roadmap-shell__frame {
+    padding: 24px 16px 20px;
+    border-radius: var(--radius-md, 16px);
   }
 }
 @media (max-width: 767.98px) {
   #Road .roadmap-head {
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 24px;
+    margin-bottom: 22px;
   }
   #Road .roadmap-head__progress {
     width: 100%;
@@ -233,9 +354,22 @@
   #Road .roadmap-card {
     padding: 18px 16px 16px;
   }
-  /* На мобиле: текст сверху, иконка ниже в meta — иконка остаётся справа у заголовка стадии */
+  /* На мобиле: текст сверху, иконка справа у заголовка стадии */
   #Road .roadmap-card__meta {
     padding-right: 40px;
+  }
+  #Road .roadmap-foot__metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 12px;
+  }
+  #Road .roadmap-metric__text strong {
+    font-size: 16px;
+  }
+}
+@media (max-width: 420px) {
+  #Road .roadmap-foot__metrics {
+    grid-template-columns: 1fr;
   }
 }
 

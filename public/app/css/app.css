@@ -4,11 +4,22 @@
  */
 :root {
   --app-color-primary: #C5FF41;
+  --app-color-ink: #0E0E0E;
+  --app-color-charcoal: #191919;
   --app-color-dark: #191919;
   --app-color-surface: #ECEEF2;
+  --app-color-surface-dark: #1E1E1E;
+  --app-color-elevated: #2B2C2D;
+  --app-color-olive: #3B4725;
+  --app-color-teal: #52B8AA;
+  --app-color-mist: #ECEEF2;
   --app-color-white: #ffffff;
   --app-color-danger: #dc3545;
   --app-navbar-height: 100px;
+  --app-radius-sm: 8px;
+  --app-radius-md: 16px;
+  --app-radius-lg: 24px;
+  --app-content-max: 1503px;
 }
 
 html {
@@ -16,7 +27,8 @@ html {
 }
 
 #app-container.theme-dark {
-  --app-color-surface: #212220;
+  --app-color-surface: #1E1E1E;
+  --app-color-dark: #0E0E0E;
 }
 
 /* Выпадающий список автодополнения поиска справочников (не bg-white в тёмной теме) */
@@ -64,6 +76,7 @@ html {
   position: relative;
   isolation: isolate;
   overflow-x: hidden;
+  font-family: "Manrope", system-ui, sans-serif;
 }
 
 #app-container main {
@@ -72,7 +85,9 @@ html {
 #app-container main .container-fluid {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  max-width: 100%;
+  max-width: var(--app-content-max, 1503px);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #app-container .navbar .dropdown-menu,

@@ -35,10 +35,10 @@
         body.modal-open { padding-right: 0 !important; }
         body { overflow-x: clip; max-width: 100vw; }
         .main { max-width: 100%; overflow-x: clip; }
-        /* Manrope для русской локали: без перечисления каждого тега */
-        html[lang="ru"] body,
-        html[lang="ru"] .main-menu,
-        html[lang="ru"] .font-heading {
+        /* Manrope — шрифт кита NEXUS DS (кириллица) */
+        body,
+        .main-menu,
+        .font-heading {
             font-family: "Manrope", "Urbanist", system-ui, sans-serif !important;
         }
     </style>
