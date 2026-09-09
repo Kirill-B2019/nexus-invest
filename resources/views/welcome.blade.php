@@ -147,7 +147,7 @@
                                         <img src="{{ asset('assets/imgs/page/homepage1/hero-bank.png') }}" alt="{{ __('НЕКСУС ЦИФРОВОЙ БАНК') }}" loading="lazy" decoding="async" width="220" height="140">
                                     </div>
                                     <p class="hero-eco-card__desc">{{ __('Финансовые сервисы для токенизированных активов') }}</p>
-                                    <p class="hero-eco-card__stage">{{ __('Запуск: СТАДИЯ III') }}</p>
+                                    <p class="hero-eco-card__stage">{{ __('Запуск: СТАДИЯ IV') }}</p>
                                 </article>
                                 <article class="hero-eco-card">
                                     <h6 class="hero-eco-card__title">{{ __('СФОРДЭКС') }}</h6>
