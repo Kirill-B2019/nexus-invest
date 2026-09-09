@@ -37,7 +37,7 @@ class GanimedBlockController extends Controller
     /**
      * Запрос block/latest, нормализация для футера.
      *
-     * @return array{ok: bool, block: array{height: int, merkleRoot: string, miner: string, updatedAt: string, isFinalized: bool}|null}
+     * @return array{ok: bool, block: array{height: int, hash: string, merkleRoot: string, miner: string, updatedAt: string, updatedAtUnix: int|null, isFinalized: bool}|null}
      */
     private function fetchBlock(): array
     {
@@ -59,8 +59,9 @@ class GanimedBlockController extends Controller
             }
 
             $updatedAt = $data['UpdatedAt'] ?? $data['Timestamp'] ?? null;
-            $updatedAtFormatted = $updatedAt
-                ? Carbon::parse($updatedAt)->locale('ru')->format('d.m.Y H:i')
+            $updatedAtCarbon = $updatedAt ? Carbon::parse($updatedAt) : null;
+            $updatedAtFormatted = $updatedAtCarbon
+                ? $updatedAtCarbon->locale('ru')->format('d.m.Y H:i')
                 : '';
 
             return [
@@ -71,6 +72,7 @@ class GanimedBlockController extends Controller
                     'merkleRoot' => (string) ($data['MerkleRoot'] ?? ''),
                     'miner' => (string) ($data['Miner'] ?? ''),
                     'updatedAt' => $updatedAtFormatted,
+                    'updatedAtUnix' => $updatedAtCarbon ? $updatedAtCarbon->timestamp : null,
                     'isFinalized' => (bool) ($data['IsFinalized'] ?? false),
                 ],
             ];

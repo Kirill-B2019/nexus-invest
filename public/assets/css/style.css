@@ -10160,7 +10160,12 @@ a.icon-socials:hover {
     width: 88px;
     height: 88px;
     display: block;
-    object-fit: contain;
+    flex-shrink: 0;
+}
+.footer-domestic-software__badge svg {
+    width: 88px;
+    height: 88px;
+    display: block;
 }
 
 .footer-compliance-badges {

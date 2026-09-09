@@ -1,6 +1,6 @@
 /**
  * Статус блокчейна ГАНИМЕД по block/latest (футер публичной части).
- * Запрос к /api/ganimed/block, отображение активен/ошибка и данных последнего блока.
+ * Запрос к /api/ganimed/block, отображение статуса узла и данных последнего блока.
  */
 (function () {
     "use strict";
@@ -12,6 +12,7 @@
     var resultEl = document.getElementById("ganimed-status-result");
     var checkboxEl = document.getElementById("ganimed-status-checkbox");
     var textEl = document.getElementById("ganimed-status-text");
+    var subtitleEl = document.getElementById("ganimed-status-subtitle");
     var refreshBtn = document.getElementById("ganimed-status-refresh");
     var blockDetailsEl = document.getElementById("ganimed-block-details");
     var blockHeightEl = document.getElementById("ganimed-block-height");
@@ -21,11 +22,39 @@
     var blockUpdatedEl = document.getElementById("ganimed-block-updated");
     var blockFinalizedEl = document.getElementById("ganimed-block-finalized");
 
+    function shortHash(value) {
+        if (!value || value === "—") return "—";
+        var s = String(value);
+        if (s.length <= 18) return s;
+        return s.slice(0, 6) + "..." + s.slice(-8);
+    }
+
+    function formatHeight(value) {
+        var n = Number(value);
+        if (!Number.isFinite(n)) return value || "—";
+        return n.toLocaleString("ru-RU");
+    }
+
+    function relativeTime(unixTs, fallback) {
+        if (!unixTs) return fallback || "—";
+        var diffSec = Math.max(0, Math.round(Date.now() / 1000 - Number(unixTs)));
+        if (diffSec < 60) return diffSec + " сек. назад";
+        if (diffSec < 3600) return Math.floor(diffSec / 60) + " мин. назад";
+        if (diffSec < 86400) return Math.floor(diffSec / 3600) + " ч. назад";
+        return fallback || Math.floor(diffSec / 86400) + " дн. назад";
+    }
+
     function renderStatus(ok) {
         loadingEl.classList.add("d-none");
         resultEl.classList.remove("d-none");
         checkboxEl.className = "ganimed-status-checkbox " + (ok ? "ganimed-status-ok" : "ganimed-status-fail");
-        textEl.textContent = ok ? "Активен" : "Ошибка";
+        textEl.textContent = ok ? "Узел доступен" : "Узел недоступен";
+        textEl.classList.toggle("is-fail", !ok);
+        if (subtitleEl) {
+            subtitleEl.textContent = ok
+                ? "Сеть работает в штатном режиме"
+                : "Нет ответа от мастер-ноды";
+        }
     }
 
     function renderBlockDetails(block) {
@@ -34,13 +63,17 @@
             return;
         }
         blockDetailsEl.classList.remove("d-none");
-        if (blockHeightEl) blockHeightEl.textContent = block.height;
-        if (blockHashEl) blockHashEl.textContent = block.hash || "—";
-        if (blockMerkleEl) blockMerkleEl.textContent = block.merkleRoot || "—";
+        if (blockHeightEl) blockHeightEl.textContent = formatHeight(block.height);
+        if (blockHashEl) blockHashEl.textContent = shortHash(block.hash);
+        if (blockMerkleEl) blockMerkleEl.textContent = shortHash(block.merkleRoot);
         if (blockMinerEl) blockMinerEl.textContent = block.miner || "—";
         if (blockUpdatedEl) blockUpdatedEl.textContent = block.updatedAt || "—";
         if (blockFinalizedEl) {
-            blockFinalizedEl.className = "ganimed-status-checkbox " + (block.isFinalized ? "ganimed-status-ok" : "ganimed-status-fail");
+            if (block.isFinalized) {
+                blockFinalizedEl.textContent = relativeTime(block.updatedAtUnix, block.updatedAt || "да");
+            } else {
+                blockFinalizedEl.textContent = "нет";
+            }
         }
     }
 
