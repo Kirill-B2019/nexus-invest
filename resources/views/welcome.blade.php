@@ -428,59 +428,69 @@
                 </div>
             </div>
         </div>
-        <div class="row align-items-lg-start align-items-center">
-            {{-- Как это работает --}}
-
-            <h2 class="mt-15 mb-20">{{ __('Всего 3 простых шага к началу работы в системе') }}</h2>
-            <p class="text-lg neutral-500 mb-55">{{ __('Простой старт и достижение ваших целей.') }}</p>
-            <div class="row block-steps-badges">
-                <div class="col-12 col-lg-4">
-                    <div class="box-border-rounded">
-                        <div class="card-casestudy">
-                            <div class="card-title"><h6><span class="step-badge">1</span>{{ __('Регистрация в системе') }}</h6></div>
-                            <div class="card-desc"><p>{{ __('Быстрая и простая регистрация даёт доступ сразу в индивидуальное рабочее пространство по выбранной цели на платформе (кабинет инициатора, инвестора, эксперта, аудитора, аналитика и т.д.).') }}</p></div>
-                            <div class="card-image"><img class="wow fadeInUp" src="{{ asset('assets/imgs/page/homepage1/img-prepare.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-4">
-                    <div class="box-border-rounded">
-                        <div class="card-casestudy">
-                            <div class="card-title"><h6><span class="step-badge">2</span>{{ __('Исследования и выбор') }}</h6></div>
-                            <div class="card-desc">
-                                <p>{{ __('Начало работы с проектом или формирование инвестиционного портфеля.') }}</p>
-                                <p>{{ __('Совместно с экспертами и нашим ИИ подберем наилучшую стратегию привлечения или предложим наиболее интересные и доходные инструменты.') }}</p>
-                            </div>
-                            <div class="card-image"><img class="wow fadeInUp" src="{{ asset('assets/imgs/page/homepage1/img-prepare2.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-4">
-                    <div class="box-border-rounded">
-                        <div class="card-casestudy">
-                            <div class="card-title"><h6><span class="step-badge">3</span>{{ __('Запуск и доход') }}</h6></div>
-                            <div class="card-desc"><p>{{ __('Запуск проекта или активация выбранных инвестиционных инструментов. Экосистема автоматизирует ключевые процессы, обеспечивая прозрачность, контроль и стабильный поток привлечения или дохода в реальном времени.') }}</p></div>
-                            <div class="card-image"><img class="wow fadeInUp" src="{{ asset('assets/imgs/page/homepage1/img-prepare3.png') }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 text-start">
-
-                    <a class="btn btn-learmore-2" href="{{ url('/about') }}"><span>
-                            <x-icons.svg-arrow />
-                        </span>{{ __('Подробнее') }}</a>
-                    <p class="text-sm neutral-500">{{ __('Функциональность, операционная модель и т.д.') }}</p>
-
-                </div>
-            </div>
-        </div>
 
     </div>
 </section>
-{{-- Стратегии / НЕКСУС ИИ + iGND — непрерывная тёмная полоса --}}
+{{-- 3 шага + НЕКСУС ИИ + iGND — непрерывная тёмная полоса --}}
 <section class="section-box wow fadeIn box-our-track-2 box-our-track-2--dark-stack">
+    {{-- Всего 3 простых шага к началу работы в системе --}}
+    <div class="steps-promo" id="how-it-works">
+        <div class="steps-promo__frame">
+            <div class="steps-promo__grid">
+                <div class="steps-promo__intro">
+                    <h2 class="steps-promo__title">{{ __('Всего 3 простых шага к началу работы в системе') }}</h2>
+                    <p class="steps-promo__lead">{{ __('Простой старт и достижение ваших целей.') }}</p>
+                    <a class="btn btn-brand-4 steps-promo__cta" href="{{ url('/about') }}">
+                        {{ __('Подробнее') }}
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                    <p class="steps-promo__note">{{ __('Функциональность, операционная модель и т.д.') }}</p>
+                </div>
+
+                <article class="steps-promo__step">
+                    <div class="steps-promo__step-top">
+                        <span class="steps-promo__badge" aria-hidden="true">1</span>
+                        <div class="steps-promo__media">
+                            <img src="{{ asset('assets/imgs/page/homepage1/img-prepare.png') }}" alt="{{ __('Регистрация в системе') }}" loading="lazy" decoding="async" width="160" height="160">
+                        </div>
+                    </div>
+                    <h3 class="steps-promo__step-title">{{ __('Регистрация в системе') }}</h3>
+                    <p class="steps-promo__step-text">{{ __('Быстрая и простая регистрация даёт доступ сразу в индивидуальное рабочее пространство по выбранной цели на платформе (кабинет инициатора, инвестора, эксперта, аудитора, аналитика и т.д.).') }}</p>
+                </article>
+
+                <div class="steps-promo__arrow" aria-hidden="true">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+
+                <article class="steps-promo__step">
+                    <div class="steps-promo__step-top">
+                        <span class="steps-promo__badge" aria-hidden="true">2</span>
+                        <div class="steps-promo__media">
+                            <img src="{{ asset('assets/imgs/page/homepage1/img-prepare2.png') }}" alt="{{ __('Исследования и выбор') }}" loading="lazy" decoding="async" width="160" height="160">
+                        </div>
+                    </div>
+                    <h3 class="steps-promo__step-title">{{ __('Исследования и выбор') }}</h3>
+                    <p class="steps-promo__step-text">{{ __('Начало работы с проектом или формирование инвестиционного портфеля. Совместно с экспертами и нашим ИИ подберем наилучшую стратегию привлечения или предложим наиболее интересные и доходные инструменты.') }}</p>
+                </article>
+
+                <div class="steps-promo__arrow" aria-hidden="true">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+
+                <article class="steps-promo__step">
+                    <div class="steps-promo__step-top">
+                        <span class="steps-promo__badge" aria-hidden="true">3</span>
+                        <div class="steps-promo__media">
+                            <img src="{{ asset('assets/imgs/page/homepage1/img-prepare3.png') }}" alt="{{ __('Запуск и доход') }}" loading="lazy" decoding="async" width="160" height="160">
+                        </div>
+                    </div>
+                    <h3 class="steps-promo__step-title">{{ __('Запуск и доход') }}</h3>
+                    <p class="steps-promo__step-text">{{ __('Запуск проекта или активация выбранных инвестиционных инструментов. Экосистема автоматизирует ключевые процессы, обеспечивая прозрачность, контроль и стабильный поток привлечения или дохода в реальном времени.') }}</p>
+                </article>
+            </div>
+        </div>
+    </div>
+
     {{-- Управление инвестиционной стратегией и прогресс привлечения с НЕКСУС ИИ --}}
     <div class="ai-strategy-promo" id="nexus-ai-strategy">
         <div class="ai-strategy-promo__frame">
