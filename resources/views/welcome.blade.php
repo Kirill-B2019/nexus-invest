@@ -262,40 +262,35 @@
 </section>
 
 {{-- ЦЕЛЬ ЭКОСИСТЕМЫ --}}
-<section class="section-box wow fadeIn box-our-track">
-    <div class="container">
-        <div class="row align-items-lg-start align-items-center">
-
-            <div class="col-12 col-lg-4 text-center order-2 order-lg-1">
-                <div class="box-banner-feature-2">
-
-                    <img src="{{ asset('assets/imgs/page/homepage1/hero-goal.png')}}" alt="{{__('СФОРДЭКС')}}" loading="lazy" decoding="async">
-                        <h4 class="neutral-0 mb-15">{{__('Целевые масштабы экосистемы к ')}} <span class="display-3">{{__('2031')}}</span>  {{__(' году')}}</h4>
-                        <p class="text-md neutral-500 text-start">{{__('Экосистема призвана стать стандартом в сфере проектного финансирования и служить базовой платформой для структурирования и обращения проектных активов, объединяя инвесторов и инициаторов в едином цифровом пространстве.')}}</p>
-                        <div class="list-our-works">
-                            <div class="item-work">
-                                <h4 class="brand-4"><span class="count">350</span><span>{{__(' тыс.+')}}</span></h4>
-                                <p class="text-lg neutral-0 text-start">{{__('Проектов')}}<br /><span class="text-sm neutral-200">{{__('Завершенных и активных')}}</span></p>
-
-                            </div>
-                            <div class="item-work">
-                                <h4 class="brand-4"><span class="count">7</span><span>{{__(' млн.+')}}</span></h4>
-                                <p class="text-lg neutral-0 text-start">{{__('Клиентов')}}<br /><span class="text-sm neutral-200">{{__('Зарегистрировано в экосистеме')}}</span></p>
-                            </div>
-                            <div class="item-work">
-                                <h4 class="brand-4"><span class="count">700</span><span>{{__(' тыс.+')}}</span></h4>
-                                <p class="text-lg neutral-0 text-start">{{__('Сделок в год')}}</p>
-                            </div>
-                            <div class="item-work">
-                                <h4 class="brand-4"><span class="count">7</span><span>{{__(' млрд.₽+')}}</span></h4>
-                                <p class="text-lg neutral-0 text-start">{{__('Оборот в год')}} <br /><span class="text-sm neutral-200">{{ __('по всем видам сделок и продуктов.') }}</span></p>
-                            </div>
-
+<section class="section-box wow fadeIn box-our-track-2 box-our-track-2--dark-stack">
+    <div class="ecosystem-goal-promo" id="ecosystem-goal">
+        <div class="ecosystem-goal-promo__frame">
+            <div class="ecosystem-goal-promo__grid">
+                <div class="ecosystem-goal-promo__metrics">
+                    <div class="ecosystem-goal-promo__media" aria-hidden="true">
+                        <img src="{{ asset('assets/imgs/page/homepage1/hero-goal.png') }}" alt="{{__('СФОРДЭКС')}}" loading="lazy" decoding="async" width="220" height="140">
+                    </div>
+                    <h2 class="ecosystem-goal-promo__title">{{__('ЦЕЛЬ ЭКОСИСТЕМЫ К ')}} <span class="display-4">{{__('2031')}}</span> {{__('ГОДУ')}}</h2>
+                    <div class="list-our-works">
+                        <div class="item-work">
+                            <h4 class="brand-4"><span class="count ecosystem-count">350</span><span>{{__(' тыс.+')}}</span></h4>
+                            <p class="text-lg text-white text-start">{{__('ПРОЕКТОВ')}}<br /><span class="text-sm neutral-200">{{__('Завершенных и активных')}}</span></p>
                         </div>
+                        <div class="item-work">
+                            <h4 class="brand-4"><span class="count ecosystem-count">7</span><span>{{__(' млн.+')}}</span></h4>
+                            <p class="text-lg text-white text-start">{{__('КЛИЕНТОВ')}}<br /><span class="text-sm neutral-200">{{__('Зарегистрировано в экосистеме')}}</span></p>
+                        </div>
+                        <div class="item-work">
+                            <h4 class="brand-4"><span class="count ecosystem-count">700</span><span>{{__(' тыс.+')}}</span></h4>
+                            <p class="text-lg text-white text-start">{{__('СДЕЛОК')}}<br /><span class="text-sm neutral-200">{{__('В год')}}</span></p>
+                        </div>
+                        <div class="item-work">
+                            <h4 class="brand-4"><span class="count ecosystem-count">7</span><span>{{__(' млрд.₽+')}}</span></h4>
+                            <p class="text-lg text-white text-start">{{__('ОБОРОТ')}} <br /><span class="text-sm neutral-200">{{ __('В год по всем видам сделок.') }}</span></p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-12 col-lg-8 mb-40 order-1 order-lg-2">
-                <div class="box-padding-left-50">
+                <div class="ecosystem-goal-promo__description">
                     <div class="strate-icon"><span></span>
                         {{ __('НЕКСУС') }}&nbsp;
                         <svg width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -308,131 +303,19 @@
                             <path d="M0 9.5L3 12V10.25H20V8.75H3V7L0 9.5Z" fill="currentColor"/>
                         </svg>
                         &nbsp;{{ __(' СФОРДЕКС') }}</div>
-                    <h2 class="heading-2 mb-20">{{ __('ЦЕЛЬ ЭКОСИСТЕМЫ') }}</h2>
+                    <h2 class="heading-2 mb-20 text-white">{{ __('НЕКСУС — ТЕХНОЛОГИЧЕСКИЙ И ФИНАНСОВЫЙ ПАРТНЁР') }}</h2>
 
-                    <p class="text-lg neutral-700 mb-10">    {{__('Создать единую цифровую инфраструктуру для привлечения капитала в реальные проекты: бизнес, девелопмент, инфраструктуру и государственно-частное партнёрство, а также обеспечить формирование законного, технологичного и ликвидного рынка цифровых активов, доступного для частных и институциональных инвесторов.') }}</p>
-                    <p class="text-lg neutral-700 mb-10">    {{__('Предоставить портфельным инвесторам инструменты цифрового структурирования инвестиций, формирования инвестиционных портфелей и распределения капитала между проектами в соответствии с заданной стратегией, параметрами риска, сроками реализации и целевыми финансовыми показателями.') }}</p>
-                    <p class="text-lg neutral-700 mb-10">    {{__('Обеспечить полный цикл сопровождения проектов от привлечения финансирования и реализации инвестиционной стратегии до постпроектного мониторинга, продвижения и реализации продукции и услуг, созданных в рамках экосистемы, через специализированный цифровой маркетплейс.') }}</p>
-                    <p class="text-lg neutral-700 mb-10">    {{__('Создать систему дополнительного специализированного токенизированного финансирования и независимой верификации экологических, гуманитарных и социальных инициатив с подтверждением целевого использования средств, оказанной помощи и достигнутых результатов.') }}</p>
-                    <h3 class="heading-2 mb-20">{{ __('Для кого:') }}</h3>
-                    <div class="row" id="forWho">
-                        <div class="col-12 col-lg-6">
-                            <div class="card-pricing card-pricing-style-2 card-pricing-style-3 card-for-who">
-                                <div class="card-title mb-3"><h6>{{ __('Инициаторов проектов  (кто привлекает капитал)') }}</h6></div>
-                                <div class="card-lists">
-                                    <ul class="lists-our-features">
-                                        <li class="pb-2"><x-icons.svg-check-circle />
-                                            {{ __('Микро, малый и средний бизнес (МСБ) в РФ, которым нужны инвестиции от 1–500 млн ₽ на развитие или запуск') }}</li>
-                                        <li class="pb-2"><x-icons.svg-check-circle />
-                                            {{ __('Бизнесы с понятным денежным потоком: торговля, услуги, производство, девелопмент, франчайзинг и т.п. (по секторам при регистрации)') }}</li>
-                                        <li class="pb-2"><x-icons.svg-check-circle />
-                                            {{ __('Финансовые и околофинансовые сервисы, которым нужен white‑label модуль выпуска и размещения обязательств (банки, факторинг, МФО, финтех‑стартапы)') }}</li>
-                                        <li class="pb-2"><x-icons.svg-check-circle />
-                                            {{ __('Компании и команды, которые планируют разместить продукты своей проектной деятельности на платформе и сохранить постпроектное сопровождение после запуска' )}}</li>
-
-
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-12 col-lg-6">
-                            <div class="card-pricing card-pricing-style-2 card-pricing-style-3 card-for-who text-sm">
-                                <div class="card-title mb-3"><h6>{{ __('Проектных инвесторов') }}</h6></div>
-                                <div class="card-lists">
-                                    <ul class="lists-our-features">
-                                        <li class="pb-2"><x-icons.svg-check-circle />
-                                            {{ __('Частные инвесторы с чеком от 5–100 тыс. ₽, ищущие доходность 14–25% годовых и выше по структурированным долговым инструментам *') }}</li>
-                                        <li class="pb-2"><x-icons.svg-check-circle />
-                                            {{ __('Квалифицированные и профессиональные инвесторы, фамильные офисы, небольшие фонды, заинтересованные в пулах МСБ‑займов с ИИ‑скорингом)') }}</li>
-                                        <li class="pb-2"><x-icons.svg-check-circle />
-                                            {{ __('Профучастники рынка ценных бумаг, банки и брокеры, интегрирующиеся по API') }}</li>
-                                        <li class="pb-2"><x-icons.svg-check-circle />
-                                            {{ __('B2B‑клиенты SaaS‑части: платформы, которым нужен модуль токенизации/обращения инструментов') }}</li>
-                                    </ul>
-                                    <p class="text-sm smaller neutral-500">{{ __('* Указанный диапазон — целевые показатели по историческим моделям. Фактическая доходность зависит от реализации проектов. Инвестирование сопряжено с риском потери вложенных средств.') }}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="card-pricing card-pricing-style-2 card-pricing-style-3 card-for-who card-for-who-with-image text-sm">
-                                <div class="card-for-who-content">
-                                    <h5 class="mb-3">{{__('Портфельных инвесторов')}}</h5>
-                                    <div class="card-lists">
-                                        <ul class="lists-our-features">
-                                            <li class="pb-2"><x-icons.svg-check-circle />
-                                                {{ __('Частные и институциональные инвесторы, заинтересованные в распределении капитала между несколькими проектами и цифровыми инвестиционными инструментами.') }}</li>
-                                            <li class="pb-2"><x-icons.svg-check-circle />
-                                                {{ __('Семейные офисы, инвестиционные клубы, фонды и профессиональные участники рынка.') }}</li>
-                                            <li class="pb-2"><x-icons.svg-check-circle />
-                                                {{ __('Участники, которым нужны цифровые инструменты распределения капитала, управления рисками и мониторинга портфеля.') }}</li>
-                                            <li class="pb-2"><x-icons.svg-check-circle />
-                                                {{ __('Инвесторы, выбирающие проекты по заданным параметрам: отрасль, доходность, риск, срок, ликвидность и объём вложений.') }}</li>
-                                            <li class="pb-2"><x-icons.svg-check-circle />
-                                                {{ __('Клиенты, заинтересованные в автоматизированном подборе проектов и стратегий с использованием аналитики, скоринга и ИИ‑инструментов платформы.') }}</li>
-                                        </ul>
-                                        <p class="text-sm smaller neutral-500">{{ __('Итоговый состав портфеля и доступные инструменты зависят от статуса инвестора, результатов идентификации и комплаенс‑процедур.') }}</p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="card-pricing card-pricing-style-2 card-pricing-style-3 card-for-who card-for-who-with-image text-sm">
-                                <div class="card-for-who-content">
-                                    <h5 class="mb-3">{{__('Специализированных инвесторов')}}</h5>
-                                    <div class="card-lists">
-                                        <ul class="lists-our-features">
-                                            <li class="pb-2"><x-icons.svg-check-circle />
-                                                {{ __('ESG‑инвесторы, impact‑фонды, благотворительные организации и корпоративные доноры.') }}</li>
-                                            <li class="pb-2"><x-icons.svg-check-circle />
-                                                {{ __('Частные и институциональные участники, заинтересованные в финансировании экологических, гуманитарных и социальных инициатив.') }}</li>
-                                            <li class="pb-2"><x-icons.svg-check-circle />
-                                                {{ __('Организации, которым необходимы специализированные токенизированные инструменты для прозрачного учёта и целевого контроля финансирования.') }}</li>
-                                            <li class="pb-2"><x-icons.svg-check-circle />
-                                                {{ __('Участники, заинтересованные в независимой верификации оказанной помощи, её получателей, объёма и достигнутого эффекта.') }}</li>
-                                            <li class="pb-2"><x-icons.svg-check-circle />
-                                                {{ __('Инвесторы и организации, использующие экологические токены для подтверждения природоохранных мероприятий, восстановления природных объектов и иных измеримых экологических результатов.') }}</li>
-                                        </ul>
-                                        <p class="text-sm smaller neutral-500">{{ __('Порядок выпуска, обращения и погашения специализированных токенов определяется отдельной документацией платформы.') }}</p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="card-pricing card-pricing-style-2 card-pricing-style-3 card-for-who card-for-who-with-image text-sm">
-                                <div class="card-for-who-content">
-                                    <h5 class="mb-3">{{__('А так же...')}}</h5>
-                                    <div class="card-lists">
-                                        <ul class="lists-our-features">
-                                            <li class="pb-2"><x-icons.svg-check-circle />
-                                                {{ __('Экспертов') }}</li>
-                                            <li class="pb-2"><x-icons.svg-check-circle />
-                                                {{ __('Аудиторов') }}</li>
-                                            <li class="pb-2"><x-icons.svg-check-circle />
-                                                {{ __('Финансовых аналитиков') }}</li>
-                                            <li class="pb-2"><x-icons.svg-check-circle />
-                                                {{ __('Инвестконсультантов') }}</li>
-                                            <li class="pb-2"><x-icons.svg-check-circle />
-                                                {{ __('Due diligence специалистов') }}</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="card-for-who-image"><img class="wow fadeInUp" src="{{ asset('assets/imgs/page/homepage1/forwho.png') }}" alt="{{ __('Для кого предназначена платформа НЕКСУС') }}" loading="lazy" decoding="async"></div>
-                            </div>
-                        </div>
-                    </div>
-
-
+                    <p class="text-lg neutral-200 mb-10">    {{__('Создать единую цифровую инфраструктуру для привлечения капитала в реальные проекты: бизнес, девелопмент, инфраструктуру и государственно-частное партнёрство, а также обеспечить формирование законного, технологичного и ликвидного рынка цифровых активов, доступного для частных и институциональных инвесторов.') }}</p>
+                    <p class="text-lg neutral-200 mb-10">    {{__('Предоставить портфельным инвесторам инструменты цифрового структурирования инвестиций, формирования инвестиционных портфелей и распределения капитала между проектами в соответствии с заданной стратегией, параметрами риска, сроками реализации и целевыми финансовыми показателями.') }}</p>
+                    <p class="text-lg neutral-200 mb-10">    {{__('Обеспечить полный цикл сопровождения проектов от привлечения финансирования и реализации инвестиционной стратегии до постпроектного мониторинга, продвижения и реализации продукции и услуг, созданных в рамках экосистемы, через специализированный цифровой маркетплейс.') }}</p>
+                    <p class="text-lg neutral-200 mb-10">    {{__('Создать систему дополнительного специализированного токенизированного финансирования и независимой верификации экологических, гуманитарных и социальных инициатив с подтверждением целевого использования средств, оказанной помощи и достигнутых результатов.') }}</p>
                 </div>
             </div>
         </div>
-
     </div>
 </section>
 {{-- 3 шага + НЕКСУС ИИ + iGND — непрерывная тёмная полоса --}}
-<section class="section-box wow fadeIn box-our-track-2 box-our-track-2--dark-stack">
+<section class="section-box wow fadeIn box-our-track-2 box-our-track-2--dark-stack mt-0">
     {{-- Всего 3 простых шага к началу работы в системе --}}
     <div class="steps-promo" id="how-it-works">
         <div class="steps-promo__frame">

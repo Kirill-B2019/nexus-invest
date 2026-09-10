@@ -112,6 +112,7 @@
 .steps-promo__frame,
 .ai-strategy-promo__frame,
 .ignd-promo__frame,
+.ecosystem-goal-promo__frame,
 #Road .roadmap-shell__frame {
   width: 100%;
   max-width: var(--site-content-max);
@@ -3140,7 +3141,8 @@ body.swal2-height-auto {
 }
 
 /* ????? ?3 ????? */
-.steps-promo {
+.steps-promo,
+.ecosystem-goal-promo {
     position: relative;
     width: 100vw;
     max-width: 100vw;
@@ -3271,6 +3273,115 @@ body.swal2-height-auto {
     align-items: center;
     margin-top: 0;
     animation: steps-promo-arrow-nudge 2.4s ease-in-out infinite;
+}
+
+/* ЦЕЛЬ ЭКОСИСТЕМЫ */
+.ecosystem-goal-promo__frame {
+    padding: 36px 32px 32px;
+    border: 1px solid rgba(236, 238, 242, 0.18);
+    border-radius: var(--radius-md, 16px);
+    background:
+        radial-gradient(ellipse 45% 60% at 70% 40%, rgba(var(--color-primary-rgb, 197, 255, 65), 0.06), transparent 68%),
+        var(--color-dark, #191919);
+    animation: steps-promo-frame-in 0.7s ease both;
+}
+.ecosystem-goal-promo__grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 32px;
+    align-items: start;
+}
+.ecosystem-goal-promo__metrics {
+    position: relative;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 8px 8px 12px;
+    isolation: isolate;
+    overflow: hidden;
+}
+.ecosystem-goal-promo__media {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-sm, 8px);
+    pointer-events: none;
+    opacity: 0.32;
+    transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;
+}
+.ecosystem-goal-promo__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    transition: transform 0.35s ease, filter 0.35s ease;
+}
+.ecosystem-goal-promo__metrics:hover .ecosystem-goal-promo__media,
+.box-our-track-2 .ecosystem-goal-promo__metrics:hover .ecosystem-goal-promo__media {
+    opacity: 0.55;
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 18px rgba(var(--color-primary-rgb, 197, 255, 65), 0.35));
+    pointer-events: auto;
+}
+.ecosystem-goal-promo__metrics:hover .ecosystem-goal-promo__media img,
+.box-our-track-2 .ecosystem-goal-promo__metrics:hover .ecosystem-goal-promo__media img {
+    transform: none;
+    filter: none;
+    box-shadow: none;
+}
+.ecosystem-goal-promo__title {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 12px;
+    color: #fff;
+    font-size: clamp(22px, 2vw, 28px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+.ecosystem-goal-promo__title .display-3 {
+    font-size: clamp(32px, 3vw, 48px);
+    color: var(--color-primary, #C5FF41);
+}
+.ecosystem-goal-promo__description {
+    padding-left: 16px;
+}
+.ecosystem-goal-promo__description .strate-icon {
+    color: #fff;
+    text-shadow: 0 1px 8px rgba(14, 14, 14, 0.8);
+}
+.ecosystem-goal-promo__description .strate-icon svg {
+    color: var(--color-primary, #C5FF41);
+    filter: drop-shadow(0 0 4px rgba(var(--color-primary-rgb, 197, 255, 65), 0.4));
+}
+
+@media (max-width: 991.98px) {
+    .ecosystem-goal-promo {
+        padding-top: 32px;
+        padding-bottom: 16px;
+    }
+    .ecosystem-goal-promo__frame {
+        padding: 24px 16px 20px;
+    }
+    .ecosystem-goal-promo__grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+    .ecosystem-goal-promo__metrics {
+        min-height: 220px;
+        padding-bottom: 24px;
+    }
+    .ecosystem-goal-promo__media {
+        opacity: 0.28;
+    }
+    .ecosystem-goal-promo__description {
+        padding-left: 0;
+    }
 }
 
 @keyframes steps-promo-frame-in {

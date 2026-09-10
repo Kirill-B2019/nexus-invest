@@ -63,10 +63,26 @@
         $(".select-active").select2();
     }
     /*---- CounterUp ----*/
-    if ($(".count").length) {
-        $(".count").counterUp({
+    if ($(".count:not(.ecosystem-count)").length) {
+        $(".count:not(.ecosystem-count)").counterUp({
             delay: 10,
             time: 1000
+        });
+    }
+    /*---- Ecosystem Goal CounterUp ----*/
+    if ($(".ecosystem-count").length) {
+        $(".ecosystem-count").each(function() {
+            var $this = $(this);
+            var finalValue = $this.text();
+            console.log("Ecosystem count final value:", finalValue);
+            $this.text("0");
+            setTimeout(function() {
+                $this.text(finalValue);
+                $this.counterUp({
+                    delay: 10,
+                    time: 2000
+                });
+            }, 500);
         });
     }
     // Isotope active
