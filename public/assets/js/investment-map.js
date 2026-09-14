@@ -132,7 +132,7 @@
             }
         });
     }
-    var cardInner = document.querySelector('.rf-map-filters-card-inner');
+    var cardInner = document.querySelector('.map-promo__toolbar') || document.querySelector('.rf-map-filters-card-inner');
     document.querySelectorAll('.rf-map-dropdown').forEach(function(dropdown) {
         var trigger = dropdown.querySelector('.rf-map-dropdown-trigger');
         var panel = dropdown.querySelector('.rf-map-dropdown-panel');
@@ -156,10 +156,12 @@
         panel.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
             cb.addEventListener('change', function() {
                 updateDropdownTriggerText(trigger, panel);
+                updateSelectedCount();
             });
         });
         updateDropdownTriggerText(trigger, panel);
     });
+    updateSelectedCount();
     if (cardInner) {
         cardInner.addEventListener('scroll', function() {
             document.querySelectorAll('.rf-map-dropdown-trigger[aria-expanded="true"]').forEach(function(t) {
@@ -178,14 +180,22 @@
         closeAllDropdowns();
     });
 
+    function updateSelectedCount() {
+        var el = document.getElementById('map-promo-selected-count');
+        if (!el) return;
+        // Панели дропдаунов при открытии переносятся в body — считаем по name
+        var n = document.querySelectorAll('input[name^="rf-filter-"]:checked').length;
+        el.textContent = n > 0 ? ('Выбрано: ' + n) : '';
+    }
+
     function resetMapFilters() {
         closeAllDropdowns();
-        var card = document.querySelector('.rf-map-filters-card');
+        var card = document.querySelector('.map-promo') || document.querySelector('.rf-map-filters-card');
         if (!card) return;
         card.querySelectorAll('input[type="checkbox"]').forEach(function(cb) { cb.checked = false; });
         card.querySelectorAll('.rf-map-dropdown').forEach(function(dd) {
             var trigger = dd.querySelector('.rf-map-dropdown-trigger');
-            var panel = dd.querySelector('.rf-map-dropdown-panel');
+            var panel = (trigger && trigger._rfMapPanel) || dd.querySelector('.rf-map-dropdown-panel');
             if (trigger && panel) updateDropdownTriggerText(trigger, panel);
         });
         if (container) {
@@ -195,6 +205,7 @@
                 path.classList.remove('rf-map-path-dimmed');
             });
         }
+        updateSelectedCount();
     }
     var btnApply = document.getElementById('rf-map-btn-apply');
     var btnReset = document.getElementById('rf-map-btn-reset');

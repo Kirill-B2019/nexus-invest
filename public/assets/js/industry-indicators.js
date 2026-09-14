@@ -6,7 +6,7 @@
     "use strict";
 
     var widgets = document.querySelectorAll(
-        "[data-endpoint].ind-widget, [data-endpoint].ind-panel, [data-endpoint].ind-trio__item, [data-endpoint].ind-duo__item, [data-endpoint].ind-board__item"
+        "[data-endpoint].ind-widget, [data-endpoint].ind-panel, [data-endpoint].ind-trio__item, [data-endpoint].ind-duo__item, [data-endpoint].ind-board__item, [data-endpoint].ind-stage__panel, [data-endpoint].ind-depth__item"
     );
     if (!widgets.length) return;
 
@@ -19,6 +19,13 @@
 
     var apiBase =
         (apiHost && apiHost.getAttribute("data-api-base")) || "/api/indicators";
+
+    var boardRoot =
+        document.querySelector(".indicators-promo__board") ||
+        document.querySelector(".ind-board");
+    var isPromoBoard = !!(boardRoot && boardRoot.getAttribute("data-indicators-promo") === "1");
+    var sourcesBag = {};
+    var latestUpdatedMs = 0;
 
     function esc(str) {
         return String(str == null ? "" : str)
@@ -75,6 +82,122 @@
                 .filter(Boolean);
             sources.textContent = names.length ? "Источники: " + names.join(", ") + "." : "";
         }
+
+        if (isPromoBoard) {
+            collectBoardMeta(widget.getAttribute("data-endpoint"), data);
+            updatePulseChip(widget.getAttribute("data-endpoint"), data);
+        }
+    }
+
+    function collectBoardMeta(endpoint, data) {
+        if (!boardRoot || !data) return;
+
+        (data.sources || []).forEach(function (s) {
+            if (s && s.name) sourcesBag[s.name] = true;
+        });
+
+        if (data.last_updated_at) {
+            var t = new Date(data.last_updated_at).getTime();
+            if (!isNaN(t) && t > latestUpdatedMs) latestUpdatedMs = t;
+        }
+
+        var boardUpdated = document.querySelector('[data-role="board-updated"]');
+        if (boardUpdated && latestUpdatedMs) {
+            boardUpdated.textContent = "Обновлено: " + formatDate(new Date(latestUpdatedMs).toISOString());
+        }
+
+        var boardSources = boardRoot.querySelector('[data-role="board-sources"]');
+        if (boardSources) {
+            var list = Object.keys(sourcesBag);
+            boardSources.textContent = list.length ? "Источники: " + list.join(", ") + "." : "";
+        }
+    }
+
+    function updatePulseChip(endpoint, data) {
+        if (!endpoint || !data) return;
+        var chip = document.querySelector('.ind-pulse__chip[data-pulse-endpoint="' + endpoint + '"]');
+        if (!chip) return;
+
+        var valueEl = chip.querySelector('[data-role="pulse-value"]');
+        var metaEl = chip.querySelector('[data-role="pulse-meta"]');
+        if (!valueEl || !metaEl) return;
+
+        if (endpoint === "cfa-temperature") {
+            valueEl.textContent = num(data.cfa_temp_index, 0);
+            metaEl.textContent = data.interpretation_label || "";
+            chip.setAttribute("data-tone", data.interpretation || "neutral");
+            return;
+        }
+        if (endpoint === "liquidity-light") {
+            valueEl.textContent = data.interpretation_label || "—";
+            metaEl.textContent =
+                data.liquidity_index != null
+                    ? "Индекс " + num(data.liquidity_index, 0)
+                    : "";
+            chip.setAttribute("data-tone", data.interpretation || "mid");
+            return;
+        }
+        if (endpoint === "rwa-vs-defi") {
+            var quarters = (data.quarters || []).filter(function (q) {
+                return q && /^\d{4}-Q[1-4]$/.test(String(q.quarter || ""));
+            });
+            var last = quarters.length ? quarters[quarters.length - 1] : null;
+            var share = last && last.rwa_deposit_share != null ? last.rwa_deposit_share : null;
+            valueEl.textContent = share != null ? pct(share, 1) : "—";
+            metaEl.textContent = "доля депозитов RWA";
+            var yoy = data.rwa_spot_volume_yoy_pct;
+            chip.setAttribute("data-tone", yoy == null ? "neutral" : yoy >= 0 ? "hot" : "cold");
+        }
+    }
+
+    function activateStage(endpoint) {
+        if (!isPromoBoard || !endpoint) return;
+        var chips = document.querySelectorAll(".ind-pulse__chip[data-pulse-endpoint]");
+        var panels = document.querySelectorAll(".ind-stage__panel[data-endpoint]");
+
+        chips.forEach(function (chip) {
+            var on = chip.getAttribute("data-pulse-endpoint") === endpoint;
+            chip.classList.toggle("is-active", on);
+            chip.setAttribute("aria-selected", on ? "true" : "false");
+            chip.tabIndex = on ? 0 : -1;
+        });
+
+        panels.forEach(function (panel) {
+            var on = panel.getAttribute("data-endpoint") === endpoint;
+            panel.classList.toggle("is-active", on);
+            if (on) {
+                panel.removeAttribute("hidden");
+            } else {
+                panel.setAttribute("hidden", "");
+            }
+        });
+    }
+
+    function bindPulseTabs() {
+        if (!isPromoBoard) return;
+        var chips = Array.prototype.slice.call(
+            document.querySelectorAll(".ind-pulse__chip[data-pulse-endpoint]")
+        );
+        if (!chips.length) return;
+
+        chips.forEach(function (chip) {
+            chip.addEventListener("click", function () {
+                activateStage(chip.getAttribute("data-pulse-endpoint"));
+            });
+            chip.addEventListener("keydown", function (e) {
+                var idx = chips.indexOf(chip);
+                if (idx < 0) return;
+                var next = -1;
+                if (e.key === "ArrowRight" || e.key === "ArrowDown") next = (idx + 1) % chips.length;
+                if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = (idx - 1 + chips.length) % chips.length;
+                if (e.key === "Home") next = 0;
+                if (e.key === "End") next = chips.length - 1;
+                if (next < 0) return;
+                e.preventDefault();
+                chips[next].focus();
+                activateStage(chips[next].getAttribute("data-pulse-endpoint"));
+            });
+        });
     }
 
     function showError(widget, message) {
@@ -848,8 +971,8 @@
 
     function startLoading() {
         // Один пакетный запрос вместо 5 отдельных
-        var boardRoot = document.querySelector(".ind-board");
-        if (boardRoot) {
+        var bundleRoot = boardRoot || document.querySelector(".ind-board");
+        if (bundleRoot) {
             fetch(apiBase + "/board", {
                 headers: {
                     Accept: "application/json",
@@ -888,6 +1011,11 @@
         }
 
         widgets.forEach(loadWidget);
+    }
+
+    bindPulseTabs();
+    if (isPromoBoard) {
+        activateStage("cfa-temperature");
     }
 
     // Ленивый старт: грузим только когда секция близко к viewport

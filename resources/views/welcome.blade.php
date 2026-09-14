@@ -651,6 +651,9 @@
     </div>
 </section>
 
+{{-- Инвестиционные потребности регионов РФ — интерактивная карта --}}
+@include('partials.investment-map-section', ['regionsForMap' => $regionsForMap ?? [], 'mapSvg' => $mapSvg ?? '', 'mapFilterDictionaries' => $mapFilterDictionaries ?? []])
+
 {{-- Новости + FAQ — единая горизонтальная тёмная секция --}}
 @php
     $hasNewsFeed = isset($newsFeedItems) && $newsFeedItems->isNotEmpty();
@@ -830,10 +833,7 @@
     @endpush
 @endif
 
-{{-- Инвестиционные потребности регионов РФ — интерактивная карта --}}
-@include('partials.investment-map-section', ['regionsForMap' => $regionsForMap ?? [], 'mapSvg' => $mapSvg ?? '', 'mapFilterDictionaries' => $mapFilterDictionaries ?? []])
-
-{{-- ОТРАСЛЕВЫЕ ИНДИКАТОРЫ — после блока «Руководители команды» --}}
+{{-- ОТРАСЛЕВЫЕ ИНДИКАТОРЫ --}}
 @include('partials.industry-indicators-board', ['indicatorsBoardId' => 'home-indicators-board'])
 {{-- КОМАНДА — галерея руководителей + полоса контуров --}}
 <section class="section-box wow box-why-trusted-black team-section" id="team">
