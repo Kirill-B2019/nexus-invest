@@ -609,6 +609,35 @@
         });
     });
 
+    $("#slide-features").each(function () {
+        var $el = $(this);
+        var $root = $el.closest(".features-ticker");
+
+        function syncFeaturesTickerMode() {
+            var active = $el.find(".carouselTicker__wrap").length > 0;
+            $el.toggleClass("is-ticker-active", active);
+            $root.toggleClass("features-ticker--centered", !active);
+        }
+
+        $el.carouselTicker({
+            direction: "prev",
+            speed: 1.1,
+            delay: 25,
+            onCarouselTickerLoad: function () {
+                syncFeaturesTickerMode();
+            }
+        });
+
+        syncFeaturesTickerMode();
+
+        $(window).on("resize.featuresTicker", function () {
+            if (typeof $el.resizeTicker === "function") {
+                $el.resizeTicker();
+            }
+            syncFeaturesTickerMode();
+        });
+    });
+
     $("#slide-grow-1").each(function () {
         $(this).carouselTicker({
             direction: "prev",
