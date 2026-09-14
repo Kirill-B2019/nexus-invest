@@ -13,7 +13,7 @@
     $seoKeywords = trim($__env->yieldContent('metaKeywords', $seoDefaultKeywords));
     $seoCanonical = trim($__env->yieldContent('canonical', url()->current()));
     $seoRobots = trim($__env->yieldContent('robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'));
-    $seoOgImageDefault = asset('assets/imgs/page/homepage1/img-review.png');
+    $seoOgImageDefault = asset('assets/imgs/template/og-image.png');
     $seoOgImage = trim($__env->yieldContent('ogImage', $seoOgImageDefault));
     $seoLocale = str_replace('_', '-', app()->getLocale());
 @endphp
