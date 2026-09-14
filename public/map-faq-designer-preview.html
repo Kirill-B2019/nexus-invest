@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ + Investment Map — Designer Edition (Реальный контент welcome)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-0: #0a0a0a;
+            --bg-1: #111215;
+            --bg-2: #15171b;
+            --bg-3: #1a1d22;
+            --line-1: rgba(255, 255, 255, 0.06);
+            --line-2: rgba(255, 255, 255, 0.10);
+            --line-3: rgba(255, 255, 255, 0.16);
+            --text-1: #ffffff;
+            --text-2: rgba(255, 255, 255, 0.72);
+            --text-3: rgba(255, 255, 255, 0.48);
+            --text-4: rgba(255, 255, 255, 0.30);
+            --accent: #C5FF41;
+            --accent-2: #9CE10A;
+            --accent-rgb: 197, 255, 65;
+            --accent-soft: rgba(197, 255, 65, 0.14);
+            --accent-line: rgba(197, 255, 65, 0.55);
+            --rad-pad: 22px;
+            --rad-md: 16px;
+            --rad-sm: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg-0);
+            color: var(--text-1);
+            padding: 48px 40px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page-wrap { max-width: 1520px; margin: 0 auto; }
+
+        .section-label-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .section-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+        .section-eyebrow::before {
+            content: "";
+            display: inline-block;
+            width: 28px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+        }
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-2);
+            background: var(--bg-2);
+            border: 1px solid var(--line-2);
+            border-radius: 999px;
+        }
+        .section-tag .dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        .combo-frame {
+            position: relative;
+            border-radius: calc(var(--rad-pad) + 4px);
+            padding: 1px;
+            background:
+                linear-gradient(135deg, rgba(var(--accent-rgb), 0.38) 0%, transparent 25%, transparent 75%, rgba(var(--accent-rgb), 0.22) 100%),
+                linear-gradient(var(--line-2), var(--line-2));
+            box-shadow: 0 30px 80px -30px rgba(0,0,0,0.85), 0 0 0 1px rgba(0,0,0,0.4);
+        }
+        .combo-frame::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background:
+                radial-gradient(800px 380px at 10% -10%, rgba(var(--accent-rgb), 0.10), transparent 60%),
+                radial-gradient(600px 360px at 110% 110%, rgba(var(--accent-rgb), 0.07), transparent 55%);
+            pointer-events: none;
+        }
+
+        .combo-inner {
+            position: relative;
+            border-radius: var(--rad-pad);
+            background: linear-gradient(180deg, #14161a 0%, #101216 100%);
+            overflow: hidden;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 460px 1fr;
+            min-height: 760px;
+        }
+
+        /* ---------------------- FAQ COLUMN ---------------------- */
+        .faq-col {
+            position: relative;
+            padding: 40px 36px 40px 40px;
+            border-right: 1px solid var(--line-1);
+            background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0));
+        }
+        .faq-col::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--accent) 0%, rgba(var(--accent-rgb), 0.15) 100%);
+            border-radius: 0 2px 2px 0;
+        }
+        .faq-col::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--line-1) 1px, transparent 1px),
+                linear-gradient(90deg, var(--line-1) 1px, transparent 1px);
+            background-size: 32px 32px;
+            mask-image: linear-gradient(180deg, rgba(0,0,0,0.22), transparent 72%);
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .faq-head {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 24px;
+        }
+        .faq-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: var(--accent-soft);
+            border: 1px solid var(--accent-line);
+            border-radius: 999px;
+            margin-bottom: 16px;
+        }
+        .faq-eyebrow svg { width: 13px; height: 13px; }
+
+        .faq-title {
+            font-size: 30px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.015em;
+            margin-bottom: 10px;
+            background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.82) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .faq-sub {
+            font-size: 13px;
+            line-height: 1.55;
+            color: var(--text-3);
+        }
+        .faq-sub b { color: var(--text-1); font-weight: 600; }
+        .faq-sub a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .faq-counter-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 14px;
+            margin: 18px 0 16px;
+            border-radius: var(--rad-sm);
+            background: rgba(255,255,255,0.025);
+            border: 1px solid var(--line-2);
+        }
+        .faq-counter {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            color: var(--text-3);
+        }
+        .faq-counter .num {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--accent);
+            font-variant-numeric: tabular-nums;
+        }
+        .faq-counter .sep {
+            width: 1px; height: 18px; background: var(--line-2);
+        }
+
+        .faq-list {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .faq-item {
+            position: relative;
+            border-radius: var(--rad-md);
+            background: rgba(255,255,255,0.022);
+            border: 1px solid var(--line-2);
+            overflow: hidden;
+            transition: border-color .22s, background .22s;
+        }
+        .faq-item::before {
+            content: "";
+            position: absolute;
+            top: 0; bottom: 0; left: 0;
+            width: 0;
+            background: linear-gradient(180deg, var(--accent), var(--accent-2));
+            transition: width .24s ease;
+        }
+        .faq-item.open {
+            background: rgba(var(--accent-rgb), 0.05);
+            border-color: rgba(var(--accent-rgb), 0.35);
+        }
+        .faq-item.open::before { width: 3px; }
+
+        .faq-q {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 15px 13px 13px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .faq-num {
+            width: 26px; height: 26px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10.5px;
+            font-weight: 800;
+            color: var(--text-3);
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--line-2);
+            border-radius: 7px;
+            font-variant-numeric: tabular-nums;
+            transition: all .22s;
+            flex-shrink: 0;
+        }
+        .faq-item.open .faq-num {
+            color: #0b1300;
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.18);
+        }
+        .faq-q-text {
+            font-size: 13.5px;
+            font-weight: 600;
+            line-height: 1.35;
+            color: var(--text-1);
+        }
+        .chev {
+            width: 26px; height: 26px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 7px;
+            background: rgba(255,255,255,0.035);
+            border: 1px solid var(--line-2);
+            color: var(--text-3);
+            flex-shrink: 0;
+            transition: all .22s;
+        }
+        .chev svg { width: 13px; height: 13px; transition: transform .22s; }
+        .faq-item.open .chev {
+            color: #0b1300;
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+        .faq-item.open .chev svg { transform: rotate(180deg); }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .32s ease;
+            padding: 0 16px 0 52px;
+        }
+        .faq-item.open .faq-a {
+            max-height: 500px;
+            padding: 0 16px 16px 52px;
+        }
+        .faq-a-inner {
+            padding-top: 2px;
+            padding-bottom: 4px;
+            border-top: 1px dashed var(--line-2);
+            padding-top: 12px;
+            margin-top: -2px;
+        }
+        .faq-a-text {
+            font-size: 12.5px;
+            line-height: 1.6;
+            color: var(--text-2);
+        }
+        .faq-a-text + .faq-a-text { margin-top: 8px; }
+        .faq-a-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 10px;
+        }
+        .faq-a-meta .chip {
+            font-size: 10.5px;
+            padding: 3.5px 9px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--line-2);
+            color: var(--text-3);
+            font-weight: 600;
+        }
+        .faq-a-meta .chip.acc {
+            color: var(--accent);
+            background: rgba(var(--accent-rgb), 0.08);
+            border-color: rgba(var(--accent-rgb), 0.3);
+        }
+
+        .faq-foot {
+            position: relative;
+            z-index: 1;
+            margin-top: 22px;
+            padding: 14px 16px;
+            border-radius: var(--rad-md);
+            background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.10), rgba(var(--accent-rgb), 0.02));
+            border: 1px solid rgba(var(--accent-rgb), 0.22);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 12px;
+            align-items: center;
+        }
+        .faq-foot-icon {
+            width: 40px; height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: var(--accent);
+            color: #0b1300;
+            flex-shrink: 0;
+        }
+        .faq-foot-icon svg { width: 20px; height: 20px; }
+        .faq-foot-title { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+        .faq-foot-sub { font-size: 11.5px; color: var(--text-3); line-height: 1.45; }
+        .faq-foot-sub b { color: var(--text-2); font-weight: 600; }
+
+        /* ---------------------- MAP COLUMN ---------------------- */
+        .map-col {
+            position: relative;
+            padding: 40px 40px 36px;
+            display: flex;
+            flex-direction: column;
+        }
+        .map-col::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 1px 1px, rgba(255,255,255,0.045) 1px, transparent 0);
+            background-size: 22px 22px;
+            mask-image: radial-gradient(closest-side at 60% 50%, #000 40%, transparent 92%);
+            pointer-events: none;
+        }
+
+        .map-head {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 22px;
+        }
+        .map-head-left { max-width: 600px; }
+        .map-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: var(--text-3);
+            margin-bottom: 12px;
+        }
+        .map-eyebrow svg { width: 14px; height: 14px; color: var(--accent); }
+
+        .map-title {
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.015em;
+            margin-bottom: 8px;
+        }
+        .map-title span { color: var(--accent); }
+        .map-sub {
+            font-size: 13.5px;
+            line-height: 1.5;
+            color: var(--text-3);
+            max-width: 560px;
+        }
+        .map-sub b { color: var(--text-2); font-weight: 600; }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-rows: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            flex-shrink: 0;
+            width: 300px;
+        }
+        .stat-card {
+            position: relative;
+            padding: 12px 14px;
+            border-radius: var(--rad-md);
+            background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+            border: 1px solid var(--line-2);
+            overflow: hidden;
+        }
+        .stat-card::after {
+            content: "";
+            position: absolute;
+            top: -40%; right: -30%;
+            width: 100px; height: 100px;
+            background: radial-gradient(circle, rgba(var(--accent-rgb), 0.22), transparent 65%);
+            filter: blur(2px);
+            pointer-events: none;
+        }
+        .stat-card.highlight {
+            border-color: rgba(var(--accent-rgb), 0.3);
+            background:
+                linear-gradient(180deg, rgba(var(--accent-rgb), 0.10), rgba(var(--accent-rgb), 0.02)),
+                linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+        }
+        .stat-label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 9.5px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-4);
+            margin-bottom: 5px;
+        }
+        .stat-label svg { width: 11px; height: 11px; }
+        .stat-card.highlight .stat-label { color: var(--accent); }
+        .stat-value {
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+        .stat-card.highlight .stat-value {
+            background: linear-gradient(180deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .stat-foot {
+            margin-top: 4px;
+            font-size: 10.5px;
+            color: var(--text-4);
+        }
+        .stat-foot b { color: var(--text-2); }
+
+        /* Filters */
+        .filters-wrap {
+            position: relative;
+            z-index: 1;
+            padding: 13px;
+            border-radius: var(--rad-md);
+            background: rgba(255,255,255,0.025);
+            border: 1px solid var(--line-2);
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .fld { display: flex; flex-direction: column; gap: 5px; }
+        .fld-label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-4);
+        }
+        .fld-label svg { width: 11px; height: 11px; color: var(--accent); opacity: 0.85; }
+        .pill-select { position: relative; }
+        .pill-select select {
+            width: 100%;
+            appearance: none;
+            -webkit-appearance: none;
+            padding: 9px 32px 9px 34px;
+            border-radius: var(--rad-sm);
+            background: var(--bg-3);
+            border: 1px solid var(--line-2);
+            color: var(--text-1);
+            font-size: 12.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s;
+        }
+        .pill-select select:hover { border-color: var(--line-3); }
+        .pill-select select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.18);
+        }
+        .pill-select::before {
+            content: "";
+            position: absolute;
+            left: 11px; top: 50%;
+            transform: translateY(-50%);
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.18);
+        }
+        .pill-select::after {
+            content: "";
+            position: absolute;
+            right: 11px; top: 50%;
+            transform: translateY(-50%);
+            width: 9px; height: 9px;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff60'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-size: contain;
+            pointer-events: none;
+        }
+
+        /* Map area */
+        .map-area {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            min-height: 370px;
+            border-radius: var(--rad-md);
+            background:
+                radial-gradient(600px 280px at 50% 30%, rgba(var(--accent-rgb), 0.05), transparent 65%),
+                linear-gradient(180deg, #14171c 0%, #101217 100%);
+            border: 1px solid var(--line-2);
+            overflow: hidden;
+            padding: 18px 22px 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .russia-svg-wrap {
+            position: relative;
+            flex: 1;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rf-svg {
+            width: 100%;
+            max-width: 760px;
+            height: auto;
+            max-height: 320px;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.35); opacity: 0.6; }
+        }
+        .pulse-ring {
+            transform-origin: center;
+            transform-box: fill-box;
+            animation: pulseDot 2.4s ease-in-out infinite;
+        }
+        .pulse-ring.d1 { animation-delay: 0.4s; }
+        .pulse-ring.d2 { animation-delay: 0.8s; }
+        .pulse-ring.d3 { animation-delay: 1.2s; }
+        .pulse-ring.d4 { animation-delay: 1.6s; }
+
+        .map-floating-card {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 210px;
+            padding: 12px 14px;
+            border-radius: var(--rad-sm);
+            background: rgba(20, 22, 26, 0.86);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--line-2);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px -8px rgba(0,0,0,0.6);
+        }
+        .mfc-title {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .mfc-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px dashed var(--line-1);
+            font-size: 11.5px;
+        }
+        .mfc-item:last-child { border-bottom: none; }
+        .mfc-item .k { color: var(--text-3); }
+        .mfc-item .v {
+            font-weight: 700;
+            color: var(--text-1);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .map-legend {
+            position: relative;
+            z-index: 1;
+            margin-top: 12px;
+            padding: 12px 16px;
+            border-radius: var(--rad-md);
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--line-2);
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 20px;
+        }
+        .legend-items {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+        .legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 12px;
+            color: var(--text-2);
+        }
+        .legend-dot {
+            width: 11px; height: 11px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .legend-dot.active {
+            background: var(--accent);
+            box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.8);
+        }
+        .legend-dot.planned {
+            background: transparent;
+            border: 1.5px solid var(--text-3);
+        }
+        .legend-dot.pending {
+            background: var(--text-4);
+        }
+        .legend-count {
+            margin-left: 2px;
+            font-weight: 700;
+            color: var(--text-1);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .legend-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .legend-bar-track {
+            flex: 1;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--bg-3);
+            overflow: hidden;
+            display: flex;
+        }
+        .legend-bar-seg { height: 100%; }
+        .legend-bar-seg.s1 { background: var(--accent); }
+        .legend-bar-seg.s2 { background: var(--text-3); }
+        .legend-bar-seg.s3 { background: var(--text-4); }
+        .legend-bar-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-2);
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .legend-cta {
+            justify-self: end;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 13px;
+            font-size: 11.5px;
+            font-weight: 700;
+            color: #0b1300;
+            background: var(--accent);
+            border-radius: var(--rad-sm);
+            text-decoration: none;
+            transition: all .2s;
+            box-shadow: 0 4px 14px -6px rgba(var(--accent-rgb), 0.6);
+        }
+        .legend-cta:hover {
+            background: #D6FF66;
+            transform: translateY(-1px);
+        }
+        .legend-cta svg { width: 13px; height: 13px; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .fade-up { animation: fadeUp .6s ease both; }
+        .fade-up.d1 { animation-delay: .05s; }
+        .fade-up.d2 { animation-delay: .1s; }
+        .fade-up.d3 { animation-delay: .15s; }
+        .fade-up.d4 { animation-delay: .2s; }
+        .fade-up.d5 { animation-delay: .25s; }
+        .fade-up.d6 { animation-delay: .3s; }
+    </style>
+</head>
+<body>
+    <div class="page-wrap">
+
+        <div class="section-label-row fade-up">
+            <div class="section-eyebrow">Раздел 06 · Интерактивная аналитика · Цель к 2031</div>
+            <div class="section-tag"><span class="dot"></span> Live · Обновлено только что</div>
+        </div>
+
+        <div class="combo-frame fade-up d1">
+            <div class="combo-inner">
+                <div class="grid-2col">
+
+                    <!-- ========================= FAQ 1/3 ========================= -->
+                    <aside class="faq-col">
+
+                        <div class="faq-head">
+                            <div class="faq-eyebrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                                FAQ · Платформа НЕКСУС
+                            </div>
+                            <h2 class="faq-title">Остались<br>вопросы?</h2>
+                            <p class="faq-sub">Ниже — ответы на частые вопросы. Дополнительные материалы — в разделе <a href="#"><b>«Документация»</b></a>.</p>
+                        </div>
+
+                        <div class="faq-counter-row fade-up d2">
+                            <div class="faq-counter">
+                                <span class="num">8</span>
+                                <span>вопросов в разделе</span>
+                            </div>
+                            <div class="sep"></div>
+                            <a href="#" style="color: var(--accent); text-decoration:none; font-size:11.5px; font-weight:700; display:inline-flex; align-items:center; gap:4px;">
+                                Все вопросы
+                                <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </a>
+                        </div>
+
+                        <div class="faq-list">
+
+                            <div class="faq-item open fade-up d2">
+                                <div class="faq-q">
+                                    <div class="faq-num">01</div>
+                                    <div class="faq-q-text">Что такое НЕКСУС?</div>
+                                    <div class="chev">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                                    </div>
+                                </div>
+                                <div class="faq-a">
+                                    <div class="faq-a-inner">
+                                        <p class="faq-a-text">НЕКСУС — экосистема проектного финансирования и токенизации активов в соответствии с российским законодательством (в том числе 259‑ФЗ о ЦФА): запуск проектов, выпуск и обращение цифровых активов, в том числе RWA (токенизация прав на реальные активы), утилитарные цифровые права (УЦП), токенизация иных активов, сопровождение сделок и развитие вторичного рынка в рамках модели платформы.</p>
+                                        <div class="faq-a-meta">
+                                            <span class="chip acc">259-ФЗ · ЦФА · RWA</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-item fade-up d3">
+                                <div class="faq-q">
+                                    <div class="faq-num">02</div>
+                                    <div class="faq-q-text">Чем цифровые активы и ЦФА отличаются от «криптовалюты»?</div>
+                                    <div class="chev">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                                    </div>
+                                </div>
+                                <div class="faq-a">
+                                    <div class="faq-a-inner">
+                                        <p class="faq-a-text">ЦФА и иные цифровые активы в контуре платформы выпускаются и обращаются по правилам 259‑ФЗ и договорной модели оператора: есть эмитент, раскрытие информации, учёт прав и требования к инвесторам. Это не свободно обращающаяся «криптовалюта» и не анонимные расчёты вне правового поля РФ.</p>
+                                        <div class="faq-a-meta">
+                                            <span class="chip">Регулирование</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-item fade-up d4">
+                                <div class="faq-q">
+                                    <div class="faq-num">03</div>
+                                    <div class="faq-q-text">На какой технологии построен блокчейн ГАНИМЕД?</div>
+                                    <div class="chev">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                                    </div>
+                                </div>
+                                <div class="faq-a">
+                                    <div class="faq-a-inner">
+                                        <p class="faq-a-text">ГАНИМЕД реализован как высокопроизводительная распределённая платформа (в т.ч. на Go), с гибридным консенсусом PoSA, EVM‑совместимостью для смарт‑контрактов и развитием экосистемы под задачи токенизации и учёта цифровых активов в соответствии с применимыми требованиями.</p>
+                                        <div class="faq-a-meta">
+                                            <span class="chip">Go · PoSA · EVM</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-item fade-up d5">
+                                <div class="faq-q">
+                                    <div class="faq-num">04</div>
+                                    <div class="faq-q-text">Кто может стать участником платформы?</div>
+                                    <div class="chev">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                                    </div>
+                                </div>
+                                <div class="faq-a">
+                                    <div class="faq-a-inner">
+                                        <p class="faq-a-text">Доступ к функциям личного кабинета и сделкам предоставляется после регистрации и прохождения процедур идентификации и комплаенса (KYC/AML) в объёме, предусмотренном правилами платформы и законодательством. Набор ролей (инициатор проекта, инвестор, эксперт и др.) определяется моделью доступа и назначенными правами.</p>
+                                        <div class="faq-a-meta">
+                                            <span class="chip">KYC/AML · Роли</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-item fade-up d5">
+                                <div class="faq-q">
+                                    <div class="faq-num">05</div>
+                                    <div class="faq-q-text">Что такое iGND и «смягчение рисков» в экосистеме?</div>
+                                    <div class="chev">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                                    </div>
+                                </div>
+                                <div class="faq-a">
+                                    <div class="faq-a-inner">
+                                        <p class="faq-a-text">iGND — внутренний токен экосистемы в логике программ смягчения последствий формально описанных риск‑событий по проектам для инвесторов, выбравших соответствующие планы участия.</p>
+                                        <p class="faq-a-text">Условия начислений, ограничения и правовая природа закреплены в документах платформы и смарт‑контрактах на блокчейне ГАНИМЕД; начисления не гарантируются и зависят от наступления событий и параметров пулов.</p>
+                                        <div class="faq-a-meta">
+                                            <span class="chip acc">iGND · Смарт-контракт</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-item fade-up d6">
+                                <div class="faq-q">
+                                    <div class="faq-num">06</div>
+                                    <div class="faq-q-text">Где ознакомиться с официальными документами и White Paper?</div>
+                                    <div class="chev">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                                    </div>
+                                </div>
+                                <div class="faq-a">
+                                    <div class="faq-a-inner">
+                                        <p class="faq-a-text">Актуальные PDF (публичная оферта, пользовательское соглашение, политика конфиденциальности, KYC/AML, White Paper и др.) доступны по ссылкам в подвале сайта; расширенные технические и методические материалы — в разделе «Документация».</p>
+                                        <div class="faq-a-meta">
+                                            <span class="chip">PDF · Документация</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-item fade-up d6">
+                                <div class="faq-q">
+                                    <div class="faq-num">07</div>
+                                    <div class="faq-q-text">Как обрабатываются персональные данные?</div>
+                                    <div class="chev">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                                    </div>
+                                </div>
+                                <div class="faq-a">
+                                    <div class="faq-a-inner">
+                                        <p class="faq-a-text">Обработка ведётся в соответствии с 152‑ФЗ и политикой конфиденциальности: указаны цели, категории данных, сроки и права субъектов; применяются организационные и технические меры защиты, согласованные с заявленными в документе целями.</p>
+                                        <div class="faq-a-meta">
+                                            <span class="chip">152-ФЗ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-item fade-up d6">
+                                <div class="faq-q">
+                                    <div class="faq-num">08</div>
+                                    <div class="faq-q-text">На каком этапе развития находится платформа?</div>
+                                    <div class="chev">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                                    </div>
+                                </div>
+                                <div class="faq-a">
+                                    <div class="faq-a-inner">
+                                        <p class="faq-a-text">Функционал выводится поэтапно согласно дорожной карте: отдельные модули и интеграции могут находиться в стадии MVP или пилота.</p>
+                                        <p class="faq-a-text">Блоки «прогресс реализации» и дорожная карта на сайте отражают ориентировочное состояние и планы; конкретные сроки не являются публичной офертой до их отдельного официального объявления.</p>
+                                        <div class="faq-a-meta">
+                                            <span class="chip">MVP · Дорожная карта</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="faq-foot fade-up d6">
+                            <div class="faq-foot-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                            </div>
+                            <div>
+                                <div class="faq-foot-title">Раздел документации</div>
+                                <div class="faq-foot-sub">PDF: оферта · соглашение · KYC/AML · <b>White Paper</b> и др.</div>
+                            </div>
+                        </div>
+
+                    </aside>
+
+                    <!-- ========================= MAP 2/3 ========================= -->
+                    <section class="map-col">
+
+                        <div class="map-head">
+                            <div class="map-head-left fade-up d2">
+                                <div class="map-eyebrow">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                                    Аналитика · Регионы РФ · Цель к 2031 году
+                                </div>
+                                <h2 class="map-title">Инвестиционные <span>потребности регионов</span> РФ</h2>
+                                <p class="map-sub"><b>Интерактивная карта</b> с детализацией по регионам. Наведите на регион для подсказки, нажмите для подробностей. Цифры отражают целевые показатели экосистемы к 2031 г.</p>
+                            </div>
+                            <div class="stats-row fade-up d3">
+                                <div class="stat-card highlight">
+                                    <div class="stat-label">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                                        Проектов
+                                    </div>
+                                    <div class="stat-value">350<span style="font-size:13px; font-weight:700; opacity:.85;"> тыс+</span></div>
+                                    <div class="stat-foot">Завершённых и <b>активных</b></div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-label">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                        Клиентов
+                                    </div>
+                                    <div class="stat-value">7<span style="font-size:13px; font-weight:700; opacity:.85;"> млн+</span></div>
+                                    <div class="stat-foot">Зарегистрировано в экосистеме</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-label">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                                        Сделок
+                                    </div>
+                                    <div class="stat-value">700<span style="font-size:13px; font-weight:700; opacity:.85;"> тыс</span></div>
+                                    <div class="stat-foot">В год по всем видам</div>
+                                </div>
+                                <div class="stat-card highlight">
+                                    <div class="stat-label">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                        Оборот, ₽
+                                    </div>
+                                    <div class="stat-value">7<span style="font-size:13px; font-weight:700; opacity:.85;"> млрд+</span></div>
+                                    <div class="stat-foot">В год по всем видам <b>сделок</b></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filters-wrap fade-up d4">
+                            <div class="fld">
+                                <label class="fld-label">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                                    Отрасль
+                                </label>
+                                <div class="pill-select">
+                                    <select><option>Все</option></select>
+                                </div>
+                            </div>
+                            <div class="fld">
+                                <label class="fld-label">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                    Регион
+                                </label>
+                                <div class="pill-select">
+                                    <select><option>Все</option></select>
+                                </div>
+                            </div>
+                            <div class="fld">
+                                <label class="fld-label">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                                    Стадия
+                                </label>
+                                <div class="pill-select">
+                                    <select><option>Все</option></select>
+                                </div>
+                            </div>
+                            <div class="fld">
+                                <label class="fld-label">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                    Объём
+                                </label>
+                                <div class="pill-select">
+                                    <select><option>Все</option></select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="map-area fade-up d5">
+
+                            <div class="map-floating-card">
+                                <div class="mfc-title">Топ-3 региона</div>
+                                <div class="mfc-item"><span class="k">Москва</span><span class="v">34</span></div>
+                                <div class="mfc-item"><span class="k">Санкт‑Петербург</span><span class="v">21</span></div>
+                                <div class="mfc-item"><span class="k">Татарстан</span><span class="v">14</span></div>
+                            </div>
+
+                            <div class="russia-svg-wrap">
+                                <svg class="rf-svg" viewBox="0 0 860 430" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+                                            <feGaussianBlur stdDeviation="2" result="b"/>
+                                            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                                        </filter>
+                                        <linearGradient id="rfFill" x1="0" x2="0" y1="0" y2="1">
+                                            <stop offset="0%" stop-color="#2a2f38" stop-opacity="0.85"/>
+                                            <stop offset="100%" stop-color="#1a1e25" stop-opacity="0.9"/>
+                                        </linearGradient>
+                                        <linearGradient id="rfStroke" x1="0" x2="1" y1="0" y2="1">
+                                            <stop offset="0%" stop-color="rgba(197,255,65,0.5)"/>
+                                            <stop offset="50%" stop-color="rgba(255,255,255,0.3)"/>
+                                            <stop offset="100%" stop-color="rgba(197,255,65,0.4)"/>
+                                        </linearGradient>
+                                    </defs>
+
+                                    <path d="M 100 150 L 140 130 L 180 120 L 220 115 L 260 105 L 290 95 L 330 90 L 360 85 L 400 82 L 440 88 L 480 85 L 520 92 L 560 100 L 600 110 L 630 105 L 670 110 L 700 118 L 730 125 L 755 135 L 765 150 L 770 170 L 765 195 L 750 215 L 740 235 L 750 260 L 760 280 L 750 305 L 730 315 L 700 320 L 675 318 L 650 322 L 620 315 L 590 310 L 560 315 L 530 312 L 500 308 L 470 315 L 440 310 L 410 305 L 380 308 L 350 302 L 320 298 L 290 305 L 260 298 L 230 292 L 200 288 L 175 278 L 150 265 L 128 250 L 110 228 L 100 205 L 95 180 L 100 150 Z
+                                             M 320 90 L 340 75 L 360 65 L 380 58 L 400 52 L 425 50 L 450 55 L 465 65 L 475 80 L 460 88 L 440 88 L 420 85 L 400 82 L 380 85 L 360 85 L 340 90 L 320 90 Z
+                                             M 75 165 L 95 155 L 100 170 L 95 195 L 80 205 L 65 198 L 62 180 L 70 168 L 75 165 Z
+                                             M 540 102 L 560 80 L 580 72 L 600 78 L 615 95 L 610 110 L 590 112 L 565 105 L 545 105 L 540 102 Z
+                                             M 675 112 L 690 95 L 705 92 L 725 98 L 730 115 L 718 125 L 700 122 L 680 118 L 675 112 Z
+                                             M 180 122 L 195 102 L 218 98 L 238 105 L 240 125 L 225 135 L 200 132 L 185 128 L 180 122 Z"
+                                          fill="url(#rfFill)"
+                                          stroke="url(#rfStroke)"
+                                          stroke-width="1.3"
+                                          filter="url(#softGlow)"/>
+
+                                    <circle cx="350" cy="170" r="7" fill="#C5FF41" filter="url(#softGlow)"/>
+                                    <circle cx="350" cy="170" r="14" fill="none" stroke="#C5FF41" stroke-width="1.5" opacity="0.55" class="pulse-ring"/>
+
+                                    <circle cx="475" cy="205" r="7" fill="#C5FF41" filter="url(#softGlow)"/>
+                                    <circle cx="475" cy="205" r="14" fill="none" stroke="#C5FF41" stroke-width="1.5" opacity="0.55" class="pulse-ring d1"/>
+
+                                    <circle cx="590" cy="220" r="7" fill="#C5FF41" filter="url(#softGlow)"/>
+                                    <circle cx="590" cy="220" r="14" fill="none" stroke="#C5FF41" stroke-width="1.5" opacity="0.55" class="pulse-ring d2"/>
+
+                                    <circle cx="710" cy="215" r="7" fill="#C5FF41" filter="url(#softGlow)"/>
+                                    <circle cx="710" cy="215" r="14" fill="none" stroke="#C5FF41" stroke-width="1.5" opacity="0.55" class="pulse-ring d3"/>
+
+                                    <circle cx="400" cy="130" r="7" fill="#C5FF41" filter="url(#softGlow)"/>
+                                    <circle cx="400" cy="130" r="14" fill="none" stroke="#C5FF41" stroke-width="1.5" opacity="0.55" class="pulse-ring d4"/>
+
+                                    <circle cx="280" cy="205" r="6" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.6"/>
+                                    <circle cx="540" cy="175" r="6" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.6"/>
+                                    <circle cx="660" cy="265" r="6" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.6"/>
+                                    <circle cx="450" cy="265" r="6" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.6"/>
+                                </svg>
+                            </div>
+
+                        </div>
+
+                        <div class="map-legend fade-up d6">
+                            <div class="legend-items">
+                                <div class="legend-item">
+                                    <span class="legend-dot active"></span>
+                                    Активные <span class="legend-count">127</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot planned"></span>
+                                    Планируемые <span class="legend-count">43</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot pending"></span>
+                                    На проверке <span class="legend-count">18</span>
+                                </div>
+                            </div>
+                            <div class="legend-bar">
+                                <div class="legend-bar-track">
+                                    <div class="legend-bar-seg s1" style="width:68%"></div>
+                                    <div class="legend-bar-seg s2" style="width:23%"></div>
+                                    <div class="legend-bar-seg s3" style="width:9%"></div>
+                                </div>
+                                <div class="legend-bar-label">188 всего · 68 / 23 / 9 %</div>
+                            </div>
+                            <a href="#" class="legend-cta">
+                                Открыть карту
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </a>
+                        </div>
+
+                    </section>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.querySelectorAll('.faq-item .faq-q').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.closest('.faq-item');
+                const wasOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                if (!wasOpen) item.classList.add('open');
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

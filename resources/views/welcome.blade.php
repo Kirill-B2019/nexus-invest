@@ -651,142 +651,154 @@
     </div>
 </section>
 
-{{-- FAQ --}}
-<section class="section-box box-faqs-3 faq-section-light" id="faq">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-5">
-                <div class="box-faq-left box-faq-left--intro">
-                    <a class="btn btn-brand-4-sm" href="#faq">{{ __('Часто задаваемые вопросы') }}</a>
-                    <h2 class="heading-2 mb-20 mt-20">{{ __('Остались вопросы?') }}</h2>
-                    <p class="text-lg neutral-700">{{ __('Ниже — ответы на частые вопросы. Дополнительные материалы — в разделе ') }} <a class="text-18-bold brand-1-1" href="{{ route('documentation') }}">{{ __('«Документация»') }}</a>.</p>
+{{-- Новости + FAQ — единая горизонтальная тёмная секция --}}
+@php
+    $hasNewsFeed = isset($newsFeedItems) && $newsFeedItems->isNotEmpty();
+    $newsPlaceholder = asset('assets/imgs/page/homepage1/img-news.png');
+    $welcomeFaqItems = [
+        [
+            'question' => 'Что такое НЕКСУС?',
+            'answer' => 'НЕКСУС — экосистема проектного финансирования и токенизации активов в соответствии с российским законодательством (в том числе 259‑ФЗ о ЦФА): запуск проектов, выпуск и обращение цифровых активов, в том числе RWA (токенизация прав на реальные активы), утилитарные цифровые права (УЦП), токенизация иных активов, сопровождение сделок и развитие вторичного рынка в рамках модели платформы.',
+            'tags' => ['259-ФЗ · ЦФА · RWA'],
+            'open' => true,
+        ],
+        [
+            'question' => 'Чем цифровые активы и ЦФА отличаются от «криптовалюты»?',
+            'answer' => 'ЦФА и иные цифровые активы в контуре платформы выпускаются и обращаются по правилам 259‑ФЗ и договорной модели оператора: есть эмитент, раскрытие информации, учёт прав и требования к инвесторам. Это не свободно обращающаяся «криптовалюта» и не анонимные расчёты вне правового поля РФ.',
+            'tags' => ['259-ФЗ · ЦФА'],
+        ],
+        [
+            'question' => 'На какой технологии построен блокчейн ГАНИМЕД?',
+            'answer' => 'ГАНИМЕД реализован как высокопроизводительная распределённая платформа (в т.ч. на Go), с гибридным консенсусом PoSA, EVM‑совместимостью для смарт‑контрактов и развитием экосистемы под задачи токенизации и учёта цифровых активов в соответствии с применимыми требованиями.',
+            'tags' => ['ГАНИМЕД · PoSA · EVM'],
+        ],
+        [
+            'question' => 'Кто может стать участником платформы?',
+            'answer' => 'Доступ к функциям личного кабинета и сделкам предоставляется после регистрации и прохождения процедур идентификации и комплаенса (KYC/AML) в объёме, предусмотренном правилами платформы и законодательством. Набор ролей (инициатор проекта, инвестор, эксперт и др.) определяется моделью доступа и назначенными правами.',
+            'tags' => ['KYC/AML · роли'],
+        ],
+        [
+            'question' => 'Что такое iGND и «смягчение рисков» в экосистеме?',
+            'answer' => [
+                'iGND — внутренний токен экосистемы в логике программ смягчения последствий формально описанных риск‑событий по проектам для инвесторов, выбравших соответствующие планы участия.',
+                'Условия начислений, ограничения и правовая природа закреплены в документах платформы и смарт‑контрактах на блокчейне ГАНИМЕД; начисления не гарантируются и зависят от наступления событий и параметров пулов.',
+            ],
+            'tags' => ['iGND · риски'],
+        ],
+        [
+            'question' => 'Где ознакомиться с официальными документами и White Paper?',
+            'answer' => 'Актуальные PDF (публичная оферта, пользовательское соглашение, политика конфиденциальности, KYC/AML, White Paper и др.) доступны по ссылкам в подвале сайта; расширенные технические и методические материалы — в разделе «Документация».',
+            'tags' => ['Документы · White Paper'],
+        ],
+        [
+            'question' => 'Как обрабатываются персональные данные?',
+            'answer' => 'Обработка ведётся в соответствии с 152‑ФЗ и политикой конфиденциальности: указаны цели, категории данных, сроки и права субъектов; применяются организационные и технические меры защиты, согласованные с заявленными в документе целями.',
+            'tags' => ['152-ФЗ · ПДн'],
+        ],
+        [
+            'question' => 'На каком этапе развития находится платформа?',
+            'answer' => [
+                'Функционал выводится поэтапно согласно дорожной карте: отдельные модули и интеграции могут находиться в стадии MVP или пилота.',
+                'Блоки «прогресс реализации» и дорожная карта на сайте отражают ориентировочное состояние и планы; конкретные сроки не являются публичной офертой до их отдельного официального объявления.',
+            ],
+            'tags' => ['Roadmap · MVP'],
+        ],
+    ];
+    $welcomeFaqLead = __('Ниже — ответы на частые вопросы. Дополнительные материалы — в разделе ')
+        . '<a class="faq-panel-dark__doc-link" href="' . e(route('documentation')) . '">' . e(__('«Документация»')) . '</a>.';
+@endphp
+<section class="section-box wow fadeIn box-our-track-2 box-our-track-2--dark-stack mt-0" id="news-feed-section">
+    <div class="news-faq-promo" id="faq">
+        <div class="news-faq-promo__frame">
+            <header class="news-faq-promo__head">
+                <h2 class="news-faq-promo__section-title">{{ __('НОВОСТИ И ВОПРОСЫ') }}</h2>
+            </header>
+            <div class="news-faq-promo__grid{{ $hasNewsFeed ? '' : ' news-faq-promo__grid--faq-only' }}">
+                @if($hasNewsFeed)
+                    <div class="news-faq-promo__news">
+                        <div class="news-faq-promo__news-head">
+                            <div class="news-faq-promo__news-intro">
+                                <p class="news-faq-promo__eyebrow">{{ __('Актуальные материалы и обновления платформы из нашего канала ДЗЕН.') }}</p>
+                            </div>
+                            <div class="news-faq-promo__news-actions">
+                                <div class="box-button-slider box-button-slider-team news-faq-promo__nav">
+                                    <button type="button" class="swiper-button-prev swiper-button-prev-testimonials swiper-button-prev-3" id="news-carousel-prev" aria-label="{{ __('Назад') }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.66667 3.33398L2 8.00065M2 8.00065L6.66667 12.6673M2 8.00065H14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+                                    <button type="button" class="swiper-button-next swiper-button-next-testimonials swiper-button-next-3" id="news-carousel-next" aria-label="{{ __('Вперёд') }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9.33333 3.33398L14 8.00065M14 8.00065L9.33333 12.6673M14 8.00065H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-swiper news-faq-promo__swiper">
+                            <div class="swiper-container swiper-group-3" id="news-feed-carousel">
+                                <div class="swiper-wrapper">
+                                    @foreach($newsFeedItems as $item)
+                                        @php
+                                            $cover = $item->cover_url ?: $newsPlaceholder;
+                                            $itemDate = $item->published_at ?? $item->created_at;
+                                            $href = $item->permalink ?: ($item->url ?: '#');
+                                        @endphp
+                                        <div class="swiper-slide">
+                                            <article class="news-home-card">
+                                                <div class="news-home-card__body">
+                                                    @if($itemDate)
+                                                        <time class="news-home-card__date" datetime="{{ $itemDate->toDateString() }}">{{ $itemDate->translatedFormat('d F Y') }}</time>
+                                                    @endif
+                                                    <a class="news-home-card__title" href="{{ $href }}" @if($item->is_external) target="_blank" rel="noopener noreferrer" @endif>{{ e($item->title) }}</a>
+                                                    @if($item->description)
+                                                        <p class="news-home-card__excerpt">{{ e(str()->limit($item->description, 140)) }}</p>
+                                                    @endif
+                                                </div>
+                                                <a class="news-home-card__media" href="{{ $href }}" @if($item->is_external) target="_blank" rel="noopener noreferrer" @endif>
+                                                    <img
+                                                        class="news-home-card__img"
+                                                        src="{{ $cover }}"
+                                                        alt="{{ e($item->title) }}"
+                                                        width="600"
+                                                        height="400"
+                                                        loading="lazy"
+                                                        decoding="async"
+                                                        onerror="this.onerror=null;this.src='{{ $newsPlaceholder }}';"
+                                                    >
+                                                </a>
+                                                <a class="news-home-card__cta" href="{{ $href }}" @if($item->is_external) target="_blank" rel="noopener noreferrer" @endif>
+                                                    <span class="news-home-card__cta-icon" aria-hidden="true">
+                                                        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M10.6557 3.81393L1.71996 12.7497L0.251953 11.2817L9.18664 2.34592H1.31195V0.269531H12.7321V11.6897H10.6557V3.81393Z" fill="currentColor"></path>
+                                                        </svg>
+                                                    </span>
+                                                    {{ __('Подробнее') }}
+                                                </a>
+                                            </article>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        <div class="news-faq-promo__news-foot">
+                            <a class="btn btn-brand-4-sm" href="{{ route('news.index') }}">{{ __('Все новости') }}</a>
+                        </div>
+                    </div>
+                @endif
+
+                <div class="news-faq-promo__faq">
+                    <x-guest.faq-panel-dark
+                        :items="$welcomeFaqItems"
+                        accordion-id="accordionWelcomeNewsFaq"
+                        :lead="$welcomeFaqLead"
+                        :all-questions-url="route('documentation')"
+                    />
                 </div>
-            </div>
-            <div class="col-lg-7">
-                <x-guest.faq-accordion :items="[
-                    [
-                        'question' => 'Что такое НЕКСУС?',
-                        'answer' => 'НЕКСУС — экосистема проектного финансирования и токенизации активов в соответствии с российским законодательством (в том числе 259‑ФЗ о ЦФА): запуск проектов, выпуск и обращение цифровых активов, в том числе RWA (токенизация прав на реальные активы), утилитарные цифровые права (УЦП), токенизация иных активов, сопровождение сделок и развитие вторичного рынка в рамках модели платформы.',
-                        'open' => true,
-                    ],
-                    [
-                        'question' => 'Чем цифровые активы и ЦФА отличаются от «криптовалюты»?',
-                        'answer' => 'ЦФА и иные цифровые активы в контуре платформы выпускаются и обращаются по правилам 259‑ФЗ и договорной модели оператора: есть эмитент, раскрытие информации, учёт прав и требования к инвесторам. Это не свободно обращающаяся «криптовалюта» и не анонимные расчёты вне правового поля РФ.',
-                    ],
-                    [
-                        'question' => 'На какой технологии построен блокчейн ГАНИМЕД?',
-                        'answer' => 'ГАНИМЕД реализован как высокопроизводительная распределённая платформа (в т.ч. на Go), с гибридным консенсусом PoSA, EVM‑совместимостью для смарт‑контрактов и развитием экосистемы под задачи токенизации и учёта цифровых активов в соответствии с применимыми требованиями.',
-                    ],
-                    [
-                        'question' => 'Кто может стать участником платформы?',
-                        'answer' => 'Доступ к функциям личного кабинета и сделкам предоставляется после регистрации и прохождения процедур идентификации и комплаенса (KYC/AML) в объёме, предусмотренном правилами платформы и законодательством. Набор ролей (инициатор проекта, инвестор, эксперт и др.) определяется моделью доступа и назначенными правами.',
-                    ],
-                    [
-                        'question' => 'Что такое iGND и «смягчение рисков» в экосистеме?',
-                        'answer' => [
-                            'iGND — внутренний токен экосистемы в логике программ смягчения последствий формально описанных риск‑событий по проектам для инвесторов, выбравших соответствующие планы участия.',
-                            'Условия начислений, ограничения и правовая природа закреплены в документах платформы и смарт‑контрактах на блокчейне ГАНИМЕД; начисления не гарантируются и зависят от наступления событий и параметров пулов.',
-                        ],
-                    ],
-                    [
-                        'question' => 'Где ознакомиться с официальными документами и White Paper?',
-                        'answer' => 'Актуальные PDF (публичная оферта, пользовательское соглашение, политика конфиденциальности, KYC/AML, White Paper и др.) доступны по ссылкам в подвале сайта; расширенные технические и методические материалы — в разделе «Документация».',
-                    ],
-                    [
-                        'question' => 'Как обрабатываются персональные данные?',
-                        'answer' => 'Обработка ведётся в соответствии с 152‑ФЗ и политикой конфиденциальности: указаны цели, категории данных, сроки и права субъектов; применяются организационные и технические меры защиты, согласованные с заявленными в документе целями.',
-                    ],
-                    [
-                        'question' => 'На каком этапе развития находится платформа?',
-                        'answer' => [
-                            'Функционал выводится поэтапно согласно дорожной карте: отдельные модули и интеграции могут находиться в стадии MVP или пилота.',
-                            'Блоки «прогресс реализации» и дорожная карта на сайте отражают ориентировочное состояние и планы; конкретные сроки не являются публичной офертой до их отдельного официального объявления.',
-                        ],
-                    ],
-                ]" />
             </div>
         </div>
     </div>
 </section>
-{{-- Инвестиционные потребности регионов РФ — интерактивная карта --}}
-@include('partials.investment-map-section', ['regionsForMap' => $regionsForMap ?? [], 'mapSvg' => $mapSvg ?? '', 'mapFilterDictionaries' => $mapFilterDictionaries ?? []])
-{{-- Новости с канала Дзен (https://dzen.ru/digital_fintech), обновляются в админке по кнопке --}}
-@if(isset($newsFeedItems) && $newsFeedItems->isNotEmpty())
-    @php
-        $newsPlaceholder = asset('assets/imgs/page/homepage1/img-news.png');
-    @endphp
-    <section class="section-box box-latest-news box-latest-news-2" id="news-feed-section">
-        <div class="container">
-            <div class="row align-items-end">
-                <div class="col-lg-8 mb-30">
-                    <div class="strate-icon"><span></span> {{ __('Актуальные материалы и обновления платформы из нашего канала ДЗЕН.') }}</div>
-                    <h2 class="heading-2 mb-10">{{ __('Новости и истории') }}</h2>
-                </div>
-                <div class="col-lg-4 mb-30">
-                    <div class="d-flex flex-wrap align-items-center justify-content-lg-end gap-3">
-                        <a class="btn btn-brand-4-sm" href="{{ route('news.index') }}">{{ __('Все новости') }}</a>
-                        <div class="box-button-slider box-button-slider-team">
-                            <button type="button" class="swiper-button-prev swiper-button-prev-testimonials swiper-button-prev-3" id="news-carousel-prev" aria-label="{{ __('Назад') }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.66667 3.33398L2 8.00065M2 8.00065L6.66667 12.6673M2 8.00065H14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
-                            <button type="button" class="swiper-button-next swiper-button-next-testimonials swiper-button-next-3" id="news-carousel-next" aria-label="{{ __('Вперёд') }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9.33333 3.33398L14 8.00065M14 8.00065L9.33333 12.6673M14 8.00065H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box-swiper mt-30">
-                <div class="swiper-container swiper-group-3" id="news-feed-carousel">
-                    <div class="swiper-wrapper">
-                        @foreach($newsFeedItems as $item)
-                            @php
-                                $cover = $item->cover_url ?: $newsPlaceholder;
-                                $itemDate = $item->published_at ?? $item->created_at;
-                                $href = $item->permalink ?: ($item->url ?: '#');
-                            @endphp
-                            <div class="swiper-slide">
-                                <article class="news-home-card">
-                                    <a class="news-home-card__media" href="{{ $href }}" @if($item->is_external) target="_blank" rel="noopener noreferrer" @endif>
-                                        <img
-                                            class="news-home-card__img"
-                                            src="{{ $cover }}"
-                                            alt="{{ e($item->title) }}"
-                                            width="600"
-                                            height="400"
-                                            loading="eager"
-                                            decoding="async"
-                                            onerror="this.onerror=null;this.src='{{ $newsPlaceholder }}';"
-                                        >
-                                    </a>
-                                    <div class="news-home-card__body">
-                                        @if($itemDate)
-                                            <time class="news-home-card__date" datetime="{{ $itemDate->toDateString() }}">{{ $itemDate->translatedFormat('d F Y') }}</time>
-                                        @endif
-                                        <a class="news-home-card__title" href="{{ $href }}" @if($item->is_external) target="_blank" rel="noopener noreferrer" @endif>{{ e($item->title) }}</a>
-                                        @if($item->description)
-                                            <p class="news-home-card__excerpt">{{ e(str()->limit($item->description, 160)) }}</p>
-                                        @endif
-                                    </div>
-                                    <a class="news-home-card__cta" href="{{ $href }}" @if($item->is_external) target="_blank" rel="noopener noreferrer" @endif>
-                                        <span class="news-home-card__cta-icon" aria-hidden="true">
-                                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M10.6557 3.81393L1.71996 12.7497L0.251953 11.2817L9.18664 2.34592H1.31195V0.269531H12.7321V11.6897H10.6557V3.81393Z" fill="currentColor"></path>
-                                            </svg>
-                                        </span>
-                                        {{ __('Подробнее') }}
-                                    </a>
-                                </article>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+@if($hasNewsFeed)
     @push('scripts')
         <script>
             (function() {
                 var el = document.getElementById('news-feed-carousel');
                 if (!el || typeof Swiper === 'undefined') return;
                 var swiper = new Swiper('#news-feed-carousel', {
-                    spaceBetween: 30,
+                    spaceBetween: 20,
                     slidesPerView: 1,
                     slidesPerGroup: 1,
                     initialSlide: 0,
@@ -801,9 +813,9 @@
                         prevEl: '#news-carousel-prev'
                     },
                     breakpoints: {
-                        400: { slidesPerView: 1 },
-                        800: { slidesPerView: 2 },
-                        1200: { slidesPerView: 3 }
+                        576: { slidesPerView: 1 },
+                        992: { slidesPerView: 2 },
+                        1400: { slidesPerView: 2 }
                     },
                     on: {
                         reachEnd: function () {
@@ -817,6 +829,9 @@
         </script>
     @endpush
 @endif
+
+{{-- Инвестиционные потребности регионов РФ — интерактивная карта --}}
+@include('partials.investment-map-section', ['regionsForMap' => $regionsForMap ?? [], 'mapSvg' => $mapSvg ?? '', 'mapFilterDictionaries' => $mapFilterDictionaries ?? []])
 
 {{-- ОТРАСЛЕВЫЕ ИНДИКАТОРЫ — после блока «Руководители команды» --}}
 @include('partials.industry-indicators-board', ['indicatorsBoardId' => 'home-indicators-board'])

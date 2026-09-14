@@ -108,11 +108,12 @@
   box-sizing: border-box;
 }
 
-/* ????? ?????? ?????: 3 ???? / ?????? ?? / iGND / Road */
+/* Общая ширина рамок: 3 шага / стратегия ИИ / iGND / Road / новости+FAQ */
 .steps-promo__frame,
 .ai-strategy-promo__frame,
 .ignd-promo__frame,
 .ecosystem-goal-promo__frame,
+.news-faq-promo__frame,
 #Road .roadmap-shell__frame {
   width: 100%;
   max-width: var(--site-content-max);
@@ -3692,9 +3693,13 @@ body.swal2-height-auto {
     filter: drop-shadow(0 0 18px rgba(var(--color-primary-rgb, 197, 255, 65), 0.35));
     box-shadow: none;
 }
-/* ?? ??????????? ???????? box-our-track-2 img:hover (teal offset) */
+/* Не наследуем teal offset box-our-track-2 img:hover */
 .box-our-track-2 .ignd-promo img:hover {
     transform: scale(1.04);
+    box-shadow: none;
+}
+.box-our-track-2 .news-faq-promo img:hover {
+    transform: none;
     box-shadow: none;
 }
 .ignd-promo__grid {
@@ -5242,34 +5247,25 @@ input.ganimed-status-checkbox:checked {
         word-break: break-word;
     }
     #news-feed-section .btn-brand-4-sm {
-        width: 100%;
+        width: auto;
         text-align: center;
     }
     #news-feed-section .box-button-slider {
-        width: 100%;
+        width: auto;
         justify-content: flex-end;
-    }
-    /* Mobile ???????: ????? ? ???????? ? CTA */
-    #news-feed-section .news-home-card__body {
-        order: 1;
-    }
-    #news-feed-section .news-home-card__media {
-        order: 2;
-        margin-bottom: 0;
-        margin-top: 1rem;
-    }
-    #news-feed-section .news-home-card__cta {
-        order: 3;
     }
 }
 
-/* ---- ???????? ???????? ?? ??????? (#news-feed-section) ---- */
+/* ---- Новости на главной (#news-feed-section) — тёмная объединённая секция ---- */
 #news-feed-section .news-home-card {
     display: flex;
     flex-direction: column;
     height: 100%;
-    margin: 0 0 30px;
-    background: transparent;
+    margin: 0;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(236, 238, 242, 0.12);
+    border-radius: var(--radius-sm, 8px);
 }
 #news-feed-section .swiper-slide {
     height: auto;
@@ -5281,11 +5277,12 @@ input.ganimed-status-checkbox:checked {
 }
 #news-feed-section .news-home-card__media {
     display: block;
-    margin-bottom: 1rem;
-    border-radius: 16px;
+    order: 1;
+    margin-bottom: 0.85rem;
+    border-radius: var(--radius-sm, 8px);
     overflow: hidden;
-    border: 1px solid #e8eaed;
-    background: #eef0f3;
+    border: 1px solid rgba(236, 238, 242, 0.14);
+    background: rgba(255, 255, 255, 0.04);
     line-height: 0;
 }
 #news-feed-section .news-home-card__img {
@@ -5301,14 +5298,15 @@ input.ganimed-status-checkbox:checked {
     flex-direction: column;
     flex: 1 1 auto;
     min-width: 0;
+    order: 2;
 }
 #news-feed-section .news-home-card__date {
     display: block;
     margin: 0 0 0.35rem;
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     line-height: 1.4;
-    color: #6b7280;
-    -webkit-text-fill-color: #6b7280;
+    color: rgba(255, 255, 255, 0.55);
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.55);
 }
 #news-feed-section .news-home-card__title {
     display: -webkit-box;
@@ -5316,13 +5314,13 @@ input.ganimed-status-checkbox:checked {
     -webkit-line-clamp: 3;
     line-clamp: 3;
     overflow: hidden;
-    margin: 0 0 0.75rem;
+    margin: 0 0 0.55rem;
     font-family: "Urbanist", sans-serif;
-    font-size: 1.375rem;
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
     font-weight: 700;
     line-height: 1.3;
-    color: #191919 !important;
-    -webkit-text-fill-color: #191919 !important;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
     background: none !important;
     -webkit-background-clip: border-box !important;
     background-clip: border-box !important;
@@ -5331,39 +5329,49 @@ input.ganimed-status-checkbox:checked {
     visibility: visible !important;
 }
 #news-feed-section .news-home-card__title:hover {
-    color: #191919 !important;
-    -webkit-text-fill-color: #191919 !important;
-    opacity: 0.85 !important;
+    color: var(--color-primary, #c5ff41) !important;
+    -webkit-text-fill-color: var(--color-primary, #c5ff41) !important;
+    opacity: 1 !important;
 }
 #news-feed-section .news-home-card__excerpt {
-    margin: 0 0 1.25rem;
-    font-size: 1rem;
+    margin: 0;
+    font-size: 0.925rem;
     line-height: 1.5;
-    color: #4b5563;
-    -webkit-text-fill-color: #4b5563;
+    color: rgba(255, 255, 255, 0.68);
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.68);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
 }
 #news-feed-section .news-home-card__cta {
     display: inline-flex !important;
     align-items: center;
     gap: 0.65rem;
-    margin-top: auto;
+    order: 3;
+    margin-top: 0.9rem;
     font-family: "Urbanist", sans-serif;
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     font-weight: 600;
     line-height: 1.2;
-    color: #191919 !important;
-    -webkit-text-fill-color: #191919 !important;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
     text-decoration: none;
     opacity: 1 !important;
     visibility: visible !important;
+}
+#news-feed-section .news-home-card__cta:hover {
+    color: var(--color-primary, #c5ff41) !important;
+    -webkit-text-fill-color: var(--color-primary, #c5ff41) !important;
 }
 #news-feed-section .news-home-card__cta-icon {
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     background-color: var(--color-primary, #c5ff41);
     color: #191919;
@@ -5375,9 +5383,9 @@ input.ganimed-status-checkbox:checked {
 }
 #news-feed-section .swiper-button-prev-testimonials,
 #news-feed-section .swiper-button-next-testimonials {
-    color: var(--color-dark, #191919);
-    border-color: var(--color-dark, #191919);
-    background-color: #ffffff;
+    color: #fff;
+    border-color: rgba(236, 238, 242, 0.28);
+    background-color: rgba(255, 255, 255, 0.06);
 }
 #news-feed-section .swiper-button-prev-testimonials svg,
 #news-feed-section .swiper-button-next-testimonials svg {
@@ -5385,21 +5393,440 @@ input.ganimed-status-checkbox:checked {
 }
 #news-feed-section .swiper-button-prev-testimonials svg path,
 #news-feed-section .swiper-button-next-testimonials svg path {
-    stroke: var(--color-dark, #191919);
+    stroke: #fff;
 }
 #news-feed-section .swiper-button-prev-testimonials:hover,
 #news-feed-section .swiper-button-next-testimonials:hover {
-    background-color: var(--color-dark, #191919);
-    color: var(--color-primary, #c5ff41);
-    border-color: var(--color-dark, #191919);
+    background-color: var(--color-primary, #c5ff41);
+    color: #0e0e0e;
+    border-color: var(--color-primary, #c5ff41);
 }
 #news-feed-section .swiper-button-prev-testimonials:hover svg path,
 #news-feed-section .swiper-button-next-testimonials:hover svg path {
-    stroke: var(--color-primary, #c5ff41);
+    stroke: #0e0e0e;
+}
+
+/* Mobile: текст сверху, картинка ниже (после базовых order) */
+@media (max-width: 767.98px) {
+    #news-feed-section .news-home-card__body {
+        order: 1;
+    }
+    #news-feed-section .news-home-card__media {
+        order: 2;
+        margin-bottom: 0;
+        margin-top: 0.85rem;
+    }
+    #news-feed-section .news-home-card__cta {
+        order: 3;
+        margin-top: 0.85rem;
+    }
+}
+
+/* ========== Новости + FAQ: единая горизонтальная тёмная секция ========== */
+.news-faq-promo {
+    position: relative;
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding: 48px var(--site-gutter, 15px) 28px;
+    background-color: var(--color-dark, #191919);
+    box-sizing: border-box;
+    scroll-margin-top: 96px;
+}
+.news-faq-promo__frame {
+    padding: 36px 32px 32px;
+    border: 1px solid rgba(236, 238, 242, 0.18);
+    border-radius: var(--radius-md, 16px);
+    background:
+        radial-gradient(ellipse 48% 60% at 22% 35%, rgba(var(--color-primary-rgb, 197, 255, 65), 0.07), transparent 68%),
+        var(--color-dark, #191919);
+    animation: steps-promo-frame-in 0.7s ease both;
+}
+.news-faq-promo__head {
+    margin-bottom: 22px;
+}
+.news-faq-promo__section-title {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(24px, 2.6vw, 34px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+.news-faq-promo__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 28px 32px;
+    align-items: stretch;
+}
+.news-faq-promo__grid--faq-only {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 920px;
+}
+.news-faq-promo__news,
+.news-faq-promo__faq {
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.news-faq-promo__faq {
+    height: 100%;
+}
+.news-faq-promo__news-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 14px 18px;
+}
+.news-faq-promo__news-intro {
+    min-width: 0;
+    flex: 1 1 220px;
+}
+.news-faq-promo__news-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+.news-faq-promo__eyebrow {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 13px;
+    line-height: 1.45;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+.news-faq-promo__title {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(22px, 2.2vw, 30px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+}
+.news-faq-promo__lead {
+    margin: 8px 0 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 14px;
+    line-height: 1.55;
+}
+.news-faq-promo__link {
+    color: var(--color-primary, #c5ff41);
+    font-weight: 700;
+    text-decoration: none;
+}
+.news-faq-promo__link:hover {
+    text-decoration: underline;
+}
+.news-faq-promo__swiper {
+    margin-top: 4px;
+}
+.news-faq-promo__news-foot {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 4px;
+}
+
+/* ========== FAQ panel dark (макет «Остались вопросы?») ========== */
+.faq-panel-dark {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+    min-height: 0;
+    flex: 1 1 auto;
+    height: 100%;
+}
+.faq-panel-dark__intro {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+}
+.faq-panel-dark__title {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(22px, 2vw, 28px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+}
+.faq-panel-dark__lead {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 13px;
+    line-height: 1.5;
+}
+.faq-panel-dark__doc-link {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+}
+.faq-panel-dark__doc-link:hover {
+    color: var(--color-primary, #c5ff41);
+}
+.faq-panel-dark__summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-shrink: 0;
+    padding: 12px 14px;
+    border: 1px solid rgba(236, 238, 242, 0.14);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+}
+.faq-panel-dark__summary-count {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 13px;
+    line-height: 1.3;
+}
+.faq-panel-dark__summary-num {
+    color: var(--color-primary, #c5ff41);
+    font-weight: 800;
+}
+.faq-panel-dark__summary-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    color: var(--color-primary, #c5ff41);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.faq-panel-dark__summary-link:hover {
+    opacity: 0.85;
+}
+.faq-panel-dark__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1 1 auto;
+    min-height: 360px;
+    height: 0; /* занимает оставшуюся высоту колонки, секция не прыгает */
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 4px 4px 8px 0;
+    scroll-padding-top: 12px;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--color-primary-rgb, 197, 255, 65), 0.55) rgba(255, 255, 255, 0.06);
+}
+.news-faq-promo__grid--faq-only .faq-panel-dark__list {
+    height: min(560px, 70vh);
+    flex: none;
+}
+.faq-panel-dark__list::-webkit-scrollbar {
+    width: 6px;
+}
+.faq-panel-dark__list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+.faq-panel-dark__list::-webkit-scrollbar-thumb {
+    background: rgba(var(--color-primary-rgb, 197, 255, 65), 0.5);
+    border-radius: 3px;
+}
+.faq-panel-dark__item.accordion-item {
+    margin: 0 !important;
+    flex: 0 0 auto !important;
+    min-height: 0;
+    height: auto !important;
+    border: 1px solid rgba(236, 238, 242, 0.12) !important;
+    border-radius: 12px !important;
+    background: rgba(255, 255, 255, 0.035) !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.faq-panel-dark__item:has(.faq-panel-dark__button:not(.collapsed)) {
+    border-color: rgba(var(--color-primary-rgb, 197, 255, 65), 0.55) !important;
+    box-shadow: inset 3px 0 0 0 var(--color-primary, #c5ff41) !important;
+}
+.faq-panel-dark__heading {
+    margin: 0;
+}
+.faq-panel-dark__button.accordion-button {
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center !important;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 14px !important;
+    background: transparent !important;
+    background-image: none !important;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+    text-align: left;
+    white-space: normal !important;
+}
+.faq-panel-dark__button.accordion-button::after {
+    display: none !important;
+    content: none !important;
+}
+.faq-panel-dark__button.accordion-button:not(.collapsed) {
+    background: transparent !important;
+    background-image: none !important;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+    box-shadow: none !important;
+}
+.faq-panel-dark__button.accordion-button:focus,
+.faq-panel-dark__button.accordion-button:focus-visible {
+    box-shadow: none !important;
+    outline: none;
+}
+.faq-panel-dark__button.accordion-button:focus-visible {
+    outline: 2px solid rgba(var(--color-primary-rgb, 197, 255, 65), 0.45);
+    outline-offset: -2px;
+}
+.faq-panel-dark__num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    height: 34px;
+    padding: 0 6px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    line-height: 1;
+}
+.faq-panel-dark__button:not(.collapsed) .faq-panel-dark__num {
+    background: var(--color-primary, #c5ff41);
+    color: #0e0e0e;
+}
+.faq-panel-dark__question {
+    min-width: 0;
+    color: inherit;
+}
+.faq-panel-dark__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.7);
+    flex-shrink: 0;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.faq-panel-dark__button:not(.collapsed) .faq-panel-dark__toggle {
+    background: var(--color-primary, #c5ff41);
+    color: #0e0e0e;
+    transform: rotate(180deg);
+}
+.faq-panel-dark__body.accordion-body {
+    padding: 0 14px 16px 60px !important;
+    background: transparent !important;
+    border: 0 !important;
+    color: rgba(255, 255, 255, 0.68) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.68) !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+    overflow: visible !important;
+}
+.faq-panel-dark__collapse.accordion-collapse {
+    background: transparent !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+.faq-panel-dark__collapse.accordion-collapse.collapsing {
+    height: 0 !important;
+    overflow: hidden !important;
+}
+.faq-panel-dark__collapse.accordion-collapse.show {
+    height: auto !important;
+    overflow: visible !important;
+}
+.faq-panel-dark__body p {
+    margin: 0 0 0.55rem;
+    color: rgba(255, 255, 255, 0.68) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.68) !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+}
+.faq-panel-dark__body p:last-child {
+    margin-bottom: 0;
+}
+.faq-panel-dark__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+.faq-panel-dark__tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border: 1px solid rgba(var(--color-primary-rgb, 197, 255, 65), 0.55);
+    border-radius: 999px;
+    color: var(--color-primary, #c5ff41);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+}
+
+@media (max-width: 991.98px) {
+    .news-faq-promo {
+        padding-top: 32px;
+        padding-bottom: 20px;
+        scroll-margin-top: 72px;
+    }
+    .news-faq-promo__frame {
+        padding: 24px 16px 20px;
+    }
+    .news-faq-promo__grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+    .faq-panel-dark__list {
+        height: min(520px, 65vh);
+        flex: none;
+        min-height: 280px;
+    }
+    .faq-panel-dark__body.accordion-body {
+        padding-left: 14px !important;
+    }
+    .news-faq-promo__news-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+@media (max-width: 575.98px) {
+    .news-faq-promo__news-actions .btn-brand-4-sm {
+        flex: 1 1 auto;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .news-faq-promo__frame {
+        animation: none;
+    }
 }
 
 
-/* ========== ???????: ??????? ????????????? + ?????? ???????? ========== */
+/* ========== СЕКЦИЯ: Галерея руководителей + контуры команды ========== */
 .team-section.box-why-trusted-black {
     background-color: var(--color-dark, #191919);
 }

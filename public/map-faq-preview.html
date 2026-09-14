@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map FAQ Block Preview — Merged 1/3 + 2/3</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --color-dark: #191919;
+            --color-primary: #C5FF41;
+            --color-primary-rgb: 197, 255, 65;
+            --radius-md: 16px;
+            --radius-sm: 8px;
+            --site-gutter: 15px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            padding: 40px 20px;
+        }
+
+        .map-faq-block {
+            position: relative;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 48px 20px 20px;
+            background-color: var(--color-dark);
+            box-sizing: border-box;
+        }
+
+        .map-faq-block__frame {
+            padding: 36px 32px 32px;
+            border: 1px solid rgba(236, 238, 242, 0.18);
+            border-radius: var(--radius-md);
+            background:
+                radial-gradient(ellipse 45% 60% at 30% 40%, rgba(var(--color-primary-rgb), 0.06), transparent 68%),
+                var(--color-dark);
+            animation: map-faq-block-in 0.7s ease both;
+        }
+
+        .map-faq-block__grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        .map-faq-block__faq {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .map-faq-block__faq-header {
+            margin-bottom: 8px;
+        }
+
+        .map-faq-block__faq-title {
+            margin: 0;
+            color: #fff;
+            font-size: clamp(20px, 1.8vw, 24px);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: 0.02em;
+        }
+
+        .map-faq-block__faq-content {
+            max-height: 480px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .map-faq-block__faq-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .map-faq-block__faq-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .map-faq-block__faq-content::-webkit-scrollbar-thumb {
+            background: rgba(var(--color-primary-rgb), 0.5);
+            border-radius: 3px;
+        }
+
+        .map-faq-block__faq-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(var(--color-primary-rgb), 0.7);
+        }
+
+        .accordion-item {
+            border: none;
+            margin-bottom: 10px;
+            background: transparent;
+        }
+
+        .accordion-button {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border: 1px solid rgba(236, 238, 242, 0.1);
+            border-radius: var(--radius-sm) !important;
+            padding: 16px 20px;
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .accordion-button::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff80'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: rgba(var(--color-primary-rgb), 0.1);
+            color: var(--color-primary);
+            border-color: rgba(var(--color-primary-rgb), 0.3);
+            box-shadow: none;
+        }
+
+        .accordion-button:not(.collapsed)::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23C5FF41'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(var(--color-primary-rgb), 0.3);
+        }
+
+        .accordion-body {
+            background: rgba(255, 255, 255, 0.03);
+            color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(236, 238, 242, 0.1);
+            border-top: none;
+            border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+            margin-top: -10px;
+            margin-bottom: 10px;
+            padding: 16px 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .map-faq-block__map {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .map-faq-block__map-header {
+            margin-bottom: 4px;
+        }
+
+        .map-faq-block__map-title {
+            margin: 0;
+            color: #fff;
+            font-size: clamp(20px, 1.8vw, 24px);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: 0.02em;
+        }
+
+        .map-faq-block__map-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+
+        .map-filter-select {
+            position: relative;
+            flex: 1 1 140px;
+            min-width: 120px;
+        }
+
+        .map-filter-select label {
+            display: block;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .map-filter-select select {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(236, 238, 242, 0.15);
+            color: #fff;
+            padding: 10px 36px 10px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-weight: 500;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff80'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 14px;
+            cursor: pointer;
+            transition: border-color .2s;
+        }
+
+        .map-filter-select select:hover {
+            border-color: rgba(var(--color-primary-rgb), 0.4);
+        }
+
+        .map-filter-select select:focus {
+            outline: none;
+            border-color: rgba(var(--color-primary-rgb), 0.6);
+        }
+
+        .map-faq-block__map-content {
+            min-height: 380px;
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid rgba(236, 238, 242, 0.1);
+            overflow: hidden;
+            position: relative;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rf-map-svg-wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rf-map-svg {
+            width: 100%;
+            height: auto;
+            max-height: 360px;
+        }
+
+        .rf-map-legend {
+            display: flex;
+            gap: 24px;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(236, 238, 242, 0.08);
+        }
+
+        .rf-map-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .rf-map-legend-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .rf-map-legend-dot.active {
+            background: var(--color-primary);
+            box-shadow: 0 0 12px rgba(var(--color-primary-rgb), 0.6);
+        }
+
+        .rf-map-legend-dot.planned {
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+        }
+
+        @keyframes map-faq-block-in {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 991.98px) {
+            .map-faq-block {
+                padding-top: 32px;
+                padding-bottom: 16px;
+            }
+
+            .map-faq-block__frame {
+                padding: 24px 16px 20px;
+            }
+
+            .map-faq-block__grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .map-faq-block__map-content {
+                min-height: 280px;
+            }
+
+            .map-faq-block__faq-content {
+                max-height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="map-faq-block">
+        <div class="map-faq-block__frame">
+            <div class="map-faq-block__grid">
+
+                <!-- Левая колонка 1/3: FAQ -->
+                <div class="map-faq-block__faq">
+                    <div class="map-faq-block__faq-header">
+                        <h3 class="map-faq-block__faq-title">ОСТАЛИСЬ ВОПРОСЫ?</h3>
+                    </div>
+                    <div class="map-faq-block__faq-content">
+                        <div class="accordion" id="mapFaqAccordion">
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                        Что такое НЕКСУС и для чего нужна платформа?
+                                    </button>
+                                </h2>
+                                <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#mapFaqAccordion">
+                                    <div class="accordion-body">
+                                        НЕКСУС — это цифровая инвестиционная платформа, объединяющая инвесторов, инициаторов проектов и регуляторов в единой экосистеме. Платформа обеспечивает прозрачное проведение сделок с цифровыми финансовыми активами, верификацию участников и управление проектами на всех стадиях жизненного цикла.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                        Как обеспечить безопасность активов?
+                                    </button>
+                                </h2>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#mapFaqAccordion">
+                                    <div class="accordion-body">
+                                        Безопасность активов обеспечивается многоуровневой системой защиты: блокчейн-платформа ГАНИМЕД для надёжного учёта прав, цифровая верификация всех участников, многофакторная аутентификация, шифрование данных, регулярные независимые аудиты и соблюдение требований 115-ФЗ и иных нормативных актов.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                        Как начать инвестировать?
+                                    </button>
+                                </h2>
+                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#mapFaqAccordion">
+                                    <div class="accordion-body">
+                                        Чтобы начать инвестировать: 1) Зарегистрируйтесь на платформе, 2) Пройдите процедуру идентификации (KYC), 3) Пополните счёт удобным способом, 4) Изучите каталог проектов с помощью фильтров и карты, 5) Сформируйте портфель и совершите первую инвестицию. В личном кабинете доступна полная аналитика.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                        Как стать инициатором проекта?
+                                    </button>
+                                </h2>
+                                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#mapFaqAccordion">
+                                    <div class="accordion-body">
+                                        Для размещения проекта в качестве инициатора: 1) Зарегистрируйтесь и выберите роль «Инициатор», 2) Пройдите расширенную верификацию, 3) Заполните форму проекта (описание, бюджет, сроки, документы), 4) Отправьте на модерацию. После одобрения проект публикуется на платформе и становится доступен инвесторам.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Правая колонка 2/3: Карта инвестиций -->
+                <div class="map-faq-block__map">
+                    <div class="map-faq-block__map-header">
+                        <h3 class="map-faq-block__map-title">КАРТА ИНВЕСТИЦИЙ</h3>
+                    </div>
+
+                    <div class="map-faq-block__map-filters">
+                        <div class="map-filter-select">
+                            <label>Отрасль</label>
+                            <select>
+                                <option>Все</option>
+                                <option>Промышленность</option>
+                                <option>Сельское хозяйство</option>
+                                <option>IT</option>
+                                <option>Энергетика</option>
+                                <option>Строительство</option>
+                            </select>
+                        </div>
+                        <div class="map-filter-select">
+                            <label>Регион</label>
+                            <select>
+                                <option>Все</option>
+                                <option>Москва и МО</option>
+                                <option>Санкт-Петербург</option>
+                                <option>Приволжский ФО</option>
+                                <option>Сибирский ФО</option>
+                                <option>Дальневосточный ФО</option>
+                            </select>
+                        </div>
+                        <div class="map-filter-select">
+                            <label>Стадия</label>
+                            <select>
+                                <option>Все</option>
+                                <option>Идея</option>
+                                <option>Запуск</option>
+                                <option>Рост</option>
+                                <option>Масштабирование</option>
+                            </select>
+                        </div>
+                        <div class="map-filter-select">
+                            <label>Объём</label>
+                            <select>
+                                <option>Все</option>
+                                <option>до 10 млн ₽</option>
+                                <option>10–100 млн ₽</option>
+                                <option>100–500 млн ₽</option>
+                                <option>свыше 500 млн ₽</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="map-faq-block__map-content">
+                        <div class="rf-map-svg-wrapper">
+                            <svg class="rf-map-svg" viewBox="0 0 820 420" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <filter id="glow">
+                                        <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                                        <feMerge>
+                                            <feMergeNode in="coloredBlur"/>
+                                            <feMergeNode in="SourceGraphic"/>
+                                        </feMerge>
+                                    </filter>
+                                </defs>
+
+                                <path d="M 120 140 L 160 120 L 200 110 L 240 105 L 280 95 L 310 85 L 350 80 L 380 75 L 420 72 L 460 78 L 500 75 L 540 82 L 580 90 L 620 100 L 650 95 L 690 100 L 720 108 L 750 115 L 775 125 L 785 140 L 790 160 L 785 185 L 770 205 L 760 225 L 770 250 L 780 270 L 770 295 L 750 305 L 720 310 L 695 308 L 670 312 L 640 305 L 610 300 L 580 305 L 550 302 L 520 298 L 490 305 L 460 300 L 430 295 L 400 298 L 370 292 L 340 288 L 310 295 L 280 288 L 250 282 L 220 278 L 195 268 L 170 255 L 148 240 L 130 218 L 120 195 L 115 170 L 120 140 Z
+                                         M 340 80 L 360 65 L 380 55 L 400 48 L 420 42 L 445 40 L 470 45 L 485 55 L 495 70 L 480 78 L 460 78 L 440 75 L 420 72 L 400 75 L 380 75 L 360 80 L 340 80 Z
+                                         M 95 155 L 115 145 L 120 160 L 115 185 L 100 195 L 85 188 L 82 170 L 90 158 L 95 155 Z"
+                                      fill="rgba(80, 85, 95, 0.55)"
+                                      stroke="rgba(200, 210, 220, 0.35)"
+                                      stroke-width="1.2"/>
+
+                                <path d="M 560 92 L 580 70 L 600 62 L 620 68 L 635 85 L 630 100 L 610 102 L 585 95 L 565 95 L 560 92 Z
+                                         M 695 102 L 710 85 L 725 82 L 745 88 L 750 105 L 738 115 L 720 112 L 700 108 L 695 102 Z
+                                         M 200 112 L 215 92 L 238 88 L 258 95 L 260 115 L 245 125 L 220 122 L 205 118 L 200 112 Z"
+                                      fill="rgba(90, 95, 105, 0.5)"
+                                      stroke="rgba(200, 210, 220, 0.3)"
+                                      stroke-width="1"/>
+
+                                <circle cx="360" cy="170" r="10" fill="#C5FF41" filter="url(#glow)"/>
+                                <circle cx="470" cy="200" r="10" fill="#C5FF41" filter="url(#glow)"/>
+                                <circle cx="590" cy="215" r="10" fill="#C5FF41" filter="url(#glow)"/>
+                                <circle cx="710" cy="210" r="10" fill="#C5FF41" filter="url(#glow)"/>
+                                <circle cx="395" cy="125" r="10" fill="#C5FF41" filter="url(#glow)"/>
+
+                                <circle cx="280" cy="200" r="7" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+                                <circle cx="540" cy="170" r="7" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+                                <circle cx="660" cy="260" r="7" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+                                <circle cx="450" cy="260" r="7" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="rf-map-legend">
+                        <div class="rf-map-legend-item">
+                            <span class="rf-map-legend-dot active"></span>
+                            Активные проекты
+                        </div>
+                        <div class="rf-map-legend-item">
+                            <span class="rf-map-legend-dot planned"></span>
+                            Планируемые проекты
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
