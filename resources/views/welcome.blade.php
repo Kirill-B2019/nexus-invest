@@ -7,10 +7,13 @@
             $styleVerRoadmap = '1.0.' . (config('app.env') === 'production' ? '0' : time());
         }
     @endphp
-    <link rel="preload" href="{{ asset('assets/css/roadmap.css') }}?v={{ $styleVerRoadmap }}" as="style">
-    <link href="{{ asset('assets/css/roadmap.css') }}?v={{ $styleVerRoadmap }}" rel="stylesheet" media="all">
-    <link rel="preload" href="{{ asset('assets/css/industry-indicators.css') }}?v={{ $styleVerRoadmap }}" as="style">
-    <link href="{{ asset('assets/css/industry-indicators.css') }}?v={{ $styleVerRoadmap }}" rel="stylesheet" media="all">
+    {{-- Ниже fold: не блокируем первый рендер --}}
+    <link rel="preload" href="{{ asset('assets/css/roadmap.css') }}?v={{ $styleVerRoadmap }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="{{ asset('assets/css/industry-indicators.css') }}?v={{ $styleVerRoadmap }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="{{ asset('assets/css/roadmap.css') }}?v={{ $styleVerRoadmap }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/industry-indicators.css') }}?v={{ $styleVerRoadmap }}" rel="stylesheet">
+    </noscript>
 @endpush
 
 @push('scripts-vendor')
@@ -120,7 +123,7 @@
                                 <article class="hero-eco-card">
                                     <h6 class="hero-eco-card__title">{{ __('НЕКСУС') }}</h6>
                                     <div class="hero-eco-card__media">
-                                        <img src="{{ asset('assets/imgs/page/homepage1/hero-nexus.png') }}" alt="{{ __('НЕКСУС') }}" loading="eager" decoding="async" width="220" height="140">
+                                        <img src="{{ asset('assets/imgs/page/homepage1/hero-nexus.png') }}" alt="{{ __('НЕКСУС') }}" loading="eager" decoding="async" fetchpriority="high" width="220" height="140">
                                     </div>
                                     <p class="hero-eco-card__desc">{{ __('Платформа токенизации проектов и управления') }}</p>
                                     <p class="hero-eco-card__stage">{{ __('Запуск: СТАДИЯ I') }}</p>

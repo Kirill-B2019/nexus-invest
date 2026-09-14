@@ -15,20 +15,23 @@
         ? 'favicon.ico'
         : 'assets/imgs/template/favicon.svg';
     $faviconVer = file_exists(public_path($faviconPath)) ? (filemtime(public_path($faviconPath)) ?: '1') : '1';
+    $styleVer = config('app.asset_version');
+    if ($styleVer === null || $styleVer === '') {
+        $styleVer = '1.0.' . (config('app.env') === 'production' ? '0' : time());
+    }
     @endphp
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset($faviconPath) }}?v={{ $faviconVer }}">
+    <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="preload" href="{{ asset('assets/imgs/template/logo-head.svg') }}" as="image">
+    <link rel="preload" href="{{ asset('assets/fonts/uicons/uicons-regular-rounded.woff2') }}" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="https://fonts.bunny.net/css?family=manrope:400,500,600,700&display=swap" media="all">
-    @php
-        $styleVer = config('app.asset_version');
-        if ($styleVer === null || $styleVer === '') {
-            $styleVer = '1.0.' . (config('app.env') === 'production' ? '0' : time());
-        }
-    @endphp
     <link rel="preload" href="{{ asset('assets/css/style.css') }}?v={{ $styleVer }}" as="style">
     <link href="{{ asset('assets/css/style.css') }}?v={{ $styleVer }}" rel="stylesheet" media="all">
     <link rel="preload" href="{{ asset('assets/css/main.css') }}?v={{ $styleVer }}" as="style">
     <link href="{{ asset('assets/css/main.css') }}?v={{ $styleVer }}" rel="stylesheet" media="all">
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" media="all">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet"></noscript>
     <style>
         /* Резерв места под скроллбар — при открытии модалки контент не смещается */
         html { scrollbar-gutter: stable; }
@@ -39,17 +42,15 @@
         body,
         .main-menu,
         .font-heading {
-            font-family: "Manrope", "Urbanist", system-ui, sans-serif !important;
+            font-family: "Manrope", system-ui, sans-serif !important;
         }
     </style>
     @stack('styles')
 </head>
 <body>
     <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-            <div class="preloader-inner position-relative">
-                <div class="text-center"><img src="{{ asset('assets/imgs/template/loading.gif') }}" alt="{{ config('app.name') }}"></div>
-            </div>
+        <div class="preloader preloader--nexus" role="status" aria-label="{{ __('Загрузка') }}">
+            <span class="preloader__spinner" aria-hidden="true"></span>
         </div>
     </div>
 
@@ -80,19 +81,40 @@
 
     <script>
         window.NEXUS_YANDEX_METRIKA_ID = {{ config('services.metrika.id', 106896230) }};
+        (function () {
+            var hide = function () {
+                var el = document.getElementById('preloader-active');
+                if (!el || el.getAttribute('data-done') === '1') {
+                    return;
+                }
+                el.setAttribute('data-done', '1');
+                el.classList.add('is-hidden');
+                window.setTimeout(function () {
+                    if (el.parentNode) {
+                        el.parentNode.removeChild(el);
+                    }
+                }, 350);
+            };
+            if (window.requestAnimationFrame) {
+                window.requestAnimationFrame(function () {
+                    window.requestAnimationFrame(hide);
+                });
+            } else {
+                window.setTimeout(hide, 50);
+            }
+        })();
     </script>
     <script src="{{ asset('assets/js/vendor/jquery-3.7.0.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/jquery-migrate-3.3.0.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/bootstrap.bundle.min.js') }}"></script>
     @stack('scripts-vendor')
-    <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/scrollup.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/wow.js') }}"></script>
-    <script src="{{ asset('assets/js/main.js') }}?v={{ $styleVer }}"></script>
-    <script src="{{ asset('assets/js/math-captcha.js') }}?v={{ $styleVer }}"></script>
-    <script src="{{ asset('assets/js/contact-form.js') }}?v={{ $styleVer }}"></script>
-    <script src="{{ asset('assets/js/cookie-banner.js') }}?v={{ $styleVer }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/plugins/scrollup.js') }}" defer></script>
+    <script src="{{ asset('assets/js/plugins/wow.js') }}" defer></script>
+    <script src="{{ asset('assets/js/main.js') }}?v={{ $styleVer }}" defer></script>
+    <script src="{{ asset('assets/js/math-captcha.js') }}?v={{ $styleVer }}" defer></script>
+    <script src="{{ asset('assets/js/contact-form.js') }}?v={{ $styleVer }}" defer></script>
+    <script src="{{ asset('assets/js/cookie-banner.js') }}?v={{ $styleVer }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js" defer></script>
     @php
         $laravelFlash = [
             'success' => session('newsletter_success') ?? session('alert_success'),
@@ -105,8 +127,8 @@
     <script>
         window.laravelFlash = @json($laravelFlash);
     </script>
-    <script src="{{ asset('assets/js/sweetalert-flash.js') }}?v={{ $styleVer }}"></script>
-    <script src="{{ asset('assets/js/ganimed-status.js') }}?v={{ $styleVer }}"></script>
+    <script src="{{ asset('assets/js/sweetalert-flash.js') }}?v={{ $styleVer }}" defer></script>
+    <script src="{{ asset('assets/js/ganimed-status.js') }}?v={{ $styleVer }}" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var metricsBtn = document.getElementById('projectMetricsContactBtn');

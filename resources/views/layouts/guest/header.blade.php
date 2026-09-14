@@ -3,7 +3,7 @@
         <div class="main-header">
             <div class="header-logo">
                 <a class="d-flex" href="{{ route('welcome') }}">
-                    <img class="logo-head" alt="{{ config('app.name') }}" src="{{ asset('assets/imgs/template/logo-head.svg') }}">
+                    <img class="logo-head" alt="{{ config('app.name') }}" src="{{ asset('assets/imgs/template/logo-head.svg') }}" width="160" height="40" decoding="async" fetchpriority="high">
                 </a>
             </div>
             <div class="header-nav">

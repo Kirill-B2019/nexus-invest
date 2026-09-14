@@ -9,7 +9,7 @@
     data-loading-text="{{ __('Загрузка...') }}"
     data-error-text="{{ __('Ошибка загрузки капчи') }}"
 >
-    <div class="math-captcha__question mb-2" data-question-placeholder>{{ __('Загрузка...') }}</div>
+    <div class="math-captcha__question mb-2" data-question-placeholder>{{ __('Решите пример') }}</div>
     <input type="hidden" name="captcha_token" value="" data-captcha-token>
     <input type="text"
            name="captcha_answer"

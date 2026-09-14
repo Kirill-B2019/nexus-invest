@@ -62,8 +62,4 @@
             });
         },
     };
-
-    document.addEventListener("DOMContentLoaded", function () {
-        window.NexusMathCaptcha.loadAll();
-    });
 })();

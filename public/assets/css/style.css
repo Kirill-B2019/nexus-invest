@@ -26,16 +26,12 @@ TABLE CONTENT
  WP STYPE
  Custom amine
 ***/
-@import url(https://fonts.bunny.net/css?family=urbanist:200,300,400,500,600,700);
-/*import vendors*/
 @import url(../css/vendors/normalize.css);
 @import url(../css/vendors/bootstrap.min.css);
 @import url(../css/vendors/uicons-regular-rounded.css);
 /*import plugins*/
 @import url(../css/plugins/swiper-bundle.min.css);
-@import url(../css/plugins/magnific-popup.css);
 @import url(plugins/animate.css);
-@import url(../css/plugins/select2.min.css);
 @import url(../css/plugins/perfect-scrollbar.css);
 @import url(../css/plugins/carouselTicker.css);
 /*RESET*/
@@ -704,7 +700,7 @@ h6, .heading-6 {
 
 /*page loading*/
 .preloader {
-  background-color: #ECF0F1;
+  background-color: #0E0E0E;
   width: 100%;
   height: 100%;
   position: fixed;
@@ -713,11 +709,33 @@ h6, .heading-6 {
   right: 0;
   bottom: 0;
   z-index: 999999;
-  transition: 0.6s;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
   margin: 0 auto;
 }
 .preloader img {
   max-width: 250px;
+}
+.preloader--nexus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0E0E0E;
+}
+.preloader__spinner {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  border-top-color: #C5FF55;
+  border-radius: 50%;
+  animation: nexus-preloader-spin 0.65s linear infinite;
+}
+@keyframes nexus-preloader-spin {
+  to { transform: rotate(360deg); }
+}
+#preloader-active.is-hidden .preloader {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .pagination {
