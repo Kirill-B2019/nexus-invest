@@ -239,28 +239,6 @@
     </div>
 </section>
 
-{{-- КАРУСЕЛЬ ЛОГОТИПОВ --}}
-@php
-    $logoPath = public_path('assets/imgs/page/homepage1/out-logo');
-    $logos = glob($logoPath . '/*.png');
-    usort($logos, function ($a, $b) {
-        return strnatcasecmp(basename($a), basename($b));
-    });
-@endphp
-<section class="section-box wow fadeIn box-logos-2">
-    <div class="container">
-        <div class="carouselTickerLogos2 carouselTicker_vertical" id="slide-logos">
-            <ul class="carouselTicker__list list-logos">
-                @foreach ($logos as $logo)
-                <li class="carouselTicker__item">
-                    <div class="item-logo"><img src="{{ asset('assets/imgs/page/homepage1/out-logo/' . basename($logo)) }}" alt="{{ config('app.name') }}" loading="lazy" decoding="async"></div>
-                </li>
-                @endforeach
-            </ul>
-        </div>
-    </div>
-</section>
-
 {{-- ЦЕЛЬ ЭКОСИСТЕМЫ --}}
 <section class="section-box wow fadeIn box-our-track-2 box-our-track-2--dark-stack">
     <div class="ecosystem-goal-promo" id="ecosystem-goal">

@@ -603,7 +603,9 @@
 
     $("#slide-logos").each(function () {
         $(this).carouselTicker({
-            direction: "prev"
+            direction: "prev",
+            speed: 1.1,
+            delay: 25
         });
     });
 
