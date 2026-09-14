@@ -5605,8 +5605,31 @@ input.ganimed-status-checkbox:checked {
 }
 .news-faq-promo__news-foot {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 18px;
     justify-content: flex-start;
     margin-top: 4px;
+}
+.news-faq-promo__dzen-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-primary, #c5ff41);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+}
+.news-faq-promo__dzen-link:hover {
+    color: var(--color-primary-hover, #d4ff6a);
+    text-decoration: underline;
+}
+.news-faq-promo__dzen-link img {
+    width: 18px;
+    height: 18px;
+    display: block;
+    flex-shrink: 0;
 }
 
 /* ========== FAQ panel dark (макет «Остались вопросы?») ========== */

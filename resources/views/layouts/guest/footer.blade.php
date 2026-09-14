@@ -194,7 +194,7 @@
 
                 <a class="footer-eco-info footer-eco-info--link" href="https://dzen.ru/digital_fintech" target="_blank" rel="noopener noreferrer">
                     <span class="footer-eco-info__icon footer-eco-info__icon--mono" aria-hidden="true">
-                        <img class="footer-eco-info__logo" src="{{ asset('assets/imgs/template/icons/dzen.svg') }}" alt="" width="28" height="28" decoding="async">
+                        <img class="footer-eco-info__logo" src="{{ asset('assets/imgs/template/icons/dzen.svg') }}?v={{ config('app.asset_version') }}" alt="" width="28" height="28" decoding="async">
                     </span>
                     <div class="footer-eco-info__body">
                         <p class="footer-eco-info__title">{{ __('Канал Дзен от авторов НЕКСУС') }}</p>

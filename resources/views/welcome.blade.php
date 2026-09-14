@@ -778,6 +778,10 @@
                         </div>
                         <div class="news-faq-promo__news-foot">
                             <a class="btn btn-brand-4-sm" href="{{ route('news.index') }}">{{ __('Все новости') }}</a>
+                            <a class="news-faq-promo__dzen-link" href="{{ config('dzen.channel_url', 'https://dzen.ru/digital_fintech') }}" target="_blank" rel="noopener noreferrer">
+                                <img src="{{ asset('assets/imgs/template/icons/dzen.svg') }}?v={{ config('app.asset_version') }}" alt="" width="18" height="18" decoding="async" aria-hidden="true">
+                                {{ __('Канал Дзен') }}
+                            </a>
                         </div>
                     </div>
                 @endif
