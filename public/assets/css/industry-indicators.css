@@ -336,10 +336,16 @@
 
 .indicators-promo__board .ind-radar__legend {
   max-height: 260px;
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 6px;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 4px 4px 8px 0;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--color-primary-rgb, 197, 255, 65), 0.55) rgba(255, 255, 255, 0.06);
 }
 
 .indicators-promo__board .ind-radar__legend-item {
@@ -640,6 +646,13 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 6px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 4px 4px 8px 0;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--color-primary-rgb, 197, 255, 65), 0.55) rgba(255, 255, 255, 0.06);
 }
 
 .ind-duo .ind-radar__legend-item {
@@ -1842,8 +1855,32 @@
   flex-direction: column;
   gap: 6px;
   max-height: 420px;
+  overflow-x: hidden;
   overflow-y: auto;
-  padding-right: 4px;
+  overscroll-behavior: contain;
+  padding: 4px 4px 8px 0;
+  scroll-padding-top: 8px;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--color-primary-rgb, 197, 255, 65), 0.55) rgba(255, 255, 255, 0.06);
+}
+
+.ind-radar__legend::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ind-radar__legend::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.ind-radar__legend::-webkit-scrollbar-thumb {
+  background: rgba(var(--color-primary-rgb, 197, 255, 65), 0.5);
+  border-radius: 3px;
+}
+
+.ind-radar__legend::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--color-primary-rgb, 197, 255, 65), 0.7);
 }
 
 .ind-radar__legend-item {
