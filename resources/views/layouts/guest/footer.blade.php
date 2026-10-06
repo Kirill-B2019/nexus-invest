@@ -178,7 +178,15 @@
                         <li><a href="https://main-node.gnd-net.com" target="_blank" rel="noopener noreferrer">main-node.gnd-net.com</a></li>
                         <li><a href="https://scan.gnd-net.com" target="_blank" rel="noopener noreferrer">scan.gnd-net.com</a></li>
                         <li><a href="https://mess.nexus-invest.fund" target="_blank" rel="noopener noreferrer">mess.nexus-invest.fund</a></li>
+                        <li><button
+                                type="button"
+                                class="footer-newsletter__btn"
+                                onclick="window.open('{{ asset('game.html') }}', '_blank', 'noopener,noreferrer')"
+                            >
+                                Интерактивная игра
+                            </button></li>
                     </ul>
+
                 </div>
             </div>
 
