@@ -181,7 +181,7 @@
                         <li><button
                                 type="button"
                                 class="footer-newsletter__btn"
-                                onclick="window.open('{{ asset('game.html') }}', '_blank', 'noopener,noreferrer')"
+                                onclick="window.open('{{ asset('game.php') }}', '_blank', 'noopener,noreferrer')"
                             >
                                 Интерактивная игра
                             </button></li>
