@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 426" fill="none">
+  <title>Инвестиционный портфель и рост капитала</title>
+  <defs>
+    <linearGradient id="bg" x1="70" y1="20" x2="580" y2="410" gradientUnits="userSpaceOnUse"><stop stop-color="#18251e"/><stop offset=".52" stop-color="#11191b"/><stop offset="1" stop-color="#10131a"/></linearGradient>
+    <radialGradient id="aura" cx="0" cy="0" r="1" gradientTransform="matrix(180 0 0 154 332 201)" gradientUnits="userSpaceOnUse"><stop stop-color="#c5ff41" stop-opacity=".2"/><stop offset="1" stop-color="#c5ff41" stop-opacity="0"/></radialGradient>
+    <linearGradient id="glass" x1="196" y1="87" x2="444" y2="330" gradientUnits="userSpaceOnUse"><stop stop-color="#35473a"/><stop offset="1" stop-color="#172126"/></linearGradient>
+    <linearGradient id="lime" x1="240" y1="290" x2="424" y2="124" gradientUnits="userSpaceOnUse"><stop stop-color="#84bf39"/><stop offset="1" stop-color="#e3ff95"/></linearGradient>
+    <filter id="shadow" x="100" y="48" width="450" height="356" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity=".48"/></filter>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="11"/></filter>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0v34" stroke="#c5ff41" stroke-opacity=".06"/></pattern>
+  </defs>
+  <rect width="640" height="426" rx="18" fill="url(#bg)"/><rect width="640" height="426" rx="18" fill="url(#aura)"/><rect width="640" height="426" rx="18" fill="url(#grid)"/>
+  <path d="M52 342h536" stroke="#dce8d6" stroke-opacity=".14"/>
+  <g filter="url(#shadow)">
+    <rect x="151" y="84" width="340" height="225" rx="20" fill="url(#glass)" stroke="#c5ff41" stroke-opacity=".4"/>
+    <path d="M151 126h340" stroke="#fff" stroke-opacity=".13"/>
+    <circle cx="178" cy="105" r="4" fill="#ff8a72"/><circle cx="193" cy="105" r="4" fill="#f6c969"/><circle cx="208" cy="105" r="4" fill="#c5ff41"/>
+    <rect x="178" y="149" width="137" height="128" rx="12" fill="#101719" stroke="#fff" stroke-opacity=".08"/>
+    <path d="M196 246h99M196 260h55" stroke="#fff" stroke-opacity=".16" stroke-linecap="round"/>
+    <path d="M198 224 220 208l20 7 19-31 18 8 20-25" stroke="url(#lime)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="297" cy="167" r="4" fill="#e3ff95"/>
+    <rect x="334" y="149" width="130" height="58" rx="12" fill="#c5ff41" fill-opacity=".1" stroke="#c5ff41" stroke-opacity=".24"/>
+    <circle cx="364" cy="178" r="17" stroke="#c5ff41" stroke-opacity=".66"/><path d="M364 167v11l8 5" stroke="#e3ff95" stroke-width="2" stroke-linecap="round"/>
+    <path d="M393 169h51M393 182h38" stroke="#dce8d6" stroke-opacity=".3" stroke-linecap="round"/>
+    <rect x="334" y="221" width="130" height="56" rx="12" fill="#101719" stroke="#fff" stroke-opacity=".08"/>
+    <path d="M350 260v-13m20 13v-25m20 25v-18m20 18v-32m20 32v-41" stroke="#c5ff41" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g filter="url(#shadow)">
+    <path d="m106 178 54-31 54 31v83l-54 31-54-31z" fill="#1b2926" stroke="#c5ff41" stroke-opacity=".52"/>
+    <path d="m106 178 54 31 54-31M160 209v83" stroke="#c5ff41" stroke-opacity=".55"/>
+    <path d="m132 178 28-16 28 16-28 17z" fill="#c5ff41" fill-opacity=".18" stroke="#dfff8a" stroke-opacity=".8"/>
+  </g>
+  <circle cx="531" cy="99" r="38" fill="#c5ff41" fill-opacity=".08" stroke="#c5ff41" stroke-opacity=".4"/><path d="m531 77 7 15 17 2-12 12 3 17-15-8-15 8 3-17-12-12 17-2z" fill="#c5ff41" fill-opacity=".75"/>
+  <path d="M84 108c39-31 68-44 113-47M466 326c41-9 63-24 84-49" stroke="#c5ff41" stroke-opacity=".28" stroke-dasharray="3 8"/>
+  <ellipse cx="321" cy="352" rx="148" ry="16" fill="#c5ff41" fill-opacity=".1" filter="url(#glow)"/>
+</svg>

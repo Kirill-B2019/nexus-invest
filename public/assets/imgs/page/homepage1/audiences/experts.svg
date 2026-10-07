@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 426" fill="none">
+  <title>Экспертная оценка и партнёрство</title>
+  <defs>
+    <linearGradient id="bg" x1="56" y1="12" x2="580" y2="412" gradientUnits="userSpaceOnUse"><stop stop-color="#18251e"/><stop offset=".53" stop-color="#11191b"/><stop offset="1" stop-color="#10131a"/></linearGradient>
+    <radialGradient id="aura" cx="0" cy="0" r="1" gradientTransform="matrix(190 0 0 151 327 199)" gradientUnits="userSpaceOnUse"><stop stop-color="#c5ff41" stop-opacity=".19"/><stop offset="1" stop-color="#c5ff41" stop-opacity="0"/></radialGradient>
+    <linearGradient id="glass" x1="129" y1="91" x2="308" y2="325" gradientUnits="userSpaceOnUse"><stop stop-color="#34473b"/><stop offset="1" stop-color="#172126"/></linearGradient>
+    <linearGradient id="lime" x1="257" y1="280" x2="463" y2="154" gradientUnits="userSpaceOnUse"><stop stop-color="#83bc39"/><stop offset="1" stop-color="#e1ff91"/></linearGradient>
+    <filter id="shadow" x="46" y="39" width="550" height="365" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity=".48"/></filter>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="11"/></filter>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0v34" stroke="#c5ff41" stroke-opacity=".06"/></pattern>
+  </defs>
+  <rect width="640" height="426" rx="18" fill="url(#bg)"/><rect width="640" height="426" rx="18" fill="url(#aura)"/><rect width="640" height="426" rx="18" fill="url(#grid)"/>
+  <path d="M52 342h536" stroke="#dce8d6" stroke-opacity=".14"/>
+  <g filter="url(#shadow)">
+    <rect x="107" y="76" width="176" height="230" rx="18" fill="url(#glass)" stroke="#c5ff41" stroke-opacity=".45"/>
+    <path d="M131 111h74" stroke="#c5ff41" stroke-width="4" stroke-linecap="round"/>
+    <path d="M131 137h126M131 155h126M131 173h91M131 205h126M131 223h109" stroke="#dce8d6" stroke-opacity=".26" stroke-linecap="round"/>
+    <rect x="131" y="245" width="88" height="36" rx="9" fill="#c5ff41" fill-opacity=".1" stroke="#c5ff41" stroke-opacity=".28"/>
+    <path d="m151 263 8 8 17-19" stroke="#e1ff91" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="487" cy="139" r="53" fill="url(#glass)" stroke="#c5ff41" stroke-opacity=".48" stroke-width="2"/>
+    <circle cx="487" cy="139" r="40" stroke="#c5ff41" stroke-opacity=".22"/>
+    <path d="m487 104 10 21 24 3-17 16 4 24-21-11-21 11 4-24-17-16 24-3z" fill="#c5ff41" fill-opacity=".28" stroke="#e1ff91" stroke-width="2"/>
+    <path d="m465 197-17 46 25-13 14 17 8-50m15 0 17 46-25-13-14 17-8-50" fill="#26352e" stroke="#c5ff41" stroke-opacity=".55" stroke-width="2" stroke-linejoin="round"/>
+  </g>
+  <g filter="url(#shadow)">
+    <path d="M253 267c21-3 40-17 54-30 8-8 20-9 29-3l22 14 30-29c8-8 20-9 29-2l42 34c9 7 9 19 1 27l-34 31c-9 8-23 8-32 1l-22-16-13 11c-10 8-25 8-35 1l-24-16c-10 7-23 10-37 10z" fill="url(#glass)" stroke="#c5ff41" stroke-opacity=".56" stroke-width="2" stroke-linejoin="round"/>
+    <path d="m346 248 22 14 20-18m-42 48 15 11 14-12m-67-22 20 15 15-13" stroke="url(#lime)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <path d="M298 103c39-29 78-34 119-19M297 321c44 20 82 25 119 13" stroke="#c5ff41" stroke-opacity=".3" stroke-dasharray="4 8"/>
+  <circle cx="327" cy="72" r="4" fill="#e1ff91"/><circle cx="566" cy="278" r="3" fill="#e1ff91"/><ellipse cx="323" cy="363" rx="156" ry="16" fill="#c5ff41" fill-opacity=".11" filter="url(#glow)"/>
+</svg>

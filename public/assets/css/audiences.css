@@ -1,0 +1,436 @@
+/* ==========================================================================
+   AUDIENCES — секция «Аудитории платформы»
+   Слева — вкладки, справа — панели: текст + иллюстрация.
+   Иллюстрация и пункты списка сменяются кроссфейдом при переключении.
+
+   Токены берутся из глобальной темы (главный CSS сайта, блок :root):
+   --color-lime / --color-primary  → акцент #C5FF41
+   --color-primary-rgb             → 197, 255, 65
+   --color-ink / --color-charcoal / --color-surface / --color-elevated
+   --color-mist                    → основной текст #ECEEF2
+   Шрифты: Urbanist (заголовки), Manrope (текст).
+   У каждого var() есть fallback — файл работает и без глобальной темы.
+   ========================================================================== */
+
+/* ---------- локальные токены (скоуп .aud, глобальные не переопределяем) -- */
+.aud {
+    --aud-bg:          var(--color-ink, #0e0e0e);
+    --aud-panel:       var(--color-charcoal, #191919);
+    --aud-surface:     var(--color-surface, #1e1e1e);
+    --aud-elevated:    var(--color-elevated, #2b2c2d);
+    --aud-line:        rgba(255, 255, 255, 0.08);
+    --aud-line-strong: rgba(255, 255, 255, 0.14);
+    --aud-acc:         var(--color-primary, #c5ff41);
+    --aud-acc-rgb:     var(--color-primary-rgb, 197, 255, 65);
+    --aud-text:        var(--color-mist, #eceef2);
+    --aud-body-text:   rgba(236, 238, 242, 0.88);
+    --aud-muted:       var(--color-text-muted, #727373);
+    --aud-dim:         #6f7070;
+    --aud-radius-sm:   10px;
+    --aud-radius:      12px;
+    --aud-radius-lg:   16px;
+    --aud-head:        "Urbanist", sans-serif;
+    --aud-font:        "Manrope", "Urbanist", system-ui, sans-serif;
+
+    position: relative;
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding: 48px var(--site-gutter, 15px) 20px;
+    box-sizing: border-box;
+    background-color: var(--color-dark, #191919);
+    color: var(--aud-text);
+    font-family: var(--aud-font);
+}
+
+.aud__frame {
+    width: 100%;
+    max-width: var(--site-content-max, 1503px);
+    margin: 0 auto;
+    padding: 36px 32px 32px;
+    display: grid;
+    grid-template-columns: 320px minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+    box-sizing: border-box;
+    border: 1px solid rgba(236, 238, 242, 0.18);
+    border-radius: var(--radius-md, 16px);
+    background:
+        radial-gradient(ellipse 45% 60% at 70% 40%, rgba(var(--color-primary-rgb, 197, 255, 65), 0.06), transparent 68%),
+        var(--color-dark, #191919);
+}
+
+.aud__heading {
+    grid-column: 1 / -1;
+    margin: 0;
+    color: #fff;
+    font-size: clamp(24px, 2.6vw, 34px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* скрытый спрайт (иконки вкладок, галочки, иллюстрации) */
+.aud__sprite {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   ВКЛАДКИ
+   ========================================================================== */
+.aud__tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.aud__tab {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding: 18px;
+    text-align: left;
+    cursor: pointer;
+    font: 600 15px/1.3 var(--aud-head);
+    letter-spacing: 0.01em;
+    color: var(--aud-muted);
+    background: var(--aud-panel);
+    border: 1px solid var(--aud-line);
+    border-radius: var(--aud-radius);
+    transition:
+        border-color 0.3s ease,
+        color 0.3s ease,
+        background-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+    animation: aud-tab-in 0.5s ease backwards; /* backwards — не блокирует hover-transform */
+}
+.aud__tabs .aud__tab:nth-child(1) { animation-delay: 0.05s; }
+.aud__tabs .aud__tab:nth-child(2) { animation-delay: 0.12s; }
+.aud__tabs .aud__tab:nth-child(3) { animation-delay: 0.19s; }
+.aud__tabs .aud__tab:nth-child(4) { animation-delay: 0.26s; }
+.aud__tabs .aud__tab:nth-child(5) { animation-delay: 0.33s; }
+
+.aud__tab:hover {
+    border-color: var(--aud-line-strong);
+    color: var(--aud-text);
+    transform: translateX(4px);
+}
+
+.aud__tab:focus-visible {
+    outline: 2px solid var(--aud-acc);
+    outline-offset: 2px;
+}
+
+.aud__tab-icon {
+    width: 20px;
+    height: 20px;
+    flex: none;
+    color: var(--aud-dim);
+    transition: color 0.3s ease;
+}
+
+.aud__tab-arrow {
+    width: 16px;
+    height: 16px;
+    flex: none;
+    margin-left: auto;
+    color: var(--aud-dim);
+    transform: rotate(-90deg); /* неактивная: стрелка вверх */
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* активная вкладка — паттерн .hero-eco-card:hover из темы:
+   лаймовая рамка, мягкая подсветка, тонкое кольцо-тень */
+.aud__tab.is-active {
+    background: linear-gradient(90deg, rgba(var(--aud-acc-rgb), 0.12), var(--aud-panel) 72%);
+    border-color: rgba(var(--aud-acc-rgb), 0.55);
+    color: var(--aud-text);
+    box-shadow: 0 0 0 1px rgba(var(--aud-acc-rgb), 0.12);
+    transform: none;
+}
+.aud__tab.is-active .aud__tab-icon,
+.aud__tab.is-active .aud__tab-arrow {
+    color: var(--aud-acc);
+}
+.aud__tab.is-active .aud__tab-arrow {
+    transform: rotate(0deg); /* активная: стрелка вправо */
+}
+
+@keyframes aud-tab-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* ==========================================================================
+   ПАНЕЛИ — лежат стопкой в одной grid-ячейке: кроссфейд без скачков высоты
+   ========================================================================== */
+.aud__panes {
+    display: grid;
+    min-width: 0;
+}
+
+.aud__pane {
+    grid-area: 1 / 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+    gap: 40px;
+    align-items: center;
+    min-width: 0;
+    opacity: 0;
+    transform: translateY(14px);
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 0.45s ease,
+        transform 0.45s ease,
+        visibility 0s 0.45s;
+}
+
+.aud__pane.is-active {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+    pointer-events: auto;
+    transition:
+        opacity 0.45s ease,
+        transform 0.45s ease,
+        visibility 0s 0s;
+}
+
+/* панелями управляет класс .is-active; атрибут hidden не используем,
+   чтобы не ломать стопку-кроссфейд (страховка на случай старого JS) */
+.aud__pane[hidden] {
+    display: grid;
+}
+
+/* ---------- контент панели ---------- */
+.aud__title {
+    margin: 0 0 12px;
+    font: 700 clamp(22px, 2.2vw, 30px) / 1.15 var(--aud-head);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--aud-text);
+}
+
+.aud__lead {
+    margin: 0 0 20px;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--aud-muted);
+}
+
+.aud .aud__note.small.text-muted {
+    margin: 15px 0 0;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--color-text-muted-4, #b1b2b8) !important;
+}
+
+.aud__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+/* каскадный вход пунктов — паттерн .hero-glossary__item из темы */
+.aud__item {
+    display: flex;
+    gap: 12px;
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--aud-body-text);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.aud__pane.is-active .aud__item {
+    opacity: 1;
+    transform: none;
+}
+.aud__pane.is-active .aud__item:nth-child(1) { transition-delay: 0.10s; }
+.aud__pane.is-active .aud__item:nth-child(2) { transition-delay: 0.16s; }
+.aud__pane.is-active .aud__item:nth-child(3) { transition-delay: 0.22s; }
+.aud__pane.is-active .aud__item:nth-child(4) { transition-delay: 0.28s; }
+.aud__pane.is-active .aud__item:nth-child(5) { transition-delay: 0.34s; }
+
+.aud__item-icon {
+    width: 16px;
+    height: 16px;
+    flex: none;
+    margin-top: 3px;
+    color: var(--aud-acc);
+}
+
+/* ---------- изображение-заглушка ---------- */
+.aud__ill {
+    width: 50%;
+    max-width: 300px;
+    min-width: 0;
+    justify-self: center;
+    opacity: 0;
+    transform: translateX(28px);
+    transition:
+        opacity 0.55s ease 0.05s,
+        transform 0.55s ease 0.05s,
+        filter 0.35s ease;
+}
+.aud__pane.is-active .aud__ill {
+    opacity: 1;
+    transform: none;
+}
+.aud__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.35s ease, filter 0.35s ease;
+}
+.aud__ill:hover .aud__image {
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 18px rgba(var(--color-primary-rgb, 197, 255, 65), 0.35));
+}
+
+/* ==========================================================================
+   АДАПТИВ — брейкпоинты темы: 1199.98 / 991.98 / 767.98 / 575.98
+   ========================================================================== */
+@media (max-width: 1199.98px) {
+    .aud__frame {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+    .aud__tabs {
+        flex-direction: row;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
+        scrollbar-width: thin;
+        scrollbar-color: var(--aud-elevated) transparent;
+    }
+    .aud__tab {
+        min-width: 250px;
+        scroll-snap-align: start;
+    }
+    .aud__tab:hover {
+        transform: none; /* на тач-скролле сдвиг мешает */
+    }
+}
+
+@media (max-width: 991.98px) {
+    .aud {
+        padding-top: 32px;
+        padding-bottom: 16px;
+    }
+    .aud__frame {
+        padding: 24px 16px 20px;
+    }
+    .aud__pane {
+        gap: 28px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .aud__tabs {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        overflow: visible;
+        padding-bottom: 0;
+        scroll-snap-type: none;
+    }
+    .aud__tab {
+        min-width: 0;
+        padding: 12px;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    .aud__tab > span {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+    .aud__tab-arrow {
+        display: none;
+    }
+    .aud__pane {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    .aud__ill {
+        display: none;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .aud {
+        padding-top: 28px;
+        padding-bottom: 16px;
+    }
+    .aud__frame {
+        padding: 20px 14px 18px;
+    }
+    .aud__tabs {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 8px;
+    }
+    .aud__tab {
+        min-width: 0;
+        padding: 11px 9px;
+        gap: 8px;
+        font-size: 12px;
+    }
+    .aud__tab-icon {
+        width: 18px;
+        height: 18px;
+    }
+    .aud__title {
+        font-size: 20px;
+    }
+    .aud__lead {
+        font-size: 14px;
+    }
+    .aud__item {
+        font-size: 13.5px;
+    }
+}
+
+@media (max-width: 374.98px) {
+    .aud__frame {
+        padding: 16px 12px;
+    }
+    .aud__tabs {
+        grid-template-columns: 1fr;
+    }
+    .aud__tab {
+        min-height: 44px;
+        padding: 12px;
+        align-items: center;
+        font-size: 13px;
+    }
+}
+
+/* ==========================================================================
+   REDUCED MOTION — тот же паттерн, что в теме
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    .aud,
+    .aud * {
+        animation: none !important;
+        transition: none !important;
+    }
+}

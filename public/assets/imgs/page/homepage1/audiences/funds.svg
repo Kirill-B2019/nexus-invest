@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 426" fill="none">
+  <title>Институциональный капитал и сеть фондов</title>
+  <defs>
+    <linearGradient id="bg" x1="64" y1="12" x2="580" y2="412" gradientUnits="userSpaceOnUse"><stop stop-color="#17241d"/><stop offset=".54" stop-color="#11191b"/><stop offset="1" stop-color="#10131a"/></linearGradient>
+    <radialGradient id="aura" cx="0" cy="0" r="1" gradientTransform="matrix(205 0 0 153 322 201)" gradientUnits="userSpaceOnUse"><stop stop-color="#c5ff41" stop-opacity=".18"/><stop offset="1" stop-color="#c5ff41" stop-opacity="0"/></radialGradient>
+    <linearGradient id="glass" x1="132" y1="104" x2="310" y2="318" gradientUnits="userSpaceOnUse"><stop stop-color="#34473b"/><stop offset="1" stop-color="#172126"/></linearGradient>
+    <linearGradient id="lime" x1="240" y1="283" x2="449" y2="120" gradientUnits="userSpaceOnUse"><stop stop-color="#83bc39"/><stop offset="1" stop-color="#e1ff91"/></linearGradient>
+    <filter id="shadow" x="52" y="38" width="544" height="368" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feDropShadow dx="0" dy="18" stdDeviation="17" flood-color="#000" flood-opacity=".46"/></filter>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="10"/></filter>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0v34" stroke="#c5ff41" stroke-opacity=".06"/></pattern>
+  </defs>
+  <rect width="640" height="426" rx="18" fill="url(#bg)"/><rect width="640" height="426" rx="18" fill="url(#aura)"/><rect width="640" height="426" rx="18" fill="url(#grid)"/>
+  <path d="M52 342h536" stroke="#dce8d6" stroke-opacity=".14"/>
+  <g filter="url(#shadow)">
+    <path d="m91 143 103-57 103 57z" fill="url(#glass)" stroke="#c5ff41" stroke-opacity=".45"/>
+    <path d="M103 151h182M116 289h156M99 307h190" stroke="#dce8d6" stroke-opacity=".42" stroke-linecap="round"/>
+    <path d="M118 160h19v120h-19zM160 160h19v120h-19zM202 160h19v120h-19zM244 160h19v120h-19z" fill="#202f2c" stroke="#c5ff41" stroke-opacity=".24"/>
+    <circle cx="194" cy="119" r="8" fill="#c5ff41" fill-opacity=".8"/>
+    <rect x="344" y="180" width="160" height="118" rx="15" fill="url(#glass)" stroke="#c5ff41" stroke-opacity=".4"/>
+    <path d="M366 211h115M366 232h115M366 253h74" stroke="#dce8d6" stroke-opacity=".3" stroke-linecap="round"/>
+    <circle cx="473" cy="267" r="13" stroke="#c5ff41" stroke-width="2"/><path d="m467 267 4 4 8-9" stroke="#e1ff91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M359 145c32-42 69-57 111-50" stroke="#c5ff41" stroke-opacity=".45" stroke-dasharray="4 8"/>
+  </g>
+  <g filter="url(#shadow)">
+    <circle cx="428" cy="99" r="30" fill="#1b2926" stroke="#c5ff41" stroke-opacity=".58"/><circle cx="428" cy="99" r="10" fill="#c5ff41" fill-opacity=".7"/>
+    <circle cx="530" cy="129" r="23" fill="#1b2926" stroke="#c5ff41" stroke-opacity=".4"/><circle cx="530" cy="129" r="7" fill="#c5ff41" fill-opacity=".55"/>
+    <circle cx="554" cy="235" r="20" fill="#1b2926" stroke="#c5ff41" stroke-opacity=".42"/><circle cx="554" cy="235" r="6" fill="#c5ff41" fill-opacity=".6"/>
+    <circle cx="329" cy="117" r="18" fill="#1b2926" stroke="#c5ff41" stroke-opacity=".4"/><circle cx="329" cy="117" r="5" fill="#c5ff41" fill-opacity=".65"/>
+    <path d="m448 106 60 17m-5 11 32 80m-36-93-151-4m-9 18 47 45m109-49-70-24" stroke="url(#lime)" stroke-opacity=".6" stroke-width="2"/>
+  </g>
+  <path d="m314 285 7 15 17 2-12 12 3 17-15-8-15 8 3-17-12-12 17-2z" fill="#c5ff41" fill-opacity=".14" stroke="#c5ff41" stroke-opacity=".7"/>
+  <circle cx="77" cy="94" r="3" fill="#e1ff91"/><circle cx="579" cy="87" r="3" fill="#e1ff91"/><ellipse cx="321" cy="362" rx="160" ry="16" fill="#c5ff41" fill-opacity=".1" filter="url(#glow)"/>
+</svg>

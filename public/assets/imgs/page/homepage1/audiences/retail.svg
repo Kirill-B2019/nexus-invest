@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 426" fill="none">
+  <title>Мобильное инвестирование с защитой</title>
+  <defs>
+    <linearGradient id="bg" x1="72" y1="8" x2="578" y2="420" gradientUnits="userSpaceOnUse"><stop stop-color="#19241d"/><stop offset=".56" stop-color="#11191b"/><stop offset="1" stop-color="#10131a"/></linearGradient>
+    <radialGradient id="aura" cx="0" cy="0" r="1" gradientTransform="matrix(185 0 0 154 324 200)" gradientUnits="userSpaceOnUse"><stop stop-color="#c5ff41" stop-opacity=".2"/><stop offset="1" stop-color="#c5ff41" stop-opacity="0"/></radialGradient>
+    <linearGradient id="glass" x1="248" y1="54" x2="410" y2="340" gradientUnits="userSpaceOnUse"><stop stop-color="#34483b"/><stop offset="1" stop-color="#141e22"/></linearGradient>
+    <linearGradient id="lime" x1="274" y1="270" x2="388" y2="149" gradientUnits="userSpaceOnUse"><stop stop-color="#85be38"/><stop offset="1" stop-color="#e2ff91"/></linearGradient>
+    <filter id="shadow" x="130" y="34" width="392" height="374" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feDropShadow dx="0" dy="20" stdDeviation="18" flood-color="#000" flood-opacity=".5"/></filter>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0v34" stroke="#c5ff41" stroke-opacity=".06"/></pattern>
+  </defs>
+  <rect width="640" height="426" rx="18" fill="url(#bg)"/><rect width="640" height="426" rx="18" fill="url(#aura)"/><rect width="640" height="426" rx="18" fill="url(#grid)"/>
+  <path d="M54 342h532" stroke="#dce8d6" stroke-opacity=".14"/>
+  <g filter="url(#shadow)">
+    <rect x="227" y="51" width="186" height="299" rx="32" fill="url(#glass)" stroke="#c5ff41" stroke-opacity=".5" stroke-width="2"/>
+    <rect x="241" y="73" width="158" height="254" rx="22" fill="#0e1719" stroke="#fff" stroke-opacity=".09"/>
+    <path d="M290 62h60" stroke="#dce8d6" stroke-opacity=".34" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="320" cy="308" r="7" stroke="#c5ff41" stroke-opacity=".6"/>
+    <rect x="258" y="94" width="124" height="75" rx="13" fill="#c5ff41" fill-opacity=".1" stroke="#c5ff41" stroke-opacity=".24"/>
+    <path d="M274 150v-17m20 17v-30m20 30v-23m20 23v-43m20 43v-35" stroke="#c5ff41" stroke-width="5" stroke-linecap="round"/>
+    <path d="M259 185h122" stroke="#fff" stroke-opacity=".1"/>
+    <rect x="258" y="201" width="57" height="42" rx="10" fill="#182523" stroke="#fff" stroke-opacity=".1"/><rect x="325" y="201" width="57" height="42" rx="10" fill="#182523" stroke="#fff" stroke-opacity=".1"/>
+    <path d="M274 222h25m-9-9 9 9-9 9M341 222h25" stroke="#c5ff41" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="258" y="257" width="124" height="48" rx="10" fill="#182523" stroke="#fff" stroke-opacity=".1"/><path d="M275 274h91M275 288h55" stroke="#dce8d6" stroke-opacity=".24" stroke-linecap="round"/>
+  </g>
+  <g filter="url(#shadow)">
+    <path d="m480 132 53 19v48c0 43-28 70-53 82-25-12-53-39-53-82v-48z" fill="#1c2b28" stroke="#c5ff41" stroke-opacity=".75" stroke-width="2"/>
+    <path d="m459 200 14 14 29-33" stroke="url(#lime)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <circle cx="158" cy="171" r="39" fill="#1b2926" stroke="#c5ff41" stroke-opacity=".6"/><circle cx="158" cy="171" r="28" stroke="#c5ff41" stroke-opacity=".24"/><path d="M158 148v23l16 10" stroke="#e2ff91" stroke-width="4" stroke-linecap="round"/><circle cx="158" cy="171" r="4" fill="#c5ff41"/>
+  <circle cx="483" cy="84" r="4" fill="#e2ff91"/><circle cx="122" cy="273" r="3" fill="#c5ff41"/><path d="M113 106c37 1 65 14 83 36m334 134c-25 22-51 35-79 42" stroke="#c5ff41" stroke-opacity=".3" stroke-dasharray="3 8"/>
+  <ellipse cx="321" cy="363" rx="145" ry="17" fill="#c5ff41" fill-opacity=".12" filter="url(#glow)"/>
+</svg>

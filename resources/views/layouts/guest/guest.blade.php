@@ -168,6 +168,7 @@
             });
         });
     </script>
+    @vite('resources/js/app.js')
     @stack('scripts')
     @stack('seo-jsonld')
 </body>

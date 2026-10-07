@@ -26,6 +26,8 @@ TABLE CONTENT
  WP STYPE
  Custom amine
 ***/
+@import './audiences.css';
+
 @import url(../css/vendors/normalize.css);
 @import url(../css/vendors/bootstrap.min.css);
 @import url(../css/vendors/uicons-regular-rounded.css);

@@ -1,0 +1,20 @@
+/* Единый стиль заголовков крупных секций главной страницы. */
+.main .aud__heading,
+.main .ecosystem-goal-promo__title,
+.main .ecosystem-goal-promo__description > h2.heading-2,
+.main .steps-promo__title,
+.main .ai-strategy-promo__console-title,
+.main .ignd-promo__title,
+#Road .roadmap-head__title,
+.main .map-promo__title,
+.main .news-faq-promo__section-title,
+.main .indicators-promo__title,
+.main .team-block__title {
+    color: #fff;
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(24px, 2.6vw, 34px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}

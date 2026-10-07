@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 426" fill="none">
+  <title>Запуск и развитие проекта</title>
+  <defs>
+    <linearGradient id="bg" x1="40" y1="24" x2="590" y2="410" gradientUnits="userSpaceOnUse"><stop stop-color="#17231c"/><stop offset=".55" stop-color="#11191a"/><stop offset="1" stop-color="#10131a"/></linearGradient>
+    <radialGradient id="aura" cx="0" cy="0" r="1" gradientTransform="matrix(208 0 0 150 325 187)" gradientUnits="userSpaceOnUse"><stop stop-color="#c5ff41" stop-opacity=".19"/><stop offset="1" stop-color="#c5ff41" stop-opacity="0"/></radialGradient>
+    <linearGradient id="glass" x1="196" y1="98" x2="438" y2="326" gradientUnits="userSpaceOnUse"><stop stop-color="#314537" stop-opacity=".95"/><stop offset="1" stop-color="#172126" stop-opacity=".94"/></linearGradient>
+    <linearGradient id="lime" x1="239" y1="286" x2="426" y2="134" gradientUnits="userSpaceOnUse"><stop stop-color="#83bb38"/><stop offset="1" stop-color="#e0ff8a"/></linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="10"/></filter>
+    <filter id="shadow" x="120" y="60" width="420" height="342" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity=".45"/></filter>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0v32" stroke="#c5ff41" stroke-opacity=".07"/></pattern>
+  </defs>
+  <rect width="640" height="426" rx="18" fill="url(#bg)"/>
+  <rect width="640" height="426" rx="18" fill="url(#aura)"/>
+  <rect width="640" height="426" rx="18" fill="url(#grid)"/>
+  <path d="M54 342h532" stroke="#dce8d6" stroke-opacity=".14"/>
+  <path d="M76 90 178 48m391 246-89 52" stroke="#c5ff41" stroke-opacity=".22" stroke-dasharray="3 8"/>
+  <circle cx="104" cy="102" r="34" stroke="#c5ff41" stroke-opacity=".18"/><circle cx="104" cy="102" r="6" fill="#c5ff41" fill-opacity=".75"/>
+  <g filter="url(#shadow)">
+    <rect x="164" y="82" width="314" height="238" rx="20" fill="url(#glass)" stroke="#c5ff41" stroke-opacity=".42"/>
+    <path d="M164 123h314" stroke="#d9e8d5" stroke-opacity=".13"/>
+    <circle cx="190" cy="103" r="4" fill="#ff8a72"/><circle cx="205" cy="103" r="4" fill="#f6c969"/><circle cx="220" cy="103" r="4" fill="#c5ff41"/>
+    <rect x="190" y="146" width="112" height="137" rx="12" fill="#0f1718" stroke="#fff" stroke-opacity=".08"/>
+    <path d="M208 248h75M208 263h48" stroke="#dce8d6" stroke-opacity=".18" stroke-linecap="round"/>
+    <path d="M208 226 226 207l17 8 25-35 16 10" stroke="url(#lime)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="268" cy="180" r="4" fill="#e0ff8a"/>
+    <rect x="320" y="146" width="136" height="58" rx="12" fill="#c5ff41" fill-opacity=".1" stroke="#c5ff41" stroke-opacity=".26"/>
+    <path d="M338 185v-18m18 18v-28m18 28v-13m18 13v-34m18 34v-24m18 24v-42" stroke="#c5ff41" stroke-width="5" stroke-linecap="round"/>
+    <rect x="320" y="218" width="136" height="65" rx="12" fill="#101719" stroke="#fff" stroke-opacity=".08"/>
+    <path d="M338 260h91" stroke="#dce8d6" stroke-opacity=".14"/>
+    <path d="m340 252 24-14 18 7 24-19 22 6 17-16" stroke="url(#lime)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <path d="m439 79 10 20 22 3-16 15 4 22-20-11-20 11 4-22-16-15 22-3z" fill="#c5ff41" fill-opacity=".12" stroke="#c5ff41" stroke-opacity=".68"/>
+  <circle cx="520" cy="112" r="3" fill="#dfff8a"/><circle cx="124" cy="292" r="3" fill="#dfff8a"/>
+  <ellipse cx="324" cy="351" rx="142" ry="15" fill="#c5ff41" fill-opacity=".08" filter="url(#glow)"/>
+</svg>

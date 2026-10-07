@@ -3594,10 +3594,15 @@ body.swal2-height-auto {
     box-shadow: none;
 }
 .ai-strategy-promo__cta {
-    align-self: flex-end;
+    align-self: center;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
+}
+.ai-strategy-promo__visual > .btn.btn-brand-4.ai-strategy-promo__cta {
+    min-width: 180px;
+    padding: 14px 32px;
 }
 
 @keyframes ai-strategy-frame-in {
