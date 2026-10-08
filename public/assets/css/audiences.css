@@ -185,9 +185,9 @@
 .aud__pane {
     grid-area: 1 / 1;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+    grid-template-columns: minmax(0, 3fr) minmax(0, 0.95fr);
     gap: 40px;
-    align-items: center;
+    align-items: start;
     min-width: 0;
     opacity: 0;
     transform: translateY(14px);
@@ -280,7 +280,7 @@
 
 /* ---------- изображение-заглушка ---------- */
 .aud__ill {
-    width: 50%;
+    width: 80%;
     max-width: 300px;
     min-width: 0;
     justify-self: center;
