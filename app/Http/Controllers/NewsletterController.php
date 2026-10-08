@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NewsletterStoreRequest;
 use App\Models\NewsletterSubscription;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 /**
  * |KB 2025-02-18 Подписка на рассылку новостей платформы. Восстановление отписанных.
@@ -15,19 +14,8 @@ class NewsletterController extends Controller
     /**
      * Подписка на рассылку новостей платформы.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(NewsletterStoreRequest $request): RedirectResponse
     {
-        $validator = Validator::make($request->all(), [
-            'email' => ['required', 'email:rfc,dns', 'max:255'],
-        ], [
-            'email.required' => __('Укажите адрес электронной почты.'),
-            'email.email' => __('Укажите корректный адрес электронной почты.'),
-        ]);
-
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput()->withFragment('newsletter-form');
-        }
-
         $email = $request->input('email');
 
         $subscription = NewsletterSubscription::withTrashed()->firstOrNew(['email' => $email]);
@@ -38,8 +26,8 @@ class NewsletterController extends Controller
             $subscription->restore();
         }
 
-        if (auth()->check()) {
-            $subscription->user_id = auth()->id();
+        if ($request->user()) {
+            $subscription->user_id = $request->user()->id;
         }
 
         $subscription->save();

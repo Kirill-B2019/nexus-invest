@@ -28,6 +28,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Carbon::setLocale(config('app.locale'));
+
+        // Глобальная переменная версии ассетов для Blade-шаблонов.
+        // Использование: {{ $assetVersion }} или {{ asset_version() }}
+        View::share('assetVersion', fn (string $base = '1.0') => asset_version($base));
         RefDictionary::observe(RefDictionaryCacheObserver::class);
         RefDictionaryItem::observe(RefDictionaryCacheObserver::class);
         RefDictionaryGroup::observe(RefDictionaryCacheObserver::class);

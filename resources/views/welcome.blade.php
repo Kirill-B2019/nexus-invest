@@ -2,30 +2,24 @@
 
 @push('styles')
     @php
-        $styleVerRoadmap = config('app.asset_version');
-        if ($styleVerRoadmap === null || $styleVerRoadmap === '') {
-            $styleVerRoadmap = '1.0.' . (config('app.env') === 'production' ? '0' : time());
-        }
+        $v = config('app.asset_version');
     @endphp
     {{-- Ниже fold: не блокируем первый рендер --}}
-    <link rel="preload" href="{{ asset('assets/css/roadmap.css') }}?v={{ $styleVerRoadmap }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="{{ asset('assets/css/industry-indicators.css') }}?v={{ $styleVerRoadmap }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="{{ asset('assets/css/audiences.css') }}?v={{ $styleVerRoadmap }}-notes-2" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="{{ asset('assets/css/home-section-headings.css') }}?v={{ $styleVerRoadmap }}-1" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="{{ asset('assets/css/roadmap.css') }}?v={{ $v }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="{{ asset('assets/css/industry-indicators.css') }}?v={{ $v }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="{{ asset('assets/css/audiences.css') }}?v={{ $v }}-notes-2" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="{{ asset('assets/css/home-section-headings.css') }}?v={{ $v }}-1" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
-        <link href="{{ asset('assets/css/roadmap.css') }}?v={{ $styleVerRoadmap }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/industry-indicators.css') }}?v={{ $styleVerRoadmap }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/audiences.css') }}?v={{ $styleVerRoadmap }}-notes-2" rel="stylesheet">
-        <link href="{{ asset('assets/css/home-section-headings.css') }}?v={{ $styleVerRoadmap }}-1" rel="stylesheet">
+        <link href="{{ asset('assets/css/roadmap.css') }}?v={{ $v }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/industry-indicators.css') }}?v={{ $v }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/audiences.css') }}?v={{ $v }}-notes-2" rel="stylesheet">
+        <link href="{{ asset('assets/css/home-section-headings.css') }}?v={{ $v }}-1" rel="stylesheet">
     </noscript>
 @endpush
 
 @push('scripts-vendor')
     @php
         $v = config('app.asset_version');
-        if ($v === null || $v === '') {
-            $v = '1.0.' . (config('app.env') === 'production' ? '0' : time());
-        }
     @endphp
     <script src="{{ asset('assets/js/plugins/swiper-bundle.min.js') }}?v={{ $v }}"></script>
     <script src="{{ asset('assets/js/plugins/jquery.carouselTicker.js') }}?v={{ $v }}"></script>
@@ -488,57 +482,6 @@
 @php
     $hasNewsFeed = isset($newsFeedItems) && $newsFeedItems->isNotEmpty();
     $newsPlaceholder = asset('assets/imgs/page/homepage1/img-news.png');
-    $welcomeFaqItems = [
-        [
-            'question' => 'Что такое НЕКСУС?',
-            'answer' => 'НЕКСУС — экосистема проектного финансирования и токенизации активов в соответствии с российским законодательством (в том числе № 282-ФЗ от 04.08.2026 о цифровых валютах и цифровых правах): запуск проектов, выпуск и обращение цифровых активов, в том числе RWA (токенизация прав на реальные активы), утилитарные цифровые права (УЦП), токенизация иных активов, сопровождение сделок и развитие вторичного рынка в рамках модели платформы.',
-            'tags' => ['282-ФЗ · ЦФА · RWA'],
-            'open' => true,
-        ],
-        [
-            'question' => 'Чем цифровые активы и ЦФА отличаются от «криптовалюты»?',
-            'answer' => 'ЦФА и иные цифровые активы в контуре платформы выпускаются и обращаются по правилам 282‑ФЗ и договорной модели оператора: есть эмитент, раскрытие информации, учёт прав и требования к инвесторам. Это не свободно обращающаяся «криптовалюта» и не анонимные расчёты вне правового поля РФ.',
-            'tags' => ['282-ФЗ · ЦФА'],
-        ],
-        [
-            'question' => 'На какой технологии построен блокчейн ГАНИМЕД?',
-            'answer' => 'ГАНИМЕД реализован как высокопроизводительная распределённая платформа (в т.ч. на Go), с гибридным консенсусом PoSA, EVM‑совместимостью для смарт‑контрактов и развитием экосистемы под задачи токенизации и учёта цифровых активов в соответствии с применимыми требованиями.',
-            'tags' => ['ГАНИМЕД · PoSA · EVM'],
-        ],
-        [
-            'question' => 'Кто может стать участником платформы?',
-            'answer' => 'Доступ к функциям личного кабинета и сделкам предоставляется после регистрации и прохождения процедур идентификации и комплаенса (KYC/AML) в объёме, предусмотренном правилами платформы и законодательством. Набор ролей (инициатор проекта, инвестор, эксперт и др.) определяется моделью доступа и назначенными правами.',
-            'tags' => ['KYC/AML · роли'],
-        ],
-        [
-            'question' => 'Что такое iGND и «смягчение рисков» в экосистеме?',
-            'answer' => [
-                'iGND — внутренний токен экосистемы в логике программ смягчения последствий формально описанных риск‑событий по проектам для инвесторов, выбравших соответствующие планы участия.',
-                'Условия начислений, ограничения и правовая природа закреплены в документах платформы и смарт‑контрактах на блокчейне ГАНИМЕД; начисления не гарантируются и зависят от наступления событий и параметров пулов.',
-            ],
-            'tags' => ['iGND · риски'],
-        ],
-        [
-            'question' => 'Где ознакомиться с официальными документами и White Paper?',
-            'answer' => 'Актуальные PDF (публичная оферта, пользовательское соглашение, политика конфиденциальности, KYC/AML, White Paper и др.) доступны по ссылкам в подвале сайта; расширенные технические и методические материалы — в разделе «Документация».',
-            'tags' => ['Документы · White Paper'],
-        ],
-        [
-            'question' => 'Как обрабатываются персональные данные?',
-            'answer' => 'Обработка ведётся в соответствии с 152‑ФЗ и политикой конфиденциальности: указаны цели, категории данных, сроки и права субъектов; применяются организационные и технические меры защиты, согласованные с заявленными в документе целями.',
-            'tags' => ['152-ФЗ · ПДн'],
-        ],
-        [
-            'question' => 'На каком этапе развития находится платформа?',
-            'answer' => [
-                'Функционал выводится поэтапно согласно дорожной карте: отдельные модули и интеграции могут находиться в стадии MVP или пилота.',
-                'Блоки «прогресс реализации» и дорожная карта на сайте отражают ориентировочное состояние и планы; конкретные сроки не являются публичной офертой до их отдельного официального объявления.',
-            ],
-            'tags' => ['Roadmap · MVP'],
-        ],
-    ];
-    $welcomeFaqLead = __('Ниже — ответы на частые вопросы. Дополнительные материалы — в разделе ')
-        . '<a class="faq-panel-dark__doc-link" href="' . e(route('documentation')) . '">' . e(__('«Документация»')) . '</a>.';
 @endphp
 <section class="section-box wow fadeIn box-our-track-2 box-our-track-2--dark-stack mt-0" id="news-feed-section">
     <div class="news-faq-promo" id="faq">
@@ -770,11 +713,8 @@
 
 @push('scripts')
     @php
-        $vCount = config('app.asset_version');
-        if ($vCount === null || $vCount === '') {
-            $vCount = '1.0.' . (config('app.env') === 'production' ? '0' : time());
-        }
+        $v = config('app.asset_version');
     @endphp
-    <script src="{{ asset('assets/js/public-launch-countdown.js') }}?v={{ $vCount }}"></script>
-    <script src="{{ asset('assets/js/industry-indicators.js') }}?v={{ $vCount }}" defer></script>
+    <script src="{{ asset('assets/js/public-launch-countdown.js') }}?v={{ $v }}"></script>
+    <script src="{{ asset('assets/js/industry-indicators.js') }}?v={{ $v }}" defer></script>
 @endpush

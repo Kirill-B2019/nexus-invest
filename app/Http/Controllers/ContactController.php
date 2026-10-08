@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactMessageRequest;
 use App\Mail\ContactMessageReceivedMail;
 use App\Models\ContactMessage;
-use App\Rules\MathCaptcha;
-use App\Services\CaptchaService;
 use App\Services\OutboundMailService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
@@ -18,23 +16,10 @@ use Throwable;
 class ContactController extends Controller
 {
     public function store(
-        Request $request,
-        CaptchaService $captchaService,
+        ContactMessageRequest $request,
         OutboundMailService $outboundMail,
     ): RedirectResponse {
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email'],
-            'subject' => ['nullable', 'string', 'max:255'],
-            'message' => ['required', 'string', 'max:5000'],
-            'captcha_token' => ['required', 'string'],
-            'captcha_answer' => ['required', 'string', new MathCaptcha($captchaService)],
-        ], [
-            'name.required' => __('Укажите имя.'),
-            'email.required' => __('Укажите адрес электронной почты.'),
-            'email.email' => __('Укажите корректный адрес электронной почты.'),
-            'message.required' => __('Введите сообщение.'),
-        ]);
+        $validated = $request->validated();
 
         $message = ContactMessage::create([
             'name' => $validated['name'],

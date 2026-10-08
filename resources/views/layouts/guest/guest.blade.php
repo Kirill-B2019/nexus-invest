@@ -15,10 +15,7 @@
         ? 'favicon.ico'
         : 'assets/imgs/template/favicon.svg';
     $faviconVer = file_exists(public_path($faviconPath)) ? (filemtime(public_path($faviconPath)) ?: '1') : '1';
-    $styleVer = config('app.asset_version');
-    if ($styleVer === null || $styleVer === '') {
-        $styleVer = '1.0.' . (config('app.env') === 'production' ? '0' : time());
-    }
+    $styleVer = asset_version();
     @endphp
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset($faviconPath) }}?v={{ $faviconVer }}">
     <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>

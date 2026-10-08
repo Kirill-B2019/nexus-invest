@@ -82,7 +82,7 @@
     <x-guest.audiences.sprite />
 
     <div class="aud__frame">
-        <h2 class="aud__heading" id="{{ $uid }}-title">{{ __('Для кого') }}</h2>
+        <h2 class="aud__heading" id="{{ $uid }}-title">{{ __('ДЛЯ КОГО') }}</h2>
 
         {{-- вкладки --}}
         <div

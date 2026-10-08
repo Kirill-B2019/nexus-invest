@@ -48,9 +48,9 @@ class ProjectsController extends Controller
     /**
      * Мои проекты (инициатор).
      */
-    public function my(): View
+    public function my(Request $request): View
     {
-        $projects = Project::where('user_id', auth()->id())
+        $projects = Project::where('user_id', $request->user()->id)
             ->orderByDesc('updated_at')
             ->paginate(15);
 
@@ -60,9 +60,9 @@ class ProjectsController extends Controller
     /**
      * Форма создания нового проекта.
      */
-    public function create(): View
+    public function create(Request $request): View
     {
-        $project = new Project(['user_id' => auth()->id(), 'status' => Project::STATUS_DRAFT]);
+        $project = new Project(['user_id' => $request->user()->id, 'status' => Project::STATUS_DRAFT]);
 
         return view('app.pages.projects.create', [
             'project' => $project,

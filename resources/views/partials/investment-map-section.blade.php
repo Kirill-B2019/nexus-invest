@@ -117,10 +117,7 @@
 </section>
 @push('scripts')
     @php
-        $mapJsVer = config('app.asset_version');
-        if ($mapJsVer === null || $mapJsVer === '') {
-            $mapJsVer = '1.0.' . (config('app.env') === 'production' ? '0' : time());
-        }
+        $v = asset_version();
     @endphp
-    <script src="{{ asset('assets/js/investment-map.js') }}?v={{ $mapJsVer }}"></script>
+    <script src="{{ asset('assets/js/investment-map.js') }}?v={{ $v }}"></script>
 @endpush

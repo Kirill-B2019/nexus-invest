@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<ruleset name="MoskowNexus">
+    <description>Единые правила кодирования проекта MoskowNexus</description>
+
+    <!-- Базовый стандарт PSR-12 -->
+    <rule ref="PSR12"/>
+
+    <!-- Дополнительные правила -->
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+    <rule ref="Generic.WhiteSpace.DisallowTabIndent"/>
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
+        <properties>
+            <property name="ignoreBlankLines" value="true"/>
+        </properties>
+    </rule>
+    <rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing"/>
+    <rule ref="Generic.Formatting.DisallowMultipleStatements"/>
+    <rule ref="PSR1.Files.SideEffects">
+        <exclude-pattern>*/routes/*</exclude-pattern>
+    </rule>
+
+    <!-- Файлы для проверки -->
+    <file>app/</file>
+    <file>routes/</file>
+    <file>database/</file>
+
+    <!-- Исключения -->
+    <exclude-pattern>*/cache/*</exclude-pattern>
+    <exclude-pattern>*/storage/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/migrations/*</exclude-pattern>
+    <exclude-pattern>*/seeds/*</exclude-pattern>
+    <exclude-pattern>*/factories/*</exclude-pattern>
+</ruleset>
