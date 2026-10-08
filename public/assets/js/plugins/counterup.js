@@ -18,36 +18,51 @@
         );
         return this.each(function () {
             var t = e(this),
-                r = n,
-                i = function () {
-                    var e = [],
-                        n = r.time / r.delay,
-                        i = t.text(),
-                        s = /[0-9]+,[0-9]+/.test(i);
-                    i = i.replace(/,/g, "");
-                    var o = /^[0-9]+$/.test(i),
-                        u = /^[0-9]+\.[0-9]+$/.test(i),
-                        a = u ? (i.split(".")[1] || []).length : 0;
-                    for (var f = n; f >= 1; f--) {
-                        var l = parseInt((i / n) * f);
-                        u && (l = parseFloat((i / n) * f).toFixed(a));
-                        if (s) while (/(\d+)(\d{3})/.test(l.toString())) l = l.toString().replace(/(\d+)(\d{3})/, "$1,$2");
-                        e.unshift(l);
+                r = n;
+            if (t.data("counterup-active")) return;
+            t.data("counterup-active", true);
+            var i = function () {
+                var e = [],
+                    n = r.time / r.delay,
+                    i = t.text(),
+                    s = /[0-9]+,[0-9]+/.test(i);
+                i = i.replace(/,/g, "");
+                var o = /^[0-9]+$/.test(i),
+                    u = /^[0-9]+\.[0-9]+$/.test(i),
+                    a = u ? (i.split(".")[1] || []).length : 0;
+                if (!o && !u) {
+                    t.data("counterup-active", false);
+                    return;
+                }
+                for (var f = n; f >= 1; f--) {
+                    var l = parseInt((i / n) * f);
+                    u && (l = parseFloat((i / n) * f).toFixed(a));
+                    if (s) while (/(\d+)(\d{3})/.test(l.toString())) l = l.toString().replace(/(\d+)(\d{3})/, "$1,$2");
+                    e.unshift(l);
+                }
+                t.data("counterup-nums", e);
+                t.text("0");
+                var c = function () {
+                    var nums = t.data("counterup-nums");
+                    if (!nums || !nums.length) {
+                        delete t.data("counterup-nums");
+                        t.data("counterup-nums", null);
+                        t.data("counterup-func", null);
+                        t.data("counterup-active", false);
+                        return;
                     }
-                    t.data("counterup-nums", e);
-                    t.text("0");
-                    var c = function () {
-                        t.text(t.data("counterup-nums").shift());
-                        if (t.data("counterup-nums").length) setTimeout(t.data("counterup-func"), r.delay);
-                        else {
-                            delete t.data("counterup-nums");
-                            t.data("counterup-nums", null);
-                            t.data("counterup-func", null);
-                        }
-                    };
-                    t.data("counterup-func", c);
-                    setTimeout(t.data("counterup-func"), r.delay);
+                    t.text(nums.shift());
+                    if (nums.length) setTimeout(t.data("counterup-func"), r.delay);
+                    else {
+                        delete t.data("counterup-nums");
+                        t.data("counterup-nums", null);
+                        t.data("counterup-func", null);
+                        t.data("counterup-active", false);
+                    }
                 };
+                t.data("counterup-func", c);
+                setTimeout(t.data("counterup-func"), r.delay);
+            };
             t.waypoint(i, {
                 offset: "100%",
                 triggerOnce: !0
