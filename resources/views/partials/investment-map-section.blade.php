@@ -116,8 +116,5 @@
     <script type="application/json" id="regions-for-map-data">{{ json_encode($regionsForMap ?? []) }}</script>
 </section>
 @push('scripts')
-    @php
-        $v = asset_version();
-    @endphp
-    <script src="{{ asset('assets/js/investment-map.js') }}?v={{ $v }}"></script>
+    <script src="{{ asset('assets/js/investment-map.js') }}?v={{ config('app.asset_version') }}"></script>
 @endpush
