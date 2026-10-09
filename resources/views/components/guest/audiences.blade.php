@@ -45,7 +45,7 @@
         'alt' => 'Фонды: банк, сеть узлов, документы',
         'image' => 'assets/imgs/page/homepage1/forwho/3.png',
     ],
-        [
+    [
         'icon'  => 'pie',
         'title' => 'Специализированных инвесторов',
         'lead'  => 'Специализированные цифровые активы:',
@@ -81,72 +81,118 @@
 <section class="aud" x-data="audiences" aria-labelledby="{{ $uid }}-title">
     <x-guest.audiences.sprite />
 
-    <div class="aud__frame">
-        <h2 class="aud__heading" id="{{ $uid }}-title">{{ __('ДЛЯ КОГО') }}</h2>
 
-        {{-- вкладки --}}
-        <div
-            class="aud__tabs"
-            role="tablist"
-            aria-label="Аудитории платформы"
-            x-on:keydown="onTablistKeydown($event)"
-        >
-            @foreach ($tabs as $i => $tab)
-                <button
-                    type="button"
-                    class="aud__tab {{ $i === 0 ? 'is-active' : '' }}"
-                    role="tab"
-                    id="{{ $uid }}-tab-{{ $i }}"
-                    aria-controls="{{ $uid }}-pane-{{ $i }}"
-                    aria-selected="{{ $i === 0 ? 'true' : 'false' }}"
-                    tabindex="{{ $i === 0 ? '0' : '-1' }}"
-                    x-on:click="select({{ $i }})"
-                >
-                    <svg class="aud__tab-icon" aria-hidden="true"><use href="#ns-i-{{ $tab['icon'] }}"></use></svg>
-                    <span>{{ $tab['title'] }}</span>
-                    <svg class="aud__tab-arrow" aria-hidden="true"><use href="#ns-i-arrow"></use></svg>
-                </button>
-            @endforeach
-        </div>
+    {{-- 2) ВТОРОЙ БЛОК «ДЛЯ КОГО» (карточки 01–04)
+         РЕАЛИЗАЦИЯ: по паттерну секции «Всего 3 простых шага»
+         (steps-promo__step) — картинка фоном под контентом,
+         круглый лаймовый бейдж 01..04, title, desc, список. --}}
+    <div class="aud__frame aud__frame--cards4" style="margin-top: 28px;">
+        <h2 class="aud__heading" id="{{ $uid }}-title">{{ __('ДЛЯ ВСЕХ УЧАСТНИКОВ ЭКОСИСТЕМЫ') }}</h2>
 
-        {{-- панели: стопкой, смена через класс .is-active (кроссфейд) --}}
-        <div class="aud__panes">
-            @foreach ($tabs as $i => $tab)
-                <div
-                    class="aud__pane {{ $i === 0 ? 'is-active' : '' }}"
-                    role="tabpanel"
-                    id="{{ $uid }}-pane-{{ $i }}"
-                    aria-labelledby="{{ $uid }}-tab-{{ $i }}"
-                    tabindex="0"
-                >
-                    <div class="aud__content">
-                        <h3 class="aud__title">{{ $tab['title'] }}</h3>
-                        <p class="aud__lead">{{ $tab['lead'] }}</p>
-                        <ul class="aud__list">
-                            @foreach ($tab['items'] as $item)
-                                <li class="aud__item">
-                                    <svg class="aud__item-icon" aria-hidden="true"><use href="#ns-i-check"></use></svg>
-                                    <span>{{ $item }}</span>
-                                </li>
-                            @endforeach
-                        </ul>
-                        @if (!empty($tab['note']))
-                            <p class="aud__note small text-muted">{{ $tab['note'] }}</p>
+        <div class="aud-step4-grid">
+            @php($cards4 = [
+                [
+                    'num'   => '01',
+                    'title' => 'Инициаторы проектов',
+                    'desc'  => 'Запуск проекта «под ключ» на базовой инфраструктуре платформы:',
+                    'items' => [
+                        'Микро, малый и средний бизнес (МСБ) в РФ, которым нужны инвестиции от 1–500+ млн ₽ на развитие или запуск',
+                        'Бизнесы с понятным денежным потоком: торговля, услуги, производство, девелопмент, франчайзинг и т.п. (по секторам при регистрации)',
+                        'Финансовые и околофинансовые сервисы, которым нужен white‑label модуль выпуска и размещения обязательств (банки, факторинг, МФО, финтех‑стартапы)',
+                        'Компании и команды, которые планируют разместить продукты своей проектной деятельности на платформе и сохранить постпроектное сопровождение после запуска',
+                    ],
+                    'image' => 'assets/imgs/page/homepage1/forwho/1.png',
+                ],
+                [
+                    'num'   => '02',
+                    'title' => 'Проектные инвесторы',
+                    'desc'  => 'Институциональное качество инвестиционных сделок с прозрачной отчётностью:',
+                    'items' => [
+                        'Частные инвесторы с чеком от 5–100 тыс. ₽, ищущие доходность 14–25% годовых и выше по структурированным долговым инструментам *',
+                        'Квалифицированные и профессиональные инвесторы, фамильные офисы, небольшие фонды, заинтересованные в пулах МСБ‑займов с ИИ‑скорингом',
+                        'Профучастники рынка ценных бумаг, банки и брокеры, интегрирующиеся по API',
+                        'B2B‑клиенты SaaS‑части: платформы, которым нужен модуль токенизации/обращения инструментов',
+                    ],
+                    'image' => 'assets/imgs/page/homepage1/forwho/2.png',
+                ],
+                [
+                    'num'   => '03',
+                    'title' => 'Портфельные инвесторы',
+                    'desc'  => 'Для фондов, family offices и синдикатов:',
+                    'items' => [
+                        'Частные и институциональные инвесторы, заинтересованные в распределении капитала между несколькими проектами и цифровыми инвестиционными инструментами.',
+                        'Семейные офисы, инвестиционные клубы, фонды и профессиональные участники рынка.',
+                        'Участники, которым нужны цифровые инструменты распределения капитала, управления рисками и мониторинга портфеля.',
+                        'Инвесторы, выбирающие проекты по заданным параметрам: отрасль, доходность, риск, срок, ликвидность и объём вложений.',
+                        'Клиенты, заинтересованные в автоматизированном подборе проектов и стратегий с использованием аналитики, скоринга и ИИ‑инструментов платформы.',
+                    ],
+                    'image' => 'assets/imgs/page/homepage1/forwho/3.png',
+                ],
+                [
+                    'num'   => '04',
+                    'title' => 'Специализированные инвесторы',
+                     'desc'  => 'Специализированные цифровые активы:',
+                    'items' => [
+                        'ESG‑инвесторы, impact‑фонды, благотворительные организации и корпоративные доноры.',
+                        'Частные и институциональные участники, заинтересованные в финансировании экологических, гуманитарных и социальных инициатив.',
+                        'Организации, которым необходимы специализированные токенизированные инструменты для прозрачного учёта и целевого контроля финансирования.',
+                        'Участники, заинтересованные в независимой верификации оказанной помощи, её получателей, объёма и достигнутого эффекта.',
+                        'Инвесторы и организации, использующие экологические токены для подтверждения природоохранных мероприятий, восстановления природных объектов и иных измеримых экологических результатов.',
+                    ],
+                    'image' => 'assets/imgs/page/homepage1/forwho/4.png',
+                ],
+                [
+                    'num'    => '05',
+                    'title'  => 'А также — эксперты, аудиторы и консультанты',
+                    'desc'   => 'Приглашённые профессионалы получают полный контекст по рынку, независимо оценивают проекты и участвуют в их развитии внутри экосистемы.',
+                    'items'  => [
+                        'Эксперты',
+                        'Аудиторы',
+                        'Финансовые аналитики',
+                        'Инвестконсультанты',
+                        'Due diligence специалисты',
+                    ],
+                    'image'  => 'assets/imgs/page/homepage1/forwho/5.png',
+                    'wide'   => true,
+                ],
+            ])
+            @foreach ($cards4 as $card)@if (!empty($card['wide']))
+                {{-- 05: одна строка «А также: Экспертов Аудиторов … специалистов» с галочками --}}
+                <div class="aud-step4-card__row05">
+                    <h3 class="aud-step4-card__title aud-step4-card__title--row05">
+                        {{ __('А ТАКЖЕ:') }}
+                    </h3>
+                    <ul class="aud-step4-card__chiprow05" aria-label="Роли экспертов">
+                        @foreach ($card['items'] as $item)
+                            <li class="aud-step4-card__chiprow05-item">
+                                <svg class="aud-step4-card__check aud-step4-card__check--row05" aria-hidden="true"><use href="#ns-i-check"></use></svg>
+                                <span>{{ __($item) }}</span>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            @else
+                <article class="aud-step4-card {{ !empty($card['wide']) ? 'aud-step4-card--wide' : '' }}">
+
+                    {{-- контент поверх картинки (z-index:1) --}}
+                    <div class="aud-step4-card__content">
+                        {{-- круглый лаймовый бейдж с номером 01..05 (как .steps-promo__badge) --}}
+                        <span class="aud-step4-card__badge" aria-hidden="true">{{ $card['num'] }}</span>
+
+                            <h3 class="aud-step4-card__title">{{ __($card['title']) }}</h3>
+                            <p class="aud-step4-card__text">{{ __($card['desc']) }}</p>
+
+                            <ul class="aud-step4-card__list {{ !empty($card['wide']) ? 'aud-step4-card__list--wide' : '' }}">
+                                @foreach ($card['items'] as $item)
+                                    <li class="aud-step4-card__item">
+                                        <svg class="aud-step4-card__check" aria-hidden="true"><use href="#ns-i-check"></use></svg>
+                                        <span>{{ __($item) }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
                         @endif
                     </div>
-
-                    <div class="aud__ill">
-                        <img
-                            class="aud__image"
-                            src="{{ asset($tab['image'] ?? ('assets/imgs/page/homepage1/audiences/' . ($tab['ill'] ?? 'initiators') . '.svg')) }}"
-                            alt="{{ __($tab['alt'] ?? 'НЕКСУС ИИ — интеллектуальный контур платформы') }}"
-                            loading="lazy"
-                            decoding="async"
-                            width="340"
-                            height="340"
-                        >
-                    </div>
-                </div>
+                </article>
             @endforeach
         </div>
     </div>

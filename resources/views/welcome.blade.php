@@ -7,12 +7,12 @@
     {{-- Ниже fold: не блокируем первый рендер --}}
     <link rel="preload" href="{{ asset('assets/css/roadmap.css') }}?v={{ $v }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="{{ asset('assets/css/industry-indicators.css') }}?v={{ $v }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="{{ asset('assets/css/audiences.css') }}?v={{ $v }}-notes-2" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="{{ asset('assets/css/audiences.css') }}?v={{ $v }}-notes-12" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="{{ asset('assets/css/home-section-headings.css') }}?v={{ $v }}-1" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
         <link href="{{ asset('assets/css/roadmap.css') }}?v={{ $v }}" rel="stylesheet">
         <link href="{{ asset('assets/css/industry-indicators.css') }}?v={{ $v }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/audiences.css') }}?v={{ $v }}-notes-2" rel="stylesheet">
+        <link href="{{ asset('assets/css/audiences.css') }}?v={{ $v }}-notes-12" rel="stylesheet">
         <link href="{{ asset('assets/css/home-section-headings.css') }}?v={{ $v }}-1" rel="stylesheet">
     </noscript>
 @endpush
