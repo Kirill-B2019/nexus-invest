@@ -121,7 +121,7 @@
                                 <article class="hero-eco-card">
                                     <h6 class="hero-eco-card__title">{{ __('НЕКСУС') }}</h6>
                                     <div class="hero-eco-card__media">
-                                        <img src="{{ asset('assets/imgs/page/homepage1/hero-nexus.png') }}" alt="{{ __('НЕКСУС') }}" loading="eager" decoding="async" fetchpriority="high" width="220" height="140">
+                                        <img src="{{ asset('assets/imgs/page/homepage1/hero-nexus1.png') }}" alt="{{ __('НЕКСУС') }}" loading="eager" decoding="async" fetchpriority="high" width="220" height="140">
                                     </div>
                                     <p class="hero-eco-card__desc">{{ __('Платформа токенизации проектов и управления') }}</p>
                                     <p class="hero-eco-card__stage">{{ __('Запуск: СТАДИЯ I') }}</p>
@@ -129,7 +129,7 @@
                                 <article class="hero-eco-card">
                                     <h6 class="hero-eco-card__title">{{ __('ГАНИМЕД') }}</h6>
                                     <div class="hero-eco-card__media">
-                                        <img src="{{ asset('assets/imgs/page/homepage1/hero-ganimed.png') }}" alt="{{ __('ГАНИМЕД') }}" loading="lazy" decoding="async" width="220" height="140">
+                                        <img src="{{ asset('assets/imgs/page/homepage1/hero-ganimed1.png') }}" alt="{{ __('ГАНИМЕД') }}" loading="lazy" decoding="async" width="220" height="140">
                                     </div>
                                     <p class="hero-eco-card__desc">{{ __('Блокчейн ГАНИМЕД — основа экосистемы') }}</p>
                                     <p class="hero-eco-card__stage">{{ __('Запуск: СТАДИЯ I') }}</p>
@@ -137,7 +137,7 @@
                                 <article class="hero-eco-card">
                                     <h6 class="hero-eco-card__title">{{ __('ЦИФРОВОЙ ДЕПОЗИТАРИЙ') }}</h6>
                                     <div class="hero-eco-card__media">
-                                        <img src="{{ asset('assets/imgs/page/homepage1/hero-repo.png') }}" alt="{{ __('ЦИФРОВОЙ ДЕПОЗИТАРИЙ') }}" loading="lazy" decoding="async" width="220" height="140">
+                                        <img src="{{ asset('assets/imgs/page/homepage1/hero-repo1.png') }}" alt="{{ __('ЦИФРОВОЙ ДЕПОЗИТАРИЙ') }}" loading="lazy" decoding="async" width="220" height="140">
                                     </div>
                                     <p class="hero-eco-card__desc">{{ __('Хранение и учёт цифровых активов и прав') }}</p>
                                     <p class="hero-eco-card__stage">{{ __('Запуск: СТАДИЯ III') }}</p>
@@ -145,7 +145,7 @@
                                 <article class="hero-eco-card">
                                     <h6 class="hero-eco-card__title">{{ __('НЕКСУС ЦИФРОВОЙ БАНК') }}</h6>
                                     <div class="hero-eco-card__media">
-                                        <img src="{{ asset('assets/imgs/page/homepage1/hero-bank.png') }}" alt="{{ __('НЕКСУС ЦИФРОВОЙ БАНК') }}" loading="lazy" decoding="async" width="220" height="140">
+                                        <img src="{{ asset('assets/imgs/page/homepage1/hero-bank1.png') }}" alt="{{ __('НЕКСУС ЦИФРОВОЙ БАНК') }}" loading="lazy" decoding="async" width="220" height="140">
                                     </div>
                                     <p class="hero-eco-card__desc">{{ __('Финансовые сервисы для токенизированных активов') }}</p>
                                     <p class="hero-eco-card__stage">{{ __('Запуск: СТАДИЯ IV') }}</p>
@@ -153,7 +153,7 @@
                                 <article class="hero-eco-card">
                                     <h6 class="hero-eco-card__title">{{ __('СФОРДЭКС') }}</h6>
                                     <div class="hero-eco-card__media">
-                                        <img src="{{ asset('assets/imgs/page/homepage1/hero-sfodex.png') }}" alt="{{ __('СФОРДЭКС') }}" loading="lazy" decoding="async" width="220" height="140">
+                                        <img src="{{ asset('assets/imgs/page/homepage1/hero-sfodex1.png') }}" alt="{{ __('СФОРДЭКС') }}" loading="lazy" decoding="async" width="220" height="140">
                                     </div>
                                     <p class="hero-eco-card__desc">{{ __('Система фондирования и распределения средств') }}</p>
                                     <p class="hero-eco-card__stage">{{ __('Запуск: СТАДИЯ II') }}</p>
@@ -161,7 +161,7 @@
                                 <article class="hero-eco-card">
                                     <h6 class="hero-eco-card__title">{{ __('МАРКЕТПЛЕЙС') }}</h6>
                                     <div class="hero-eco-card__media">
-                                        <img src="{{ asset('assets/imgs/page/homepage1/hero-market.png') }}" alt="{{ __('МАРКЕТПЛЕЙС') }}" loading="lazy" decoding="async" width="220" height="140">
+                                        <img src="{{ asset('assets/imgs/page/homepage1/hero-market1.png') }}" alt="{{ __('МАРКЕТПЛЕЙС') }}" loading="lazy" decoding="async" width="220" height="140">
                                     </div>
                                     <p class="hero-eco-card__desc">{{ __('Витрина рынков цифровых активов и продуктов') }}</p>
                                     <p class="hero-eco-card__stage">{{ __('Запуск: СТАДИЯ IV') }}</p>
