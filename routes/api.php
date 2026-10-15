@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\CaptchaController;
 use App\Http\Controllers\Api\GanimedBlockController;
 use App\Http\Controllers\Api\GanimedHealthController;
 use App\Http\Controllers\Api\IndustryIndicatorsController;
+use App\Http\Controllers\Api\NexusAiHealthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/api/ganimed/health', GanimedHealthController::class)->name('api.ganimed.health');
 Route::get('/api/ganimed/block', [GanimedBlockController::class, '__invoke'])->name('api.ganimed.block');
+Route::get('/api/nexus-ai/health', NexusAiHealthController::class)->name('api.nexus-ai.health');
 Route::middleware('throttle:10,1')->post('/api/captcha/new', [CaptchaController::class, 'new'])->name('api.captcha.new');
 Route::middleware('throttle:60,1')->get('/api/csrf-token', function () {
     return response()->json(['token' => csrf_token()]);

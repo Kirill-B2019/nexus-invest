@@ -118,55 +118,81 @@
                 </div>
 
                 <div class="footer-eco-panel__col footer-eco-panel__col--status">
-                    <div id="ganimed-node-status"
-                         class="footer-ganimed"
-                         data-status-url="{{ route('api.ganimed.block') }}">
-                        <h5 class="footer-eco-panel__title">{{ __('Статус блокчейна ГАНИМЕД') }}</h5>
+                    <div class="footer-status-columns">
+                        <div class="footer-status-columns__item">
+                            <div id="ganimed-node-status"
+                                 class="footer-ganimed"
+                                 data-status-url="{{ route('api.ganimed.block') }}">
+                                <h5 class="footer-eco-panel__title">{{ __('Статус блокчейна ГАНИМЕД') }}</h5>
 
-                        <div class="footer-ganimed__status-row">
-                            <span id="ganimed-status-loading" class="footer-ganimed__loading">{{ __('Загрузка…') }}</span>
-                            <div id="ganimed-status-result" class="footer-ganimed__result d-none">
-                                <span id="ganimed-status-checkbox" class="ganimed-status-checkbox" role="img" aria-hidden="true"></span>
-                                <div class="footer-ganimed__status-text">
-                                    <span id="ganimed-status-text" class="footer-ganimed__status-title"></span>
-                                    <span id="ganimed-status-subtitle" class="footer-ganimed__status-sub"></span>
+                                <div class="footer-ganimed__status-row">
+                                    <span id="ganimed-status-loading" class="footer-ganimed__loading">{{ __('Загрузка…') }}</span>
+                                    <div id="ganimed-status-result" class="footer-ganimed__result d-none">
+                                        <span id="ganimed-status-checkbox" class="ganimed-status-checkbox" role="img" aria-hidden="true"></span>
+                                        <div class="footer-ganimed__status-text">
+                                            <span id="ganimed-status-text" class="footer-ganimed__status-title"></span>
+                                            <span id="ganimed-status-subtitle" class="footer-ganimed__status-sub"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="ganimed-block-details" class="footer-ganimed__grid d-none">
+                                    <div class="footer-ganimed__cell">
+                                        <span class="footer-ganimed__key">{{ __('Высота блока:') }}</span>
+                                        <span id="ganimed-block-height" class="footer-ganimed__val"></span>
+                                    </div>
+                                    <div class="footer-ganimed__cell">
+                                        <span class="footer-ganimed__key">{{ __('Валидатор:') }}</span>
+                                        <span id="ganimed-block-miner" class="footer-ganimed__val"></span>
+                                    </div>
+                                    <div class="footer-ganimed__cell">
+                                        <span class="footer-ganimed__key">{{ __('Hash:') }}</span>
+                                        <span id="ganimed-block-hash" class="footer-ganimed__val"></span>
+                                    </div>
+                                    <div class="footer-ganimed__cell">
+                                        <span class="footer-ganimed__key">{{ __('Финализирован:') }}</span>
+                                        <span id="ganimed-block-finalized" class="footer-ganimed__val"></span>
+                                    </div>
+                                    <div class="footer-ganimed__cell footer-ganimed__cell--wide">
+                                        <span class="footer-ganimed__key">{{ __('Время окончания генерации:') }}</span>
+                                        <span id="ganimed-block-updated" class="footer-ganimed__val"></span>
+                                    </div>
+                                    <div class="footer-ganimed__cell footer-ganimed__cell--wide">
+                                        <span class="footer-ganimed__key">{{ __('Метка:') }}</span>
+                                        <span id="ganimed-block-merkle" class="footer-ganimed__val"></span>
+                                    </div>
+                                </div>
+
+                                <div class="footer-ganimed__actions">
+                                    <button type="button" id="ganimed-status-refresh" class="footer-ganimed__btn">
+                                        {{ __('Проверить') }}
+                                    </button>
+                                    <a href="https://scan.gnd-net.com" target="_blank" rel="noopener noreferrer">scan.gnd-net.com</a>
                                 </div>
                             </div>
-
                         </div>
 
-                        <div id="ganimed-block-details" class="footer-ganimed__grid d-none">
-                            <div class="footer-ganimed__cell">
-                                <span class="footer-ganimed__key">{{ __('Высота блока:') }}</span>
-                                <span id="ganimed-block-height" class="footer-ganimed__val"></span>
+                        <div class="footer-status-columns__item">
+                            <div id="nexus-ai-node-status"
+                                 class="footer-nexus-ai"
+                                 data-status-url="{{ route('api.nexus-ai.health') }}">
+                                <h5 class="footer-eco-panel__title">{{ __('Статус НЕКСУС ИИ') }}</h5>
+                                <div class="footer-ganimed__status-row">
+                                    <span id="nexus-ai-status-loading" class="footer-ganimed__loading">{{ __('Загрузка…') }}</span>
+                                    <div id="nexus-ai-status-result" class="footer-ganimed__result d-none">
+                                        <span id="nexus-ai-status-indicator" class="ganimed-status-checkbox" role="img" aria-hidden="true"></span>
+                                        <div class="footer-ganimed__status-text">
+                                            <span id="nexus-ai-status-text" class="footer-ganimed__status-title"></span>
+                                            <span id="nexus-ai-status-checked" class="footer-ganimed__status-sub"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer-ganimed__actions">
+                                    <button type="button" id="nexus-ai-status-refresh" class="footer-ganimed__btn">
+                                        {{ __('Проверить') }}
+                                    </button>
+                                </div>
                             </div>
-                            <div class="footer-ganimed__cell">
-                                <span class="footer-ganimed__key">{{ __('Валидатор:') }}</span>
-                                <span id="ganimed-block-miner" class="footer-ganimed__val"></span>
-                            </div>
-                            <div class="footer-ganimed__cell">
-                                <span class="footer-ganimed__key">{{ __('Hash:') }}</span>
-                                <span id="ganimed-block-hash" class="footer-ganimed__val"></span>
-                            </div>
-                            <div class="footer-ganimed__cell">
-                                <span class="footer-ganimed__key">{{ __('Финализирован:') }}</span>
-                                <span id="ganimed-block-finalized" class="footer-ganimed__val"></span>
-                            </div>
-                            <div class="footer-ganimed__cell footer-ganimed__cell--wide">
-                                <span class="footer-ganimed__key">{{ __('Время окончания генерации:') }}</span>
-                                <span id="ganimed-block-updated" class="footer-ganimed__val"></span>
-                            </div>
-                            <div class="footer-ganimed__cell footer-ganimed__cell--wide">
-                                <span class="footer-ganimed__key">{{ __('Метка:') }}</span>
-                                <span id="ganimed-block-merkle" class="footer-ganimed__val"></span>
-                            </div>
-                        </div>
-
-                        <div class="footer-ganimed__actions">
-                            <button type="button" id="ganimed-status-refresh" class="footer-ganimed__btn">
-                                {{ __('Проверить') }}
-                            </button>
-                            <a href="https://scan.gnd-net.com" target="_blank" rel="noopener noreferrer">scan.gnd-net.com</a>
                         </div>
                     </div>
                 </div>

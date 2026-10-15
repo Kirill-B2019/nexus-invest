@@ -21,6 +21,14 @@
     var blockMinerEl = document.getElementById("ganimed-block-miner");
     var blockUpdatedEl = document.getElementById("ganimed-block-updated");
     var blockFinalizedEl = document.getElementById("ganimed-block-finalized");
+    var nexusAiStatusEl = document.getElementById("nexus-ai-node-status");
+    var nexusAiStatusUrl = nexusAiStatusEl?.getAttribute("data-status-url");
+    var nexusAiLoadingEl = document.getElementById("nexus-ai-status-loading");
+    var nexusAiResultEl = document.getElementById("nexus-ai-status-result");
+    var nexusAiIndicatorEl = document.getElementById("nexus-ai-status-indicator");
+    var nexusAiTextEl = document.getElementById("nexus-ai-status-text");
+    var nexusAiCheckedEl = document.getElementById("nexus-ai-status-checked");
+    var nexusAiRefreshBtn = document.getElementById("nexus-ai-status-refresh");
 
     function shortHash(value) {
         if (!value || value === "—") return "—";
@@ -88,6 +96,48 @@
         if (refreshBtn) refreshBtn.disabled = false;
     }
 
+    function fetchNexusAiStatus(refresh) {
+        if (!nexusAiStatusUrl) return;
+        var url = refresh ? nexusAiStatusUrl + "?refresh=1" : nexusAiStatusUrl;
+        if (nexusAiLoadingEl) nexusAiLoadingEl.classList.remove("d-none");
+        if (nexusAiResultEl) nexusAiResultEl.classList.add("d-none");
+        if (nexusAiRefreshBtn) nexusAiRefreshBtn.disabled = true;
+
+        fetch(url, {
+            headers: { Accept: "application/json", "X-Requested-With": "XMLHttpRequest" },
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                var ok = data.ok === true;
+                if (nexusAiLoadingEl) nexusAiLoadingEl.classList.add("d-none");
+                if (nexusAiResultEl) nexusAiResultEl.classList.remove("d-none");
+                if (nexusAiIndicatorEl) {
+                    nexusAiIndicatorEl.className = "ganimed-status-checkbox " + (ok ? "ganimed-status-ok" : "ganimed-status-fail");
+                }
+                if (nexusAiTextEl) {
+                    nexusAiTextEl.textContent = ok ? "Активен" : "Недоступен";
+                    nexusAiTextEl.classList.toggle("is-fail", !ok);
+                }
+                if (nexusAiCheckedEl) {
+                    nexusAiCheckedEl.textContent = data.checked_at ? "Проверено: " + data.checked_at : "";
+                }
+                if (nexusAiRefreshBtn) nexusAiRefreshBtn.disabled = false;
+            })
+            .catch(function () {
+                if (nexusAiLoadingEl) nexusAiLoadingEl.classList.add("d-none");
+                if (nexusAiResultEl) nexusAiResultEl.classList.remove("d-none");
+                if (nexusAiIndicatorEl) nexusAiIndicatorEl.className = "ganimed-status-checkbox ganimed-status-fail";
+                if (nexusAiTextEl) {
+                    nexusAiTextEl.textContent = "Недоступен";
+                    nexusAiTextEl.classList.add("is-fail");
+                }
+                if (nexusAiCheckedEl) nexusAiCheckedEl.textContent = "";
+                if (nexusAiRefreshBtn) nexusAiRefreshBtn.disabled = false;
+            });
+    }
+
     function fetchStatus(refresh) {
         var url = refresh ? statusUrl + "?refresh=1" : statusUrl;
         setLoading();
@@ -112,4 +162,6 @@
 
     fetchStatus(false);
     if (refreshBtn) refreshBtn.addEventListener("click", function () { fetchStatus(true); });
+    fetchNexusAiStatus(false);
+    if (nexusAiRefreshBtn) nexusAiRefreshBtn.addEventListener("click", function () { fetchNexusAiStatus(true); });
 })();

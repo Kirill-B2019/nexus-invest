@@ -39,4 +39,9 @@ return [
         'id' => (int) env('YANDEX_METRIKA_ID', 106896230),
     ],
 
+    'nexus_ai' => [
+        'health_url' => env('NEXUS_AI_HEALTH_URL', 'http://31.128.38.96/api/health'),
+        'health_cache_ttl' => (int) env('NEXUS_AI_HEALTH_CACHE_TTL', 30),
+    ],
+
 ];
