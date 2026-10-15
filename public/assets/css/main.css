@@ -2836,7 +2836,7 @@ body.swal2-height-auto {
 }
 .footer-ganimed__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 8px 16px;
     margin-bottom: 16px;
 }
@@ -2856,6 +2856,12 @@ body.swal2-height-auto {
     color: #fff;
     word-break: break-all;
 }
+
+.footer-ganimed__val--active{
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
 .footer-ganimed__actions {
     display: flex;
     flex-wrap: wrap;

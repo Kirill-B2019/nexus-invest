@@ -124,11 +124,10 @@
                                  class="footer-ganimed"
                                  data-status-url="{{ route('api.ganimed.block') }}">
                                 <h5 class="footer-eco-panel__title">{{ __('Статус блокчейна ГАНИМЕД') }}</h5>
-
                                 <div class="footer-ganimed__status-row">
                                     <span id="ganimed-status-loading" class="footer-ganimed__loading">{{ __('Загрузка…') }}</span>
                                     <div id="ganimed-status-result" class="footer-ganimed__result d-none">
-                                        <span id="ganimed-status-checkbox" class="ganimed-status-checkbox" role="img" aria-hidden="true"></span>
+                                        <span id="ganimed-status-checkbox" class="ganimed-status-checkbox ganimed-status-ok " role="img" aria-hidden="true"></span>
                                         <div class="footer-ganimed__status-text">
                                             <span id="ganimed-status-text" class="footer-ganimed__status-title"></span>
                                             <span id="ganimed-status-subtitle" class="footer-ganimed__status-sub"></span>
@@ -171,27 +170,48 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="footer-status-columns__item">
-                            <div id="nexus-ai-node-status"
-                                 class="footer-nexus-ai"
-                                 data-status-url="{{ route('api.nexus-ai.health') }}">
+                            <div id="nexus-ai-node-status" class="footer-ganimed">
                                 <h5 class="footer-eco-panel__title">{{ __('Статус НЕКСУС ИИ') }}</h5>
+
                                 <div class="footer-ganimed__status-row">
-                                    <span id="nexus-ai-status-loading" class="footer-ganimed__loading">{{ __('Загрузка…') }}</span>
-                                    <div id="nexus-ai-status-result" class="footer-ganimed__result d-none">
-                                        <span id="nexus-ai-status-indicator" class="ganimed-status-checkbox" role="img" aria-hidden="true"></span>
-                                        <div class="footer-ganimed__status-text">
-                                            <span id="nexus-ai-status-text" class="footer-ganimed__status-title"></span>
-                                            <span id="nexus-ai-status-checked" class="footer-ganimed__status-sub"></span>
-                                        </div>
+                                    <div class="footer-ganimed__result">
+                                    <span class="ganimed-status-checkbox ganimed-status-ok" role="img" aria-hidden="true"></span>
+                                    <div class="footer-ganimed__status-text">
+                                        <span class="footer-ganimed__status-title">{{ __('Активен') }}</span>
+                                        <span class="footer-ganimed__status-sub">{{ __('Статус нейросотрудников') }}</span>
+                                    </div>
                                     </div>
                                 </div>
-                                <div class="footer-ganimed__actions">
-                                    <button type="button" id="nexus-ai-status-refresh" class="footer-ganimed__btn">
-                                        {{ __('Проверить') }}
-                                    </button>
+
+                                <div class="footer-ganimed__grid">
+                                    <div class="footer-ganimed__cell">
+                                        <span class="footer-ganimed__key">{{ __('Системный архитектор .....') }}</span>
+                                        <span class="footer-ganimed__val">{{ __('Ожидает') }}</span>
+                                    </div>
+                                    <div class="footer-ganimed__cell">
+                                        <span class="footer-ganimed__key">{{ __('Программист .....') }}</span>
+                                        <span class="footer-ganimed__val">{{ __('Ожидает') }}</span>
+                                    </div>
+                                    <div class="footer-ganimed__cell">
+                                        <span class="footer-ganimed__key">{{ __('Финтех эксперт .....') }}</span>
+                                        <span class="footer-ganimed__val footer-ganimed__val--active">{{ __('Обучение') }}</span>
+                                    </div>
+                                    <div class="footer-ganimed__cell">
+                                        <span class="footer-ganimed__key">{{ __('Юрист - цифровое право .....') }}</span>
+                                        <span class="footer-ganimed__val">{{ __('Ожидает') }}</span>
+                                    </div>
+                                    <div class="footer-ganimed__cell">
+                                        <span class="footer-ganimed__key">{{ __('Скоринг советник (проектный) .....') }}</span>
+                                        <span class="footer-ganimed__val">{{ __('Ожидает') }}</span>
+                                    </div>
+                                    <div class="footer-ganimed__cell footer-ganimed__cell--wide">
+                                        <span class="footer-ganimed__key">{{ __('Время сервера:') }}</span>
+                                        <span class="footer-ganimed__val">{{ now()->format('d.m.Y H:i:s') }}</span>
+                                    </div>
                                 </div>
+
+
                             </div>
                         </div>
                     </div>
