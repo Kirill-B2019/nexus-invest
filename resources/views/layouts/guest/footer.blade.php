@@ -103,6 +103,24 @@
                         </div>
                         <div class="footer-progress-item">
                             <div class="footer-progress-item__head">
+                                <span class="footer-progress-item__label">{{ __('НЕКСУС ИИ') }}</span>
+                                <span class="footer-progress-item__value">64%</span>
+                            </div>
+                            <div class="progress footer-progress-bar">
+                                <div class="progress-bar" role="progressbar" style="width: 64%" aria-valuenow="54" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="footer-progress-item">
+                            <div class="footer-progress-item__head">
+                                <span class="footer-progress-item__label">{{ __('НЕКСУС AML') }}</span>
+                                <span class="footer-progress-item__value">87%</span>
+                            </div>
+                            <div class="progress footer-progress-bar">
+                                <div class="progress-bar" role="progressbar" style="width: 87%" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="footer-progress-item">
+                            <div class="footer-progress-item__head">
                                 <span class="footer-progress-item__label">{{ __('MVP мастер-нода ГАНИМЕД') }}</span>
                                 <span class="footer-progress-item__value">100%</span>
                             </div>
@@ -115,6 +133,7 @@
                         <a href="https://main-node.gnd-net.com" target="_blank" rel="noopener noreferrer">main-node.gnd-net.com</a>
                         <a href="https://github.com/Kirill-B2019/GND_v1/tree/main/docs" target="_blank" rel="noopener noreferrer">{{ __('GND-docs') }}</a>
                     </div>
+
                 </div>
 
                 <div class="footer-eco-panel__col footer-eco-panel__col--status">
@@ -220,10 +239,11 @@
                 <div class="footer-eco-panel__col footer-eco-panel__col--resources">
                     <h5 class="footer-eco-panel__title">{{ __('Ресурсы экосистемы') }}</h5>
                     <ul class="footer-eco-resources">
-                        <li><a href="https://nexus-invest.fund" target="_blank" rel="noopener noreferrer">nexus-invest.fund</a></li>
-                        <li><a href="https://main-node.gnd-net.com" target="_blank" rel="noopener noreferrer">main-node.gnd-net.com</a></li>
-                        <li><a href="https://scan.gnd-net.com" target="_blank" rel="noopener noreferrer">scan.gnd-net.com</a></li>
-                        <li><a href="https://mess.nexus-invest.fund" target="_blank" rel="noopener noreferrer">mess.nexus-invest.fund</a></li>
+                        <li><a href="https://nexus-invest.fund" target="_blank" rel="noopener noreferrer">{{__('Платформа НЕКСУС')}}</a></li>
+                        <li><a href="https://main-node.gnd-net.com" target="_blank" rel="noopener noreferrer">{{__('API  ГАНИМЕД')}}</a></li>
+                        <li><a href="https://scan.gnd-net.com" target="_blank" rel="noopener noreferrer">{{__('Сканер ГАНИМЕД')}}</a></li>
+                        <li><a href="https://aml.gnd-net.com" target="_blank" rel="noopener noreferrer">{{__('AML ГАНИМЕД')}}</a></li>
+                        <li><span>{{__('Мессенджер НЕКСУС')}}</span></li>
                         <li><button
                                 type="button"
                                 class="footer-newsletter__btn"
