@@ -353,10 +353,10 @@
                 <div class="ai-strategy-promo__brand">
                     <img
                         class="ai-strategy-promo__logo"
-                        src="{{ asset('assets/imgs/template/16.svg') }}"
+                        src="{{ asset('assets/imgs/template/nexus-ai.png') }}"
                         alt="{{ __('НЕКСУС ИИ') }}"
-                        width="300"
-                        height="88"
+                        width="150"
+                        height="44"
                         loading="lazy"
                         decoding="async"
                     >
@@ -366,14 +366,7 @@
 
                 <div class="ai-strategy-promo__console">
                     <div class="ai-strategy-promo__console-head">
-                        <span class="ai-strategy-promo__console-icon" aria-hidden="true">
-                            <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
-                                <rect x="14" y="14" width="20" height="20" rx="3" stroke="currentColor" stroke-width="1.6"/>
-                                <circle cx="24" cy="24" r="4" stroke="currentColor" stroke-width="1.6"/>
-                                <path d="M24 8v4M24 36v4M8 24h4M36 24h4M12 12l3 3M33 33l3 3M12 36l3-3M33 15l3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                                <path d="M10 22c-4-6-2-12 2-14M38 26c4 6 2 12-2 14M18 40c-7 2-12-2-13-7M30 8c7-2 12 2 13 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-                            </svg>
-                        </span>
+
                         <p class="ai-strategy-promo__console-label">{{ __('Оператор консоль') }}</p>
                     </div>
                     <h2 class="ai-strategy-promo__console-title">

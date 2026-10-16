@@ -139,6 +139,12 @@
                 <div class="footer-eco-panel__col footer-eco-panel__col--status">
                     <div class="footer-status-columns">
                         <div class="footer-status-columns__item">
+                            <img class="footer-status-columns__watermark"
+                                 src="{{ asset('assets/imgs/template/nexus-ganimed.png') }}"
+                                 alt=""
+                                 aria-hidden="true"
+                                 loading="lazy"
+                                 decoding="async">
                             <div id="ganimed-node-status"
                                  class="footer-ganimed"
                                  data-status-url="{{ route('api.ganimed.block') }}">
@@ -190,6 +196,12 @@
                             </div>
                         </div>
                         <div class="footer-status-columns__item">
+                            <img class="footer-status-columns__watermark"
+                                 src="{{ asset('assets/imgs/template/nexus-ai.png') }}"
+                                 alt=""
+                                 aria-hidden="true"
+                                 loading="lazy"
+                                 decoding="async">
                             <div id="nexus-ai-node-status" class="footer-ganimed">
                                 <h5 class="footer-eco-panel__title">{{ __('Статус НЕКСУС ИИ') }}</h5>
 
