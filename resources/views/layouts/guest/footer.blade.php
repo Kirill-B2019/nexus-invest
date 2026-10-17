@@ -200,31 +200,31 @@
                                     <span class="ganimed-status-checkbox ganimed-status-ok" role="img" aria-hidden="true"></span>
                                     <div class="footer-ganimed__status-text">
                                         <span class="footer-ganimed__status-title">{{ __('Активен') }}</span>
-                                        <span class="footer-ganimed__status-sub">{{ __('Статус нейросотрудников') }}</span>
+                                        <span class="footer-ganimed__status-sub">{{ __('Статус экспертов') }}</span>
                                     </div>
                                     </div>
                                 </div>
 
                                 <div class="footer-ganimed__grid">
                                     <div class="footer-ganimed__cell">
-                                        <span class="footer-ganimed__key">{{ __('Системный архитектор .....') }}</span>
-                                        <span class="footer-ganimed__val">{{ __('Ожидает') }}</span>
+                                        <span class="footer-ganimed__val">{{ __('Системный архитектор .....') }}</span>
+                                        <span class="footer-ganimed__key">{{ __('Ожидает') }}</span>
                                     </div>
                                     <div class="footer-ganimed__cell">
-                                        <span class="footer-ganimed__key">{{ __('Программист .....') }}</span>
-                                        <span class="footer-ganimed__val">{{ __('Ожидает') }}</span>
+                                        <span class="footer-ganimed__val">{{ __('Программист .....') }}</span>
+                                        <span class="footer-ganimed__key">{{ __('Ожидает') }}</span>
                                     </div>
                                     <div class="footer-ganimed__cell">
-                                        <span class="footer-ganimed__key">{{ __('Финтех эксперт .....') }}</span>
+                                        <span class="footer-ganimed__val">{{ __('Финтех эксперт .....') }}</span>
                                         <span class="footer-ganimed__val footer-ganimed__val--active">{{ __('Обучение') }}</span>
                                     </div>
                                     <div class="footer-ganimed__cell">
-                                        <span class="footer-ganimed__key">{{ __('Юрист - цифровое право .....') }}</span>
-                                        <span class="footer-ganimed__val">{{ __('Ожидает') }}</span>
+                                        <span class="footer-ganimed__val">{{ __('Юрист - цифровое право .....') }}</span>
+                                        <span class="footer-ganimed__key">{{ __('Ожидает') }}</span>
                                     </div>
                                     <div class="footer-ganimed__cell">
-                                        <span class="footer-ganimed__key">{{ __('Скоринг советник (проектный) .....') }}</span>
-                                        <span class="footer-ganimed__val">{{ __('Ожидает') }}</span>
+                                        <span class="footer-ganimed__val">{{ __('Скоринг советник (проектный) .....') }}</span>
+                                        <span class="footer-ganimed__key">{{ __('Ожидает') }}</span>
                                     </div>
                                     <div class="footer-ganimed__cell footer-ganimed__cell--wide">
                                         <span class="footer-ganimed__key">{{ __('Время сервера:') }}</span>
